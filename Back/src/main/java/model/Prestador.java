@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Date;
 import java.util.List;
 
 import exports.BaseEntity;
@@ -13,6 +12,8 @@ import model.auxiliares.Endereco;
 @Setter
 public class Prestador extends BaseEntity {
 
+	@Getter
+	@Setter
 	private class disponibilidade {
 		// * deve usar um enum para cada atributo
 		private String diaDaSemana;
@@ -27,7 +28,7 @@ public class Prestador extends BaseEntity {
 	private String foto;
 	private List<ServicoPrestado> servicos;
 	private String portfolio;
-	private List<disponibilidade> disponibilidades;
+	private disponibilidade disponibilidades;
 	private String descricaoAdicional;
 
 }
