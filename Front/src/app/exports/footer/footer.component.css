@@ -1,0 +1,87 @@
+/* Estilo para o footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8f8f8;
+}
+
+/* Estilo para as categorias */
+.categorias ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categorias header {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.categorias li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.categorias a {
+  text-decoration: none;
+  color: #333;
+}
+
+.categorias a:hover {
+  text-decoration: underline;
+}
+
+/* Estilo para o institucional */
+.institucional ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.institucional header {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.institucional li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.institucional a {
+  text-decoration: none;
+  color: #333;
+}
+
+.institucional a:hover {
+  text-decoration: underline;
+}
+
+/* Estilo para as redes sociais */
+.redes-sociais label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.redes-sociais a {
+  text-decoration: none;
+  color: #333;
+}
+
+.redes-sociais a:hover {
+  text-decoration: underline;
+}
+
+.redes-sociais i {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+  color: #333;
+}
+
+/* Estilo para a imagem do google play */
+.footer img {
+  height: 50px;
+  object-fit: cover;
+}

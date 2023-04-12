@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
-  categorias:string[] = ['Assistencia técnica', 'Eventos', 'Contabilidade', 'mais uma caralhada'];
+  categorias:string[] = ['Assistencia técnica', 'Eventos', 'Contabilidade', 'outras'];
 }
