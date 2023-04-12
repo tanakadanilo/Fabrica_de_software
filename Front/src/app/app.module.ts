@@ -24,13 +24,19 @@ import { MenuComponent } from './exports/menu/menu.component';
 import { LoginComponent } from './login/login.component';
 import { LoginRoutingModule } from './login/login-routing.module';
 import { NbSecurityModule } from '@nebular/security';
+import { RecoveryComponent } from './recovery/recovery.component';
+import { RegisterComponent } from './register/register.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    RecoveryComponent,
+    RegisterComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
