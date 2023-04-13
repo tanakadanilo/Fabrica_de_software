@@ -1,1 +1,57 @@
-<p>register works!</p>
+
+<body>
+  <nb-layout>
+
+
+    <nb-layout-column>
+      <h1>Tela de Login</h1>
+      <form>
+        <nb-card>
+          <nb-card-header>Dados Pessoais</nb-card-header>
+          <nb-card-body>
+            <nb-input full name="nomeCompleto" placeholder="Nome Completo"></nb-input>
+            <input type="text" nbInput mask="000.000.000-00" fullWidth status="basic" placeholder="Nome Completo">
+            <input type="text" mask="(00) 0000-0000" placeholder="Telefone" />
+
+
+            <input type="text" nbInput mask="000.000.000-00"  fullWidth status="basic" placeholder="CPF">
+            <input type="text" nbInput fullWidth status="basic" placeholder="Nome Completo">
+            <input type="text" nbInput fullWidth status="basic" placeholder="Nome Completo">
+            <nb-input full name="email" type="email" placeholder="E-mail"></nb-input>
+            <nb-input full name="cpf" placeholder="CPF"></nb-input>
+            <nb-input full name="contato" placeholder="Contato"></nb-input>
+          </nb-card-body>
+        </nb-card>
+
+        <nb-card>
+          <nb-card-header>Endereço</nb-card-header>
+          <nb-card-body>
+            <nb-input name="cep" placeholder="CEP"></nb-input>
+            <nb-input full name="logradouro" placeholder="Logradouro"></nb-input>
+            <nb-input full name="numero" placeholder="Número"></nb-input>
+            <nb-input full name="quadra" placeholder="Quadra"></nb-input>
+            <nb-input full name="lote" placeholder="Lote"></nb-input>
+            <nb-input full name="cidade" placeholder="Cidade"></nb-input>
+            <nb-input full name="estado" placeholder="Estado"></nb-input>
+            <nb-input full name="complemento" placeholder="Complemento"></nb-input>
+          </nb-card-body>
+        </nb-card>
+
+
+
+
+        <nb-card>
+          <nb-card-header>Imagem de Perfil</nb-card-header>
+          <nb-card-body>
+            <input type="file" name="imagemPerfil" (change)="previewImage($event)">
+            <img id="image-preview" class="image-preview" src="" alt="Imagem selecionada">
+
+          </nb-card-body>
+        </nb-card>
+
+        <button nbButton fullWidth>Completar Cadastro</button>
+      </form>
+    </nb-layout-column>
+  </nb-layout>
+</body>
+
