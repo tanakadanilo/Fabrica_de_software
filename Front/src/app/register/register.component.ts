@@ -18,7 +18,9 @@ export class RegisterComponent {
         reader.readAsDataURL(file);
       }
     }
-
+    cadastrar(){
+      // logica
+    }
   }
 
 
