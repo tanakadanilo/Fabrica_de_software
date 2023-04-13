@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { RouterModule } from '@angular/router';
 import {
   NbButtonModule,
@@ -54,7 +55,7 @@ import { MainComponent } from './main/main.component';
     LoginRoutingModule,
     NbSecurityModule,
     NbUserModule,
-    NbContextMenuModule
+    NbContextMenuModule,
   ],
   providers: [NbMenuService],
   bootstrap: [AppComponent]
