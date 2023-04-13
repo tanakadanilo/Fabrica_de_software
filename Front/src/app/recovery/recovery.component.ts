@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./recovery.component.css']
 })
 export class RecoveryComponent {
+ email = "";
+ opcaoRecuperacao = "";
 
+  recuperar(_event: Event) {
+    // seu código de login aqui
+  }
 }

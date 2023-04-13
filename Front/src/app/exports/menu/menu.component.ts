@@ -1,4 +1,3 @@
-import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -18,12 +17,12 @@ export class MenuComponent {
   userPictureOnly: boolean = true;
   user = {
     name: 'John Doe',
-    picture: 'https://randomuser.me/api/portraits/men/1.jpg'
+    picture: 'https://randomuser.me/api/portraits/men/3.jpg'
   };
 
 
   abrirSobre(){
-    debugger;
+
     this._router.navigateByUrl("/login");
 
 

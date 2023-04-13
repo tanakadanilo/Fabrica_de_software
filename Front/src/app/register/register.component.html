@@ -1,1 +1,190 @@
-<p>register works!</p>
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  />
+</head>
+<body>
+  <nb-layout>
+    <nb-layout-column>
+      <h1>Cadastre-se</h1>
+      <form>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <nb-card>
+                <nb-card-header>Dados Pessoais</nb-card-header>
+                <nb-card-body>
+                  <label class="label" for="input-nomecompleto"
+                    >Nome Completo</label
+                  ><br />
+                  <input
+                    type="text"
+                    nbInput
+                    fullWidth
+                    status="basic"
+                    placeholder="Nome Completo"
+                  /><br />
+                  <label class="label" for="input-CPF">CPF</label><br />
+                  <input
+                    type="text"
+                    nbInput
+                    mask="000.000.000-00"
+                    [showMaskTyped]="true"
+                    status="basic"
+                    placeholder="000.000.000-00"
+                  /><br />
+                  <label class="label" for="input-email " pattern=".+@.+..+"
+                    >Email</label
+                  ><br />
+                  <input
+                    type="text"
+                    nbInput
+                    status="basic"
+                    fullWidth
+                    placeholder="Seu melhor email!"
+                  /><br />
+                  <label class="label" for="input-telefone">Telefone</label
+                  ><br />
+                  <input
+                    type="text"
+                    nbInput
+                    mask="(00) 0000-0000"
+                    status="basic"
+                    placeholder="Seu melhor contato"
+                  /><br /><br />
+                </nb-card-body>
+              </nb-card>
+            </div>
+            <div class="col-md-6">
+              <nb-card>
+                <nb-card-header>Endereço</nb-card-header>
+                <nb-card-body
+                  ><label class="label" for="input-CEP">CEP</label><br />
+                  <input
+                    type="text"
+                    nbInput
+                    mask="00.000-000"
+                    [showMaskTyped]="true"
+                    status="basic"
+                    placeholder="00.000-000"
+                  /><br />
+                  <label class="label" for="input-logradouro">Logradouro</label
+                  ><br />
+                  <input
+                    type="text"
+                    nbInput
+                    status="basic"
+                    placeholder="Insira o CEP"
+                    disabled
+                  />
+                  <div class="row">
+                    <div class="col-md-3">
+                      <label class="label" for="input-numero">Número</label
+                      ><br />
+                      <input
+                        style="width: 100px !important"
+                        type="text"
+                        nbInput
+                        status="basic"
+                        placeholder="Número"
+                      />
+                    </div>
+                    <div class="col-md-3">
+                      <label class="label" for="input-qd">Quadra</label><br />
+                      <input
+                        style="width: 100px !important"
+                        type="text"
+                        nbInput
+                        status="basic"
+                        placeholder="QD"
+                      />
+                    </div>
+                    <div class="col-md-3">
+                      <label class="label" for="input-lt">Lote</label><br />
+                      <input
+                        style="width: 100px !important"
+                        type="text"
+                        nbInput
+                        status="basic"
+                        placeholder="LT"
+                      />
+                    </div>
+                  </div>
+                  <br />
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="label" for="input-cidade">Cidade</label
+                      ><br />
+                      <input
+                        style="align-items: left; width: 115px !important"
+                        type="text"
+                        nbInput
+                        status="basic"
+                        placeholder="Insira o CEP!"
+                        disabled
+                      />
+                    </div>
+                    <div class="col-md-3">
+                      <label class="label" for="input-estado">Estado</label
+                      ><br />
+                      <input
+                        style="align-items: right; width: 100px !important"
+                        type="text"
+                        nbInput
+                        status="basic"
+                        placeholder="Insira o CEP!"
+                        disabled
+                      />
+                    </div>
+                  </div>
+
+                  <nb-input name="cep" placeholder="CEP"></nb-input>
+                  <nb-input
+                    full
+                    name="logradouro"
+                    placeholder="Logradouro"
+                  ></nb-input>
+                </nb-card-body>
+              </nb-card>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row1">
+            <div class="col md-3 mx-auto">
+              <nb-card>
+                <nb-card-header>Imagem de Perfil</nb-card-header>
+                <nb-card-body>
+                  <input
+                    type="file"
+                    name="imagemPerfil"
+                    (change)="previewImage($event)"
+                  />
+                  <img
+                    id="preview-img"
+                    class="image-preview"
+                    src=""
+                    alt=""
+                    style="
+                      max-width: 180px;
+                      max-height: 180px;
+                      border-radius: 50%;
+                    "
+                  />
+                </nb-card-body>
+              </nb-card>
+            </div>
+
+          </div>
+        </div>
+
+        <button nbButton fullWidth (click)="cadastrar()">
+          Completar Cadastro
+        </button>
+      </form>
+    </nb-layout-column>
+  </nb-layout>
+</body>
