@@ -27,6 +27,7 @@ import { NbSecurityModule } from '@nebular/security';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { RegisterComponent } from './register/register.component';
 import { MainComponent } from './main/main.component';
+import { RegisterPrestadorComponent } from './register-prestador/register-prestador.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MainComponent } from './main/main.component';
     LoginComponent,
     RecoveryComponent,
     RegisterComponent,
-    MainComponent
+    MainComponent,
+    RegisterPrestadorComponent
   ],
   imports: [
     BrowserModule,

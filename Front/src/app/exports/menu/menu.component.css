@@ -50,3 +50,7 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+.logo{  height: 50px !important;
+  border-radius: 80%;
+  object-fit: cover;}
