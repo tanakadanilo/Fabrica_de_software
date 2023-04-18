@@ -1,9 +1,8 @@
 package com.devnari.contrataai.enumerations;
 
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Id;
 
-@AllArgsConstructor
 @Entity
 public enum UF {
 
@@ -20,6 +19,7 @@ public enum UF {
 	RIO_DE_JANEIRO("Rio de Janeiro", "RJ", "Rio de Janeiro"), SERGIPE("Sergipe", "SE", "Aracaju"),
 	DISTRITO_FEDERAL("Distrito Federal", "DF", "Brasília");
 
+	@Id
 	private final String nome;
 	private final String sigla;
 	private final String capital;
@@ -31,6 +31,12 @@ public enum UF {
 	 * @param sigla   sigla da unidade da federação
 	 * @param capital nome da capital da unidade da federação
 	 */
+
+	UF(String nome, String sigla, String capital) {
+		this.nome = nome;
+		this.sigla = sigla;
+		this.capital = capital;
+	}
 
 	/**
 	 * Converte a partir do nome da Unidade da Federacao, para o respectivo enum.
