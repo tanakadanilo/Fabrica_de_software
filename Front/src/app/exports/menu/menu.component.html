@@ -1,17 +1,25 @@
-<div class="menu">
-  <a href="#"><img class="logo" src="/assets/images/Logodevnari.png" alt=" "   /></a>
-  <button (click)="abrirSobre()">Sobre mim</button>
-  <button>Procurar servicos</button>
-  <span class="p-input-icon-right">
-    <i class="pi pi-search"></i>
-    <input type="text" placeholder="Procurar Prestador" />
-  </span>
-  <button>Desconectar</button>
-  <nb-user
-    [nbContextMenu]="userMenu"
-    [onlyPicture]="userPictureOnly"
-    [name]="user.name"
-    [picture]="user.picture"
-  >
-  </nb-user>
-</div>
+  <div class="menu">
+    <a href="#"
+      ><img class="logo" src="/assets/images/Logodevnari.png" alt=" "
+    /></a>
+    <button [routerLink]="['/login']">Sobre mim</button>
+    <button>Procurar servicos</button>
+    <span class="p-input-icon-right">
+      <i class="pi pi-search"></i>
+      <input type="text" placeholder="Procurar Prestador" />
+    </span>
+
+    <nb-user
+      [nbContextMenu]="items"
+      [onlyPicture]="userPictureOnly"
+      [name]="user.name"
+      [picture]="user.picture"
+    >
+    </nb-user>
+  </div>
+
+
+
+
+
+

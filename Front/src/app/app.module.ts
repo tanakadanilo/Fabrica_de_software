@@ -1,7 +1,7 @@
+import { PortalModule } from '@angular/cdk/portal';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { RouterModule } from '@angular/router';
 import { NbSecurityModule } from '@nebular/security';
 import {
@@ -11,11 +11,13 @@ import {
   NbContextMenuModule,
   NbInputModule,
   NbLayoutModule,
+  NbMenuModule,
   NbMenuService,
   NbSidebarModule,
   NbThemeModule,
   NbUserModule,
 } from '@nebular/theme';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -27,7 +29,6 @@ import { LoginRoutingModule } from './login/login-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { RegisterComponent } from './register/register.component';
-import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,9 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     NbContextMenuModule,
     NbInputModule,
     NgxMaskDirective,
-    NgxMaskPipe
+    NgxMaskPipe,
+    PortalModule,
+    NbMenuModule.forRoot()
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

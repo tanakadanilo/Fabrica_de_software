@@ -1,19 +1,17 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
+export class MenuComponent  {
+  items = [
+    { title: 'Profile' },
+    { title: 'Desconectar' },
+  ];
 
-
-export class MenuComponent {
-  constructor(
-    private _router: Router,
-  ) {}
-
-  userMenu: any;
   userPictureOnly: boolean = true;
   user = {
     name: 'John Doe',
@@ -21,11 +19,5 @@ export class MenuComponent {
   };
 
 
-  abrirSobre(){
-
-    this._router.navigateByUrl("/login");
-
-
-  }
-
 }
+
