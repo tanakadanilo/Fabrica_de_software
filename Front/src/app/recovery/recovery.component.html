@@ -2,7 +2,7 @@
   <nb-layout-column class="margem">
     <div class="null"></div>
     <nb-card>
-      <nb-card-header>Recuperar Senha/Usuário</nb-card-header>
+      <nb-card-header>Recuperar Usuário e Senha</nb-card-header>
       <nb-card-body>
         <form>
           <div class="form-group">
@@ -16,16 +16,7 @@
             />
           </div>
 
-          <div class="form-group">
-            <label form="opcao-recuperacao">Recuperar:</label>
-            <select
-              class="form-control select-direita"
-              id="opcao-recuperacao"
-              [(ngModel)]="opcaoRecuperacao"
-            >
-              <option value="senha">Senha</option>
-              <option value="usuario">Usuário</option>
-            </select>
+          <div>
             <a class="entrar" [routerLink]="['/login']">Entrar</a>
           </div>
 

@@ -12,6 +12,34 @@
       <h1>Cadastre-se</h1>
       <form>
         <div class="container">
+          <div class="row1">
+            <div class="col md-3 mx-auto">
+              <nb-card>
+                <nb-card-header>Imagem de Perfil</nb-card-header>
+                <nb-card-body>
+                  <input
+                    type="file"
+                    name="imagemPerfil"
+                    (change)="previewImage($event)"
+                  />
+                  <img
+                    id="preview-img"
+                    class="image-preview"
+                    src=""
+                    alt=""
+                    style="
+                      max-width: 130px;
+                      max-height: 150px;
+                      border-radius: 60%;
+                    "
+                  />
+                </nb-card-body>
+              </nb-card>
+            </div>
+
+          </div>
+        </div>
+        <div class="container">
           <div class="row">
             <div class="col-md-6">
               <nb-card>
@@ -119,7 +147,7 @@
                       <label class="label" for="input-cidade">Cidade</label
                       ><br />
                       <input
-                        style="align-items: left; width: 115px !important"
+                        style="align-items: left; width: 130px !important"
                         type="text"
                         nbInput
                         status="basic"
@@ -131,7 +159,7 @@
                       <label class="label" for="input-estado">Estado</label
                       ><br />
                       <input
-                        style="align-items: right; width: 100px !important"
+                        style="align-items: right; width: 130px !important"
                         type="text"
                         nbInput
                         status="basic"
@@ -152,34 +180,7 @@
             </div>
           </div>
         </div>
-        <div class="container">
-          <div class="row1">
-            <div class="col md-3 mx-auto">
-              <nb-card>
-                <nb-card-header>Imagem de Perfil</nb-card-header>
-                <nb-card-body>
-                  <input
-                    type="file"
-                    name="imagemPerfil"
-                    (change)="previewImage($event)"
-                  />
-                  <img
-                    id="preview-img"
-                    class="image-preview"
-                    src=""
-                    alt=""
-                    style="
-                      max-width: 180px;
-                      max-height: 180px;
-                      border-radius: 50%;
-                    "
-                  />
-                </nb-card-body>
-              </nb-card>
-            </div>
 
-          </div>
-        </div>
 
         <button nbButton fullWidth (click)="cadastrar()">
           Completar Cadastro

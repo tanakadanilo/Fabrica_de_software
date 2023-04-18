@@ -1,5 +1,5 @@
 body {
-  background-color: #f7f9fc;
+  background-color: #81858b86;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -9,9 +9,7 @@ body {
 
 nb-layout {
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
 }
 
 .null {

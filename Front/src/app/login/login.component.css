@@ -6,9 +6,7 @@ nb-card-body{
 }
 nb-layout {
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
 }
 .null {
 height: 130px ;
