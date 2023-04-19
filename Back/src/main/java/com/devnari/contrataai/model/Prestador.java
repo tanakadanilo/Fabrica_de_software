@@ -4,11 +4,14 @@ import java.util.List;
 
 import com.devnari.contrataai.enumerations.DiasSemana;
 import com.devnari.contrataai.enumerations.PeriodosDia;
-import com.devnari.contrataai.exports.BaseEntity;
 import com.devnari.contrataai.model.auxiliares.Contato;
+import com.devnari.contrataai.model.auxiliares.Disponibilidade;
 import com.devnari.contrataai.model.auxiliares.Endereco;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -18,39 +21,36 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Prestador extends BaseEntity {
+public class Prestador {
 
-	@Getter
-	@Setter
-	private class disponibilidade {
-		private DiasSemana diaDaSemana;
-		private PeriodosDia horário;
-	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
 	private String nome;
 	private String email;
 
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
 	private String CPF;
 
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
-	
+
 // link da foto
 	private String foto;
 
-	@ManyToOne
+	@OneToMany
 	@JoinColumn(name = "pessoa_id")
 	private List<ServicoPrestado> servicoPrestados;
 
 // link do portfólio
 	private String portfolio;
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "disponibilidade_id")
-	private disponibilidade disponibilidades;
+	private Disponibilidade disponibilidades;
 	private String descricaoAdicional;
 
 }
