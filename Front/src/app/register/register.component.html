@@ -1,6 +1,6 @@
 <head>
   <meta charset="UTF-8" />
-  <title>Login</title>
+  <title>Cadastro de Usuário</title>
   <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -11,86 +11,91 @@
     <nb-layout-column>
       <h1>Cadastre-se</h1>
       <form>
-        <div class="container">
-          <div class="row1">
-            <div class="col md-3 mx-auto">
-              <nb-card>
-                <nb-card-header>Imagem de Perfil</nb-card-header>
-                <nb-card-body>
-                  <input
-                    type="file"
-                    name="imagemPerfil"
-                    (change)="previewImage($event)"
-                  />
-                  <img
-                    id="preview-img"
-                    class="image-preview"
-                    src=""
-                    alt=""
-                    style="
-                      max-width: 130px;
-                      max-height: 150px;
-                      border-radius: 60%;
-                    "
-                  />
-                </nb-card-body>
-              </nb-card>
-            </div>
-
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
+        <nb-stepper #stepper  [linear]="linearMode">
+          <nb-step [stepControl]="DadosPessoais" label="Dados Pessoais">
+            <form #DadosPessoais="ngForm" class="step-container">
               <nb-card>
                 <nb-card-header>Dados Pessoais</nb-card-header>
-                <nb-card-body>
-                  <label class="label" for="input-nomecompleto"
-                    >Nome Completo</label
-                  ><br />
-                  <input
-                    type="text"
-                    nbInput
-                    fullWidth
-                    status="basic"
-                    placeholder="Nome Completo"
-                  /><br />
-                  <label class="label" for="input-CPF">CPF</label><br />
-                  <input
-                    type="text"
-                    nbInput
-                    mask="000.000.000-00"
-                    [showMaskTyped]="true"
-                    status="basic"
-                    placeholder="000.000.000-00"
-                  /><br />
-                  <label class="label" for="input-email " pattern=".+@.+..+"
-                    >Email</label
-                  ><br />
-                  <input
-                    type="text"
-                    nbInput
-                    status="basic"
-                    fullWidth
-                    placeholder="Seu melhor email!"
-                  /><br />
-                  <label class="label" for="input-telefone">Telefone</label
-                  ><br />
-                  <input
-                    type="text"
-                    nbInput
-                    mask="(00) 0000-0000"
-                    status="basic"
-                    placeholder="Seu melhor contato"
-                  /><br /><br />
+                <nb-card-body class="card">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col md-3 mx-auto">
+                        <label class="label" for="input-nomecompleto"
+                          >Nome Completo<br /></label
+                        ><br /><input
+                        required
+                          type="text"
+                          nbInput
+                          status="basic"
+                          placeholder="Nome Completo"
+                        />
+                      </div>
+                      <br />
+                      <div class="col md-3 mx-auto">
+                        <label class="label" for="input-CPF">CPF</label><br />
+                        <input
+                          type="text"
+                          nbInput
+                          mask="000.000.000-00"
+                          [showMaskTyped]="true"
+                          status="basic"
+                          placeholder="000.000.000-00"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+                  <div class="container">
+                    <div class="row">
+                      <div class="col md-3 mx-auto">
+                        <label class="label" for="input-email "
+                          pattern=".+@.+..+"
+                          >Email</label
+                        ><br />
+                        <input
+                          type="text"
+                          nbInput
+                          status="basic"
+                          placeholder="Seu melhor email!"
+                        /><br />
+                      </div>
+                      <div class="col md-3 mx-auto">
+                        <label class="label" for="input-telefone"
+                          >Telefone</label
+                        ><br />
+                        <input
+                          type="text"
+                          nbInput
+                          mask="(00) 0000-0000"
+                          status="basic"
+                          placeholder="Seu melhor contato"
+                        /><br /><br />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button
+                          style="float: right; width: 80px; height: 40px"
+                          nbButton
+                          nbStepperNext
+                        >
+                          Avançar
+                        </button>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+
                 </nb-card-body>
               </nb-card>
-            </div>
-            <div class="col-md-6">
-              <nb-card>
-                <nb-card-header>Endereço</nb-card-header>
-                <nb-card-body
-                  ><label class="label" for="input-CEP">CEP</label><br />
+            </form>
+          </nb-step>
+          <nb-step label="Passo 2">
+            <nb-card>
+              <nb-card-header>Endereço</nb-card-header>
+              <nb-card-body>
+                <form>
+                  <label class="label" for="input-CEP">CEP</label><br />
                   <input
                     type="text"
                     nbInput
@@ -168,23 +173,76 @@
                       />
                     </div>
                   </div>
+                  <br /><br />
+                  <button
+                    style="align-items: left; width: 130px !important"
+                    status="basic"
+                    nbButton
+                    nbStepperPrevious
+                  >
+                    Voltar
+                  </button>
 
-                  <nb-input name="cep" placeholder="CEP"></nb-input>
-                  <nb-input
-                    full
-                    name="logradouro"
-                    placeholder="Logradouro"
-                  ></nb-input>
-                </nb-card-body>
-              </nb-card>
+                  <button
+                    style="float: right; width: 130px !important"
+                    nbButton
+                    nbStepperNext
+                  >
+                    Avançar
+                  </button>
+                </form>
+              </nb-card-body>
+            </nb-card>
+          </nb-step>
+          <nb-step label="Passo 3">
+            <nb-card>
+              <nb-card-header>Imagem de Perfil</nb-card-header>
+              <nb-card-body>
+
+
+                <div class="file-input">
+                  <label for="imagemPerfil">Clique aqui para escolher sua imagem.</label>
+                  <input type="file" name="imagemPerfil" id="imagemPerfil" (change)="previewImage($event)">
+                  <img id="preview-img" class="image-preview" src="" alt="">
+                </div>
+                <br /><br />
+
+                <button
+                  style="align-items: left; width: 130px !important"
+                  status="basic"
+                  nbButton
+                  nbStepperPrevious
+                >
+                  Voltar
+                </button><br><br><br>
+
+                <button nbButton fullWidth (click)="cadastrar()">
+                  Completar Cadastro
+                </button>
+              </nb-card-body>
+            </nb-card>
+          </nb-step>
+        </nb-stepper>
+        <!--   <div class="container">
+          <div class="row1">
+            <div class="col md-3 mx-auto">
+
+            </div>
+
+          </div> -->
+        <!-- </div> -->
+        <!-- <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+
+            </div> -->
+        <!-- <div class="col-md-6">
+
             </div>
           </div>
-        </div>
+        </div> -->
 
 
-        <button nbButton fullWidth (click)="cadastrar()">
-          Completar Cadastro
-        </button>
       </form>
     </nb-layout-column>
   </nb-layout>

@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
 
+
+  linearMode = true;
+DadosPessoais: { valid: boolean|null; reset: () => void; }|undefined;
+
     previewImage(event: Event): void {
       const file = (event.target as HTMLInputElement).files?.[0];
       if (file) {
@@ -18,6 +22,25 @@ export class RegisterComponent {
         reader.readAsDataURL(file);
       }
     }
+
+
+/*
+    constructor(private stepper: NbStepperComponent) {}
+
+    onStepChange(event: NbStepChangeEvent) {
+      const camposObrigatorios = event.step.stepContent.nativeElement.querySelectorAll('.required');
+      const camposVazios = Array.from(camposObrigatorios).filter((campo: HTMLInputElement) => !campo.value);
+
+      if (camposVazios.length > 0) {
+        event.step.stepControl.status = 'INVALID'; // Define a etapa atual como inválida
+      }
+    }
+    } */
+
+
+
+
+
     cadastrar(){
       // logica
     }

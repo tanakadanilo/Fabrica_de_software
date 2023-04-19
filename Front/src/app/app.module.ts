@@ -14,6 +14,7 @@ import {
   NbMenuModule,
   NbMenuService,
   NbSidebarModule,
+  NbStepperModule,
   NbThemeModule,
   NbUserModule,
 } from '@nebular/theme';
@@ -29,6 +30,7 @@ import { LoginRoutingModule } from './login/login-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { RegisterComponent } from './register/register.component';
+import { PerfiluserComponent } from './perfiluser/perfiluser.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { RegisterComponent } from './register/register.component';
     FooterComponent,
     LoginComponent,
     RecoveryComponent,
-    RegisterComponent
+    RegisterComponent,
+    PerfiluserComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,9 @@ import { RegisterComponent } from './register/register.component';
     NgxMaskDirective,
     NgxMaskPipe,
     PortalModule,
-    NbMenuModule.forRoot()
+    NbMenuModule.forRoot(),
+    NbStepperModule,
+    NbButtonModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

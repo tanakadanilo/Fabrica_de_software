@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -8,14 +8,15 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 })
 export class MenuComponent  {
   items = [
-    { title: 'Profile' },
+    { title: 'Perfil', link: '/userprofile' },
+
     { title: 'Desconectar' },
   ];
 
   userPictureOnly: boolean = true;
   user = {
     name: 'John Doe',
-    picture: 'https://randomuser.me/api/portraits/men/3.jpg'
+    picture: 'https://randomuser.me/api/portraits/women/2.jpg'
   };
 
 
