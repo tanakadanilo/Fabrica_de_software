@@ -1,0 +1,15 @@
+// import Nebular Theme System and the default theme
+@forward '@nebular/theme/styles/theming';
+@use '@nebular/theme/styles/theming' as *;
+@use '@nebular/theme/styles/themes/default';
+
+// this is our just created themes.scss file, make sure the path to the file is correct
+@use 'themes' as *;
+
+// framework component styles
+@use '@nebular/theme/styles/globals' as *;
+
+// install the framework styles
+@include nb-install() {
+  @include nb-theme-global();
+}

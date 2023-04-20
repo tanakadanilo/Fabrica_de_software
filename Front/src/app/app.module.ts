@@ -31,6 +31,8 @@ import { LoginComponent } from './login/login.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { RegisterComponent } from './register/register.component';
 import { PerfiluserComponent } from './perfiluser/perfiluser.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -65,7 +67,7 @@ import { PerfiluserComponent } from './perfiluser/perfiluser.component';
     PortalModule,
     NbMenuModule.forRoot(),
     NbStepperModule,
-    NbButtonModule
+    NbButtonModule,NbLayoutModule,ReactiveFormsModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

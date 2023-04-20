@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -7,43 +8,32 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
 
+  linearMode = false;
+  form: FormGroup;
 
-  linearMode = true;
-DadosPessoais: { valid: boolean|null; reset: () => void; }|undefined;
+  constructor(private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      nomecompleto: ['', Validators.required],
+      cpf: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      telefone: ['', Validators.required]
+    });
+  }
 
-    previewImage(event: Event): void {
-      const file = (event.target as HTMLInputElement).files?.[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const img = document.getElementById('preview-img') as HTMLImageElement;
-          img.src = e.target?.result as string;
-        }
-        reader.readAsDataURL(file);
+  previewImage(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = document.getElementById('preview-img') as HTMLImageElement;
+        img.src = e.target?.result as string;
       }
-    }
-
-
-/*
-    constructor(private stepper: NbStepperComponent) {}
-
-    onStepChange(event: NbStepChangeEvent) {
-      const camposObrigatorios = event.step.stepContent.nativeElement.querySelectorAll('.required');
-      const camposVazios = Array.from(camposObrigatorios).filter((campo: HTMLInputElement) => !campo.value);
-
-      if (camposVazios.length > 0) {
-        event.step.stepControl.status = 'INVALID'; // Define a etapa atual como inválida
-      }
-    }
-    } */
-
-
-
-
-
-    cadastrar(){
-      // logica
+      reader.readAsDataURL(file);
     }
   }
 
+  cadastrar() {
+    // implementar lógica do cadastro aqui
+  }
 
+}

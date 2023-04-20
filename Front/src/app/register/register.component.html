@@ -3,6 +3,7 @@
   <title>Cadastro de Usuário</title>
   <link
     rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/eva-icons/style.min.css"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   />
 </head>
@@ -11,108 +12,115 @@
     <nb-layout-column>
       <h1>Cadastre-se</h1>
       <form>
-        <nb-stepper #stepper  [linear]="linearMode">
-          <nb-step [stepControl]="DadosPessoais" label="Dados Pessoais">
-            <form #DadosPessoais="ngForm" class="step-container">
+        <nb-stepper #stepper [linear]="linearMode">
+          <nb-step [stepControl]="form" label="Dados Pessoais">
+            <form [formGroup]="form">
               <nb-card>
                 <nb-card-header>Dados Pessoais</nb-card-header>
                 <nb-card-body class="card">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col md-3 mx-auto">
-                        <label class="label" for="input-nomecompleto"
-                          >Nome Completo<br /></label
-                        ><br /><input
-                        required
-                          type="text"
-                          nbInput
-                          status="basic"
-                          placeholder="Nome Completo"
-                        />
-                      </div>
-                      <br />
-                      <div class="col md-3 mx-auto">
-                        <label class="label" for="input-CPF">CPF</label><br />
-                        <input
-                          type="text"
-                          nbInput
-                          mask="000.000.000-00"
-                          [showMaskTyped]="true"
-                          status="basic"
-                          placeholder="000.000.000-00"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <br />
-                  <div class="container">
-                    <div class="row">
-                      <div class="col md-3 mx-auto">
-                        <label class="label" for="input-email "
-                          pattern=".+@.+..+"
-                          >Email</label
-                        ><br />
-                        <input
-                          type="text"
-                          nbInput
-                          status="basic"
-                          placeholder="Seu melhor email!"
-                        /><br />
-                      </div>
-                      <div class="col md-3 mx-auto">
-                        <label class="label" for="input-telefone"
-                          >Telefone</label
-                        ><br />
-                        <input
-                          type="text"
-                          nbInput
-                          mask="(00) 0000-0000"
-                          status="basic"
-                          placeholder="Seu melhor contato"
-                        /><br /><br />
+                  <form [formGroup]="form">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col md-3 mx-auto">
+                          <label class="label" for="input-nomecompleto">Nome Completo<br /></label>
+                          <br />
+                          <input
+                            required
+                            type="text"
+                            nbInput
+                            status="basic"
+                            placeholder="Nome Completo"
+                            formControlName="nomecompleto"
+                          />
+                        </div>
+                        <br />
+                        <div class="col md-3 mx-auto">
+                          <label class="label" for="input-CPF">CPF</label><br />
+                          <input
+                            required
+                            type="text"
+                            nbInput
+                            mask="000.000.000-00"
+                            [showMaskTyped]="true"
+                            status="basic"
+                            placeholder="000.000.000-00"
+                            formControlName="cpf"
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <button
+                    <br />
+                    <div class="container">
+                      <div class="row">
+                        <div class="col md-3 mx-auto">
+                          <label class="label" for="input-email" pattern=".+@.+..+">Email</label><br />
+                          <input
+                            required
+                            type="email"
+                            nbInput
+                            status="basic"
+                            placeholder="Seu melhor email!"
+                            formControlName="email"
+                          /><br />
+                        </div>
+                        <div class="col md-3 mx-auto">
+                          <label class="label" for="input-telefone">Telefone</label><br />
+                          <input
+                            required
+                            type="text"
+                            nbInput
+                            mask="(00) 0000-0000"
+                            status="basic"
+                            placeholder="Seu melhor contato"
+                            formControlName="telefone"
+                          /><br /><br />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <button
                           style="float: right; width: 80px; height: 40px"
                           nbButton
                           nbStepperNext
+                          [disabled]="!form.valid"
                         >
                           Avançar
                         </button>
+                        </div>
                       </div>
                     </div>
-                    <div class="clearfix"></div>
-                  </div>
-
+                  </form>
                 </nb-card-body>
               </nb-card>
+
             </form>
           </nb-step>
           <nb-step label="Passo 2">
             <nb-card>
               <nb-card-header>Endereço</nb-card-header>
-              <nb-card-body>
+              <nb-card-body class ="card1">
                 <form>
                   <label class="label" for="input-CEP">CEP</label><br />
                   <input
+                  requierd
                     type="text"
                     nbInput
                     mask="00.000-000"
                     [showMaskTyped]="true"
                     status="basic"
                     placeholder="00.000-000"
+                    formControlName="cep"
                   /><br />
                   <label class="label" for="input-logradouro">Logradouro</label
                   ><br />
                   <input
-                    type="text"
-                    nbInput
-                    status="basic"
-                    placeholder="Insira o CEP"
-                    disabled
-                  />
+                  type="text"
+                  nbInput
+                  status="basic"
+                  placeholder="Insira o CEP"
+                  [disabled]="true"
+                  formControlName="Logradouro"
+                  required              />
                   <div class="row">
                     <div class="col-md-3">
                       <label class="label" for="input-numero">Número</label
@@ -198,12 +206,17 @@
             <nb-card>
               <nb-card-header>Imagem de Perfil</nb-card-header>
               <nb-card-body>
-
-
                 <div class="file-input">
-                  <label for="imagemPerfil">Clique aqui para escolher sua imagem.</label>
-                  <input type="file" name="imagemPerfil" id="imagemPerfil" (change)="previewImage($event)">
-                  <img id="preview-img" class="image-preview" src="" alt="">
+                  <label for="imagemPerfil"
+                    >Clique aqui para escolher sua imagem.</label
+                  >
+                  <input
+                    type="file"
+                    name="imagemPerfil"
+                    id="imagemPerfil"
+                    (change)="previewImage($event)"
+                  />
+                  <img id="preview-img" class="image-preview" src="" alt="" />
                 </div>
                 <br /><br />
 
@@ -214,12 +227,9 @@
                   nbStepperPrevious
                 >
                   Voltar
-                </button><br><br><br>
-
-                <button nbButton fullWidth (click)="cadastrar()">
-                  Completar Cadastro
-                </button>
-              </nb-card-body>
+                </button> </nb-card-body
+              ><br /><br /><br /><br />
+              <button nbButton (click)="cadastrar()">Completar Cadastro</button>
             </nb-card>
           </nb-step>
         </nb-stepper>
@@ -241,8 +251,6 @@
             </div>
           </div>
         </div> -->
-
-
       </form>
     </nb-layout-column>
   </nb-layout>

@@ -64,6 +64,7 @@ body {
 .file-input input[type="file"]:focus + img,
 .file-input input[type="file"]:active + img {
   outline: 4px solid blue;
+  align-items: center;
 }
 
 .file-input input[type="file"]::-webkit-file-upload-button {
@@ -97,3 +98,4 @@ body {
 #preview-img{
   display: block;
 }
+

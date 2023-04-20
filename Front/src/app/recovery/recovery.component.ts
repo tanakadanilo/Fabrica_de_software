@@ -9,6 +9,7 @@ export class RecoveryComponent {
  email = "";
  opcaoRecuperacao = "";
 
+
   recuperar(_event: Event) {
     // seu código de login aqui
   }
