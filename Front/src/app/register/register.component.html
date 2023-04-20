@@ -22,7 +22,9 @@
                     <div class="container">
                       <div class="row">
                         <div class="col md-3 mx-auto">
-                          <label class="label" for="input-nomecompleto">Nome Completo<br /></label>
+                          <label class="label" for="input-nomecompleto"
+                            >Nome Completo<br
+                          /></label>
                           <br />
                           <input
                             required
@@ -53,7 +55,12 @@
                     <div class="container">
                       <div class="row">
                         <div class="col md-3 mx-auto">
-                          <label class="label" for="input-email" pattern=".+@.+..+">Email</label><br />
+                          <label
+                            class="label"
+                            for="input-email"
+                            pattern=".+@.+..+"
+                            >Email</label
+                          ><br />
                           <input
                             required
                             type="email"
@@ -64,7 +71,9 @@
                           /><br />
                         </div>
                         <div class="col md-3 mx-auto">
-                          <label class="label" for="input-telefone">Telefone</label><br />
+                          <label class="label" for="input-telefone"
+                            >Telefone</label
+                          ><br />
                           <input
                             required
                             type="text"
@@ -79,130 +88,143 @@
                       <div class="row">
                         <div class="col-md-12">
                           <button
-                          style="float: right; width: 80px; height: 40px"
-                          nbButton
-                          nbStepperNext
-                          [disabled]="!form.valid"
-                        >
-                          Avançar
-                        </button>
+                            style="float: right; width: 80px; height: 40px"
+                            nbButton
+                            nbStepperNext
+                            [disabled]="!form.valid"
+                          >
+                            Avançar
+                          </button>
                         </div>
                       </div>
                     </div>
                   </form>
                 </nb-card-body>
               </nb-card>
-
             </form>
           </nb-step>
-          <nb-step label="Passo 2">
+          <nb-step label="Endereço">
             <nb-card>
               <nb-card-header>Endereço</nb-card-header>
-              <nb-card-body class ="card1">
-                <form>
-                  <label class="label" for="input-CEP">CEP</label><br />
-                  <input
-                  requierd
-                    type="text"
-                    nbInput
-                    mask="00.000-000"
-                    [showMaskTyped]="true"
-                    status="basic"
-                    placeholder="00.000-000"
-                    formControlName="cep"
-                  /><br />
-                  <label class="label" for="input-logradouro">Logradouro</label
-                  ><br />
-                  <input
-                  type="text"
-                  nbInput
-                  status="basic"
-                  placeholder="Insira o CEP"
-                  [disabled]="true"
-                  formControlName="Logradouro"
-                  required              />
-                  <div class="row">
-                    <div class="col-md-3">
-                      <label class="label" for="input-numero">Número</label
-                      ><br />
-                      <input
-                        style="width: 100px !important"
-                        type="text"
-                        nbInput
-                        status="basic"
-                        placeholder="Número"
-                      />
-                    </div>
-                    <div class="col-md-3">
-                      <label class="label" for="input-qd">Quadra</label><br />
-                      <input
-                        style="width: 100px !important"
-                        type="text"
-                        nbInput
-                        status="basic"
-                        placeholder="QD"
-                      />
-                    </div>
-                    <div class="col-md-3">
-                      <label class="label" for="input-lt">Lote</label><br />
-                      <input
-                        style="width: 100px !important"
-                        type="text"
-                        nbInput
-                        status="basic"
-                        placeholder="LT"
-                      />
-                    </div>
-                  </div>
-                  <br />
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label class="label" for="input-cidade">Cidade</label
-                      ><br />
-                      <input
-                        style="align-items: left; width: 130px !important"
-                        type="text"
-                        nbInput
-                        status="basic"
-                        placeholder="Insira o CEP!"
-                        disabled
-                      />
-                    </div>
-                    <div class="col-md-3">
-                      <label class="label" for="input-estado">Estado</label
-                      ><br />
-                      <input
-                        style="align-items: right; width: 130px !important"
-                        type="text"
-                        nbInput
-                        status="basic"
-                        placeholder="Insira o CEP!"
-                        disabled
-                      />
-                    </div>
-                  </div>
-                  <br /><br />
-                  <button
-                    style="align-items: left; width: 130px !important"
-                    status="basic"
-                    nbButton
-                    nbStepperPrevious
-                  >
-                    Voltar
-                  </button>
 
-                  <button
-                    style="float: right; width: 130px !important"
-                    nbButton
-                    nbStepperNext
-                  >
-                    Avançar
-                  </button>
-                </form>
+              <nb-card-body class="card1">
+                <div class="tentativa">
+                  <form [formGroup]="formreg2">
+                    <label class="label" for="input-CEP">CEP</label><br />
+                    <input
+                      requierd
+                      type="text"
+                      nbInput
+                      mask="00.000-000"
+                      [showMaskTyped]="true"
+                      status="basic"
+                      placeholder="00.000-000"
+                      formControlName="cep"
+                      required
+                    /><br />
+                    <label class="label" for="input-logradouro"
+                      >Logradouro</label
+                    ><br />
+                    <input
+                      type="text"
+                      nbInput
+                      status="basic"
+                      placeholder="Insira o CEP"
+                      formControlName="logradouro"
+                      required
+                    />
+                    <div class="row">
+                      <div class="col-md-3">
+                        <label class="label" for="input-numero">Número</label
+                        ><br />
+                        <input
+                          style="width: 100px !important"
+                          type="text"
+                          nbInput
+                          status="basic"
+                          placeholder="Número"
+                          formControlName="numero"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-3">
+                        <label class="label" for="input-qd">Quadra</label><br />
+                        <input
+                          style="width: 100px !important"
+                          type="text"
+                          nbInput
+                          status="basic"
+                          placeholder="QD"
+                          formControlName="quadra"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-3">
+                        <label class="label" for="input-lt">Lote</label><br />
+                        <input
+                          style="width: 100px !important"
+                          type="text"
+                          nbInput
+                          status="basic"
+                          placeholder="Lote"
+                          formControlName="lote"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label class="label" for="input-cidade">Cidade</label
+                        ><br />
+                        <input
+                          style="align-items: left; width: 130px !important"
+                          type="text"
+                          nbInput
+                          status="basic"
+                          placeholder="Insira o CEP!"
+                          formControlName="cidade"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-3">
+                        <label class="label" for="input-estado">Estado</label
+                        ><br />
+                        <input
+                          style="align-items: right; width: 130px !important"
+                          type="text"
+                          nbInput
+                          status="basic"
+                          placeholder="Insira o CEP!"
+                          formControlName="uf"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <br /><br />
+                    <button
+                      style="align-items: left; width: 130px !important"
+                      status="basic"
+                      nbButton
+                      nbStepperPrevious
+                    >
+                      Voltar
+                    </button>
+
+                    <button
+                      style="float: right; width: 80px; height: 40px"
+                      nbButton
+                      nbStepperNext
+                      [disabled]="!formreg2.valid"
+                    >
+                      Avançar
+                    </button>
+                  </form>
+                </div>
               </nb-card-body>
             </nb-card>
           </nb-step>
-          <nb-step label="Passo 3">
+          <nb-step label="Imagem de Perfil">
             <nb-card>
               <nb-card-header>Imagem de Perfil</nb-card-header>
               <nb-card-body>
@@ -228,9 +250,15 @@
                 >
                   Voltar
                 </button> </nb-card-body
-              ><br /><br /><br /><br />
-              <button nbButton (click)="cadastrar()">Completar Cadastro</button>
+              >
             </nb-card>
+            <button
+              style="float: left; position: relative; left: 43%  !important"
+              nbButton
+              (click)="cadastrar()"
+            >
+              Completar Cadastro
+            </button>
           </nb-step>
         </nb-stepper>
         <!--   <div class="container">

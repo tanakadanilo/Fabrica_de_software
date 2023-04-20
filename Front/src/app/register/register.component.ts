@@ -10,14 +10,27 @@ export class RegisterComponent {
 
   linearMode = false;
   form: FormGroup;
+  formreg2: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       nomecompleto: ['', Validators.required],
       cpf: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      telefone: ['', Validators.required]
+      telefone: ['', Validators.required],
+
     });
+    this.formreg2=this.formBuilder.group({
+      cep: ['', Validators.required],
+      logradouro: ['', Validators.required],
+      numero: ['', Validators.required],
+      quadra: ['', Validators.required],
+      lote: ['', Validators.required],
+      cidade: ['', Validators.required],
+      uf: ['', Validators.required],
+
+
+    })
   }
 
   previewImage(event: Event): void {

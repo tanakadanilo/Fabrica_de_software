@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+document.addEventListener("DOMContentLoaded", () => {
+  // your code here
 
 document.addEventListener("DOMContentLoaded", () => {
   const controls = document.querySelectorAll(".control");
@@ -102,11 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-
-
-
-
-
+});
 
 
 
@@ -126,4 +124,3 @@ export class MainComponent {
 
 
 }
-

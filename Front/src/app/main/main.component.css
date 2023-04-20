@@ -1,127 +1,69 @@
-	* {
-		box-sizing: border-box;
-	}
-
-	body {
-		background: #121314;
-	}
-
-	body > ul {
-		position: absolute;
-		top: 50%;
-		width: 800px;
-		height: 200px;
-		left: 50%;
-		margin-left: -400px;
-		margin-top: -130px;
-	}
-
-	ul > li {
-		width: 25%;
-		list-style-type: none;
-		position: absolute;
-		top: 0;
-		padding: 20px;
-		height: 200px;
-		opacity: 0;
-		padding-top: 40px;
-		text-align: center;
-		transition: 1s opacity;
-	}
-
-	.active {
-		opacity: 1;
-	}
-
-	p {
-		font-family: sans-serif;
-		font-size: 13px;
-    color: #646566;
-		line-height: 1.5em;
-	}
-
-	strong {
-    color: #fff;
-    font-weight: 700;
-		font-size: 60px;
-    line-height: 100px;
-	}
+body {
+  background: #121314;
+}
 
 #MenuCarrosel {
-    margin-left: 250px;
-    margin-right: 230px;
-    margin-top: 30px;
-    margin-bottom: 80px;
+  margin-left: 250px;
+  margin-right: 230px;
+  margin-top: 30px;
+  margin-bottom: 80px;
 }
 
 #BotaoMenuCarrosel {
-    margin-left: 10px;
-    margin-right: 10px;
-    border: 0px;
-    width: 150px;
-    height: 70px;
-    border-radius: 10px;
-    background-color: transparent;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    transition: all .5s;
+  margin: 10px;
+  border: 0px;
+  width: 150px;
+  height: 70px;
+  border-radius: 10px;
+  background-color: transparent;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s;
 }
 
 #BotaoMenuCarrosel:hover {
-    box-shadow: 0px 0px 0px;
-    width: 150px;
-    height: 70px;
-    background-color: lightgray;
-    cursor: pointer;
+  box-shadow: 0px 0px 0px;
+  width: 150px;
+  height: 70px;
+  background-color: lightgray;
+  cursor: pointer;
 }
 
 .row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .card {
-    background-color: #f4f4f4;
-    border-radius: 5px;
-    box-shadow: 7px, 7px, 13px, 0  rgba(50, 50, 50, 0.5);
-    padding: 20px;
-    margin: 30px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  box-shadow: 7px, 7px, 13px, 0 rgba(50, 50, 50, 0.5);
+  padding: 20px;
+  margin: 30px;
 
-
-    width: 300px;
-    transition: all 0.3s ease-out;
-    border-bottom: 1px solid black;
+  width: 300px;
+  transition: all 0.3s ease-out;
+  border-bottom: 1px solid black;
 }
 
-.card:hover{
-    transform: translateY(-5px);
-    cursor: pointer;
+.card:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
 }
 
 .image {
-    float: left;
-    max-width: 100px;
-    max-height: 100px;
-    border-radius: 50px;
-    margin-right: 15px;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-h1 {
-  text-align: center;
-  margin: 1em 0;
-  font-family: sans-serif;
+  float: left;
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 50px;
+  margin-right: 15px;
 }
 
 .container {
   position: relative;
-  padding: 15px;
-  max-width: 640px;
+  padding: 5px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -129,22 +71,32 @@ h1 {
   overflow-x: auto;
 }
 
+.gallery {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 15px;
+}
+
 .arrow-left,
 .arrow-right {
+  z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
   right: auto;
   bottom: 0;
   font-size: 20px;
-  line-height: 250px;
+  line-height: 100px;
   width: 40px;
-  color: #fff;
+  text-align: center;
+  color: #da2323;
   transition: all 600ms ease-in-out;
   background: linear-gradient(to left, transparent 0%, black 200%);
   opacity: 0.1;
   cursor: pointer;
   border: none;
+  margin-left: 1px;
+  margin-right: 1px;
 }
 
 .arrow-left:hover,
@@ -159,22 +111,11 @@ h1 {
   background: linear-gradient(to right, transparent 0%, black 200%);
 }
 
-.gallery {
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 15px;
-}
-
 .item {
   width: 250px;
   height: 250px;
   flex-shrink: 0;
   transition: all 600ms ease-in-out;
-  opacity: 0.5;
-}
-
-.current-item {
-  opacity: 1;
 }
 
 /* This is from w3schools */
@@ -191,22 +132,19 @@ https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp */
   scrollbar-width: none; /* Firefox */
 }
 
-.cyan {
-  background: cyan;
+.divisao {
+  display: flex;
+  justify-content: center;
+  margin: 10 0 10 0;
 }
 
-.deeppink {
-  background: deeppink;
+.linha {
+  height: 1px;
+  width: 1100px;
+  background-color: black;
 }
-
-.turquoise {
-  background: turquoise;
-}
-
-.darkblue {
-  background: darkblue;
-}
-
-.purple {
-  background: purple;
+.divisao {
+  display: flex;
+  justify-content: center;
+  margin: 10 0 10 0;
 }
