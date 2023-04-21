@@ -13,7 +13,7 @@ import lombok.Setter;
 public class Servico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	// * preenchido pelo banco
 	private String area;

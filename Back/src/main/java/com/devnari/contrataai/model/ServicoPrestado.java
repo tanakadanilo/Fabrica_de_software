@@ -19,12 +19,12 @@ public class ServicoPrestado {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@ManyToOne
 	@JoinColumn(name = "servico_id")
 	private Servico servico;
-	
+
 	@ManyToOne
 	private Experiencia experiencia;
 
