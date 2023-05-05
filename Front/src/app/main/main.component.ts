@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-document.addEventListener("DOMContentLoaded", () => {
+
   // your code here
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-});
+;
 
 
 
