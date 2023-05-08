@@ -4,8 +4,8 @@ body {
 }
 
 .container {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .label {
@@ -63,7 +63,7 @@ body {
 
 .file-input input[type="file"]:focus + img,
 .file-input input[type="file"]:active + img {
-  outline: 4px solid blue;
+  outline: 0px solid blue;
   align-items: center;
 }
 
@@ -81,7 +81,7 @@ body {
   color: #fff;
   background-color: #007bff;
   border: none;
-  border-radius: 4px;
+  border-radius: 0px;
   cursor: pointer;
 }
 
@@ -115,10 +115,11 @@ body {
   scrollbar-face-color: #e4e9f2;
   scrollbar-track-color: #f7f9fc;
 }
+
 .tentativa{
   background-color: #fffeff;
 
-    border-radius: 0.25rem;
+    border-radius: 0rem;
     box-shadow: none;
     color: #e4e7ef;
     font-family: Open Sans, sans-serif;
