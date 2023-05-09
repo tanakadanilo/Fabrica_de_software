@@ -1,136 +1,430 @@
-<html>
-<div id="MenuCarrosel">
-  <div class="container">
-    <button class="arrow-left control" aria-label="Previous image">◀</button>
-    <button class="arrow-right control" aria-label="Next Image">▶</button>
-    <div class="gallery-wrapper">
-      <div class="gallery">
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 1</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 2</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 3</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 4</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 5</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 1</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 2</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 3</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 4</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 5</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 1</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 2</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 3</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 4</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 5</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 1</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 2</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 3</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 4</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 5</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 1</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 2</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 3</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 4</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 5</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 1</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 2</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 3</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 4</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 5</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 1</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 2</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 3</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 4</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 5</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 1</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 2</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 3</button>
-        <button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Serviço 4</button>
-        <!-- /*<button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Se vc chegou ate aq parabens, receba um vale big mac :D</button> -->
+<nb-layout>
+  <nb-layout-column>
+    <div id="MenuCarrosel">
+      <div class="container">
+        <button class="arrow-left control" aria-label="Previous image">
+          ◀
+        </button>
+        <button class="arrow-right control" aria-label="Next Image">▶</button>
+        <div class="gallery-wrapper">
+          <div class="gallery">
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+            Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+            Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+            Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <button
+              id="BotaoMenuCarrosel"
+              class="item current-item"
+              (click)="copiar()"
+              nbButton
+            >
+              Categoria
+            </button>
+            <!-- /*<button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Se vc chegou ate aq parabens, receba um vale big mac :D</button> -->
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-    </div>
-<i *ngFor="let prestadores of ListaPrestadores"></i>
-<div class="containerGrid">
-    <div class="row">
-      <div class="card">
-            <img class="image" src="/assets/images/images (4).png">
-            <h2>Nome</h2>
-            <p>Especializaçao</p>
+    <!-- <i *ngFor="let prestadores of ListaPrestadores"></i> -->
+    <div class="containerGrid">
+      <div class="row">
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
       </div>
-      <div class="card">
-            <img class="image" src="/assets/images/images (4).png">
-            <h2>Nome</h2>
-            <p>Especializaçao</p>
+      <div class="divisao">
+        <div class="linha"></div>
       </div>
-      <div class="card">
-            <img class="image" src="/assets/images/images (4).png">
-            <h2>Nome</h2>
-            <p>Especializaçao</p>
+      <div class="row">
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+      </div>
+      <div class="divisao">
+        <div class="linha"></div>
+      </div>
+      <div class="row">
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
       </div>
 
+      <div class="divisao">
+        <div class="linha"></div>
+      </div>
+      <div class="row">
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+        <div class="card">
+          <img class="image" src="/assets/images/images (4).png" />
+          <h2>Nome</h2>
+          <p>Especializaçao</p>
+        </div>
+      </div>
     </div>
-    <div class= "divisao">
-      <div class="linha"></div>
-    </div>
-    <div class="row">
-      <div class="card">
-            <img class="image" src="/assets/images/images (4).png">
-            <h2>Nome</h2>
-            <p>Especializaçao</p>
-      </div>
-      <div class="card">
-            <img class="image" src="/assets/images/images (4).png">
-            <h2>Nome</h2>
-            <p>Especializaçao</p>
-      </div>
-      <div class="card">
-            <img class="image" src="/assets/images/images (4).png">
-            <h2>Nome</h2>
-            <p>Especializaçao</p>
-      </div>
-
-    </div>
-    <div class= "divisao">
-      <div class="linha"></div>
-    </div>
-    <div class="row">
-      <div class="card">
-            <img class="image" src="/assets/images/images (4).png">
-            <h2>Nome</h2>
-            <p>Especializaçao</p>
-      </div>
-      <div class="card">
-            <img class="image" src="/assets/images/images (4).png">
-            <h2>Nome</h2>
-            <p>Especializaçao</p>
-      </div>
-      <div class="card">
-            <img class="image" src="/assets/images/images (4).png">
-            <h2>Nome</h2>
-            <p>Especializaçao</p>
-      </div>
-
-    </div>
-<div class= "divisao">
-    <div class="linha"></div>
-  </div>
-    <div class="row">
-      <div class="card">
-            <img class="image" src="/assets/images/images (4).png">
-            <h2>Nome</h2>
-            <p>Especializaçao</p>
-      </div>
-      <div class="card">
-            <img class="image" src="/assets/images/images (4).png">
-            <h2>Nome</h2>
-            <p>Especializaçao</p>
-      </div>
-      <div class="card">
-            <img class="image" src="/assets/images/images (4).png">
-            <h2>Nome</h2>
-            <p>Especializaçao</p>
-      </div>
-
-    </div>
-  </div>
-</html>
+  </nb-layout-column>
+</nb-layout>

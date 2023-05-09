@@ -20,6 +20,7 @@ nb-card-header {
   font-size: 24px;
   font-weight: bold;
   text-align: center;
+  background-color: #813de0;
 }
 
 form {
@@ -71,4 +72,10 @@ button[type="submit"] {
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
+  background-color: #813de0c9 !important;
+
+}
+
+button[type="submit"]:hover{
+  background-color: #c392f4 !important;
 }
