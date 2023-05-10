@@ -18,16 +18,18 @@
 .categorias header {
   font-weight: bold;
   margin-bottom: 0.5rem;
+  color: #ffffff;
 }
 
 .categorias li {
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
+  color: #ffffff;
 }
 
 .categorias a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff
 }
 
 .categorias a:hover {
@@ -44,16 +46,18 @@
 .institucional header {
   font-weight: bold;
   margin-bottom: 0.5rem;
+  color:#ffffff
 }
 
 .institucional li {
+  color:#ffffff;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
 }
 
 .institucional a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
 }
 
 .institucional a:hover {
@@ -61,14 +65,27 @@
 }
 
 /* Estilo para as redes sociais */
+
+.redes-sociais {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: 1rem;
+  margin-bottom: 5rem;
+}
+
 .redes-sociais label {
   font-weight: bold;
   margin-right: 0.5rem;
+  color: #ffffff;
 }
 
 .redes-sociais a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
+}
+
+.redes-sociais header {
+  color: #ffffff;
 }
 
 .redes-sociais a:hover {
@@ -78,11 +95,27 @@
 .redes-sociais i {
   font-size: 1.5rem;
   margin-right: 0.5rem;
-  color: #333;
+  color: #ffffff;
 }
 
 /* Estilo para a imagem do google play */
 .footer img {
-  height: 50px;
+  height: 30px;
   object-fit: cover;
+}
+
+.imgs {
+
+  display: inline-block;
+  margin-left: 2rem;
+  margin-bottom: 4rem !important;
+
+}
+
+.categorias {
+  margin-right: 3rem;
+}
+
+.institucional {
+  margin-left: 4rem;
 }

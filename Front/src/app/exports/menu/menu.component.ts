@@ -10,7 +10,7 @@ export class MenuComponent  {
   items = [
     { title: 'Perfil', link: '/userprofile' },
 
-    { title: 'Desconectar' },
+    { title: 'Desconectar', link: '/main' },
   ];
 
   userPictureOnly: boolean = true;
