@@ -32,7 +32,7 @@ import { RecoveryComponent } from './recovery/recovery.component';
 import { RegisterComponent } from './register/register.component';
 import { PerfiluserComponent } from './perfiluser/perfiluser.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RecoveryComponent,
     RegisterComponent,
-    PerfiluserComponent
+    PerfiluserComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +68,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PortalModule,
     NbMenuModule.forRoot(),
     NbStepperModule,
-    NbButtonModule,NbLayoutModule,ReactiveFormsModule
+    NbButtonModule,NbLayoutModule,ReactiveFormsModule,NbLayoutModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

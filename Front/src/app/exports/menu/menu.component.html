@@ -1,14 +1,18 @@
-  <div class="menu">
-    <a href="#"
-      ><img class="logo" src="/assets/images/Logodevnari.png" alt=" "
-    /></a>
-    <button [routerLink]="['/login']">Sobre mim</button>
-    <button>Procurar servicos</button>
-    <span class="p-input-icon-right">
-      <i class="pi pi-search"></i>
-      <input type="text" placeholder="Procurar Prestador" />
-    </span>
+<div class="menu">
+  <a href="#"
+    ><img class="logo" src="/assets/images/Logodevnari.png" alt=" "
+  /></a>
+  <div class="login">
+    <button [routerLink]="['/login']">Entrar</button>
+  </div>
 
+  <button>Procurar servicos</button>
+  <span class="p-input-icon-right">
+    <i class="pi pi-search"></i>
+    <input type="text" placeholder="Procurar Prestador" />
+  </span>
+
+  <div class="userPhoto">
     <nb-user
       [nbContextMenu]="items"
       [onlyPicture]="userPictureOnly"
@@ -17,9 +21,4 @@
     >
     </nb-user>
   </div>
-
-
-
-
-
-
+</div>
