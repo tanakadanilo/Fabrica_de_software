@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.devnari.contrataai.services.UserService;
+import com.devnari.contrataai.services.UsuarioLoggadoService;
 
 @Configuration
 public class SecurityConfiguration {
@@ -22,7 +22,7 @@ public class SecurityConfiguration {
 
 	@Bean
 	public UserDetailsService userDetailsService() {
-		return new UserService();
+		return new UsuarioLoggadoService();
 	}
 
 	@Bean
