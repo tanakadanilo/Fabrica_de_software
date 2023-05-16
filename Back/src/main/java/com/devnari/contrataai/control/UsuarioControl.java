@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.model.Usuario;
@@ -25,7 +24,6 @@ public class UsuarioControl {
 		return userService.findAll();
 	}
 
-	
 	@PostMapping
 	public Usuario create(@RequestBody Usuario usuario) {
 		return userService.save(usuario);

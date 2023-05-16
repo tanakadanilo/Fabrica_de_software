@@ -30,7 +30,12 @@ public class UserService implements UserDetailsService {
 		return user.get();
 	}
 
-	
+//	public String login(String username, String password) {
+//		Usuario usuario = (Usuario) loadUserByUsername(username);
+//		if(usuario.getPassword().equals(passwordEncoder.encode(password))) {
+//			return jwt.
+//		}
+//	}
 	public Usuario save(Usuario usuario) {
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		return userDao.save(usuario);
