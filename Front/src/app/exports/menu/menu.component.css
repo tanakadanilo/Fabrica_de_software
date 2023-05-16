@@ -1,10 +1,12 @@
 /* Estilo do menu header */
 div.menu {
+    position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #813de0;
+  background-color: #813de0a9;
 }
 
 /* Estilo do logo */
@@ -49,7 +51,7 @@ div.menu button[name="login"] {
 
 /* Efeito hover no botão de login */
 div.menu button[name="login"]:hover {
-  background-color: #a25fe7;
+  background-color: #360b62;
 }
 
 /* Estilo da foto do usuário */
