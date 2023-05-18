@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { Categoria } from '../model/categoria';
+import { Prestador } from '../model/prestador';
+import { OnInit } from '@angular/core'
 
-  // your code here
+// your code here
 
 document.addEventListener("DOMContentLoaded", () => {
   const controls = document.querySelectorAll(".control");
@@ -113,14 +116,157 @@ document.addEventListener("DOMContentLoaded", () => {
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
+  ngOnInit(): void {
+    this.elementos = this.dividirEmGrupos(this.prestadores, 4)
+  }
+
+  elementos:any;
+  categorias: Categoria[] = [{
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  }, {
+    'nome': 'categoria',
+  },]
 
 
+  prestadores: Prestador[] = [{
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  }, {
+    'nome': 'Nome',
+    'especializacao': 'Especializacao',
+    'urlImagem': '/assets/images/images (4).png'
+  },]
+  copiar() {
 
+  }
+  dividirEmGrupos(lista: any[], tamanho: number): any[][] {
+    const grupos: any[][] = [];
 
- copiar(){
+    for (let i = 0; i < lista.length; i += tamanho) {
+      grupos.push(lista.slice(i, i + tamanho));
+    }
 
- }
-
+    return grupos;
+  }
 
 }
