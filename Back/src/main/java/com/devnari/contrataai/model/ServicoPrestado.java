@@ -1,5 +1,7 @@
 package com.devnari.contrataai.model;
 
+import org.springframework.data.annotation.Transient;
+
 import com.devnari.contrataai.model.auxiliares.Experiencia;
 
 import jakarta.persistence.Entity;
@@ -8,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,5 +28,9 @@ public class ServicoPrestado {
 
 	@ManyToOne
 	private Experiencia experiencia;
+
+	@Transient
+	@ManyToOne
+	private Prestador prestador;
 
 }

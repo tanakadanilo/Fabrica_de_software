@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.model.Prestador;
+import com.devnari.contrataai.model.Servico;
+import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.services.PrestadorService;
+import com.devnari.contrataai.services.ServicoPrestadoService;
 
 @RestController
 @RequestMapping(value = "/prestador")
@@ -21,6 +24,8 @@ public class PrestadorControl {
 
 	@Autowired
 	PrestadorService service;
+	@Autowired
+	ServicoPrestadoService servicoPrestadoService;
 
 	@GetMapping(value = "")
 	public ResponseEntity<List<Prestador>> findAll() {
@@ -33,8 +38,13 @@ public class PrestadorControl {
 	}
 
 	@PostMapping(value = "")
-	public ResponseEntity<Prestador> addPrestador(@RequestBody Prestador s) {
-		return ResponseEntity.ok(service.add(s));
+	public ResponseEntity<Prestador> addPrestador(@RequestBody Prestador p) {
+		return ResponseEntity.ok(service.add(p));
+	}
+
+	@PostMapping(value = "/novoservico")
+	public ResponseEntity<ServicoPrestado> addServico(@RequestBody ServicoPrestado s) {
+		return ResponseEntity.ok(servicoPrestadoService.add(s));
 	}
 
 	@PutMapping(value = "")

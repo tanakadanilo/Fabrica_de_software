@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.model.Contratante;
+import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.services.ContratanteService;
 
 @RestController
@@ -46,4 +48,5 @@ public class ContratanteControl {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	
 }
