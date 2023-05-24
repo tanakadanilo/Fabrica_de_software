@@ -13,23 +13,27 @@ public class ServicoPrestadoService {
 
 	@Autowired
 	ServicoPrestadoDao persistencia;
+	@Autowired
+	ServicoService servicoService;
+	@Autowired
+	ExperienciaService experienciaService;
 
 	public List<ServicoPrestado> findAll() {
 		return persistencia.findAll();
 	}
 
 	public ServicoPrestado findById(int id) {
-		return persistencia.findById(id).orElse(null);
+		return persistencia.findById(id).orElseThrow();
 	}
 
-	public ServicoPrestado add(ServicoPrestado s) {
+	public ServicoPrestado save(ServicoPrestado s) {
 		s.setId(null);
 		return persistencia.save(s);
 	}
 
 	public ServicoPrestado update(ServicoPrestado s) throws Exception {
 		if (s.getId() == null) {
-			throw new Exception("O objeto que se tentou editar veio sem ID");
+			throw new Exception("Tentando alterar um objeto que não foi encontrado");
 		}
 		return persistencia.save(s);
 	}

@@ -1,9 +1,8 @@
 package com.devnari.contrataai.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.devnari.contrataai.enumerations.DiasSemana;
-import com.devnari.contrataai.enumerations.PeriodosDia;
 import com.devnari.contrataai.model.auxiliares.Contato;
 import com.devnari.contrataai.model.auxiliares.Disponibilidade;
 import com.devnari.contrataai.model.auxiliares.Endereco;
@@ -28,7 +27,6 @@ public class Prestador {
 	private Integer id;
 
 	private String nome;
-	private String email;
 
 	@ManyToOne
 	@JoinColumn(name = "contato_id")
@@ -44,7 +42,7 @@ public class Prestador {
 
 	@OneToMany
 	@JoinColumn(name = "pessoa_id")
-	private List<ServicoPrestado> servicoPrestados;
+	private List<ServicoPrestado> servicoPrestados = new ArrayList<>();
 
 // link do portfólio
 	private String portfolio;

@@ -1,6 +1,7 @@
 package com.devnari.contrataai.control;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.model.Prestador;
-import com.devnari.contrataai.model.Servico;
 import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.services.PrestadorService;
 import com.devnari.contrataai.services.ServicoPrestadoService;
@@ -39,12 +39,20 @@ public class PrestadorControl {
 
 	@PostMapping(value = "")
 	public ResponseEntity<Prestador> addPrestador(@RequestBody Prestador p) {
-		return ResponseEntity.ok(service.add(p));
+		return ResponseEntity.ok(service.save(p));
 	}
 
 	@PostMapping(value = "/novoservico")
 	public ResponseEntity<ServicoPrestado> addServico(@RequestBody ServicoPrestado s) {
-		return ResponseEntity.ok(servicoPrestadoService.add(s));
+		return ResponseEntity.ok(servicoPrestadoService.save(s));
+	}
+
+	@PostMapping(value = "/adicionarservico")
+	public ResponseEntity<Prestador> adicionarServico(@RequestBody Map<String, String> params) {
+
+		Integer idPrestador = Integer.parseInt(params.get("idPrestador"));
+		Integer idServico = Integer.parseInt(params.get("idServico"));
+		return ResponseEntity.ok(service.adicionarServico(idPrestador, idServico));
 	}
 
 	@PutMapping(value = "")

@@ -34,7 +34,7 @@ public class ServicoPrestadoControl {
 
 	@PostMapping(value = "")
 	public ResponseEntity<ServicoPrestado> addServicoPrestado(@RequestBody ServicoPrestado s) {
-		return ResponseEntity.ok(service.add(s));
+		return ResponseEntity.ok(service.save(s));
 	}
 
 	@PutMapping(value = "")
