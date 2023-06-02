@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devnari.contrataai.base.Response;
 import com.devnari.contrataai.model.auxiliares.Experiencia;
 import com.devnari.contrataai.services.ExperienciaService;
 
@@ -21,12 +22,28 @@ public class ExperienciaControl {
 	ExperienciaService service;
 
 	@GetMapping
-	public ResponseEntity<List<Experiencia>> findAll() {
-		return ResponseEntity.ok(service.findAll());
+	public ResponseEntity<Response<List<Experiencia>>> buscarTodos() {
+		Response<List<Experiencia>> response = new Response<>();
+		try {
+			List<Experiencia> experiencias = service.findAll();
+			response.setData(experiencias);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
 	}
 
 	@PostMapping
-	public ResponseEntity<Experiencia> save(@RequestBody Experiencia e) {
-		return ResponseEntity.ok(service.salvar(e));
+	public ResponseEntity<Response<Experiencia>> salvar(@RequestBody Experiencia experiencia) {
+		Response<Experiencia> response = new Response<>();
+		try {
+			experiencia = service.salvar(experiencia);
+			response.setData(experiencia);
+		} catch (Exception erro) {
+			erro.printStackTrace();
+			response.getErros().add(erro.getMessage());
+		}
+		return ResponseEntity.ok(response);
 	}
 }

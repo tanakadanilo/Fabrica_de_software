@@ -3,6 +3,7 @@ package com.devnari.contrataai.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devnari.contrataai.base.Response;
+import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.model.Usuario;
 import com.devnari.contrataai.model.UsuarioLoggado;
 import com.devnari.contrataai.services.UsuarioLoggadoService;
@@ -22,33 +25,56 @@ public class UsuarioControl {
 	private UsuarioLoggadoService userService;
 
 	@GetMapping
-	public List<Usuario> listAll() {
-		return userService.findAll();
+	public ResponseEntity<Response<List<Usuario>>> listAll() {
+		Response<List<Usuario>> response = new Response<>();
+		try {
+			List<Usuario> usuarios = userService.findAll();
+			response.setData(usuarios);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
 	}
 
 	@PostMapping
-	public Usuario create(@RequestBody Usuario usuario) {
-		return userService.save(usuario);
+	public ResponseEntity<Response<Usuario>> create(@RequestBody Usuario usuario) {
+		Response<Usuario> response = new Response<>();
+		try {
+			usuario = userService.save(usuario);
+			response.setData(usuario);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/login")
-	public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
+	public ResponseEntity<Response<String>> login(@RequestParam("username") String username,
+			@RequestParam("password") String password) {
+		Response<String> response = new Response<>();
 		try {
-			return userService.login(username, password);
+			String token = userService.login(username, password);
+			response.setData(token);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return e.getMessage();
+			response.getErros().add(e.getMessage());
 		}
+		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/findbytoken")
-	public UsuarioLoggado findByToken(@RequestParam("token") String token) {
+	public ResponseEntity<Response<UsuarioLoggado>> findByToken(@RequestParam("token") String token) {
+		Response<UsuarioLoggado> response = new Response<>();
 		try {
-			return userService.findByToken(token);
+			UsuarioLoggado usuarioLoggado = userService.findByToken(token);
+			response.setData(usuarioLoggado);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			response.getErros().add(e.getMessage());
 		}
+		return ResponseEntity.ok(response);
 	}
 
 }

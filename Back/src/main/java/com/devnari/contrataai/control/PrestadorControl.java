@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devnari.contrataai.base.Response;
 import com.devnari.contrataai.model.Prestador;
 import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.services.PrestadorService;
@@ -28,40 +29,84 @@ public class PrestadorControl {
 	ServicoPrestadoService servicoPrestadoService;
 
 	@GetMapping(value = "")
-	public ResponseEntity<List<Prestador>> findAll() {
-		return ResponseEntity.ok(service.findAll());
+	public ResponseEntity<Response<List<Prestador>>> buscarTodos() {
+		Response<List<Prestador>> response = new Response<>();
+		try {
+			List<Prestador> prestadores = service.findAll();
+			response.setData(prestadores);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Prestador> findById(@PathVariable("id") String id) {
-		return ResponseEntity.ok(service.findById(Integer.parseInt(id)));
+	public ResponseEntity<Response<Prestador>> findById(@PathVariable("id") String id) {
+		Response<Prestador> response = new Response<>();
+		try {
+			Prestador prestador = service.findById(Integer.parseInt(id));
+			response.setData(prestador);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
 	}
 
 	@PostMapping(value = "")
-	public ResponseEntity<Prestador> addPrestador(@RequestBody Prestador p) {
-		return ResponseEntity.ok(service.save(p));
+	public ResponseEntity<Response<Prestador>> addPrestador(@RequestBody Prestador p) {
+
+		Response<Prestador> response = new Response<>();
+		try {
+			Prestador prestador = service.save(p);
+			response.setData(prestador);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
 	}
 
 	@PostMapping(value = "/novoservico")
-	public ResponseEntity<ServicoPrestado> addServico(@RequestBody ServicoPrestado s) {
-		return ResponseEntity.ok(servicoPrestadoService.save(s));
+	public ResponseEntity<Response<ServicoPrestado>> addServico(@RequestBody ServicoPrestado s) {
+
+		Response<ServicoPrestado> response = new Response<>();
+		try {
+			ServicoPrestado servicoPrestado = servicoPrestadoService.save(s);
+			response.setData(servicoPrestado);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
 	}
 
 	@PostMapping(value = "/adicionarservico")
-	public ResponseEntity<Prestador> adicionarServico(@RequestBody Map<String, String> params) {
-
-		Integer idPrestador = Integer.parseInt(params.get("idPrestador"));
-		Integer idServico = Integer.parseInt(params.get("idServico"));
-		return ResponseEntity.ok(service.adicionarServico(idPrestador, idServico));
+	public ResponseEntity<Response<Prestador>> adicionarServico(@RequestBody Map<String, String> params) {
+		Response<Prestador> response = new Response<>();
+		try {
+			Integer idPrestador = Integer.parseInt(params.get("idPrestador"));
+			Integer idServico = Integer.parseInt(params.get("idServico"));
+			Prestador prestador = service.adicionarServico(idPrestador, idServico);
+			response.setData(prestador);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
 	}
 
 	@PutMapping(value = "")
-	public ResponseEntity<Prestador> updatePrestador(@RequestBody Prestador s) {
+	public ResponseEntity<Response<Prestador>> updatePrestador(@RequestBody Prestador s) {
+		Response<Prestador> response = new Response<>();
 		try {
-			return ResponseEntity.ok(service.update(s));
+			Prestador prestador = service.update(s);
+			response.setData(prestador);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return ResponseEntity.notFound().build();
+			response.getErros().add(e.getMessage());
 		}
+		return ResponseEntity.ok(response);
 	}
 }

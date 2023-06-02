@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devnari.contrataai.base.Response;
 import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.services.ServicoPrestadoService;
 
@@ -23,27 +24,55 @@ public class ServicoPrestadoControl {
 	ServicoPrestadoService service;
 
 	@GetMapping(value = "")
-	public ResponseEntity<List<ServicoPrestado>> findAll() {
-		return ResponseEntity.ok(service.findAll());
+	public ResponseEntity<Response<List<ServicoPrestado>>> findAll() {
+		Response<List<ServicoPrestado>> response = new Response<>();
+		try {
+			List<ServicoPrestado> servicosPrestados = service.findAll();
+			response.setData(servicosPrestados);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<ServicoPrestado> findById(@PathVariable("id") String id) {
-		return ResponseEntity.ok(service.findById(Integer.parseInt(id)));
+	public ResponseEntity<Response<ServicoPrestado>> findById(@PathVariable("id") String id) {
+		Response<ServicoPrestado> response = new Response<>();
+		try {
+			ServicoPrestado servicoPrestado = service.findById(Integer.parseInt(id));
+			response.setData(servicoPrestado);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
 	}
 
 	@PostMapping(value = "")
-	public ResponseEntity<ServicoPrestado> addServicoPrestado(@RequestBody ServicoPrestado s) {
-		return ResponseEntity.ok(service.save(s));
+	public ResponseEntity<Response<ServicoPrestado>> addServicoPrestado(@RequestBody ServicoPrestado s) {
+		Response<ServicoPrestado> response = new Response<>();
+		try {
+			ServicoPrestado servicoPrestado = service.save(s);
+			response.setData(servicoPrestado);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
 	}
 
 	@PutMapping(value = "")
-	public ResponseEntity<ServicoPrestado> updateServicoPrestado(@RequestBody ServicoPrestado s) {
+	public ResponseEntity<Response<ServicoPrestado>> updateServicoPrestado(@RequestBody ServicoPrestado s) {
+
+		Response<ServicoPrestado> response = new Response<>();
 		try {
-			return ResponseEntity.ok(service.update(s));
+			ServicoPrestado servicoPrestado = service.update(s);
+			response.setData(servicoPrestado);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return ResponseEntity.notFound().build();
+			response.getErros().add(e.getMessage());
 		}
+		return ResponseEntity.ok(response);
 	}
 }
