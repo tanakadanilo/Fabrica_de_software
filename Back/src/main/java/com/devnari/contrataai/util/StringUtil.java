@@ -58,4 +58,27 @@ public class StringUtil {
 
 		return inteiro;
 	}
+
+	public static String formatarComDuasCasasDecimais(String valor) throws Exception {
+		valor = tratarStringNullEUndefinned(valor);
+		if (valor.equals("")) {
+			return "0.00";
+		}
+		Double valorDouble = null;
+		try {
+			valorDouble = Double.parseDouble(valor);
+		} catch (Exception e) {
+			throw new Exception("Valor Inválido!");
+		}
+		return String.format("%.2f", valorDouble);
+	}
+
+	public static String formatarValorMonetario(String valor) throws Exception {
+		return "R$ " + StringUtil.formatarComDuasCasasDecimais(valor);
+	}
+
+	public static String formatarValorMonetario(Double valor) throws Exception {
+		return StringUtil.formatarValorMonetario(valor.toString());
+	}
+
 }
