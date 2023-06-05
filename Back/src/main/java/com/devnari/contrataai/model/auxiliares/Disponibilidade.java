@@ -17,7 +17,7 @@ public class Disponibilidade {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	private DiasSemana diaDaSemana;
 	private PeriodosDia horário;

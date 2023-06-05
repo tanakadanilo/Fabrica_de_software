@@ -14,32 +14,51 @@ public class ServicoService {
 	@Autowired
 	ServicoDao persistencia;
 
-	public List<Servico> findAll() {
+	public List<Servico> buscarTodos() {
 		return persistencia.findAll();
 	}
 
-	public List<Servico> findByParams(String nomeCategoria, String nomeServico) {
-		return persistencia.findByParams(nomeCategoria, nomeServico);
-	}
+	public Servico buscarPorId(Long id) throws Exception {
+		Servico servico = persistencia.findById(id).orElse(null);
 
-	public Servico findById(int id) {
-		return persistencia.findById(id).orElse(null);
-	}
-
-	public List<Servico> findByCategoria(String categoria) {
-		return persistencia.findByArea(categoria);
-	}
-
-	public Servico add(Servico s) {
-		s.setId(null);
-		return persistencia.save(s);
-	}
-
-	public Servico update(Servico s) throws Exception {
-		if (s.getId() == null) {
-			throw new Exception("O objeto que se tentou editar veio sem ID");
+		if (servico == null) {
+			throw new Exception("Serviço Não Encontrado!");
 		}
-		return persistencia.save(s);
+
+		return servico;
+	}
+
+	public List<Servico> buscarPorParametros(String nomeCategoria, String nomeServico) {
+		List<Servico> servicos = persistencia.findByParams(nomeCategoria, nomeServico);
+		return servicos;
+	}
+
+	public List<Servico> buscarPorCategoria(String categoria) {
+		List<Servico> servicos = persistencia.findByArea(categoria);
+		return servicos;
+	}
+
+	public Servico salvar(Servico servico) throws Exception {
+		if (servico == null) {
+			throw new Exception("Serviço Não Informado!");
+		}
+		servico.setId(null);
+		return persistencia.save(servico);
+	}
+
+	public Servico atualizar(Servico servico) throws Exception {
+		if (servico.getId() == null) {
+			throw new Exception("Serviço Não Encontrado!");
+		}
+		return persistencia.save(servico);
+	}
+
+	public String deletarPorId(Long id) throws Exception {
+		if (!persistencia.existsById(id)) {
+			throw new Exception("Não Encontrado!");
+		}
+		persistencia.deleteById(id);
+		return "Deletado Com Sucesso!";
 	}
 
 }

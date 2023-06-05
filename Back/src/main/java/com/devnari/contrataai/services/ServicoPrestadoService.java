@@ -18,24 +18,40 @@ public class ServicoPrestadoService {
 	@Autowired
 	ExperienciaService experienciaService;
 
-	public List<ServicoPrestado> findAll() {
+	public List<ServicoPrestado> buscarTodos() {
 		return persistencia.findAll();
 	}
 
-	public ServicoPrestado findById(int id) {
-		return persistencia.findById(id).orElseThrow();
-	}
-
-	public ServicoPrestado save(ServicoPrestado s) {
-		s.setId(null);
-		return persistencia.save(s);
-	}
-
-	public ServicoPrestado update(ServicoPrestado s) throws Exception {
-		if (s.getId() == null) {
-			throw new Exception("Tentando alterar um objeto que não foi encontrado");
+	public ServicoPrestado buscarPorId(Long id) throws Exception {
+		ServicoPrestado servicoPrestado = persistencia.findById(id).orElse(null);
+		if (servicoPrestado == null) {
+			throw new Exception("Serviço Prestado Não Encontrado!");
 		}
-		return persistencia.save(s);
+
+		return servicoPrestado;
+	}
+
+	public ServicoPrestado salvar(ServicoPrestado servicoPrestado) throws Exception {
+		if (servicoPrestado == null) {
+			throw new Exception("Serviço Prestado Não Informado!");
+		}
+		servicoPrestado.setId(null);
+		return persistencia.save(servicoPrestado);
+	}
+
+	public ServicoPrestado atualizar(ServicoPrestado servicoPrestado) throws Exception {
+		if (servicoPrestado.getId() == null) {
+			throw new Exception("Serviço Prestado Não Encontrado!");
+		}
+		return persistencia.save(servicoPrestado);
+	}
+
+	public String deletarPorId(Long id) throws Exception {
+		if (!persistencia.existsById(id)) {
+			throw new Exception("Não Encontrado!");
+		}
+		persistencia.deleteById(id);
+		return "deletado Com Sucesso!";
 	}
 
 }

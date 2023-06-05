@@ -24,14 +24,14 @@ public class Prestador {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	private String nome;
 
 	@ManyToOne
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
-	private String CPF;
+	private String cpf;
 
 	@ManyToOne
 	@JoinColumn(name = "endereco_id")
@@ -42,7 +42,7 @@ public class Prestador {
 
 	@OneToMany
 	@JoinColumn(name = "pessoa_id")
-	private List<ServicoPrestado> servicoPrestados = new ArrayList<>();
+	private List<ServicoPrestado> servicosPrestados = new ArrayList<>();
 
 // link do portfólio
 	private String portfolio;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devnari.contrataai.base.Response;
 import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.services.ServicoPrestadoService;
+import com.devnari.contrataai.util.StringUtil;
 
 @RestController
 @RequestMapping(value = "/servicoprestado")
@@ -24,10 +26,10 @@ public class ServicoPrestadoControl {
 	ServicoPrestadoService service;
 
 	@GetMapping(value = "")
-	public ResponseEntity<Response<List<ServicoPrestado>>> findAll() {
+	public ResponseEntity<Response<List<ServicoPrestado>>> buscarTodos() {
 		Response<List<ServicoPrestado>> response = new Response<>();
 		try {
-			List<ServicoPrestado> servicosPrestados = service.findAll();
+			List<ServicoPrestado> servicosPrestados = service.buscarTodos();
 			response.setData(servicosPrestados);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,10 +39,11 @@ public class ServicoPrestadoControl {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Response<ServicoPrestado>> findById(@PathVariable("id") String id) {
+	public ResponseEntity<Response<ServicoPrestado>> buscarPorId(@PathVariable("id") String id) {
 		Response<ServicoPrestado> response = new Response<>();
 		try {
-			ServicoPrestado servicoPrestado = service.findById(Integer.parseInt(id));
+			Long idLong = StringUtil.converterStringParaLong(id);
+			ServicoPrestado servicoPrestado = service.buscarPorId(idLong);
 			response.setData(servicoPrestado);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,10 +53,11 @@ public class ServicoPrestadoControl {
 	}
 
 	@PostMapping(value = "")
-	public ResponseEntity<Response<ServicoPrestado>> addServicoPrestado(@RequestBody ServicoPrestado s) {
+	public ResponseEntity<Response<ServicoPrestado>> adicionarServicoPrestado(
+			@RequestBody ServicoPrestado servicoPrestado) {
 		Response<ServicoPrestado> response = new Response<>();
 		try {
-			ServicoPrestado servicoPrestado = service.save(s);
+			servicoPrestado = service.salvar(servicoPrestado);
 			response.setData(servicoPrestado);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,12 +67,27 @@ public class ServicoPrestadoControl {
 	}
 
 	@PutMapping(value = "")
-	public ResponseEntity<Response<ServicoPrestado>> updateServicoPrestado(@RequestBody ServicoPrestado s) {
+	public ResponseEntity<Response<ServicoPrestado>> atualizarServicoPrestado(
+			@RequestBody ServicoPrestado servicoPrestado) {
 
 		Response<ServicoPrestado> response = new Response<>();
 		try {
-			ServicoPrestado servicoPrestado = service.update(s);
+			servicoPrestado = service.atualizar(servicoPrestado);
 			response.setData(servicoPrestado);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Response<String>> deletarPorId(@PathVariable("id") String id) {
+		Response<String> response = new Response<>();
+		try {
+			Long idLong = StringUtil.converterStringParaLong(id);
+			String ret = service.deletarPorId(idLong);
+			response.setData(ret);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getErros().add(e.getMessage());

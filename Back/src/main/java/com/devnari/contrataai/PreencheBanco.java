@@ -3,6 +3,7 @@ package com.devnari.contrataai;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,79 +58,83 @@ public class PreencheBanco {
 
 	@GetMapping
 	public ResponseEntity<String> preencherBanco() {
+		try {
+			for (int i = 0; i < 10; i++) {
+				Contato c = new Contato();
+				c.setContato("Rua Juazeiros " + i);
+				c.setEmail("teste" + i + "@email.com");
+				c.setTelefone("" + i + i + i + i + i + i + i + i);
+				c = contatoService.salvar(c);
 
-		for (int i = 0; i < 10; i++) {
-			Contato c = new Contato();
-			c.setContato("Rua Juazeiros " + i);
-			c.setEmail("teste" + i + "@email.com");
-			c.setTelefone("" + i + i + i + i + i + i + i + i);
-			c = contatoService.save(c);
+				Endereco e = new Endereco();
+				e.setBairro("Centro " + i);
+				e.setCep("" + i + i + i + i);
+				e.setCidade("Goiânia " + i);
+				e.setComplemento("Do lado da rua " + Math.abs(i * 7 - 4 / 2 * 8));
+				e.setLogradouro("Rua " + i);
+				e.setNumero("" + i);
+				e.setUf(UF.GOIAS);
+				e = enderecoService.salvar(e);
 
-			Endereco e = new Endereco();
-			e.setBairro("Centro " + i);
-			e.setCep("" + i + i + i + i);
-			e.setCidade("Goiânia " + i);
-			e.setComplemento("Do lado da rua " + Math.abs(i * 7 - 4 / 2 * 8));
-			e.setLogradouro("Rua " + i);
-			e.setNumero("" + i);
-			e.setUf(UF.GOIAS);
-			e = enderecoService.save(e);
+				Experiencia ex = new Experiencia();
+				ex.setCertificado("" + ex.hashCode() + i);
+				ex.setDescricaoAdcional("seguir a risca a normativa " + ex.getCertificado().hashCode());
+				ex.setTempoExperiencia(new Date((int) Math.random()));
+				ex = experienciaService.salvar(ex);
 
-			Experiencia ex = new Experiencia();
-			ex.setCertificado("" + ex.hashCode() + i);
-			ex.setDescricaoAdcional("seguir a risca a normativa " + ex.getCertificado().hashCode());
-			ex.setTempoExperiencia(new Date((int) Math.random()));
-			ex = experienciaService.salvar(ex);
+				Servico s = new Servico();
+				s.setArea("Área descrita no item " + i);
+				s.setDescricao("Descrição " + i);
+				s.setEspecialidade("Especialista em enrolar, certificado " + i + " vezes");
+				s = servicoService.salvar(s);
 
-			Servico s = new Servico();
-			s.setArea("Área descrita no item " + i);
-			s.setDescricao("Descrição " + i);
-			s.setEspecialidade("Especialista em enrolar, certificado " + i + " vezes");
-			s = servicoService.add(s);
+				Disponibilidade d = new Disponibilidade();
+				switch (i % 7) {
+				case 0 -> d.setDiaDaSemana(DiasSemana.DOMINGO);
+				case 1 -> d.setDiaDaSemana(DiasSemana.SEGUNDA);
+				case 2 -> d.setDiaDaSemana(DiasSemana.TERCA);
+				case 3 -> d.setDiaDaSemana(DiasSemana.QUARTA);
+				case 4 -> d.setDiaDaSemana(DiasSemana.QUINTA);
+				case 5 -> d.setDiaDaSemana(DiasSemana.SEXTA);
+				case 6 -> d.setDiaDaSemana(DiasSemana.SABADO);
+				}
+				switch (i % 3) {
+				case 0 -> d.setHorário(PeriodosDia.MANHA);
+				case 1 -> d.setHorário(PeriodosDia.TARDE);
+				case 2 -> d.setHorário(PeriodosDia.NOITE);
+				}
+				d = disponibilidadeService.salvar(d);
 
-			Disponibilidade d = new Disponibilidade();
-			switch (i % 7) {
-			case 0 -> d.setDiaDaSemana(DiasSemana.DOMINGO);
-			case 1 -> d.setDiaDaSemana(DiasSemana.SEGUNDA);
-			case 2 -> d.setDiaDaSemana(DiasSemana.TERCA);
-			case 3 -> d.setDiaDaSemana(DiasSemana.QUARTA);
-			case 4 -> d.setDiaDaSemana(DiasSemana.QUINTA);
-			case 5 -> d.setDiaDaSemana(DiasSemana.SEXTA);
-			case 6 -> d.setDiaDaSemana(DiasSemana.SABADO);
+				ServicoPrestado sp = new ServicoPrestado();
+				sp.setExperiencia(ex);
+				sp.setServico(s);
+				sp = servicoPrestadoService.salvar(sp);
+
+				Prestador p = new Prestador();
+				p.setContato(c);
+				p.setCpf("" + p.hashCode());
+				p.setDescricaoAdicional("Descrição " + i);
+				p.setDisponibilidades(d);
+				p.setEndereco(e);
+				p.setFoto("" + p.hashCode() + ".jpg");
+				p.setNome("José Henrique da Silva " + i);
+				p.setPortfolio("www." + p.getNome().replace(" ", "") + ".com.br");
+				p.getServicosPrestados().add(sp);
+				p = prestadorService.salvar(p);
+
+				Contratante contratante = new Contratante();
+				contratante.setContato(c);
+				contratante.setCpf("" + contratante.hashCode());
+				contratante.setNome("Pedro Paulo da Silva Saulo " + i);
+				contratante.setEndereco(e);
+				contratante.setFoto(contratante.hashCode() + ".jpg");
+				contratante = contratanteService.salvar(contratante);
+
 			}
-			switch (i % 3) {
-			case 0 -> d.setHorário(PeriodosDia.MANHA);
-			case 1 -> d.setHorário(PeriodosDia.TARDE);
-			case 2 -> d.setHorário(PeriodosDia.NOITE);
-			}
-			d = disponibilidadeService.save(d);
-			
-			ServicoPrestado sp = new ServicoPrestado();
-			sp.setExperiencia(ex);
-			sp.setServico(s);
-			sp = servicoPrestadoService.save(sp);
-
-			Prestador p = new Prestador();
-			p.setContato(c);
-			p.setCPF("" + p.hashCode());
-			p.setDescricaoAdicional("Descrição " + i);
-			p.setDisponibilidades(d);
-			p.setEndereco(e);
-			p.setFoto("" + p.hashCode() + ".jpg");
-			p.setNome("José Henrique da Silva " + i);
-			p.setPortfolio("www." + p.getNome().replace(" ", "") + ".com.br");
-			p.getServicoPrestados().add(sp);
-			p = prestadorService.save(p);
-
-			Contratante contratante = new Contratante();
-			contratante.setContato(c);
-			contratante.setCPF("" + contratante.hashCode());
-			contratante.setNome("Pedro Paulo da Silva Saulo " + i);
-			contratante.setEndereco(e);
-			contratante.setFoto(contratante.hashCode() + ".jpg");
-			contratante = contratanteService.add(contratante);
-
+			return ResponseEntity.ok("Banco Criado Com Sucesso!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
-		return null;
 	}
 }

@@ -6,8 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.devnari.contrataai.model.Usuario;
 
-public interface UserDao extends JpaRepository<Usuario, Integer>{
-
+public interface UserDao extends JpaRepository<Usuario, Long> {
 
 	Optional<Usuario> findByUsername(String username);
 }

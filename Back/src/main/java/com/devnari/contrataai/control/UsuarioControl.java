@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.base.Response;
-import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.model.Usuario;
 import com.devnari.contrataai.model.UsuarioLoggado;
 import com.devnari.contrataai.services.UsuarioLoggadoService;

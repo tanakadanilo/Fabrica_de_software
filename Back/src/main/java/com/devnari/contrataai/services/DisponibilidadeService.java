@@ -14,16 +14,24 @@ public class DisponibilidadeService {
 	@Autowired
 	DisponibilidadeDao persistencia;
 
-	public List<Disponibilidade> findAll() {
+	public List<Disponibilidade> buscarTodos() {
 		return persistencia.findAll();
 	}
 
-	public Disponibilidade findById(int id) {
-		return persistencia.findById(id).orElse(null);
+	public Disponibilidade buscarPorId(Long id) throws Exception {
+		Disponibilidade disponibilidade = persistencia.findById(id).orElse(null);
+		if (disponibilidade == null) {
+			throw new Exception("Disponibilidade Não Encontrada!");
+		}
+
+		return disponibilidade;
 	}
 
-	public Disponibilidade save(Disponibilidade d) {
-		d.setId(null);
-		return persistencia.save(d);
+	public Disponibilidade salvar(Disponibilidade disponibilidade) throws Exception {
+		if (disponibilidade == null) {
+			throw new Exception("Disponibilidade Não Informada!");
+		}
+		disponibilidade.setId(null);
+		return persistencia.save(disponibilidade);
 	}
 }

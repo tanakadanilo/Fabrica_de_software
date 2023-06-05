@@ -19,14 +19,14 @@ public class Contratante {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String nome;
 
 	@ManyToOne
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
-	private String CPF;
-	
+	private String cpf;
+
 	@ManyToOne
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;

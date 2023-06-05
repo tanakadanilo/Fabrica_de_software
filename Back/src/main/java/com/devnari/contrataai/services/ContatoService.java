@@ -14,15 +14,30 @@ public class ContatoService {
 	@Autowired
 	ContatoDao persistencia;
 
-	public List<Contato> findAll() {
+	public List<Contato> buscarTodos() {
 		return persistencia.findAll();
 	}
 
-	public Contato findById(Integer id) {
-		return persistencia.findById(id).orElseThrow();
+	public Contato buscarPorId(Long id) throws Exception {
+		Contato contato = persistencia.findById(id).orElse(null);
+		if (contato == null) {
+			throw new Exception("Contato Não Encontrado!");
+		}
+		return contato;
 	}
 
-	public Contato save(Contato c) {
-		return persistencia.save(c);
+	public Contato salvar(Contato contato) throws Exception {
+		if (contato == null) {
+			throw new Exception("Contato Não Informado!");
+		}
+		return persistencia.save(contato);
+	}
+
+	public String deletarPorId(Long id) throws Exception {
+		if (!persistencia.existsById(id)) {
+			throw new Exception("Não Encontrado!");
+		}
+		persistencia.deleteById(id);
+		return "Deletado Com Sucesso!";
 	}
 }

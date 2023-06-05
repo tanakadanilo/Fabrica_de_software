@@ -14,15 +14,32 @@ public class ExperienciaService {
 	@Autowired
 	ExperienciaDao persistencia;
 
-	public Experiencia salvar(Experiencia e) {
-		return persistencia.save(e);
-	}
-
-	public Experiencia findById(Integer id) {
-		return persistencia.findById(id).orElseThrow();
-	}
-
-	public List<Experiencia> findAll() {
+	public List<Experiencia> buscarTodos() {
 		return persistencia.findAll();
+
 	}
+
+	public Experiencia buscarPorId(Long id) throws Exception {
+		Experiencia experiencia = persistencia.findById(id).orElse(null);
+		if (experiencia == null) {
+			throw new Exception("Experiência Não Encontrada!");
+		}
+		return experiencia;
+	}
+
+	public Experiencia salvar(Experiencia experiencia) throws Exception {
+		if (experiencia == null) {
+			throw new Exception("Experiência Não Informada!");
+		}
+		return persistencia.save(experiencia);
+	}
+
+	public String deletarPorId(Long id) throws Exception {
+		if (!persistencia.existsById(id)) {
+			throw new Exception("Não Encontrado!");
+		}
+		persistencia.deleteById(id);
+		return "deletado Com Sucesso!";
+	}
+
 }

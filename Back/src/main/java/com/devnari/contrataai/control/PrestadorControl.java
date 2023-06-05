@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.devnari.contrataai.model.Prestador;
 import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.services.PrestadorService;
 import com.devnari.contrataai.services.ServicoPrestadoService;
+import com.devnari.contrataai.util.StringUtil;
 
 @RestController
 @RequestMapping(value = "/prestador")
@@ -32,7 +34,7 @@ public class PrestadorControl {
 	public ResponseEntity<Response<List<Prestador>>> buscarTodos() {
 		Response<List<Prestador>> response = new Response<>();
 		try {
-			List<Prestador> prestadores = service.findAll();
+			List<Prestador> prestadores = service.buscarTodos();
 			response.setData(prestadores);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,7 +47,8 @@ public class PrestadorControl {
 	public ResponseEntity<Response<Prestador>> findById(@PathVariable("id") String id) {
 		Response<Prestador> response = new Response<>();
 		try {
-			Prestador prestador = service.findById(Integer.parseInt(id));
+			Long idLong = StringUtil.converterStringParaLong(id);
+			Prestador prestador = service.buscarPorId(idLong);
 			response.setData(prestador);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,7 +62,7 @@ public class PrestadorControl {
 
 		Response<Prestador> response = new Response<>();
 		try {
-			Prestador prestador = service.save(p);
+			Prestador prestador = service.salvar(p);
 			response.setData(prestador);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +76,7 @@ public class PrestadorControl {
 
 		Response<ServicoPrestado> response = new Response<>();
 		try {
-			ServicoPrestado servicoPrestado = servicoPrestadoService.save(s);
+			ServicoPrestado servicoPrestado = servicoPrestadoService.salvar(s);
 			response.setData(servicoPrestado);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,8 +89,8 @@ public class PrestadorControl {
 	public ResponseEntity<Response<Prestador>> adicionarServico(@RequestBody Map<String, String> params) {
 		Response<Prestador> response = new Response<>();
 		try {
-			Integer idPrestador = Integer.parseInt(params.get("idPrestador"));
-			Integer idServico = Integer.parseInt(params.get("idServico"));
+			Long idPrestador = StringUtil.converterStringParaLong(params.get("idPrestador"));
+			Long idServico = StringUtil.converterStringParaLong(params.get("idServico"));
 			Prestador prestador = service.adicionarServico(idPrestador, idServico);
 			response.setData(prestador);
 		} catch (Exception e) {
@@ -98,11 +101,25 @@ public class PrestadorControl {
 	}
 
 	@PutMapping(value = "")
-	public ResponseEntity<Response<Prestador>> updatePrestador(@RequestBody Prestador s) {
+	public ResponseEntity<Response<Prestador>> updatePrestador(@RequestBody Prestador prestador) {
 		Response<Prestador> response = new Response<>();
 		try {
-			Prestador prestador = service.update(s);
+			prestador = service.atualizar(prestador);
 			response.setData(prestador);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Response<String>> deletarPorId(@PathVariable("id") String id) {
+		Response<String> response = new Response<>();
+		try {
+			Long idLong = StringUtil.converterStringParaLong(id);
+			String ret = service.deletarPorId(idLong);
+			response.setData(ret);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getErros().add(e.getMessage());

@@ -10,6 +10,7 @@ import com.devnari.contrataai.model.Servico;
 import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.model.auxiliares.Experiencia;
 import com.devnari.contrataai.persistencia.PrestadorDao;
+import com.devnari.contrataai.util.StringUtil;
 
 @Service
 public class PrestadorService {
@@ -23,42 +24,70 @@ public class PrestadorService {
 	@Autowired
 	ExperienciaService experienciaService;
 
-	public List<Prestador> findAll() {
+	public List<Prestador> buscarTodos() {
 		return persistencia.findAll();
 	}
 
-	public Prestador findById(int id) {
-		return persistencia.findById(id).orElse(null);
-	}
+	public Prestador buscarPorId(Long id) throws Exception {
 
-	public Prestador save(Prestador s) {
-		s.setId(null);
-		return persistencia.save(s);
-	}
-
-	public Prestador update(Prestador s) throws Exception {
-		if (s.getId() == null) {
-			throw new Exception("O objeto que se tentou editar veio sem ID");
+		Prestador prestador = persistencia.findById(id).orElse(null);
+		if (prestador == null) {
+			throw new Exception("Prestador Não Encontrado!");
 		}
-		return persistencia.save(s);
-	}
-
-	public Prestador adicionarServico(Integer idPrestador, Integer idServicoPrestado) {
-		Prestador prestador = persistencia.findById(idPrestador).orElseThrow();
-		ServicoPrestado servicoPrestado = servicoPrestadoService.findById(idServicoPrestado);
-		prestador.getServicoPrestados().add(servicoPrestado);
 		return prestador;
 	}
 
-	public ServicoPrestado criarServicoPrestado(Integer idPrestador, Integer idServico, Integer idExperiencia) {
-		Servico servico = servicoService.findById(idServico);
-		Prestador prestador = this.findById(idPrestador);
-		Experiencia experiencia = experienciaService.findById(idExperiencia);
+	public List<Prestador> buscarPorCpf(String cpf) {
+		cpf = StringUtil.tratarStringNullEUndefinned(cpf);
+		List<Prestador> prestadores = persistencia.findByCpf(cpf);
+		return prestadores;
+	}
+
+	public List<Prestador> buscarPorNome(String nome) {
+		nome = StringUtil.tratarStringNullEUndefinned(nome);
+		List<Prestador> prestadores = persistencia.findByNome(nome);
+		return prestadores;
+	}
+
+	public Prestador salvar(Prestador prestador) throws Exception {
+		if (prestador == null) {
+			throw new Exception("Prestador Não Informado!");
+		}
+		prestador.setId(null);
+		return persistencia.save(prestador);
+	}
+
+	public Prestador atualizar(Prestador prestador) throws Exception {
+		if (prestador.getId() == null) {
+			throw new Exception("Prestador Não Encontrado!");
+		}
+		return persistencia.save(prestador);
+	}
+
+	public String deletarPorId(Long id) throws Exception {
+		if (!persistencia.existsById(id)) {
+			throw new Exception("Não Encontrado!");
+		}
+		persistencia.deleteById(id);
+		return "deletado Com Sucesso!";
+	}
+
+	public Prestador adicionarServico(Long idPrestador, Long idServicoPrestado) throws Exception {
+		Prestador prestador = persistencia.findById(idPrestador).orElseThrow();
+		ServicoPrestado servicoPrestado = servicoPrestadoService.buscarPorId(idServicoPrestado);
+		prestador.getServicosPrestados().add(servicoPrestado);
+		return prestador;
+	}
+
+	public ServicoPrestado criarServicoPrestado(Long idPrestador, Long idServico, Long idExperiencia) throws Exception {
+		Servico servico = servicoService.buscarPorId(idServico);
+		Prestador prestador = this.buscarPorId(idPrestador);
+		Experiencia experiencia = experienciaService.buscarPorId(idExperiencia);
 		ServicoPrestado servicoPrestado = new ServicoPrestado();
 		servicoPrestado.setExperiencia(experiencia);
 		servicoPrestado.setPrestador(prestador);
 		servicoPrestado.setServico(servico);
-		return servicoPrestadoService.save(servicoPrestado);
+		return servicoPrestadoService.salvar(servicoPrestado);
 	}
 
 }

@@ -1,11 +1,14 @@
 package com.devnari.contrataai.persistencia;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import com.devnari.contrataai.model.Prestador;
 
-@Repository
-public interface PrestadorDao extends JpaRepository<Prestador, Integer> {
+public interface PrestadorDao extends JpaRepository<Prestador, Long> {
 
+	List<Prestador> findByNome(String nome);
+
+	List<Prestador> findByCpf(String cpf);
 }

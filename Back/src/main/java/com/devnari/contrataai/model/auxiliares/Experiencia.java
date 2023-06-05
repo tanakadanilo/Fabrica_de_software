@@ -18,7 +18,7 @@ public class Experiencia {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date tempoExperiencia;

@@ -14,15 +14,31 @@ public class EnderecoService {
 	@Autowired
 	EnderecoDao persistencia;
 
-	public List<Endereco> findAll() {
+	public List<Endereco> buscarTodos() {
 		return persistencia.findAll();
 	}
 
-	public Endereco findById(Integer id) {
-		return persistencia.findById(id).orElseThrow();
+	public Endereco buscarPorId(Long id) throws Exception {
+		Endereco endereco = persistencia.findById(id).orElse(null);
+		if (endereco == null) {
+			throw new Exception("Endereço Não Encontrado!");
+		}
+
+		return endereco;
 	}
 
-	public Endereco save(Endereco e) {
-		return persistencia.save(e);
+	public Endereco salvar(Endereco endereco) throws Exception {
+		if (endereco == null) {
+			throw new Exception("Endereço Não Informado!");
+		}
+		return persistencia.save(endereco);
+	}
+
+	public String deletarPorId(Long id) throws Exception {
+		if (!persistencia.existsById(id)) {
+			throw new Exception("Não Encontrado!");
+		}
+		persistencia.deleteById(id);
+		return "deletado Com Sucesso!";
 	}
 }
