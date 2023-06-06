@@ -19,7 +19,7 @@ public class SecurityConfiguration {
 
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		return http.cors().disable().authorizeHttpRequests().anyRequest().permitAll().and().build();
+		return http.cors().disable().csrf().disable().authorizeHttpRequests().anyRequest().permitAll().and().build();
 	}
 
 	@Bean
@@ -51,13 +51,4 @@ public class SecurityConfiguration {
 		return source;
 	}
 
-//	@Bean
-//	CorsConfigurationSource corsConfigurationSource() {
-//		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//
-//		CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
-//		source.registerCorsConfiguration("/**", corsConfiguration);
-//
-//		return source;
-//	}
 }
