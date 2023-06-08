@@ -23,10 +23,19 @@ public class Endereco {
 	private String logradouro;
 	private String numero;
 	private String cidade;
-
+	private String quadra;
+	private String lote;
 	@Enumerated
 	private UF uf;
 	private String bairro;
 	private String complemento;
 
 }
+
+// cep: string,
+//logradouro: string,
+//numero: string,
+//quadra: string,
+//lote: string,
+//cidade: string,
+//uf: string,

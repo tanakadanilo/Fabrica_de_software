@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { PortalModule } from '@angular/cdk/portal';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NbSecurityModule } from '@nebular/security';
@@ -33,7 +33,6 @@ import { LoginComponent } from './login/login.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { RegisterComponent } from './register/register.component';
 import { PerfiluserComponent } from './perfiluser/perfiluser.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
 import { AuthInterceptor } from './security/auth-interceptor';
 
@@ -46,7 +45,8 @@ import { AuthInterceptor } from './security/auth-interceptor';
     RecoveryComponent,
     RegisterComponent,
     PerfiluserComponent,
-    MainComponent
+    MainComponent,
+
   ],
   imports: [
     BrowserModule,

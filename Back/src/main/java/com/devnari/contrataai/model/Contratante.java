@@ -1,5 +1,8 @@
 package com.devnari.contrataai.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.devnari.contrataai.model.auxiliares.Contato;
 import com.devnari.contrataai.model.auxiliares.Endereco;
 
@@ -21,7 +24,7 @@ public class Contratante {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
