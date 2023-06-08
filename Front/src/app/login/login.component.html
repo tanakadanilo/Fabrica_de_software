@@ -6,29 +6,53 @@
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   />
 </head>
-<nb-layout >
+<nb-layout>
   <nb-layout-column class="margem">
     <div class="null"></div>
     <nb-card>
       <nb-card-header>Faça login na sua conta</nb-card-header>
       <nb-card-body>
+        <button (click)="teste()">TEste</button>
         <form>
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Digite o email" [(ngModel)]="email">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Digite o email"
+              [(ngModel)]="user.login"
+              name="email"
+            />
           </div>
           <div class="form-group">
             <label for="senha">Senha:</label>
-            <input type="password" class="form-control" id="senha" placeholder="Digite a senha" [(ngModel)]="password">
+            <input
+              type="password"
+              class="form-control"
+              id="senha"
+              placeholder="Digite a senha"
+              [(ngModel)]="user.password"
+              name="password"
+            />
           </div>
           <nb-checkbox status="success">Lembrar-me</nb-checkbox>
-          <a [routerLink]="['/register']" style="float: right ;">Cadastre-se</a><br>
-          <a [routerLink]="['/recovery']" style="float: right ;">Recuperar senha</a>
-          <button nbButton status="primary" type="submit" class="btn btn-default" (click)="login($event)">Entrar</button>
+          <a [routerLink]="['/register']" style="float: right">Cadastre-se</a
+          ><br />
+          <a [routerLink]="['/recovery']" style="float: right"
+            >Recuperar senha</a
+          >
+          <button
+            nbButton
+            status="primary"
+            type="submit"
+            class="btn btn-default"
+            (click)="login($event)"
+          >
+            Entrar
+          </button>
         </form>
       </nb-card-body>
     </nb-card>
   </nb-layout-column>
 </nb-layout>
-
-

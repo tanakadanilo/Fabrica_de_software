@@ -1,3 +1,5 @@
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { PortalModule } from '@angular/cdk/portal';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -33,6 +35,7 @@ import { RegisterComponent } from './register/register.component';
 import { PerfiluserComponent } from './perfiluser/perfiluser.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
+import { AuthInterceptor } from './security/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -68,11 +71,17 @@ import { MainComponent } from './main/main.component';
     PortalModule,
     NbMenuModule.forRoot(),
     NbStepperModule,
-    NbButtonModule,NbLayoutModule,ReactiveFormsModule,NbLayoutModule
+    NbButtonModule,
+    NbLayoutModule,
+    ReactiveFormsModule,
+    NbLayoutModule,
+    HttpClientModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [NbMenuService,provideNgxMask()],
+  providers: [NbMenuService, provideNgxMask(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+
   bootstrap: [AppComponent]
 })
 
