@@ -1,6 +1,7 @@
 import { PortalModule } from '@angular/cdk/portal';
+import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NbSecurityModule } from '@nebular/security';
@@ -28,11 +29,12 @@ import { FooterComponent } from './exports/footer/footer.component';
 import { MenuComponent } from './exports/menu/menu.component';
 import { LoginRoutingModule } from './login/login-routing.module';
 import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
+import { PerfiluserComponent } from './perfiluser/perfiluser.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { RegisterComponent } from './register/register.component';
-import { PerfiluserComponent } from './perfiluser/perfiluser.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MainComponent } from './main/main.component';
+
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { MainComponent } from './main/main.component';
     RecoveryComponent,
     RegisterComponent,
     PerfiluserComponent,
-    MainComponent
+    MainComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,7 @@ import { MainComponent } from './main/main.component';
     PortalModule,
     NbMenuModule.forRoot(),
     NbStepperModule,
-    NbButtonModule,NbLayoutModule,ReactiveFormsModule,NbLayoutModule
+    NbButtonModule,NbLayoutModule,ReactiveFormsModule,NbLayoutModule,HttpClientModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

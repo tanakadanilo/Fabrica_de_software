@@ -60,8 +60,9 @@ public class ContratanteControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getErros().add(e.getMessage());
-		}
+		}	System.out.println(contratante);
 		return ResponseEntity.ok(response);
+	
 	}
 
 	@DeleteMapping(value = "/{id}")
