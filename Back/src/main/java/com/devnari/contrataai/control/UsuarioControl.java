@@ -16,6 +16,8 @@ import com.devnari.contrataai.model.Usuario;
 import com.devnari.contrataai.model.UsuarioLoggado;
 import com.devnari.contrataai.services.UsuarioLoggadoService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/login")
 public class UsuarioControl {
@@ -24,7 +26,7 @@ public class UsuarioControl {
 	private UsuarioLoggadoService userService;
 
 	@GetMapping
-	public ResponseEntity<Response<List<Usuario>>> listAll() {
+	public ResponseEntity<Response<List<Usuario>>> listAll(HttpServletRequest request) {
 		Response<List<Usuario>> response = new Response<>();
 		try {
 			List<Usuario> usuarios = userService.findAll();

@@ -1,11 +1,9 @@
 package com.devnari.contrataai.model;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import com.devnari.contrataai.model.auxiliares.Contato;
 import com.devnari.contrataai.model.auxiliares.Endereco;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,13 +22,13 @@ public class Contratante {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	
-	@ManyToOne
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
 	private String cpf;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 
