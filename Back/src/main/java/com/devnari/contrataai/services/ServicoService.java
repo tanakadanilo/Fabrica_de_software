@@ -1,5 +1,6 @@
 package com.devnari.contrataai.services;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class ServicoService {
 
 	public List<Servico> buscarPorCategoria(String categoria) {
 		List<Servico> servicos = persistencia.findByArea(categoria);
+		return servicos;
+	}
+
+	public List<String> buscarCategorias(String categoria) {
+		List<String> servicos = persistencia.findCategorias(categoria);
 		return servicos;
 	}
 

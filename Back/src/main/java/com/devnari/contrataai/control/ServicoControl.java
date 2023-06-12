@@ -55,6 +55,20 @@ public class ServicoControl {
 		return ResponseEntity.ok(response);
 	}
 
+	@GetMapping(value = "/categorias")
+	public ResponseEntity<Response<List<String>>> listarCategorias(
+			@RequestParam(name = "categoria", required = false, defaultValue = "") String categoria) {
+		Response<List<String>> response = new Response<>();
+		try {
+			List<String> categorias = service.buscarCategorias(categoria);
+			response.setData(categorias);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
+	}
+
 	@PostMapping(value = "")
 	public ResponseEntity<Response<Servico>> adicionarServico(@RequestBody Servico servico) {
 		Response<Servico> response = new Response<>();

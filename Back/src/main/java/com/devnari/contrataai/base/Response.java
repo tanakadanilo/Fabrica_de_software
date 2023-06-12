@@ -15,6 +15,6 @@ import lombok.Setter;
 public class Response<T> {
 
 	private T data = null;
-	private HttpStatus status = HttpStatus.I_AM_A_TEAPOT;
+	private HttpStatus status = HttpStatus.OK;
 	private List<String> erros = new ArrayList<>();
 }
