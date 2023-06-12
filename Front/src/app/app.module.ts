@@ -15,6 +15,7 @@ import {
   NbLayoutModule,
   NbMenuModule,
   NbMenuService,
+  NbSelectModule,
   NbSidebarModule,
   NbStepperModule,
   NbThemeModule,
@@ -35,6 +36,7 @@ import { RegisterComponent } from './register/register.component';
 import { PerfiluserComponent } from './perfiluser/perfiluser.component';
 import { MainComponent } from './main/main.component';
 import { AuthInterceptor } from './security/auth-interceptor';
+import { RegisterPrestadorComponent } from './register-prestador/register-prestador.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { AuthInterceptor } from './security/auth-interceptor';
     RegisterComponent,
     PerfiluserComponent,
     MainComponent,
+    RegisterPrestadorComponent
 
   ],
   imports: [
@@ -75,7 +78,7 @@ import { AuthInterceptor } from './security/auth-interceptor';
     NbLayoutModule,
     ReactiveFormsModule,
     NbLayoutModule,
-    HttpClientModule
+    HttpClientModule,NbSelectModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
