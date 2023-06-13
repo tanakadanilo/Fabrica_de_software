@@ -11,6 +11,7 @@ body {
 .label {
   margin-top: 10px;
   margin-bottom: 5px;
+  color: #37487c;
 }
 
 .row1 {
@@ -50,7 +51,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 220px;
 }
 
 .file-input input[type="file"] + img {
@@ -106,7 +107,7 @@ body {
   /* border: 0.0625rem solid #e4e9f2; */
   border-radius: 0.25rem;
   box-shadow: none;
-  color: #222b45;
+  /* color: #142c75 !important; */
   font-family: Open Sans, sans-serif;
   font-size: .9375rem;
   font-weight: 400;
@@ -132,8 +133,8 @@ body {
 
     scrollbar-face-color: #e4e9f2;
     scrollbar-track-color: #f7f9fc;
-    max-width: 600px; /* define a largura máxima da div */
-    margin: 0 auto; /* define margin automáticos */
+    max-width: 600px;
+    margin: 0 auto;
 }
 .infoprof{
   background-color: #fffeff;
@@ -151,8 +152,8 @@ body {
 
     scrollbar-face-color: #e4e9f2;
     scrollbar-track-color: #f7f9fc;
-    max-width: 300em; /* define a largura máxima da div */
-    margin: 0 auto; /* define margin automáticos */
+    max-width: 300em;
+    margin: 0 auto;
 }
 
 table {

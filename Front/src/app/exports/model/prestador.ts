@@ -4,4 +4,5 @@ export interface Prestador {
     especializacao:string,
     urlImagem:string
 
+
 }

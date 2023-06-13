@@ -1,3 +1,4 @@
+import { dadosPj } from './../exports/model/dadosPj';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -17,9 +18,12 @@ export class RegisterPrestadorComponent implements OnInit {
   itens: any;
   infoprof: FormGroup;
 
-  dadosPf: any = {
+  dadosPj: dadosPj = {
     nome: '',
     cpf: '',
+    especializacao: '',
+    urlImagem: '',
+    descricaoAdicional: '',
     endereco: {
       cep: '',
       logradouro: '',
@@ -34,6 +38,8 @@ export class RegisterPrestadorComponent implements OnInit {
       email: '',
       telefone: '',
     },
+    disponibilidades: [],
+    listadeservico: [],
   };
 
   ngOnInit() {
@@ -63,7 +69,9 @@ export class RegisterPrestadorComponent implements OnInit {
       uf: ['', Validators.required],
       Complemento: ['', Validators.required],
     });
-    this.infoprof = this.formBuilder.group({})
+    this.infoprof = this.formBuilder.group({
+      servico: ['', Validators.required],
+    });
 
     this.cadastrar();
   }
@@ -93,12 +101,12 @@ export class RegisterPrestadorComponent implements OnInit {
   }
 
   cadastrar() {
-    // this.regP
-    //   .post('http://localhost:8080/contratante', this.dadosPf)
-    //   .subscribe((response: any) => {
-    //     console.log(response);
-    //   });
-    // console.log('funfo');
+    this.regP
+      .post('http://localhost:8080/prestador', this.dadosPj)
+      .subscribe((response: any) => {
+        console.log(response);
+      });
+    console.log('funfo');
   }
 
   toggleCellSelection(cell: string) {
@@ -119,19 +127,17 @@ export class RegisterPrestadorComponent implements OnInit {
     console.log(this.selectedCells);
   }
 
-  novoServico: string = '';
-  listaServicos: string[] = [];
-
+  servico: string = '';
 
   adicionarServico() {
-    if (this.novoServico) {
-      this.listaServicos.push(this.novoServico);
-      this.novoServico = '';
-      console.log(this.listaServicos)
+    if (this.servico) {
+      this.dadosPj.listadeservico.push(this.servico);
+      this.servico = '';
+      console.log(this.dadosPj.listadeservico);
     }
   }
 
   removerServico(index: number) {
-    this.listaServicos.splice(index, 1);
+    this.dadosPj.listadeservico.splice(index, 1);
   }
 }

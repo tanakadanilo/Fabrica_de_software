@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Categoria } from '../model/categoria';
-import { Prestador } from '../model/prestador';
+import { Categoria } from '../exports/model/categoria';
 import { OnInit } from '@angular/core'
 import { HttpClient } from '@angular/common/http';
 
@@ -119,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 export class MainComponent implements OnInit {
   ngOnInit(): void {
-    this.elementos = this.dividirEmGrupos(this.prestadores, 4)
+    // this.elementos = this.dividirEmGrupos(this.prestadores, 4)
   }
 
   elementos:any;
@@ -168,95 +167,95 @@ export class MainComponent implements OnInit {
   },]
 
 
-  prestadores: Prestador[] = [{
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  }, {
-    'nome': 'Nome',
-    'especializacao': 'Especializacao',
-    'urlImagem': '/assets/images/images (4).png'
-  },]
+  // prestadores: Prestador[] = [{
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // }, {
+  //   'nome': 'Nome',
+  //   'especializacao': 'Especializacao',
+  //   'urlImagem': '/assets/images/images (4).png'
+  // },]
   copiar() {
 
   }
