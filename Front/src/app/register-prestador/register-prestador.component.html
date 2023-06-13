@@ -273,18 +273,52 @@
               >
               <nb-card-body>
                 <div class="infoprof">
+                  <form [formGroup]="infoprof">
                   <div class="col-md-3">
-                    <label class="label" for="input-">Área de Atuação</label
-                    ><br />
+                    <label class="label" for="input-">Área de Atuação</label><br />
                     <nb-select [(ngModel)]="selecionado">
-                      <nb-option
-                        *ngFor="let item of categoria"
-                        [value]="item.value"
-                        >{{ item.title }}</nb-option
-                      >
+                      <nb-option *ngFor="let item of itens" [value]="item">{{ item }}</nb-option>
                     </nb-select>
                   </div>
+                  <div class="col-md-3">
+                    <label class="label" for="input-complemento">Serviços</label><br />
 
+                    <div>
+                      <input
+                        style="align-items: center; width: 260px !important"
+                        type="text"
+                        nbInput
+                        status="basic"
+                        placeholder=""
+                        formControlName="servicos"
+                        [(ngModel)]="novoServico"
+                      />
+                      <button (click)="adicionarServico()" style="margin-left: 10px">
+                        <mat-icon>add</mat-icon>
+                      </button>
+                    </div>
+
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Nome de Serviço</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let servico of listaServicos; let i = index">
+                          <td>{{ i + 1 }}</td>
+                          <td>{{ servico }}</td>
+                          <td>
+                            <button (click)="removerServico(i)">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                   <div class="tabeladispon">
                     <table>
                       <tr>
@@ -476,6 +510,7 @@
                       </tr>
                     </table>
                   </div>
+                  </form>
                 </div>
                 <button
                   style="align-items: left; width: 130px !important"
@@ -495,6 +530,7 @@
                   Avançar
                 </button>
               </nb-card-body>
+
             </nb-card>
           </nb-step>
           <nb-step label="Imagem de Perfil">

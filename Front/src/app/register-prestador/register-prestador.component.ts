@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './register-prestador.component.html',
   styleUrls: ['./register-prestador.component.css'],
 })
-export class RegisterPrestadorComponent {
+export class RegisterPrestadorComponent implements OnInit {
   linearMode = false;
   form: FormGroup;
   formreg2: FormGroup;
@@ -15,7 +15,7 @@ export class RegisterPrestadorComponent {
   selecionado: any;
   categoria: any[] = [];
   itens: any;
-
+  infoprof: FormGroup;
 
   dadosPf: any = {
     nome: '',
@@ -35,7 +35,13 @@ export class RegisterPrestadorComponent {
       telefone: '',
     },
   };
+
+  ngOnInit() {
+    this.obterItensDoBackend();
+  }
+
   selectedCells: string[] = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private regP: HttpClient,
@@ -57,6 +63,7 @@ export class RegisterPrestadorComponent {
       uf: ['', Validators.required],
       Complemento: ['', Validators.required],
     });
+    this.infoprof = this.formBuilder.group({})
 
     this.cadastrar();
   }
@@ -72,27 +79,27 @@ export class RegisterPrestadorComponent {
       reader.readAsDataURL(file);
     }
   }
+
   obterItensDoBackend() {
-    this.http.get<any[]>('http://localhost:8080/servico/categorias')
-      .subscribe(
-        (response: any[]) => {
-          this.itens = response;
-        },
-        (error) => {
-          console.error('Erro ao obter itens do backend', error);
-        }
-      )
-      }
-  cadastrar() {
-    this.regP
-      .post('http://localhost:8080/contratante', this.dadosPf)
-      .subscribe((response: any) => {
-        console.log(response);
-      });
-    console.log('funfo');
+    this.http.get<any[]>('http://localhost:8080/servico/categorias').subscribe({
+      next: (response: any) => {
+        this.itens = response.data;
+        console.log(this.itens);
+      },
+      error: (error) => {
+        console.error('Erro ao obter itens do backend', error);
+      },
+    });
   }
 
-  ngOnInit() {}
+  cadastrar() {
+    // this.regP
+    //   .post('http://localhost:8080/contratante', this.dadosPf)
+    //   .subscribe((response: any) => {
+    //     console.log(response);
+    //   });
+    // console.log('funfo');
+  }
 
   toggleCellSelection(cell: string) {
     const index = this.selectedCells.indexOf(cell);
@@ -110,5 +117,21 @@ export class RegisterPrestadorComponent {
 
   saveTable() {
     console.log(this.selectedCells);
+  }
+
+  novoServico: string = '';
+  listaServicos: string[] = [];
+
+
+  adicionarServico() {
+    if (this.novoServico) {
+      this.listaServicos.push(this.novoServico);
+      this.novoServico = '';
+      console.log(this.listaServicos)
+    }
+  }
+
+  removerServico(index: number) {
+    this.listaServicos.splice(index, 1);
   }
 }

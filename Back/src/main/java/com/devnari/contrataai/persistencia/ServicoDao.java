@@ -13,7 +13,7 @@ public interface ServicoDao extends JpaRepository<Servico, Long> {
 	@Query("SELECT s from Servico s " + "where (:categoria = '' or s.area like %:categoria%)")
 	List<Servico> findByArea(@Param("categoria") String categoria);
 
-	@Query("SELECT s.area from Servico s " + "where (:categoria like '' or s.area like %:categoria%)")
+	@Query("SELECT distinct s.area from Servico s " + "where (:categoria like '' or s.area like %:categoria%)")
 	List<String> findCategorias(@Param("categoria") String categoria);
 
 	List<Servico> findByEspecialidade(String especialidade);
