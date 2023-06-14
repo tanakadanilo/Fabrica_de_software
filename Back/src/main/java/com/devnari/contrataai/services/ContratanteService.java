@@ -41,6 +41,9 @@ public class ContratanteService {
 		if (contratante == null) {
 			throw new Exception("Contratante Não Informado!");
 		}
+		if (persistencia.findByCpf(contratante.getCpf()) != null) {
+			throw new Exception("CPF Já Cadastrado no Sistema");
+		}
 		contratante.setId(null);
 		return persistencia.save(contratante);
 	}
