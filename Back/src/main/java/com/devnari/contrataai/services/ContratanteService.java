@@ -1,11 +1,15 @@
 package com.devnari.contrataai.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devnari.contrataai.model.Contratante;
+import com.devnari.contrataai.model.HistoricoServico;
+import com.devnari.contrataai.model.Prestador;
+import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.persistencia.ContratanteDao;
 
 @Service
@@ -13,6 +17,9 @@ public class ContratanteService {
 
 	@Autowired
 	ContratanteDao persistencia;
+
+	@Autowired
+	PrestadorService prestadorService;
 
 	public List<Contratante> buscarTodos() {
 		List<Contratante> contratantes = persistencia.findAll();
@@ -41,7 +48,7 @@ public class ContratanteService {
 		if (contratante == null) {
 			throw new Exception("Contratante Não Informado!");
 		}
-		if (persistencia.findByCpf(contratante.getCpf()) != null) {
+		if (persistencia.findByCpfEquals(contratante.getCpf()) != null) {
 			throw new Exception("CPF Já Cadastrado no Sistema");
 		}
 		contratante.setId(null);
@@ -53,6 +60,27 @@ public class ContratanteService {
 			throw new Exception("Contratante Não Encontrado!");
 		}
 		return persistencia.save(contratante);
+	}
+
+	public void contratarServico(Contratante contratante, ServicoPrestado servico) throws Exception {
+		try {
+			Prestador prestador = prestadorService.buscarPrestadorPorServicoPrestado(servico.getId());
+			HistoricoServico historico = new HistoricoServico();
+			historico.setContratante(contratante);
+			historico.setDataContratacao(new Date());
+			historico.setPrestador(prestador);
+			historico.setServico(servico);
+
+			contratante.getHistoricoServicosContratados().add(historico);
+			prestador.getHistoricoServicosPrestados().add(historico);
+
+			prestadorService.salvar(prestador);
+			persistencia.save(contratante);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 }

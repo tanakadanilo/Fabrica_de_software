@@ -122,6 +122,8 @@ public class PreencheBanco {
 				p.getServicosPrestados().add(sp);
 				p = prestadorService.salvar(p);
 
+				sp.setPrestador(p);
+
 				Contratante contratante = new Contratante();
 				contratante.setContato(c);
 				contratante.setCpf("" + contratante.hashCode());

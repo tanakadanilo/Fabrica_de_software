@@ -9,6 +9,7 @@ import com.devnari.contrataai.model.auxiliares.Endereco;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -44,6 +45,9 @@ public class Prestador {
 	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "pessoa_id")
 	private List<ServicoPrestado> servicosPrestados = new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<HistoricoServico> historicoServicosPrestados = new ArrayList<>();
 
 // link do portfólio
 	private String portfolio;
