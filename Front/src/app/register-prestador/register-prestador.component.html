@@ -10,14 +10,6 @@
 <body>
   <nb-layout>
     <nb-layout-column>
-      <button
-        class="save-button"
-        (click)="saveTable()"
-        [disabled]="selectedCells.length === 0"
-      >
-        Save
-      </button>
-
       <h1>Cadastre-se</h1>
 
       <nb-stepper style="width: 50px !important" #stepper [linear]="linearMode">
@@ -138,6 +130,9 @@
                   /><br />
                   <label class="label" for="input-logradouro">Logradouro</label
                   ><br />
+                  <nb-toggle
+                  [(ngModel)]="disponibilidades[0][4]"
+                ></nb-toggle>
                   <input
                     type="text"
                     nbInput
@@ -303,12 +298,15 @@
                       </thead>
                       <tbody>
                         <tr
-                          *ngFor="let servico of dadosPj.listadeservico let i = index"
+                          *ngFor="
+                            let servico of dadosPj.listadeservico;
+                            let i = index;
+                            as: number
+                          "
                         >
                           <td>{{ i + 1 }}</td>
                           <td>{{ servico }}</td>
                           <td>
-
                             <button (click)="removerServico(i)">
                               <mat-icon>delete</mat-icon>
                             </button>
@@ -339,180 +337,307 @@
                         <td>07:00 12:00</td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Segunda Manhã')"
-                            [class.selected]="isCellSelected('Segunda Manhã')"
+                            (click)="toggleCellSelection('Segunda', 'Manhã')"
+                            [class.selected]="
+                              isCellSelected('Segunda', 'Manhã')
+                            "
                           >
                             Manhã
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="disponibilidades[0][0]"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Terça Manhã')"
-                            [class.selected]="isCellSelected('Terça Manhã')"
+                            (click)="toggleCellSelection('Terça', 'Manhã')"
+                            [class.selected]="isCellSelected('Terça', 'Manhã')"
                           >
                             Manhã
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="disponibilidades[0][1]"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Quarta Manhã')"
-                            [class.selected]="isCellSelected('Quarta Manhã')"
+                            (click)="toggleCellSelection('Quarta', 'Manhã')"
+                            [class.selected]="isCellSelected('Quarta', 'Manhã')"
                           >
                             Manhã
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="disponibilidades[0][2]"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Quinta Manhã')"
-                            [class.selected]="isCellSelected('Quinta Manhã')"
+                            (click)="toggleCellSelection('Quinta', 'Manhã')"
+                            [class.selected]="isCellSelected('Quinta', 'Manhã')"
                           >
                             Manhã
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="disponibilidades[0][3]"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Sexta Manhã')"
-                            [class.selected]="isCellSelected('Sexta Manhã')"
+                            (click)="toggleCellSelection('Sexta', 'Manhã')"
+                            [class.selected]="isCellSelected('Sexta', 'Manhã')"
                           >
                             Manhã
                           </button>
+                          <nb-toggle
+                            [(ngModel)]="disponibilidades[0][4]"
+                          ></nb-toggle>
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Sábado Manhã')"
-                            [class.selected]="isCellSelected('Sábado Manhã')"
+                            (click)="toggleCellSelection('Sábado', 'Manhã')"
+                            [class.selected]="isCellSelected('Sábado', 'Manhã')"
                           >
                             Manhã
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="dadosPj.disponibilidades['Sábado Manhã']"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Domingo Manhã')"
-                            [class.selected]="isCellSelected('Domingo Manhã')"
+                            (click)="toggleCellSelection('Domingo', 'Manhã')"
+                            [class.selected]="
+                              isCellSelected('Domingo', 'Manhã')
+                            "
                           >
                             Manhã
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="
+                              dadosPj.disponibilidades['Domingo Manhã']
+                            "
+                            style="display: none"
+                          />
                         </td>
                       </tr>
                       <tr>
                         <td>12:00 18:00</td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Segunda Tarde')"
-                            [class.selected]="isCellSelected('Segunda Tarde')"
+                            (click)="toggleCellSelection('Segunda', 'Tarde')"
+                            [class.selected]="
+                              isCellSelected('Segunda', 'Tarde')
+                            "
                           >
                             Tarde
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="
+                              dadosPj.disponibilidades['Segunda Tarde']
+                            "
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Terça Tarde')"
-                            [class.selected]="isCellSelected('Terça Tarde')"
+                            (click)="toggleCellSelection('Terça', 'Tarde')"
+                            [class.selected]="isCellSelected('Terça', 'Tarde')"
                           >
                             Tarde
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="dadosPj.disponibilidades['Terça Tarde']"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Quarta Tarde')"
-                            [class.selected]="isCellSelected('Quarta Tarde')"
+                            (click)="toggleCellSelection('Quarta', 'Tarde')"
+                            [class.selected]="isCellSelected('Quarta', 'Tarde')"
                           >
                             Tarde
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="dadosPj.disponibilidades['Quarta Tarde']"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Quinta Tarde')"
-                            [class.selected]="isCellSelected('Quinta Tarde')"
+                            (click)="toggleCellSelection('Quinta', 'Tarde')"
+                            [class.selected]="isCellSelected('Quinta', 'Tarde')"
                           >
                             Tarde
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="dadosPj.disponibilidades['Quinta Tarde']"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Sexta Tarde')"
-                            [class.selected]="isCellSelected('Sexta Tarde')"
+                            (click)="toggleCellSelection('Sexta', 'Tarde')"
+                            [class.selected]="isCellSelected('Sexta', 'Tarde')"
                           >
                             Tarde
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="dadosPj.disponibilidades['Sexta Tarde']"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Sábado Tarde')"
-                            [class.selected]="isCellSelected('Sábado Tarde')"
+                            (click)="toggleCellSelection('Sábado', 'Tarde')"
+                            [class.selected]="isCellSelected('Sábado', 'Tarde')"
                           >
                             Tarde
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="dadosPj.disponibilidades['Sábado Tarde']"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Domingo Tarde')"
-                            [class.selected]="isCellSelected('Domingo Tarde')"
+                            (click)="toggleCellSelection('Domingo', 'Tarde')"
+                            [class.selected]="
+                              isCellSelected('Domingo', 'Tarde')
+                            "
                           >
                             Tarde
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="
+                              dadosPj.disponibilidades['Domingo Tarde']
+                            "
+                            style="display: none"
+                          />
                         </td>
                       </tr>
                       <tr>
                         <td>18:00 23:00</td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Segunda Noite')"
-                            [class.selected]="isCellSelected('Segunda Noite')"
+                            (click)="toggleCellSelection('Segunda', 'Noite')"
+                            [class.selected]="
+                              isCellSelected('Segunda', 'Noite')
+                            "
                           >
                             Noite
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="
+                              dadosPj.disponibilidades['Segunda Noite']
+                            "
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Terça Noite')"
-                            [class.selected]="isCellSelected('Terça Noite')"
+                            (click)="toggleCellSelection('Terça', 'Noite')"
+                            [class.selected]="isCellSelected('Terça', 'Noite')"
                           >
                             Noite
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="dadosPj.disponibilidades['Terça Noite']"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Quarta Noite')"
-                            [class.selected]="isCellSelected('Quarta Noite')"
+                            (click)="toggleCellSelection('Quarta', 'Noite')"
+                            [class.selected]="isCellSelected('Quarta', 'Noite')"
                           >
                             Noite
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="dadosPj.disponibilidades['Quarta Noite']"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Quinta Noite')"
-                            [class.selected]="isCellSelected('Quinta Noite')"
+                            (click)="toggleCellSelection('Quinta', 'Noite')"
+                            [class.selected]="isCellSelected('Quinta', 'Noite')"
                           >
                             Noite
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="dadosPj.disponibilidades['Quinta Noite']"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Sexta Noite')"
-                            [class.selected]="isCellSelected('Sexta Noite')"
+                            (click)="toggleCellSelection('Sexta', 'Noite')"
+                            [class.selected]="isCellSelected('Sexta', 'Noite')"
                           >
                             Noite
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="dadosPj.disponibilidades['Sexta Noite']"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Sábado Noite')"
-                            [class.selected]="isCellSelected('Sábado Noite')"
+                            (click)="toggleCellSelection('Sábado', 'Noite')"
+                            [class.selected]="isCellSelected('Sábado', 'Noite')"
                           >
                             Noite
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="dadosPj.disponibilidades['Sábado Noite']"
+                            style="display: none"
+                          />
                         </td>
                         <td>
                           <button
-                            (click)="toggleCellSelection('Domingo Noite')"
-                            [class.selected]="isCellSelected('Domingo Noite')"
+                            (click)="toggleCellSelection('Domingo', 'Noite')"
+                            [class.selected]="
+                              isCellSelected('Domingo', 'Noite')
+                            "
                           >
                             Noite
                           </button>
+                          <input
+                            type="checkbox"
+                            [checked]="
+                              dadosPj.disponibilidades['Domingo Noite']
+                            "
+                            style="display: none"
+                          />
                         </td>
                       </tr>
                     </table>
+
+                    <button (click)="printador()">aaaaaa</button>
                   </div>
                 </form>
               </div>

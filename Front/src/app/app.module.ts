@@ -37,6 +37,8 @@ import { PerfiluserComponent } from './perfiluser/perfiluser.component';
 import { MainComponent } from './main/main.component';
 import { AuthInterceptor } from './security/auth-interceptor';
 import { RegisterPrestadorComponent } from './register-prestador/register-prestador.component';
+import { PerfilprestadorComponent } from './perfilprestador/perfilprestador.component';
+import { CadastrarComponent } from './cadastrar/cadastrar.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { RegisterPrestadorComponent } from './register-prestador/register-presta
     RegisterComponent,
     PerfiluserComponent,
     MainComponent,
-    RegisterPrestadorComponent
+    RegisterPrestadorComponent,
+    PerfilprestadorComponent,
+    CadastrarComponent
 
   ],
   imports: [

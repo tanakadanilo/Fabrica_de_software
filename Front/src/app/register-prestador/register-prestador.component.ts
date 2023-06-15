@@ -1,7 +1,8 @@
-import { dadosPj } from './../exports/model/dadosPj';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-register-prestador',
@@ -18,7 +19,13 @@ export class RegisterPrestadorComponent implements OnInit {
   itens: any;
   infoprof: FormGroup;
 
-  dadosPj: dadosPj = {
+  disponibilidades:boolean[][]=[
+    [false, false,false, false, false, false, false],
+    [false, false,false, false, false, false, false],
+    [false, false,false, false, false, false, false]
+  ];
+
+  dadosPj: any = {
     nome: '',
     cpf: '',
     especializacao: '',
@@ -42,6 +49,10 @@ export class RegisterPrestadorComponent implements OnInit {
     listadeservico: [],
   };
 
+  preencheDisponibilidades(){
+    let diaSemana = 'DOMINGO';
+  }
+
   ngOnInit() {
     this.obterItensDoBackend();
   }
@@ -50,7 +61,6 @@ export class RegisterPrestadorComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private regP: HttpClient,
     private http: HttpClient
   ) {
     this.form = this.formBuilder.group({
@@ -71,6 +81,8 @@ export class RegisterPrestadorComponent implements OnInit {
     });
     this.infoprof = this.formBuilder.group({
       servico: ['', Validators.required],
+      disponibilidades: ['',Validators.required]
+
     });
 
     this.cadastrar();
@@ -101,7 +113,8 @@ export class RegisterPrestadorComponent implements OnInit {
   }
 
   cadastrar() {
-    this.regP
+    console.log(this.dadosPj)
+    this.http
       .post('http://localhost:8080/prestador', this.dadosPj)
       .subscribe((response: any) => {
         console.log(response);
@@ -109,18 +122,14 @@ export class RegisterPrestadorComponent implements OnInit {
     console.log('funfo');
   }
 
-  toggleCellSelection(cell: string) {
-    const index = this.selectedCells.indexOf(cell);
-
-    if (index > -1) {
-      this.selectedCells.splice(index, 1);
-    } else {
-      this.selectedCells.push(cell);
-    }
+  toggleCellSelection(day: string, period: string) {
+    const cellKey = `${day} ${period}`;
+    this.dadosPj.disponibilidades[cellKey] = !this.dadosPj.disponibilidades[cellKey];
   }
 
-  isCellSelected(cell: string) {
-    return this.selectedCells.includes(cell);
+  isCellSelected(day: string, period: string) {
+    const cellKey = `${day} ${period}`;
+    return this.dadosPj.disponibilidades[cellKey];
   }
 
   saveTable() {
@@ -140,4 +149,17 @@ export class RegisterPrestadorComponent implements OnInit {
   removerServico(index: number) {
     this.dadosPj.listadeservico.splice(index, 1);
   }
+
+  adicionarDisponibilidade(disponibilidade: string) {
+    this.dadosPj.disponibilidades.push(disponibilidade);
+  }
+
+  removerDisponibilidade(index: number) {
+    this.dadosPj.disponibilidades.splice(index, 1);
+  }
+
+
+  printador(){
+  console.log(this.dadosPj.disponibilidades)
+}
 }
