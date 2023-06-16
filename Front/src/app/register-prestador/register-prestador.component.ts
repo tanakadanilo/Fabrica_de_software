@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
-
-
 @Component({
   selector: 'app-register-prestador',
   templateUrl: './register-prestador.component.html',
@@ -19,10 +17,10 @@ export class RegisterPrestadorComponent implements OnInit {
   itens: any;
   infoprof: FormGroup;
 
-  disponibilidades:boolean[][]=[
-    [false, false,false, false, false, false, false],
-    [false, false,false, false, false, false, false],
-    [false, false,false, false, false, false, false]
+  disponibilidades: boolean[][] = [
+    [false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false],
   ];
 
   dadosPj: any = {
@@ -49,8 +47,52 @@ export class RegisterPrestadorComponent implements OnInit {
     listadeservico: [],
   };
 
-  preencheDisponibilidades(){
-    let diaSemana = 'DOMINGO';
+  preencheDisponibilidades() {
+    if (this.disponibilidades[0][0]) {
+      this.dadosPj.disponibilidades.push('SEGUNDA');
+    }
+    if (this.disponibilidades[0][1]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[0][2]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[0][3]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[0][4]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[0][5]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[0][6]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[1][0]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[1][1]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[0][0]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[0][0]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[0][0]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[0][0]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[0][0]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
+    if (this.disponibilidades[0][0]) {
+      this.dadosPj.disponibilidades.push('DOMINGO');
+    }
   }
 
   ngOnInit() {
@@ -59,10 +101,7 @@ export class RegisterPrestadorComponent implements OnInit {
 
   selectedCells: string[] = [];
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private http: HttpClient
-  ) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.form = this.formBuilder.group({
       nomecompleto: ['', Validators.required],
       cnpj: ['', Validators.required],
@@ -81,8 +120,7 @@ export class RegisterPrestadorComponent implements OnInit {
     });
     this.infoprof = this.formBuilder.group({
       servico: ['', Validators.required],
-      disponibilidades: ['',Validators.required]
-
+      disponibilidades: ['', Validators.required],
     });
 
     this.cadastrar();
@@ -113,7 +151,7 @@ export class RegisterPrestadorComponent implements OnInit {
   }
 
   cadastrar() {
-    console.log(this.dadosPj)
+    console.log(this.dadosPj);
     this.http
       .post('http://localhost:8080/prestador', this.dadosPj)
       .subscribe((response: any) => {
@@ -124,7 +162,8 @@ export class RegisterPrestadorComponent implements OnInit {
 
   toggleCellSelection(day: string, period: string) {
     const cellKey = `${day} ${period}`;
-    this.dadosPj.disponibilidades[cellKey] = !this.dadosPj.disponibilidades[cellKey];
+    this.dadosPj.disponibilidades[cellKey] =
+      !this.dadosPj.disponibilidades[cellKey];
   }
 
   isCellSelected(day: string, period: string) {
@@ -158,8 +197,7 @@ export class RegisterPrestadorComponent implements OnInit {
     this.dadosPj.disponibilidades.splice(index, 1);
   }
 
-
-  printador(){
-  console.log(this.dadosPj.disponibilidades)
-}
+  printador() {
+    console.log(this.dadosPj.disponibilidades);
+  }
 }
