@@ -7,11 +7,14 @@ import com.devnari.contrataai.model.auxiliares.Contato;
 import com.devnari.contrataai.model.auxiliares.Disponibilidade;
 import com.devnari.contrataai.model.auxiliares.Endereco;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
@@ -28,27 +31,31 @@ public class Prestador {
 
 	private String nome;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
 	private String cpf;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 
 // link da foto
 	private String foto;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "pessoa_id")
 	private List<ServicoPrestado> servicosPrestados = new ArrayList<>();
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<HistoricoServico> historicoServicosPrestados = new ArrayList<>();
+
 // link do portfólio
 	private String portfolio;
-	@ManyToOne
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "disponibilidade_id")
-	private Disponibilidade disponibilidades;
+	private List<Disponibilidade> disponibilidades;
+
 	private String descricaoAdicional;
 
 }

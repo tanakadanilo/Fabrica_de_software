@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Transient;
 
 import com.devnari.contrataai.model.auxiliares.Experiencia;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,11 +23,11 @@ public class ServicoPrestado {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "servico_id")
 	private Servico servico;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Experiencia experiencia;
 
 	@Transient

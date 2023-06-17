@@ -50,7 +50,7 @@ public class UsuarioLoggado implements UserDetails {
 		var ret = JWT.decode(token);
 
 		Date dataExpiracao = ret.getExpiresAt();
-		Date dataAgora =  new Date();
+		Date dataAgora = new Date();
 		return dataAgora.before(dataExpiracao);
 	}
 

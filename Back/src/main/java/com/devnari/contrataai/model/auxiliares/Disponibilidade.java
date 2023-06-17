@@ -20,5 +20,5 @@ public class Disponibilidade {
 	private Long id;
 
 	private DiasSemana diaDaSemana;
-	private PeriodosDia horário;
+	private PeriodosDia horario;
 }

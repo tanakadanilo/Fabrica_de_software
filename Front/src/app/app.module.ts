@@ -1,6 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { PortalModule } from '@angular/cdk/portal';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NbSecurityModule } from '@nebular/security';
@@ -13,6 +15,7 @@ import {
   NbLayoutModule,
   NbMenuModule,
   NbMenuService,
+  NbSelectModule,
   NbSidebarModule,
   NbStepperModule,
   NbThemeModule,
@@ -31,8 +34,11 @@ import { LoginComponent } from './login/login.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { RegisterComponent } from './register/register.component';
 import { PerfiluserComponent } from './perfiluser/perfiluser.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
+import { AuthInterceptor } from './security/auth-interceptor';
+import { RegisterPrestadorComponent } from './register-prestador/register-prestador.component';
+import { PerfilprestadorComponent } from './perfilprestador/perfilprestador.component';
+import { CadastrarComponent } from './cadastrar/cadastrar.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +49,11 @@ import { MainComponent } from './main/main.component';
     RecoveryComponent,
     RegisterComponent,
     PerfiluserComponent,
-    MainComponent
+    MainComponent,
+    RegisterPrestadorComponent,
+    PerfilprestadorComponent,
+    CadastrarComponent
+
   ],
   imports: [
     BrowserModule,
@@ -68,11 +78,17 @@ import { MainComponent } from './main/main.component';
     PortalModule,
     NbMenuModule.forRoot(),
     NbStepperModule,
-    NbButtonModule,NbLayoutModule,ReactiveFormsModule,NbLayoutModule
+    NbButtonModule,
+    NbLayoutModule,
+    ReactiveFormsModule,
+    NbLayoutModule,
+    HttpClientModule,NbSelectModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [NbMenuService,provideNgxMask()],
+  providers: [NbMenuService, provideNgxMask(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+
   bootstrap: [AppComponent]
 })
 

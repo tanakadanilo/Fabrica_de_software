@@ -10,6 +10,7 @@
 <body>
   <nb-layout>
     <nb-layout-column>
+
       <h1>Cadastre-se</h1>
       <form>
         <nb-stepper
@@ -42,6 +43,8 @@
                               status="basic"
                               placeholder="Nome Completo"
                               formControlName="nomecompleto"
+                              [(ngModel)]="dadosPf.nome"
+
                             />
                           </div>
                           <br />
@@ -57,6 +60,8 @@
                               status="basic"
                               placeholder="000.000.000-00"
                               formControlName="cpf"
+                              [(ngModel)]="dadosPf.cpf"
+
                             />
                           </div>
                         </div>
@@ -78,6 +83,7 @@
                               status="basic"
                               placeholder="Seu melhor email!"
                               formControlName="email"
+                              [(ngModel)]="dadosPf.contato.email"
                             /><br />
                           </div>
                           <div class="col md-3 mx-auto">
@@ -92,6 +98,7 @@
                               status="basic"
                               placeholder="Seu melhor contato"
                               formControlName="telefone"
+                              [(ngModel)]="dadosPf.contato.telefone"
                             /><br /><br />
                           </div>
                         </div>
@@ -134,6 +141,7 @@
                       placeholder="00.000-000"
                       formControlName="cep"
                       required
+                      [(ngModel)]="dadosPf.endereco.cep"
                     /><br />
                     <label class="label" for="input-logradouro"
                       >Logradouro</label
@@ -145,19 +153,21 @@
                       placeholder="Insira o CEP"
                       formControlName="logradouro"
                       required
+                      [(ngModel)]="dadosPf.endereco.logradouro"
                     />
                     <div class="row">
                       <div class="col-md-3">
                         <label class="label" for="input-numero">Número</label
                         ><br />
                         <input
-                          style="width: 100px !important"
+                          style= " width: 100px !important"
                           type="text"
                           nbInput
                           status="basic"
                           placeholder="Número"
                           formControlName="numero"
                           required
+                          [(ngModel)]="dadosPf.endereco.numero"
                         />
                       </div>
                       <div class="col-md-3">
@@ -169,7 +179,7 @@
                           status="basic"
                           placeholder="QD"
                           formControlName="quadra"
-                          required
+                          [(ngModel)]="dadosPf.endereco.quadra"
                         />
                       </div>
                       <div class="col-md-3">
@@ -181,7 +191,8 @@
                           status="basic"
                           placeholder="Lote"
                           formControlName="lote"
-                          required
+                          [(ngModel)]="dadosPf.endereco.lote"
+
                         />
                       </div>
                     </div>
@@ -198,6 +209,7 @@
                           placeholder="Insira o CEP!"
                           formControlName="cidade"
                           required
+                          [(ngModel)]="dadosPf.endereco.cidade"
                         />
                       </div>
                       <div class="col-md-3">
@@ -211,9 +223,24 @@
                           placeholder="Insira o CEP!"
                           formControlName="uf"
                           required
+                          [(ngModel)]="dadosPf.endereco.uf"
                         />
                       </div>
+
                     </div>
+                    <label class="label" for="input-complemento"
+                    >Complemento e Referência</label
+                    ><br />
+                    <input
+                    style="align-items:center; width: 260px !important"
+                    type="text"
+                      nbInput
+                      status="basic"
+                      placeholder=""
+                      formControlName="Complemento"
+                      [(ngModel)]="dadosPf.endereco.complemento"
+
+                  ><br />
                     <br /><br />
                     <button
                       style="align-items: left; width: 130px !important"

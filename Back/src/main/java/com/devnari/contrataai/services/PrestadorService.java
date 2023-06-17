@@ -49,11 +49,15 @@ public class PrestadorService {
 		return prestadores;
 	}
 
+	public Prestador buscarPrestadorPorServicoPrestado(Long id) {
+		Prestador prestador = persistencia.findPrestadorByServicoPrestado(id);
+		return prestador;
+	}
+
 	public Prestador salvar(Prestador prestador) throws Exception {
 		if (prestador == null) {
 			throw new Exception("Prestador Não Informado!");
 		}
-		prestador.setId(null);
 		return persistencia.save(prestador);
 	}
 

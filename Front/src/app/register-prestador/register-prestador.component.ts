@@ -1,10 +1,322 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { DiasSemana } from '../exports/model/dias-semana';
+import { Horario } from '../exports/model/horario';
+import { Disponibilidade } from '../exports/model/disponibilidade';
+import { dadosPj } from '../exports/model/dadosPj';
 
 @Component({
   selector: 'app-register-prestador',
   templateUrl: './register-prestador.component.html',
-  styleUrls: ['./register-prestador.component.css']
+  styleUrls: ['./register-prestador.component.css'],
 })
-export class RegisterPrestadorComponent {
+export class RegisterPrestadorComponent implements OnInit {
+  linearMode = false;
+  form: FormGroup;
+  formreg2: FormGroup;
+  selectedItemNgModel: any;
+  selecionado: any;
+  categoria: any[] = [];
+  itens: any;
+  infoprof: FormGroup;
+  selecionado2: boolean = false;
 
+  disponibilidade: boolean[][] = [
+    [false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false],
+  ];
+
+  dadosPj: dadosPj = {
+    nome: '',
+    cpf: '',
+    especializacao: '',
+    urlImagem: '',
+    descricaoAdicional: '',
+    endereco: {
+      cep: '',
+      logradouro: '',
+      numero: '',
+      quadra: '',
+      lote: '',
+      cidade: '',
+      uf: '',
+      complemento: '',
+    },
+    contato: {
+      email: '',
+      telefone: '',
+    },
+    disponibilidades: [],
+    listadeservico: [],
+  };
+
+  ngOnInit() {
+    this.obterItensDoBackend();
+  }
+
+  selectedCells: string[] = [];
+
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
+    this.form = this.formBuilder.group({
+      nomecompleto: ['', Validators.required],
+      cnpj: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      telefone: ['', Validators.required],
+    });
+    this.formreg2 = this.formBuilder.group({
+      cep: ['', Validators.required],
+      logradouro: ['', Validators.required],
+      numero: ['', Validators.required],
+      quadra: ['', Validators.required],
+      lote: ['', Validators.required],
+      cidade: ['', Validators.required],
+      uf: ['', Validators.required],
+      Complemento: ['', Validators.required],
+    });
+    this.infoprof = this.formBuilder.group({
+      servico: ['', Validators.required],
+      disponibilidade: ['', Validators.required],
+    });
+
+    this.cadastrar();
+  }
+
+  previewImage(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = document.getElementById('preview-img') as HTMLImageElement;
+        img.src = e.target?.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  obterItensDoBackend() {
+    this.http.get<any[]>('http://localhost:8080/servico/categorias').subscribe({
+      next: (response: any) => {
+        this.itens = response.data;
+        console.log(this.itens);
+      },
+      error: (error) => {
+        console.error('Erro ao obter itens do backend', error);
+      },
+    });
+  }
+
+  cadastrar() {
+    console.log(this.selecionado2);
+
+    this.preenchedisponibilidade();
+    this.http
+      .post('http://localhost:8080/prestador', this.dadosPj)
+      .subscribe((response: any) => {
+        console.log(response);
+      });
+  }
+
+  toggleCellSelection(cell: string) {
+    const index = this.selectedCells.indexOf(cell);
+
+    if (index > -1) {
+      this.selectedCells.splice(index, 1);
+    } else {
+      this.selectedCells.push(cell);
+    }
+  }
+  selecionar(i: number, j: number) {
+    this.disponibilidade[i][j] = !this.disponibilidade[i][j];
+  }
+
+  isCellSelected(cell: string) {
+    return this.selectedCells.includes(cell);
+  }
+
+  saveTable() {
+    console.log(this.selectedCells);
+  }
+
+  servico: string = '';
+
+  adicionarServico() {
+    if (this.servico) {
+      this.dadosPj.listadeservico.push(this.servico);
+      this.servico = '';
+      console.log(this.dadosPj.listadeservico);
+    }
+  }
+
+  removerServico(index: number) {
+    this.dadosPj.listadeservico.splice(index, 1);
+  }
+
+  adicionarDisponibilidade(disponibilidade: string) {
+    // this.disponibilidade.push(disponibilidade);
+  }
+
+  removerDisponibilidade(index: number) {
+    this.disponibilidade.splice(index, 1);
+  }
+
+  printador() {
+    console.log(this.disponibilidade);
+  }
+
+  preenchedisponibilidade() {
+    console.log(this.disponibilidade);
+    let disponibilidade: Disponibilidade = {
+      diaDaSemana: DiasSemana.SEGUNDA,
+      horario: Horario.MANHA,
+    };
+
+    if (this.disponibilidade[0][0]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+      disponibilidade.diaDaSemana = DiasSemana.SEGUNDA;
+      disponibilidade.horario = Horario.MANHA;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[0][1]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.TERCA;
+      disponibilidade.horario = Horario.MANHA;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[0][2]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.QUARTA;
+      disponibilidade.horario = Horario.MANHA;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[0][3]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.QUINTA;
+      disponibilidade.horario = Horario.MANHA;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[0][4]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.SEXTA;
+      disponibilidade.horario = Horario.MANHA;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[0][5]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.SABADO;
+      disponibilidade.horario = Horario.MANHA;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[0][6]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.DOMINGO;
+      disponibilidade.horario = Horario.MANHA;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[1][0]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.SEGUNDA;
+      disponibilidade.horario = Horario.TARDE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[1][1]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.TERCA;
+      disponibilidade.horario = Horario.TARDE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[1][2]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.QUARTA;
+      disponibilidade.horario = Horario.TARDE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[1][3]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.QUINTA;
+      disponibilidade.horario = Horario.TARDE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[1][4]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.SEXTA;
+      disponibilidade.horario = Horario.TARDE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[1][5]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.SABADO;
+      disponibilidade.horario = Horario.TARDE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[1][6]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.DOMINGO;
+      disponibilidade.horario = Horario.NOITE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[2][0]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.SEGUNDA;
+      disponibilidade.horario = Horario.NOITE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[2][1]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.TERCA;
+      disponibilidade.horario = Horario.NOITE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[2][2]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.QUARTA;
+      disponibilidade.horario = Horario.NOITE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[2][3]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.QUINTA;
+      disponibilidade.horario = Horario.NOITE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[2][4]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.SEXTA;
+      disponibilidade.horario = Horario.NOITE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[2][5]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.SABADO;
+      disponibilidade.horario = Horario.NOITE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+    if (this.disponibilidade[2][6]) {
+      disponibilidade = Object.assign({}, disponibilidade);
+
+      disponibilidade.diaDaSemana = DiasSemana.DOMINGO;
+      disponibilidade.horario = Horario.NOITE;
+      this.dadosPj.disponibilidades.push(disponibilidade);
+    }
+  }
 }

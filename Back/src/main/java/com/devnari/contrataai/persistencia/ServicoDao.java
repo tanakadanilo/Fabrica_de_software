@@ -10,7 +10,11 @@ import com.devnari.contrataai.model.Servico;
 
 public interface ServicoDao extends JpaRepository<Servico, Long> {
 
-	List<Servico> findByArea(String categoria);
+	@Query("SELECT s from Servico s " + "where (:categoria = '' or s.area like %:categoria%)")
+	List<Servico> findByArea(@Param("categoria") String categoria);
+
+	@Query("SELECT distinct s.area from Servico s " + "where (:categoria like '' or s.area like %:categoria%)")
+	List<String> findCategorias(@Param("categoria") String categoria);
 
 	List<Servico> findByEspecialidade(String especialidade);
 
