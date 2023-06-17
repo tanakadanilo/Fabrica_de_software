@@ -123,7 +123,8 @@ public class PreencheBanco {
 				p.setFoto("" + p.hashCode() + ".jpg");
 				p.setNome("José Henrique da Silva " + i);
 				p.setPortfolio("www." + p.getNome().replace(" ", "") + ".com.br");
-				p.getServicosPrestados().add(sp);
+				p.setEspecializacao("Mestre em enrolação, certificado " + i + " Vezes!");
+//				p.getServicosPrestados().add(sp);
 				p = prestadorService.salvar(p);
 
 				sp.setPrestador(p);

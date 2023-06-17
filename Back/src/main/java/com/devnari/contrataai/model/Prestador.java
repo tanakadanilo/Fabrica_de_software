@@ -6,6 +6,7 @@ import java.util.List;
 import com.devnari.contrataai.model.auxiliares.Contato;
 import com.devnari.contrataai.model.auxiliares.Disponibilidade;
 import com.devnari.contrataai.model.auxiliares.Endereco;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -17,6 +18,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -54,8 +56,11 @@ public class Prestador {
 	private String portfolio;
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "disponibilidade_id")
+	@JsonIgnore
 	private List<Disponibilidade> disponibilidades;
 
 	private String descricaoAdicional;
+
+	private String especializacao;
 
 }

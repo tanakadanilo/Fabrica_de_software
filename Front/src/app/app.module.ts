@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PortalModule } from '@angular/cdk/portal';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +24,8 @@ import {
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { NbToastrModule } from '@nebular/theme';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,6 +41,8 @@ import { AuthInterceptor } from './security/auth-interceptor';
 import { RegisterPrestadorComponent } from './register-prestador/register-prestador.component';
 import { PerfilprestadorComponent } from './perfilprestador/perfilprestador.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -52,8 +56,7 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
     MainComponent,
     RegisterPrestadorComponent,
     PerfilprestadorComponent,
-    CadastrarComponent
-
+    CadastrarComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,14 +85,18 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
     NbLayoutModule,
     ReactiveFormsModule,
     NbLayoutModule,
-    HttpClientModule,NbSelectModule
-
+    HttpClientModule,
+    NbSelectModule,
+    NbToastrModule.forRoot(),
+    BrowserAnimationsModule, 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [NbMenuService, provideNgxMask(),
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [
+    NbMenuService,
+    provideNgxMask(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-
-export class AppModule { }
+export class AppModule {}

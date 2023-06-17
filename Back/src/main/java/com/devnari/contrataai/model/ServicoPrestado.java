@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,10 +29,12 @@ public class ServicoPrestado {
 	private Servico servico;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
+	@Getter(value = AccessLevel.NONE)
 	private Experiencia experiencia;
 
 	@Transient
 	@ManyToOne
+	@Getter(value = AccessLevel.NONE)
 	private Prestador prestador;
 
 }

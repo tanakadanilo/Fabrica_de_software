@@ -1,13 +1,6 @@
 <nb-layout>
   <nb-layout-column>
-    <button
-    style="float: left; position: relative; left: 43% !important"
-    nbButton
-    (click)="cadastrar()"
-  >AAAAAA</button>
     <div id="MenuCarrosel">
-
-
       <div class="container">
         <button class="arrow-left control" aria-label="Previous image">
           ◀
@@ -22,7 +15,7 @@
               nbButton
               *ngFor="let categoria of categorias"
             >
-              {{ categoria.nome }}
+              {{ categoria }}
             </button>
 
             <!-- /*<button id="BotaoMenuCarrosel" class="item current-item"(click)="copiar()" nbButton>Se vc chegou ate aq parabens, receba um vale big mac :D</button> -->
