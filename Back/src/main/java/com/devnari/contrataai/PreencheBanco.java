@@ -1,6 +1,8 @@
 package com.devnari.contrataai;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -99,9 +101,9 @@ public class PreencheBanco {
 				case 6 -> d.setDiaDaSemana(DiasSemana.SABADO);
 				}
 				switch (i % 3) {
-				case 0 -> d.setHorário(PeriodosDia.MANHA);
-				case 1 -> d.setHorário(PeriodosDia.TARDE);
-				case 2 -> d.setHorário(PeriodosDia.NOITE);
+				case 0 -> d.setHorario(PeriodosDia.MANHA);
+				case 1 -> d.setHorario(PeriodosDia.TARDE);
+				case 2 -> d.setHorario(PeriodosDia.NOITE);
 				}
 				d = disponibilidadeService.salvar(d);
 
@@ -114,7 +116,9 @@ public class PreencheBanco {
 				p.setContato(c);
 				p.setCpf("" + p.hashCode());
 				p.setDescricaoAdicional("Descrição " + i);
-				p.setDisponibilidades(d);
+				List<Disponibilidade> disp = new ArrayList<>();
+				disp.add(d);
+				p.setDisponibilidades(new ArrayList<Disponibilidade>(disp));
 				p.setEndereco(e);
 				p.setFoto("" + p.hashCode() + ".jpg");
 				p.setNome("José Henrique da Silva " + i);

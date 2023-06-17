@@ -1,4 +1,5 @@
 import { contato } from './contato';
+import { Disponibilidade } from './disponibilidade';
 import { endereco } from './endereco';
 export interface dadosPj {
   nome: string;
@@ -7,8 +8,8 @@ export interface dadosPj {
   urlImagem: string;
   endereco: endereco;
   contato: contato;
-listadeservico: string[];
+  listadeservico: string[];
   //servicosPrestados: string[],
-  disponibilidades: string[];
+  disponibilidades: Disponibilidade[];
   descricaoAdicional: string;
 }

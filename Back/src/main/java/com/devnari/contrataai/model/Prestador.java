@@ -14,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
@@ -51,9 +52,10 @@ public class Prestador {
 
 // link do portfólio
 	private String portfolio;
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "disponibilidade_id")
-	private Disponibilidade disponibilidades;
+	private List<Disponibilidade> disponibilidades;
+
 	private String descricaoAdicional;
 
 }

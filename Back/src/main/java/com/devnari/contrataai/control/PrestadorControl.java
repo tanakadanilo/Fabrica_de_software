@@ -57,16 +57,14 @@ public class PrestadorControl {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
 
 	@PostMapping(value = "")
-	public ResponseEntity<Response<Prestador>> addPrestador(@RequestBody String p) {
+	public ResponseEntity<Response<Prestador>> addPrestador(@RequestBody Prestador p) {
 
 		Response<Prestador> response = new Response<>();
 		try {
-			System.out.println(p);
-			//Prestador prestador = service.salvar(p);
-			//response.setData(prestador);
+			Prestador prestador = service.salvar(p);
+			response.setData(prestador);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getErros().add(e.getMessage());
