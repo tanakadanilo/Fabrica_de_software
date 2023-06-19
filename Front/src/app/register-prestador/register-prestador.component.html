@@ -37,6 +37,7 @@
                         placeholder="Nome Completo"
                         formControlName="nomecompleto"
                         [(ngModel)]="dadosPj.nome"
+                        [status]="preencheu(dadosPj.nome)? 'danger' : 'basic'">
                       />
                     </div>
                     <br />
@@ -52,6 +53,7 @@
                         placeholder="00.000.000/0000-00"
                         formControlName="cnpj"
                         [(ngModel)]="dadosPj.cpf"
+                        [status]="preencheu(dadosPj.cpf)? 'danger' : 'basic'">
                       />
                     </div>
                   </div>
@@ -71,20 +73,22 @@
                         placeholder="Seu melhor email!"
                         formControlName="email"
                         [(ngModel)]="dadosPj.contato.email"
+                        [status]="valida(dadosPj.contato.email)? 'danger' : 'basic'">
                       /><br />
                     </div>
                     <div class="col md-3 mx-auto">
-                      <label class="label" for="input-telefone">Telefone</label
+                      <label class="label" for="input-telefone">Celular</label
                       ><br />
                       <input
                         required
                         type="text"
                         nbInput
-                        mask="(00) 0000-0000"
+                        mask="(00) 00000-0000"
                         status="basic"
                         placeholder="Seu melhor contato"
                         formControlName="telefone"
                         [(ngModel)]="dadosPj.contato.telefone"
+                        [status]="preencheu(dadosPj.contato.telefone)? 'danger' : 'basic'">
                       /><br /><br />
                     </div>
                   </div>
@@ -127,6 +131,7 @@
                     formControlName="cep"
                     required
                     [(ngModel)]="dadosPj.endereco.cep"
+                    [status]="preencheu(dadosPj.endereco.cep)? 'danger' : 'basic'">
                   /><br />
                   <label class="label" for="input-logradouro">Logradouro</label
                   ><br />
@@ -138,6 +143,7 @@
                     formControlName="logradouro"
                     required
                     [(ngModel)]="dadosPj.endereco.logradouro"
+                    [status]="preencheu(dadosPj.endereco.logradouro)? 'danger' : 'basic'">
                   />
                   <div class="row">
                     <div class="col-md-3">
@@ -152,6 +158,7 @@
                         formControlName="numero"
                         required
                         [(ngModel)]="dadosPj.endereco.numero"
+                        [status]="preencheu(dadosPj.endereco.numero)? 'danger' : 'basic'">
                       />
                     </div>
                     <div class="col-md-3">
@@ -164,6 +171,7 @@
                         placeholder="QD"
                         formControlName="quadra"
                         [(ngModel)]="dadosPj.endereco.quadra"
+                        [status]="preencheu(dadosPj.endereco.quadra)? 'danger' : 'basic'">
                       />
                     </div>
                     <div class="col-md-3">
@@ -176,6 +184,7 @@
                         placeholder="Lote"
                         formControlName="lote"
                         [(ngModel)]="dadosPj.endereco.lote"
+                        [status]="preencheu(dadosPj.endereco.lote)? 'danger' : 'basic'">
                       />
                     </div>
                   </div>
@@ -193,6 +202,7 @@
                         formControlName="cidade"
                         required
                         [(ngModel)]="dadosPj.endereco.cidade"
+                        [status]="preencheu(dadosPj.endereco.cidade)? 'danger' : 'basic'">
                       />
                     </div>
                     <div class="col-md-3">
@@ -207,6 +217,7 @@
                         formControlName="uf"
                         required
                         [(ngModel)]="dadosPj.endereco.uf"
+                        [status]="preencheu(dadosPj.endereco.uf)? 'danger' : 'basic'">
                       />
                     </div>
                   </div>
@@ -221,6 +232,7 @@
                     placeholder=""
                     formControlName="Complemento"
                     [(ngModel)]="dadosPj.endereco.complemento"
+                    [status]="preencheu(dadosPj.endereco.complemento)? 'danger' : 'basic'">
                   /><br />
                   <br /><br />
                   <button
@@ -257,7 +269,8 @@
                   <div class="col-md-3">
                     <label class="label" for="input-">Área de Atuação</label
                     ><br />
-                    <nb-select [(ngModel)]="selecionado">
+                    <nb-select [(ngModel)]="selecionado"
+                    >
                       <nb-option *ngFor="let item of itens" [value]="item">{{
                         item
                       }}</nb-option>
@@ -313,9 +326,9 @@
                   </div>
 
                   <div class="tabeladispon">
-                    <table>
+                    <table class="tabeladisp">
                       <tr>
-                        <caption class="label" style="width: 100% !important">
+                        <caption class="label">
                           Disponibilidade de Horários
                         </caption>
                       </tr>
@@ -465,8 +478,6 @@
                         </td>
                       </tr>
                     </table>
-
-                    <button (click)="printador()">aaaaaa</button>
                   </div>
                 </form>
               </div>

@@ -12,7 +12,7 @@ import { dadosPj } from '../exports/model/dadosPj';
   styleUrls: ['./register-prestador.component.css'],
 })
 export class RegisterPrestadorComponent implements OnInit {
-  linearMode = false;
+  linearMode = true;
   form: FormGroup;
   formreg2: FormGroup;
   selectedItemNgModel: any;
@@ -56,6 +56,19 @@ export class RegisterPrestadorComponent implements OnInit {
     this.obterItensDoBackend();
   }
 
+  preencheu(value: string) {
+    if (!value) {
+      return true;
+    }
+    return value.length == 0;
+  }
+  valida(value: string) {
+    if (!value) {
+      return true;
+    }
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    return !emailRegex.test(value);
+  }
   selectedCells: string[] = [];
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
@@ -159,10 +172,6 @@ export class RegisterPrestadorComponent implements OnInit {
 
   removerDisponibilidade(index: number) {
     this.disponibilidade.splice(index, 1);
-  }
-
-  printador() {
-    console.log(this.disponibilidade);
   }
 
   preenchedisponibilidade() {
