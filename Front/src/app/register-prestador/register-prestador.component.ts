@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DiasSemana } from '../exports/model/dias-semana';
 import { Horario } from '../exports/model/horario';
 import { Disponibilidade } from '../exports/model/disponibilidade';
 import { dadosPj } from '../exports/model/dadosPj';
-
+// import { documentoValidator } from '../exports/model/documentoValidator';
 @Component({
   selector: 'app-register-prestador',
   templateUrl: './register-prestador.component.html',
@@ -54,6 +54,14 @@ export class RegisterPrestadorComponent implements OnInit {
 
   ngOnInit() {
     this.obterItensDoBackend();
+    const validator = new DocumentoValidator();
+
+    // const cpfValido = documentoValidator.validarCPF(this.dadosPj.cpf);
+    // console.log('CPF válido:', cpfValido);
+
+    // const cnpjValido = documentoValidator.validarCNPJ(this.dadosPj.cpf);
+    // console.log('CNPJ válido:', cnpjValido)
+
   }
 
   preencheu(value: string) {
@@ -62,6 +70,21 @@ export class RegisterPrestadorComponent implements OnInit {
     }
     return value.length == 0;
   }
+
+  verificarNome(value: string) {
+    if (!value) {
+      return true;
+    }
+
+    const regex = /^[a-zA-Z]{1,}\s+[a-zA-Z]{1,}/;
+    return !regex.test(value);
+  }
+  verificaLetras(nome: string) {
+    const apenasLetras = /^[A-za-z]+$/;
+    return !nome.match(apenasLetras);
+  }
+
+
   valida(value: string) {
     if (!value) {
       return true;
@@ -328,4 +351,22 @@ export class RegisterPrestadorComponent implements OnInit {
       this.dadosPj.disponibilidades.push(disponibilidade);
     }
   }
+
+  buscarCep(cep: string) {
+    if (cep && cep.length === 8) {
+      const headers = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http
+        .get(`https://viacep.com.br/ws/${cep}/json/`, { headers })
+        .subscribe((response: any) => {
+          this.formreg2.patchValue({
+            logradouro: response.logradouro,
+            cidade: response.localidade,
+            uf: response.uf,
+          });
+        });
+    }
+  }
+
+
+
 }
