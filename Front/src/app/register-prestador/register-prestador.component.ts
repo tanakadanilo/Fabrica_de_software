@@ -54,7 +54,7 @@ export class RegisterPrestadorComponent implements OnInit {
 
   ngOnInit() {
     this.obterItensDoBackend();
-    const validator = new DocumentoValidator();
+    // const validator = new DocumentoValidator();
 
     // const cpfValido = documentoValidator.validarCPF(this.dadosPj.cpf);
     // console.log('CPF válido:', cpfValido);
