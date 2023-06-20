@@ -7,6 +7,7 @@ import { RecoveryComponent } from './recovery/recovery.component';
 import { RegisterPrestadorComponent } from './register-prestador/register-prestador.component';
 import { RegisterComponent } from './register/register.component';
 import { PerfiluserComponent } from './perfiluser/perfiluser.component';
+import { PerfilprestadorComponent } from './perfilprestador/perfilprestador.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'registerp', component: RegisterPrestadorComponent},
   { path: 'userprofile', component: PerfiluserComponent},
-];
+  { path: 'perfilprestador', component: PerfilprestadorComponent},]
+;
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
