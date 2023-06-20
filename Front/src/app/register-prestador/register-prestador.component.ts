@@ -5,6 +5,7 @@ import { DiasSemana } from '../exports/model/dias-semana';
 import { Horario } from '../exports/model/horario';
 import { Disponibilidade } from '../exports/model/disponibilidade';
 import { dadosPj } from '../exports/model/dadosPj';
+import { ReactiveFormsModule } from '@angular/forms'; // Import the
 // import { documentoValidator } from '../exports/model/documentoValidator';
 @Component({
   selector: 'app-register-prestador',
@@ -12,7 +13,7 @@ import { dadosPj } from '../exports/model/dadosPj';
   styleUrls: ['./register-prestador.component.css'],
 })
 export class RegisterPrestadorComponent implements OnInit {
-  linearMode = true;
+  linearMode = false;
   form: FormGroup;
   formreg2: FormGroup;
   selectedItemNgModel: any;
@@ -97,7 +98,7 @@ export class RegisterPrestadorComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.form = this.formBuilder.group({
       nomecompleto: ['', Validators.required],
-      cnpj: ['', Validators.required],
+      cpf: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
     });
@@ -109,11 +110,12 @@ export class RegisterPrestadorComponent implements OnInit {
       lote: ['', Validators.required],
       cidade: ['', Validators.required],
       uf: ['', Validators.required],
-      Complemento: ['', Validators.required],
+      complemento: ['', Validators.required],
     });
     this.infoprof = this.formBuilder.group({
       servico: ['', Validators.required],
-      disponibilidade: ['', Validators.required],
+      inputservico:[''],
+      selecionado:['',Validators.required]
     });
 
     this.cadastrar();

@@ -35,16 +35,12 @@
                         nbInput
                         status="basic"
                         placeholder="Nome Completo"
-                           onchange="verificaLetras(dadosPj.nome)"
+                        onchange="verificaLetras(dadosPj.nome)"
                         formControlName="nomecompleto"
                         [(ngModel)]="dadosPj.nome"
                         [status]="
                           verificarNome(dadosPj.nome) ? 'danger' : 'success'
                         "
-
-
-
-                      />
                       />
                     </div>
                     <br />
@@ -58,10 +54,9 @@
                         [showMaskTyped]="true"
                         status="basic"
                         placeholder="00.000.000/0000-00"
-                        formControlName="cnpj"
+                        formControlName="cpf"
                         [(ngModel)]="dadosPj.cpf"
-                        [status]="preencheu(dadosPj.cpf) ? 'danger' : 'success' "
-                      />
+                        [status]="preencheu(dadosPj.cpf) ? 'danger' : 'success'"
                       />
                     </div>
                   </div>
@@ -84,7 +79,6 @@
                         [status]="
                           valida(dadosPj.contato.email) ? 'danger' : 'success'
                         "
-                      />
                       /><br />
                     </div>
                     <div class="col md-3 mx-auto">
@@ -104,7 +98,6 @@
                             ? 'danger'
                             : 'success'
                         "
-                      />
                       /><br /><br />
                     </div>
                   </div>
@@ -150,7 +143,6 @@
                     [status]="
                       preencheu(dadosPj.endereco.cep) ? 'danger' : 'success'
                     "
-                  />
                   /><br />
                   <label class="label" for="input-logradouro">Logradouro</label
                   ><br />
@@ -165,9 +157,8 @@
                     [status]="
                       preencheu(dadosPj.endereco.logradouro)
                         ? 'danger'
-                        : 'basic'
+                        : 'success'
                     "
-                  />
                   />
                   <div class="row">
                     <div class="col-md-3">
@@ -185,9 +176,8 @@
                         [status]="
                           preencheu(dadosPj.endereco.numero)
                             ? 'danger'
-                            : 'basic'
+                            : 'success'
                         "
-                      />
                       />
                     </div>
                     <div class="col-md-3">
@@ -203,9 +193,8 @@
                         [status]="
                           preencheu(dadosPj.endereco.quadra)
                             ? 'danger'
-                            : 'basic'
+                            : 'success'
                         "
-                      />
                       />
                     </div>
                     <div class="col-md-3">
@@ -219,9 +208,10 @@
                         formControlName="lote"
                         [(ngModel)]="dadosPj.endereco.lote"
                         [status]="
-                          preencheu(dadosPj.endereco.lote) ? 'danger' : 'success'
+                          preencheu(dadosPj.endereco.lote)
+                            ? 'danger'
+                            : 'success'
                         "
-                      />
                       />
                     </div>
                   </div>
@@ -242,9 +232,8 @@
                         [status]="
                           preencheu(dadosPj.endereco.cidade)
                             ? 'danger'
-                            : 'basic'
+                            : 'success'
                         "
-                      />
                       />
                     </div>
                     <div class="col-md-3">
@@ -263,7 +252,6 @@
                           preencheu(dadosPj.endereco.uf) ? 'danger' : 'success'
                         "
                       />
-                      />
                     </div>
                   </div>
                   <label class="label" for="input-complemento"
@@ -275,14 +263,13 @@
                     nbInput
                     status="basic"
                     placeholder=""
-                    formControlName="Complemento"
+                    formControlName="complemento"
                     [(ngModel)]="dadosPj.endereco.complemento"
                     [status]="
                       preencheu(dadosPj.endereco.complemento)
                         ? 'danger'
-                        : 'basic'
+                        : 'success'
                     "
-                  />
                   /><br />
                   <br /><br />
                   <button
@@ -319,10 +306,8 @@
                   <div class="col-md-3">
                     <label class="label" for="input-">Área de Atuação</label
                     ><br />
-                    <nb-select
-                      [(ngModel)]="selecionado"
-                      [status]="valida(selecionado) ? 'danger' : 'success' "
-                    >
+                    <nb-select [(ngModel)]="selecionado"
+                    formControlName="selecionado">
                       <nb-option *ngFor="let item of itens" [value]="item">{{
                         item
                       }}</nb-option>
@@ -339,47 +324,50 @@
                         nbInput
                         status="basic"
                         placeholder=""
-                        formControlName="servico"
+                        formControlName="inputservico"
                         [(ngModel)]="servico"
-                        [status]="valida(servico) ? 'danger' : 'success' "
+
                       />
                       <button
                         (click)="adicionarServico()"
                         style="margin-left: 10px"
                       >
-                        <mat-icon>add</mat-icon>
+                        <mat-icon>Adicionar</mat-icon>
                       </button>
                     </div>
-
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Nome de Serviço</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr
-                          *ngFor="
-                            let servico of dadosPj.listadeservico;
-                            let i = index
-                          "
-                        >
-                          <td>{{ i + 1 }}</td>
-                          <td>{{ servico }}</td>
-                          <td>
-                            <button (click)="removerServico(i)">
-                              <mat-icon>delete</mat-icon>
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div class="table-wrapper">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Nome de Serviço</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="
+                              let servico of dadosPj.listadeservico;
+                              let i = index
+                            "
+                          >
+                            <td>{{ i + 1 }}</td>
+                            <td >
+                          {{ servico }}
+                            <td>
+                              <button (click)="removerServico(i)">
+                                <mat-icon>Remover</mat-icon>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
 
                   <div class="tabeladispon">
-                    <table class="tabeladisp">
+                    <table class="tabeladisp"
+                    >
                       <tr>
                         <caption class="label">
                           Disponibilidade de Horários
@@ -531,26 +519,27 @@
                         </td>
                       </tr>
                     </table>
+                    <button
+                    style="align-items: left; width: 130px !important"
+                    status="basic"
+                    nbButton
+                    nbStepperPrevious
+                  >
+                    Voltar
+                  </button>
+
+                  <button
+                    style="float: right; width: 80px; height: 40px"
+                    nbButton
+                    nbStepperNext
+
+                  >
+                    Avançar
+                  </button>
                   </div>
                 </form>
               </div>
-              <button
-                style="align-items: left; width: 130px !important"
-                status="basic"
-                nbButton
-                nbStepperPrevious
-              >
-                Voltar
-              </button>
 
-              <button
-                style="float: right; width: 80px; height: 40px"
-                nbButton
-                nbStepperNext
-                [disabled]="!formreg2.valid"
-              >
-                Avançar
-              </button>
             </nb-card-body>
           </nb-card>
         </nb-step>
