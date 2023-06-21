@@ -42,6 +42,7 @@ import { RegisterPrestadorComponent } from './register-prestador/register-presta
 import { PerfilprestadorComponent } from './perfilprestador/perfilprestador.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoggoutComponent } from './exports/loggout/loggout.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterPrestadorComponent,
     PerfilprestadorComponent,
     CadastrarComponent,
+    LoggoutComponent,
   ],
   imports: [
     BrowserModule,

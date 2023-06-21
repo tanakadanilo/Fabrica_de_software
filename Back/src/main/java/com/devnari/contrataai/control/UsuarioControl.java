@@ -70,6 +70,7 @@ public class UsuarioControl {
 		Response<UsuarioLoggado> response = new Response<>();
 		try {
 			if (token.equalsIgnoreCase("")) {
+				response.getErros().add("token não informado!");
 				return ResponseEntity.ok(response);
 			}
 			UsuarioLoggado usuarioLoggado = userService.findByToken(token);
