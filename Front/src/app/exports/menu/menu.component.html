@@ -14,6 +14,7 @@
 
   <div class="userPhoto">
     <nb-user
+      *ngIf="user.name != ''"
       [nbContextMenu]="items"
       [onlyPicture]="userPictureOnly"
       [name]="user.name"
