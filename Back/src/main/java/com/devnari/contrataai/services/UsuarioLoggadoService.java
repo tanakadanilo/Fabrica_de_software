@@ -58,14 +58,11 @@ public class UsuarioLoggadoService implements UserDetailsService {
 		DecodedJWT ret = JWT.decode(token);
 		String username = ret.getIssuer();
 		String password = ret.getSubject();
+		usuario = userDao.findByUsername(username).orElse(null);
 
-		UserDetails usuarioBanco = loadUserByUsername(username);
-		if (!usuarioBanco.getPassword().equals(password)) {
+		if (usuario == null || !usuario.getPassword().equals(password)) {
 			throw new Exception("Token Inválido!");
 		}
-
-		usuario.setUsername(ret.getIssuer());
-		usuario.setPassword(ret.getSubject());
 		UsuarioLoggado usuarioLoggado = new UsuarioLoggado(usuario);
 		usuarioLoggado.setToken(token);
 		if (usuarioLoggado.isAccountNonExpired()) {

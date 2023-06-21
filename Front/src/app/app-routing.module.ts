@@ -8,10 +8,12 @@ import { RegisterPrestadorComponent } from './register-prestador/register-presta
 import { RegisterComponent } from './register/register.component';
 import { PerfiluserComponent } from './perfiluser/perfiluser.component';
 import { PerfilprestadorComponent } from './perfilprestador/perfilprestador.component';
+import { LoggoutComponent } from './exports/loggout/loggout.component';
 
 
 const routes: Routes = [
   { path: '', component: MainComponent, pathMatch:'full' },
+  { path: 'loggout', component: LoggoutComponent},
   { path: 'login', component: LoginComponent},
   { path: 'recovery', component: RecoveryComponent},
   { path: 'main', component: MainComponent},

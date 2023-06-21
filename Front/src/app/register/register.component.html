@@ -10,7 +10,6 @@
 <body>
   <nb-layout>
     <nb-layout-column>
-
       <h1>Cadastre-se</h1>
       <form>
         <nb-stepper
@@ -21,105 +20,118 @@
         >
           <nb-step [stepControl]="form" label="Dados Pessoais">
             <form [formGroup]="form">
-              <nb-card style="margin: 0; border: 0; ">
+              <nb-card style="margin: 0; border: 0">
                 <nb-card-header
                   style="width: 50%; margin: 0 auto; text-align: center"
                   >Dados Pessoais</nb-card-header
                 >
 
-                  <div class="tentativa">
-                    <form [formGroup]="form">
-                      <div class="container">
-                        <div class="row">
-                          <div class="col md-3 mx-auto">
-                            <label class="label" for="input-nomecompleto"
-                              >Nome Completo<br
-                            /></label>
-                            <br />
-                            <input
-                              required
-                              type="text"
-                              nbInput
-                              status="basic"
-                              placeholder="Nome Completo"
-                              formControlName="nomecompleto"
-                              [(ngModel)]="dadosPf.nome"
-
-                            />
-                          </div>
+                <div class="tentativa">
+                  <form [formGroup]="form">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col md-3 mx-auto">
+                          <label class="label" for="input-nomecompleto"
+                            >Nome Completo<br
+                          /></label>
                           <br />
-                          <div class="col md-3 mx-auto">
-                            <label class="label" for="input-CPF">CPF</label
-                            ><br />
-                            <input
-                              required
-                              type="text"
-                              nbInput
-                              mask="000.000.000-00"
-                              [showMaskTyped]="true"
-                              status="basic"
-                              placeholder="000.000.000-00"
-                              formControlName="cpf"
-                              [(ngModel)]="dadosPf.cpf"
-
-                            />
-                          </div>
+                          <input
+                            required
+                            type="text"
+                            nbInput
+                            status="basic"
+                            placeholder="Nome Completo"
+                            formControlName="nomecompleto"
+                            [(ngModel)]="dadosPf.nome"
+                            [status]="
+                              verificarNome(dadosPf.nome) ? 'danger' : 'success'
+                            "
+                          />
+                        </div>
+                        <br />
+                        <div class="col md-3 mx-auto">
+                          <label class="label" for="input-CPF">CPF</label><br />
+                          <input
+                            required
+                            type="text"
+                            nbInput
+                            mask="000.000.000-00"
+                            [showMaskTyped]="true"
+                            status="basic"
+                            placeholder="000.000.000-00"
+                            formControlName="cpf"
+                            [(ngModel)]="dadosPf.cpf"
+                            [status]="
+                              preencheu(dadosPf.cpf) ? 'danger' : 'success'
+                            "
+                          />
                         </div>
                       </div>
-                      <br />
-                      <div class="container">
-                        <div class="row">
-                          <div class="col md-3 mx-auto">
-                            <label
-                              class="label"
-                              for="input-email"
-                              pattern=".+@.+..+"
-                              >Email</label
-                            ><br />
-                            <input
-                              required
-                              type="email"
-                              nbInput
-                              status="basic"
-                              placeholder="Seu melhor email!"
-                              formControlName="email"
-                              [(ngModel)]="dadosPf.contato.email"
-                            /><br />
-                          </div>
-                          <div class="col md-3 mx-auto">
-                            <label class="label" for="input-telefone"
-                              >Celular</label
-                            ><br />
-                            <input
-                              required
-                              type="text"
-                              nbInput
-                              mask="(00) 0000-0000"
-                              status="basic"
-                              placeholder="Seu melhor contato"
-                              formControlName="telefone"
-                              [(ngModel)]="dadosPf.contato.telefone"
-                            /><br /><br />
-                          </div>
+                    </div>
+                    <br />
+                    <div class="container">
+                      <div class="row">
+                        <div class="col md-3 mx-auto">
+                          <label
+                            class="label"
+                            for="input-email"
+                            pattern=".+@.+..+"
+                            >Email</label
+                          ><br />
+                          <input
+                            required
+                            type="email"
+                            nbInput
+                            status="basic"
+                            placeholder="Seu melhor email!"
+                            formControlName="email"
+                            [(ngModel)]="dadosPf.contato.email"
+                            [status]="
+                              validaemail(dadosPf.contato.email)
+                                ? 'danger'
+                                : 'success'
+                            "
+                          /><br />
                         </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <button
-                              style="float: right; width: 80px; height: 40px"
-                              nbButton
-                              nbStepperNext
-                              [disabled]="!form.valid"
-                            >
-                              Avançar
-                            </button>
-                          </div>
+                        <div class="col md-3 mx-auto">
+                          <label class="label" for="input-telefone"
+                            >Celular</label
+                          ><br />
+                          <input
+                            required
+                            type="text"
+                            nbInput
+                            mask="(00) 00000-0000"
+                            status="basic"
+                            placeholder="Seu melhor contato"
+                            formControlName="telefone"
+                            [(ngModel)]="dadosPf.contato.telefone"
+                            [status]="
+                            preencheu(dadosPf.contato.telefone)
+                              ? 'danger'
+                              : 'success'
+                          "
+                          /><br /><br />
                         </div>
                       </div>
-                    </form>
-                  </div>
-                </nb-card>
-
-            </form></nb-step>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <button
+                            style="float: right; width: 80px; height: 40px"
+                            nbButton
+                            nbStepperNext
+                            [disabled]="!form.valid"
+                          >
+                            Avançar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </nb-card>
+            </form></nb-step
+          >
 
           <nb-step label="Endereço">
             <nb-card>
@@ -128,7 +140,7 @@
                 >Endereço</nb-card-header
               >
               <nb-card-body class="card1">
-                <div class="formregs">
+                <div class="tentativa">
                   <form [formGroup]="formreg2">
                     <label class="label" for="input-CEP">CEP</label><br />
                     <input
@@ -142,6 +154,9 @@
                       formControlName="cep"
                       required
                       [(ngModel)]="dadosPf.endereco.cep"
+                      [status]="
+                      preencheu(dadosPf.endereco.cep) ? 'danger' : 'success'
+                    "
                     /><br />
                     <label class="label" for="input-logradouro"
                       >Logradouro</label
@@ -154,6 +169,9 @@
                       formControlName="logradouro"
                       required
                       [(ngModel)]="dadosPf.endereco.logradouro"
+                      [status]="
+                      preencheu(dadosPf.endereco.logradouro) ? 'danger' : 'success'
+                    "
                     />
                     <div class="row">
                       <div class="col-md-3">
@@ -161,7 +179,7 @@
                         <label class="label" for="input-numero">Número</label
                         ><br />
                         <input
-                          style= " width: 100px !important"
+                          style="width: 100px !important"
                           type="text"
                           nbInput
                           status="basic"
@@ -169,6 +187,9 @@
                           formControlName="numero"
                           required
                           [(ngModel)]="dadosPf.endereco.numero"
+                          [status]="
+                      preencheu(dadosPf.endereco.numero) ? 'danger' : 'success'
+                    "
                         />
                       </div>
                       <div class="col-md-3">
@@ -181,6 +202,9 @@
                           placeholder="QD"
                           formControlName="quadra"
                           [(ngModel)]="dadosPf.endereco.quadra"
+                          [status]="
+                          preencheu(dadosPf.endereco.quadra) ? 'danger' : 'success'
+                        "
                         />
                       </div>
                       <div class="col-md-3">
@@ -193,7 +217,9 @@
                           placeholder="Lote"
                           formControlName="lote"
                           [(ngModel)]="dadosPf.endereco.lote"
-
+                          [status]="
+                          preencheu(dadosPf.endereco.lote) ? 'danger' : 'success'
+                        "
                         />
                       </div>
                     </div>
@@ -211,6 +237,11 @@
                           formControlName="cidade"
                           required
                           [(ngModel)]="dadosPf.endereco.cidade"
+                          [status]="
+                          preencheu(dadosPf.endereco.cidade)
+                            ? 'danger'
+                            : 'success'
+                        "
                         />
                       </div>
                       <div class="col-md-3">
@@ -225,23 +256,30 @@
                           formControlName="uf"
                           required
                           [(ngModel)]="dadosPf.endereco.uf"
+                          [status]="
+                          preencheu(dadosPf.endereco.uf) ? 'danger' : 'success'
+                        "
+                      />
                         />
                       </div>
-
                     </div>
                     <label class="label" for="input-complemento"
-                    >Complemento e Referência</label
+                      >Complemento e Referência</label
                     ><br />
                     <input
-                    style="align-items:center; width: 260px !important"
-                    type="text"
+                      style="align-items: center; width: 260px !important"
+                      type="text"
                       nbInput
                       status="basic"
                       placeholder=""
                       formControlName="Complemento"
                       [(ngModel)]="dadosPf.endereco.complemento"
-
-                  ><br />
+                      [status]="
+                      preencheu(dadosPf.endereco.complemento)
+                        ? 'danger'
+                        : 'success'
+                    "
+                    /><br />
                     <br /><br />
                     <button
                       style="align-items: left; width: 130px !important"
@@ -267,7 +305,6 @@
           </nb-step>
           <nb-step label="Imagem de Perfil">
             <nb-card>
-
               <nb-card-header>Imagem de Perfil</nb-card-header>
               <nb-card-body>
                 <div class="file-input">

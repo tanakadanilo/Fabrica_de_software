@@ -20,5 +20,6 @@ public class Usuario {
 	private String password;
 	private String username;
 	private String login;
+	private Boolean prestador;
 
 }
