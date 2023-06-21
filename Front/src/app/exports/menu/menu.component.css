@@ -6,7 +6,7 @@ div.menu {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: rgba(129, 61, 224, 1);
+  background-color: rgb(164, 114, 233);
   z-index: 1000;
 }
 

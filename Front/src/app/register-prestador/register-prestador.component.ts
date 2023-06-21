@@ -86,7 +86,7 @@ export class RegisterPrestadorComponent implements OnInit {
   }
 
 
-  valida(value: string) {
+  validaemail(value: string) {
     if (!value) {
       return true;
     }

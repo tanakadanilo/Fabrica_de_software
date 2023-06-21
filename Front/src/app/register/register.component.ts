@@ -1,4 +1,3 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -12,7 +11,6 @@ import { endereco } from '../exports/model/endereco';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-
   linearMode = true;
   form: FormGroup;
   formreg2: FormGroup;
@@ -20,8 +18,8 @@ export class RegisterComponent {
   dadosPf: dadosPf = {
     nome: '',
     cpf: '',
-   endereco : {
-      cep : '',
+    endereco: {
+      cep: '',
       logradouro: '',
       numero: '',
       quadra: '',
@@ -31,10 +29,10 @@ export class RegisterComponent {
       complemento: '',
     },
     contato: {
-      email:'',
-      telefone:'',
-    }
-   };
+      email: '',
+      telefone: '',
+    },
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,10 +52,33 @@ export class RegisterComponent {
       lote: ['', Validators.required],
       cidade: ['', Validators.required],
       uf: ['', Validators.required],
-      Complemento: ['', Validators.required]
+      Complemento: ['', Validators.required],
     });
 
     this.cadastrar();
+  }
+  verificarNome(value: string) {
+    if (!value) {
+      return true;
+    }
+
+    const regex = /^[a-zA-Z]{1,}\s+[a-zA-Z]{1,}/;
+    return !regex.test(value);
+  }
+
+  preencheu(value: string) {
+    if (!value) {
+      return true;
+    }
+    return value.length == 0;
+  }
+
+  validaemail(value: string) {
+    if (!value) {
+      return true;
+    }
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    return !emailRegex.test(value);
   }
 
   previewImage(event: Event): void {
@@ -73,11 +94,11 @@ export class RegisterComponent {
   }
 
   cadastrar() {
-     this.regCliente.post("http://localhost:8080/contratante",this.dadosPf).subscribe((response: any) =>{
-      console.log(response);
-
-     });
+    this.regCliente
+      .post('http://localhost:8080/contratante', this.dadosPf)
+      .subscribe((response: any) => {
+        console.log(response);
+      });
     console.log('funfo');
-
   }
 }
