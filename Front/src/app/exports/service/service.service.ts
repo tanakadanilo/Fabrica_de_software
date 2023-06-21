@@ -18,22 +18,6 @@ export class ServiceService {
   usuario: any;
   token!: string;
 
-  private callback: any | null = null;
-
-  setCallback(callback: any) {
-    this.callback = callback;
-  }
-
-  chamarCallback() {
-    this.carregaUsuario().subscribe((response: any) => {
-      if (this.callback) {
-        response.data.imagem =
-          'data:image/jpg;base64,' +
-          Buffer.from(response.data.imagem, 'base64');
-        this.callback(response.data.username, response.data.imagem);
-      }
-    });
-  }
   toastError(message: string) {
     this.toastrService.show(message, 'ERRO', {
       status: 'danger',

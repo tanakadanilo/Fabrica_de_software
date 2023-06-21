@@ -19,7 +19,6 @@ export class LoginComponent {
   teste() {
     this.http.get(`http://localhost:8080/login`).subscribe((r: any) => {
       console.log(r);
-      this.service.chamarCallback();
     });
   }
 
