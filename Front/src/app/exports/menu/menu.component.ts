@@ -13,10 +13,7 @@ export class MenuComponent {
   constructor(private service: ServiceService) {
     this.carregaImagem();
   }
-  items: NbMenuItem[] = [
-    { title: 'Perfil', link: '/userprofile' },
-    { title: 'Desconectar', link: '/loggout' },
-  ];
+  items!: NbMenuItem[];
 
   carregaImagem() {
     this.service.carregaUsuario().subscribe((response: any) => {
@@ -28,12 +25,26 @@ export class MenuComponent {
         }
         this.service.toastError(response.erros[0]);
       }
+      console.log(response);
 
       this.service.usuario = response.data.usuario;
       this.user = {
         name: response.data.usuario.username,
         picture: this.decodeImageBase64(response.data.imagem),
+        prestador: response.data.usuario.prestador,
       };
+
+      if (this.user.prestador) {
+        this.items = [
+          { title: 'Perfil', link: '/perfilprestador' },
+          { title: 'Desconectar', link: '/loggout' },
+        ];
+      } else {
+        this.items = [
+          { title: 'Perfil', link: '/userprofile' },
+          { title: 'Desconectar', link: '/loggout' },
+        ];
+      }
     });
   }
 
@@ -42,6 +53,7 @@ export class MenuComponent {
     this.user = {
       name: '',
       picture: '',
+      prestador: '',
     };
   }
   decodeImageBase64(base64String: string) {
@@ -51,5 +63,6 @@ export class MenuComponent {
   user = {
     name: '',
     picture: '',
+    prestador: '',
   };
 }
