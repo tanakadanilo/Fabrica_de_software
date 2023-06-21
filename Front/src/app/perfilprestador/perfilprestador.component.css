@@ -1,0 +1,47 @@
+.Conteudo{
+  margin: 5em 4em 5em 4em;
+}
+
+.bloco-img{
+  height: 500px;
+  text-align: center;
+}
+
+.box-img{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: purple;
+}
+ .bloco-info{
+  height: 500px;
+  border-width: 4px;
+  border-radius: 20px;
+  border-color: black;
+  padding: 2em 2em 2em 2em;
+  background-color: lightgray;
+ }
+
+ .box-info{
+  margin-bottom: 20px;
+ }
+
+ .nome-info{
+  font-size: 7;
+  margin-right: 20px;
+ }
+
+ .recebe-info{
+  width: 150px;
+  font-size: 5;
+  border-radius: 10px;
+  padding: 4px 4px 4px 4px;
+  border: 2px solid rgb(37, 37, 37);
+  background-color: rgb(161, 161, 161);
+ }
+
+ .recebe-info-detalhe{
+  font-size: 5;
+ }
+
+

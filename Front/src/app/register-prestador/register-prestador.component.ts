@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DiasSemana } from '../exports/model/dias-semana';
 import { Horario } from '../exports/model/horario';
 import { Disponibilidade } from '../exports/model/disponibilidade';
 import { dadosPj } from '../exports/model/dadosPj';
-
+import { ReactiveFormsModule } from '@angular/forms'; // Import the
+// import { documentoValidator } from '../exports/model/documentoValidator';
 @Component({
   selector: 'app-register-prestador',
   templateUrl: './register-prestador.component.html',
@@ -54,14 +55,50 @@ export class RegisterPrestadorComponent implements OnInit {
 
   ngOnInit() {
     this.obterItensDoBackend();
+    // const validator = new DocumentoValidator();
+
+    // const cpfValido = documentoValidator.validarCPF(this.dadosPj.cpf);
+    // console.log('CPF válido:', cpfValido);
+
+    // const cnpjValido = documentoValidator.validarCNPJ(this.dadosPj.cpf);
+    // console.log('CNPJ válido:', cnpjValido)
+
   }
 
+  preencheu(value: string) {
+    if (!value) {
+      return true;
+    }
+    return value.length == 0;
+  }
+
+  verificarNome(value: string) {
+    if (!value) {
+      return true;
+    }
+
+    const regex = /^[a-zA-Z]{1,}\s+[a-zA-Z]{1,}/;
+    return !regex.test(value);
+  }
+  verificaLetras(nome: string) {
+    const apenasLetras = /^[A-za-z]+$/;
+    return !nome.match(apenasLetras);
+  }
+
+
+  valida(value: string) {
+    if (!value) {
+      return true;
+    }
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    return !emailRegex.test(value);
+  }
   selectedCells: string[] = [];
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.form = this.formBuilder.group({
       nomecompleto: ['', Validators.required],
-      cnpj: ['', Validators.required],
+      cpf: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
     });
@@ -73,11 +110,12 @@ export class RegisterPrestadorComponent implements OnInit {
       lote: ['', Validators.required],
       cidade: ['', Validators.required],
       uf: ['', Validators.required],
-      Complemento: ['', Validators.required],
+      complemento: ['', Validators.required],
     });
     this.infoprof = this.formBuilder.group({
       servico: ['', Validators.required],
-      disponibilidade: ['', Validators.required],
+      inputservico:[''],
+      selecionado:['',Validators.required]
     });
 
     this.cadastrar();
@@ -159,10 +197,6 @@ export class RegisterPrestadorComponent implements OnInit {
 
   removerDisponibilidade(index: number) {
     this.disponibilidade.splice(index, 1);
-  }
-
-  printador() {
-    console.log(this.disponibilidade);
   }
 
   preenchedisponibilidade() {
@@ -319,4 +353,22 @@ export class RegisterPrestadorComponent implements OnInit {
       this.dadosPj.disponibilidades.push(disponibilidade);
     }
   }
+
+  buscarCep(cep: string) {
+    if (cep && cep.length === 8) {
+      const headers = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http
+        .get(`https://viacep.com.br/ws/${cep}/json/`, { headers })
+        .subscribe((response: any) => {
+          this.formreg2.patchValue({
+            logradouro: response.logradouro,
+            cidade: response.localidade,
+            uf: response.uf,
+          });
+        });
+    }
+  }
+
+
+
 }

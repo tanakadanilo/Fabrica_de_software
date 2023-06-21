@@ -10,9 +10,13 @@ body {
 .label {
   margin-top: 10px;
   margin-bottom: 5px;
-  color: #37487c;
-}
+  color: #8892ad;
+  text-align: center;
 
+}
+.tabeladisp{
+  text-align: center;
+}
 .row1 {
   margin-top: 30px;
 }
@@ -98,11 +102,14 @@ body {
 #preview-img {
   display: block;
 }
-
+.invisivel {
+  position: absolute;
+  left: -9999px;
+}
 .nb-theme-default nb-card {
   background-color: #fff0;
-  /* border: 0.0625rem solid #e4e9f2; */
-  border-radius: 0.25rem;
+  /* border: 0.0625rem solid #e4e9f2 !important; */
+  border-radius: 0rem !important;
   box-shadow: none;
   /* color: #142c75 !important; */
   font-family: Open Sans, sans-serif;
@@ -116,7 +123,6 @@ body {
 
 .tentativa {
   background-color: #fffeff;
-
   border-radius: 0rem;
   box-shadow: none;
   color: #e4e7ef;
@@ -258,4 +264,47 @@ table td button:hover:not(.selected) {
   100% {
     box-shadow: 0 0 6px #fff, 0 0 8px #2196f3;
   }
+}
+.table-wrapper {
+
+  width: 100%;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-wrapper thead th {
+  background-color: #f5f5f5;
+  text-align: left;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.table-wrapper tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table-wrapper tbody td {
+  padding: 10px;
+}
+
+.table-wrapper button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.table-wrapper button:hover {
+  background-color: #c0392b;
+}
+
+.table-wrapper mat-icon {
+  vertical-align: middle;
+  margin-right: 5px;
 }
