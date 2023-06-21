@@ -69,6 +69,9 @@ public class UsuarioControl {
 	public ResponseEntity<Response<UsuarioLoggado>> findByToken(@RequestParam("token") String token) {
 		Response<UsuarioLoggado> response = new Response<>();
 		try {
+			if (token.equalsIgnoreCase("")) {
+				return ResponseEntity.ok(response);
+			}
 			UsuarioLoggado usuarioLoggado = userService.findByToken(token);
 			response.setData(usuarioLoggado);
 		} catch (Exception e) {
