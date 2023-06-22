@@ -2,7 +2,7 @@
   <h1 class="titulo">Perfil</h1>
   <div class="bloco-info-perfil">
     <div class="img-perfil">
-      <div class="box-img">
+      <div class="box-img" href="">
 
       </div>
     </div>
@@ -25,53 +25,68 @@
 
     <div class="box-texto">
       <label class="nome-texto"><STRONG>Sobre mim: </STRONG></label>
-      <P class="texto">Minha Magia é
-        Madadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-      </P>
+      <P class="texto">{{texto}}</P>
     </div>
 
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col md-6 mx-auto">
-        <div class="bloco-servicos">
+  <div class="bloco-inferior">
+    <div class="bloco-servicos">
 
-          <li>
-            <div class="box-servico">
-              <label class="nome-servico" for="">Serviço 1: </label>
-              <input class="recebe-servico" type="text">
-            </div>
-            <div class="box-servico">
-              <label class="nome-servico" for="">Serviço 2: </label>
-              <input class="recebe-servico" type="text">
-            </div>
-            <div class="box-servico">
-              <label class="nome-servico" for="">Serviço 3: </label>
-              <input class="recebe-servico" type="text">
-            </div>
-            <div class="box-servico">
-              <label class="nome-servico" for="">Serviço 4: </label>
-              <input class="recebe-servico" type="text">
-            </div>
-            <div class="box-servico">
-              <label class="nome-servico" for="">Serviço 5: </label>
-              <input class="recebe-servico" type="text">
-            </div>
-            <div class="box-servico">
-              <label class="nome-servico" for="">Serviço 6: </label>
-              <input class="recebe-servico" type="text">
-            </div>
 
-          </li>
-
+      <div class="box-servico">
+        <div class="info-servico">
+          <label class="nome-servico">Serviço 1: </label>
+          <input class="recebe-servico" type="text"[readonly]="!editarCampos">
         </div>
+        <button class="contratar">Contratar</button>
       </div>
-      <div class="col md-6 mx-auto">
-        <div class="bloco-avaliacao">
 
-
+      <div class="box-servico">
+        <div class="info-servico">
+          <label class="nome-servico">Serviço 2: </label>
+          <input class="recebe-servico" type="text" [readonly]="!editarCampos">
         </div>
+        <button class="contratar">Contratar</button>
+      </div>
+
+      <div class="box-servico">
+        <div class="info-servico">
+          <label class="nome-servico">Serviço 3: </label>
+          <input class="recebe-servico" type="text" [readonly]="!editarCampos">
+        </div>
+        <button class="contratar">Contratar</button>
+      </div>
+
+      <div class="box-servico">
+        <div class="info-servico">
+          <label class="nome-servico">Serviço 4: </label>
+          <input class="recebe-servico" type="text" [readonly]="!editarCampos">
+        </div>
+        <button class="contratar">Contratar</button>
+      </div>
+
+      <div class="box-servico">
+        <div class="info-servico">
+          <label class="nome-servico">Serviço 5: </label>
+          <input class="recebe-servico" type="text" [readonly]="!editarCampos">
+        </div>
+        <button class="contratar">Contratar</button>
+      </div>
+
+      <div class="box-servico">
+        <div class="info-servico">
+          <label class="nome-servico">Serviço 6: </label>
+          <input class="recebe-servico" type="text" [readonly]="!editarCampos">
+        </div>
+        <button class="contratar">Contratar</button>
       </div>
     </div>
+
+    <div class="bloco-avaliacao">
+      <label class="titulo-avaliacao">Avaliação:</label>
+      <label class="nota">1/10</label>
+    </div>
   </div>
+
 </div>
+
