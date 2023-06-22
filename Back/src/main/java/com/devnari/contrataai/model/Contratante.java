@@ -7,6 +7,7 @@ import com.devnari.contrataai.model.auxiliares.Contato;
 import com.devnari.contrataai.model.auxiliares.Endereco;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -34,6 +35,7 @@ public class Contratante {
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
 
+	@Column(unique = true)
 	private String cpf;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)

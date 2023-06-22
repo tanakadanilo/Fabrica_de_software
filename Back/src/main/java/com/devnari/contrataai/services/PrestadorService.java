@@ -10,6 +10,7 @@ import com.devnari.contrataai.model.Servico;
 import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.model.auxiliares.Experiencia;
 import com.devnari.contrataai.persistencia.PrestadorDao;
+import com.devnari.contrataai.persistencia.UserDao;
 import com.devnari.contrataai.util.StringUtil;
 
 @Service
@@ -23,6 +24,9 @@ public class PrestadorService {
 	ServicoPrestadoService servicoPrestadoService;
 	@Autowired
 	ExperienciaService experienciaService;
+
+	@Autowired
+	private UserDao userDao;
 
 	public List<Prestador> buscarTodos() {
 		return persistencia.findAll();
@@ -65,7 +69,7 @@ public class PrestadorService {
 			throw new Exception("Prestador Não Informado!");
 		}
 
-//		usuarioService.save(prestador.getUsuario());
+		userDao.save(prestador.getUsuario());
 		return persistencia.save(prestador);
 	}
 

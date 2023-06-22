@@ -9,6 +9,7 @@ import com.devnari.contrataai.model.auxiliares.Endereco;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +20,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,6 +37,8 @@ public class Prestador {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
+
+	@Column(unique = true)
 	private String cpf;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
@@ -63,7 +65,7 @@ public class Prestador {
 	private String descricaoAdicional;
 
 	private String especializacao;
-	
+
 	@OneToOne
 	private Usuario usuario;
 

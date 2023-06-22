@@ -75,7 +75,7 @@ public class PreencheBanco {
 				e.setComplemento("Do lado da rua " + Math.abs(i * 7 - 4 / 2 * 8));
 				e.setLogradouro("Rua " + i);
 				e.setNumero("" + i);
-				e.setUf(UF.GOIAS);
+				e.setUf(UF.GO);
 				e = enderecoService.salvar(e);
 
 				Experiencia ex = new Experiencia();
