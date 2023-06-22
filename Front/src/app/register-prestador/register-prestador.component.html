@@ -24,7 +24,7 @@
               <form [formGroup]="form">
                 <div class="container">
                   <div class="row">
-                    <div class="col md-3 mx-auto">
+                    <div class="col md-6">
                       <label class="label" for="input-nomecompleto"
                         >Nome Completo<br
                       /></label>
@@ -43,7 +43,7 @@
                       />
                     </div>
                     <br />
-                    <div class="col md-3 mx-auto">
+                    <div class="col md-6">
                       <label class="label" for="input-CPF">CNPJ</label><br />
                       <input
                         required
@@ -63,7 +63,7 @@
                 <br />
                 <div class="container">
                   <div class="row">
-                    <div class="col md-3 mx-auto">
+                    <div class="col md-6">
                       <label class="label" for="input-email" pattern=".+@.+..+"
                         >Email</label
                       ><br />
@@ -81,8 +81,26 @@
                             : 'success'
                         "
                       /><br />
+
+                          <label class="label" for="input-password"
+                            >Senha</label
+                          >
+                          <input
+                            required
+                            type="password"
+                            nbInput
+                            status="basic"
+                            placeholder="Sua senha aqui!"
+                            formControlName="password"
+                            [(ngModel)]="dadosPj.usuario.password"
+                            [status]="
+                              preencheu(dadosPj.usuario.password)
+                                ? 'danger'
+                                : 'success'
+                            "
+                          />
                     </div>
-                    <div class="col md-3 mx-auto">
+                    <div class="col md-6">
                       <label class="label" for="input-telefone">Celular</label
                       ><br />
                       <input

@@ -11,6 +11,13 @@ body {
 .label {
   margin-top: 10px;
   margin-bottom: 5px;
+  color:#222b45;
+}
+.labelse {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+  color:#222b45;
 }
 
 .row1 {
@@ -24,6 +31,12 @@ body {
 .container {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.step {
+  width: 80%;
+  margin: 0 auto; /* Adiciona margens automáticas para centralizar horizontalmente */
+
+
 }
 
 .row {
