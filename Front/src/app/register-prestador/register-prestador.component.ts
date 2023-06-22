@@ -16,7 +16,7 @@ import { ServiceService } from '../exports/service/service.service';
   styleUrls: ['./register-prestador.component.css'],
 })
 export class RegisterPrestadorComponent implements OnInit {
-  linearMode = false;
+  linearMode = true;
   form: FormGroup;
   formreg2: FormGroup;
   selectedItemNgModel: any;

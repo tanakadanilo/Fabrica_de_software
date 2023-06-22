@@ -13,7 +13,7 @@ import { endereco } from '../exports/model/endereco';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  linearMode = false;
+  linearMode = true;
   form: FormGroup;
   formreg2: FormGroup;
   formpass: FormGroup;

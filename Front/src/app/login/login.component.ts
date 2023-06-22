@@ -31,14 +31,14 @@ export class LoginComponent {
       )
       .subscribe((r: any) => {
         console.log(r);
-        
+
         if (r.erros.length > 0) {
           this.service.toastError(r.erros[0]);
           return;
         }
         this.token = r.data;
         localStorage.setItem('token', this.token);
-        this.service.toastSucess("login com sucesse!")
+        this.service.toastSucess("Logado com sucesso!")
         window.location.href = 'http://localhost:4200/';
       });
   }
