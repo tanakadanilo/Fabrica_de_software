@@ -47,6 +47,7 @@ export class RegisterComponent {
       cpf: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
+      password: ['', Validators.required]
     });
     this.formreg2 = this.formBuilder.group({
       cep: ['', Validators.required],
