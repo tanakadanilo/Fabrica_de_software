@@ -12,6 +12,9 @@ public interface PrestadorDao extends JpaRepository<Prestador, Long> {
 
 	List<Prestador> findByNome(String nome);
 
+	@Query("select prestador from Prestador prestador where prestador.usuario.username = :username")
+	Prestador findByUsername(@Param("username") String userName);
+
 	List<Prestador> findByCpf(String cpf);
 
 	@Query("select prestador from Prestador prestador left join prestador.servicosPrestados servico where servico.id = :id")

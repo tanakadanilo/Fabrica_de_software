@@ -11,6 +11,7 @@ import com.devnari.contrataai.model.HistoricoServico;
 import com.devnari.contrataai.model.Prestador;
 import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.persistencia.ContratanteDao;
+import com.devnari.contrataai.util.StringUtil;
 
 @Service
 public class ContratanteService {
@@ -20,9 +21,6 @@ public class ContratanteService {
 
 	@Autowired
 	PrestadorService prestadorService;
-
-	@Autowired
-	UsuarioLoggadoService usuarioService;
 
 	public List<Contratante> buscarTodos() {
 		List<Contratante> contratantes = persistencia.findAll();
@@ -34,6 +32,12 @@ public class ContratanteService {
 		if (contratante == null) {
 			throw new Exception("Contratante Não Encontrado!");
 		}
+		return contratante;
+	}
+
+	public Contratante buscarPorUsername(String nome) {
+		nome = StringUtil.tratarStringNullEUndefinned(nome);
+		Contratante contratante = persistencia.findByUsername(nome);
 		return contratante;
 	}
 
@@ -55,7 +59,7 @@ public class ContratanteService {
 			throw new Exception("CPF Já Cadastrado no Sistema");
 		}
 		contratante.setId(null);
-		usuarioService.save(contratante.getUsuario());
+//		usuarioService.save(contratante.getUsuario());
 		return persistencia.save(contratante);
 	}
 

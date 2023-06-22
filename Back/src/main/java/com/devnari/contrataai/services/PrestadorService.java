@@ -24,10 +24,6 @@ public class PrestadorService {
 	@Autowired
 	ExperienciaService experienciaService;
 
-	@Autowired
-	UsuarioLoggadoService usuarioService;
-
-
 	public List<Prestador> buscarTodos() {
 		return persistencia.findAll();
 	}
@@ -53,6 +49,12 @@ public class PrestadorService {
 		return prestadores;
 	}
 
+	public Prestador buscarPorUsername(String nome) {
+		nome = StringUtil.tratarStringNullEUndefinned(nome);
+		Prestador prestador = persistencia.findByUsername(nome);
+		return prestador;
+	}
+
 	public Prestador buscarPrestadorPorServicoPrestado(Long id) {
 		Prestador prestador = persistencia.findPrestadorByServicoPrestado(id);
 		return prestador;
@@ -63,8 +65,7 @@ public class PrestadorService {
 			throw new Exception("Prestador Não Informado!");
 		}
 
-
-		usuarioService.save(prestador.getUsuario());
+//		usuarioService.save(prestador.getUsuario());
 		return persistencia.save(prestador);
 	}
 

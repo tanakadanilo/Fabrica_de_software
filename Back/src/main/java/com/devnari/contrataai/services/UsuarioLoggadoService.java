@@ -27,6 +27,10 @@ public class UsuarioLoggadoService implements UserDetailsService {
 	private UserDao userDao;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private PrestadorService prestadorService;
+	@Autowired
+	private ContratanteService contratanteService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -59,11 +63,15 @@ public class UsuarioLoggadoService implements UserDetailsService {
 		String username = ret.getIssuer();
 		String password = ret.getSubject();
 		usuario = userDao.findByUsername(username).orElse(null);
-
 		if (usuario == null || !usuario.getPassword().equals(password)) {
 			throw new Exception("Token Inválido!");
 		}
 		UsuarioLoggado usuarioLoggado = new UsuarioLoggado(usuario);
+		if (usuario.getPrestador()) {
+			usuarioLoggado.setIdPessoa(prestadorService.buscarPorUsername(usuarioLoggado.getUsername()).getId());
+		} else {
+			usuarioLoggado.setIdPessoa(contratanteService.buscarPorUsername(usuarioLoggado.getUsername()).getId());
+		}
 		usuarioLoggado.setToken(token);
 		if (usuarioLoggado.isAccountNonExpired()) {
 			return usuarioLoggado;

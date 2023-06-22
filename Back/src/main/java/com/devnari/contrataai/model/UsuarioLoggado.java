@@ -27,6 +27,7 @@ public class UsuarioLoggado implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
+	private Long idPessoa;
 	private Usuario usuario;
 
 	private byte[] imagem = fileToBase64("a.jpg").getBytes();
