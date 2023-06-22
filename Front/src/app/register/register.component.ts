@@ -29,6 +29,7 @@ export class RegisterComponent {
       cidade: '',
       uf: '',
       complemento: '',
+      bairro: '',
     },
     contato: {
       email: '',
@@ -62,6 +63,7 @@ export class RegisterComponent {
       cidade: ['', Validators.required],
       uf: ['', Validators.required],
       Complemento: ['', Validators.required],
+      bairro:['',Validators.required]
     });
 
     this.cadastrar();
@@ -144,19 +146,25 @@ export class RegisterComponent {
         .get(`https://viacep.com.br/ws/${cep}/json/`, { headers })
         .subscribe(
           (response: any) => {
-            this.formreg2.patchValue({
-              logradouro: response.logradouro,
-              cidade: response.localidade,
-              uf: response.uf,
-              Complemento: response.bairro,
-            });
+            if (response.erro) {
+              this.toastrService.show('CEP inválido', 'ERRO', {
+                status: 'danger',
+                duration: 5000,
+              });
+            } else {
+              this.formreg2.patchValue({
+                logradouro: response.logradouro,
+                cidade: response.localidade,
+                uf: response.uf,
+                bairro: response.bairro,
+              });
+              console.log(response);
+            }
           },
           () => {
             this.toastrService.show('Erro ao buscar CEP', 'ERRO');
           }
-        )
-    } else{
-      this.toastrService.show('CEP Inválido', 'erro');
+        );
     }
   }
 }

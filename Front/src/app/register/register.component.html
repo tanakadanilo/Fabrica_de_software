@@ -243,14 +243,16 @@
                       </div>
                       <br />
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                           <label class="label" for="input-cidade">Cidade</label
                           ><br />
                           <input
                             style="align-items: left; width: 130px !important"
                             type="text"
                             nbInput
+                            readonly
                             status="basic"
+                            [disabled]="true"
                             placeholder="Insira o CEP!"
                             formControlName="cidade"
                             required
@@ -266,11 +268,12 @@
                           <label class="label" for="input-estado">Estado</label
                           ><br />
                           <input
-                            style="align-items: right; width: 130px !important"
+                            style="float: center; width: 130px !important"
                             type="text"
                             nbInput
+                            readonly
                             status="basic"
-                            placeholder="Insira o CEP!"
+                            placeholder=""
                             formControlName="uf"
                             required
                             [(ngModel)]="dadosPf.endereco.uf"
@@ -280,6 +283,24 @@
                                 : 'success'
                             "
                           />
+                        </div>
+                        <div class="col-md-3">
+                          <label class="label" for="input-bairro">Bairro</label
+                          ><br />
+                          <input
+                            style="align-items: right; width: 200px !important"
+                            type="text"
+                            nbInput
+                            status="basic"
+                            placeholder=""
+                            formControlName="bairro"
+                            required
+                            [(ngModel)]="dadosPf.endereco.bairro"
+                            [status]="
+                              preencheu(dadosPf.endereco.bairro)
+                                ? 'danger'
+                                : 'success'
+                            "
                           />
                         </div>
                       </div>
@@ -341,25 +362,25 @@
                   </div>
                   <br /><br /> -->
                   <form [formGroup]="form">
-                  <div class="tentativa">
-                    <label class="labelse" for="input-password"
-                      >Senha<br></label
-                    >
-                    <input
-                      required
-                      type="password"
-                      nbInput
-                      status="basic"
-                      placeholder="Sua senha aqui!"
-                      formControlName="password"
-                      [(ngModel)]="dadosPf.usuario.password"
-                      [status]="
-                        preencheu(dadosPf.usuario.password)
-                          ? 'danger'
-                          : 'success'
-                      "
-                    />
-                  </div>
+                    <div class="tentativa">
+                      <label class="labelse" for="input-password"
+                        >Senha<br
+                      /></label>
+                      <input
+                        required
+                        type="password"
+                        nbInput
+                        status="basic"
+                        placeholder="Sua senha aqui!"
+                        formControlName="password"
+                        [(ngModel)]="dadosPf.usuario.password"
+                        [status]="
+                          preencheu(dadosPf.usuario.password)
+                            ? 'danger'
+                            : 'success'
+                        "
+                      />
+                    </div>
                   </form>
 
                   <button
@@ -370,11 +391,15 @@
                   >
                     Voltar
                   </button>
-
                 </nb-card-body>
               </nb-card>
               <button
-                style="float: left; position: relative; left: 43% !important; background-color: rgb(164, 114, 233) "
+                style="
+                  float: left;
+                  position: relative;
+                  left: 43% !important;
+                  background-color: rgb(164, 114, 233);
+                "
                 nbButton
                 (click)="cadastrar()"
               >

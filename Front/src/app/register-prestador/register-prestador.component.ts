@@ -47,6 +47,7 @@ export class RegisterPrestadorComponent implements OnInit {
       cidade: '',
       uf: '',
       complemento: '',
+      bairro:''
     },
     contato: {
       email: '',

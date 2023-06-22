@@ -8,5 +8,6 @@ export interface endereco {
   cidade: string,
   uf: string,
   complemento: string,
+  bairro: string,
 
 }
