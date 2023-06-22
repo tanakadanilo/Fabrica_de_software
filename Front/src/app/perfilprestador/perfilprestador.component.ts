@@ -1,16 +1,23 @@
 import { Component } from '@angular/core';
 import { Prestador } from '../exports/model/prestador';
+import { HttpClient } from '@angular/common/http';
 import { ServiceService } from '../exports/service/service.service';
+import { AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-perfilprestador',
   templateUrl: './perfilprestador.component.html',
   styleUrls: ['./perfilprestador.component.css']
 })
-export class PerfilprestadorComponent {
+export class PerfilprestadorComponent implements AfterViewInit{
 
   texto: any = "Qualquer coisa"
-  constructor(private service: ServiceService) {}
+  constructor(private service: ServiceService, private http: HttpClient) {
+    
+  }
+  ngAfterViewInit(): void {
+    this.carregaDados()
+    }
   p!: Prestador
   editarCampos: boolean = (this.service.usuario) ? this.p.nome == this.service.usuario.nome : false
   async showDialog(servico: any) {
@@ -27,5 +34,22 @@ export class PerfilprestadorComponent {
 
       })
     }
+  
+  }
+  
+  carregaDados(){
+    console.log(this.p);
+    
+    if(!this.service.usuario){
+      this.carregaDados()
+      return
+    }
+    
+    this.service.http.get("http://localhost:8080/prestador/" + this.service.usuario.id).subscribe((Response:any)=>{
+    if(Response.erros.lenght > 0){
+      this.service.toastError;
+    }else{  
+    this.p = Response.data;
+  }})
   }
 }

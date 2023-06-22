@@ -9,20 +9,20 @@
     <div class="box-info">
       <div class="info">
         <label class="nome-info">Nome: </label>
-        <p class="recebe-info">Zé da Manga</p>
+        <p class="recebe-info">{{ p.nome }}</p>
       </div>
 
       <div class="info">
         <label class="nome-info">Telefone: </label>
-        <p class="recebe-info">(62) 96666-6666</p>
+        <p class="recebe-info">{{ p.contato.telefone }}</p>
       </div>
       <div class="info">
         <label class="nome-info">Cidade/Estado: </label>
-        <p class="recebe-info">GYN/GO</p>
+        <p class="recebe-info">{{ p.endereco.cidade }}/{{p.endereco.uf}}</p>
       </div>
 
     </div>
-
+    <button (click)="carregaDados()">bla</button>
     <div class="box-texto">
       <label class="nome-texto"><STRONG>Sobre mim: </STRONG></label>
       <P class="texto">{{texto}}</P>
@@ -32,51 +32,11 @@
   <div class="bloco-inferior">
     <div class="bloco-servicos">
 
-
-      <div class="box-servico">
+      <h2>Serviços Prestados:</h2>
+      <div class="box-servico" *ngFor="let i of p.servicosPrestados">
         <div class="info-servico">
-          <label class="nome-servico">Serviço 1: </label>
+          <label class="nome-servico">  </label>
           <input class="recebe-servico" type="text"[readonly]="!editarCampos">
-        </div>
-        <button class="contratar">Contratar</button>
-      </div>
-
-      <div class="box-servico">
-        <div class="info-servico">
-          <label class="nome-servico">Serviço 2: </label>
-          <input class="recebe-servico" type="text" [readonly]="!editarCampos">
-        </div>
-        <button class="contratar">Contratar</button>
-      </div>
-
-      <div class="box-servico">
-        <div class="info-servico">
-          <label class="nome-servico">Serviço 3: </label>
-          <input class="recebe-servico" type="text" [readonly]="!editarCampos">
-        </div>
-        <button class="contratar">Contratar</button>
-      </div>
-
-      <div class="box-servico">
-        <div class="info-servico">
-          <label class="nome-servico">Serviço 4: </label>
-          <input class="recebe-servico" type="text" [readonly]="!editarCampos">
-        </div>
-        <button class="contratar">Contratar</button>
-      </div>
-
-      <div class="box-servico">
-        <div class="info-servico">
-          <label class="nome-servico">Serviço 5: </label>
-          <input class="recebe-servico" type="text" [readonly]="!editarCampos">
-        </div>
-        <button class="contratar">Contratar</button>
-      </div>
-
-      <div class="box-servico">
-        <div class="info-servico">
-          <label class="nome-servico">Serviço 6: </label>
-          <input class="recebe-servico" type="text" [readonly]="!editarCampos">
         </div>
         <button class="contratar">Contratar</button>
       </div>
