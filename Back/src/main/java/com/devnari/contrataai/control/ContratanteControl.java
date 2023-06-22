@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -62,8 +63,8 @@ public class ContratanteControl {
 	public ResponseEntity<Response<Contratante>> salvar(@RequestBody Contratante contratante) {
 		Response<Contratante> response = new Response<>();
 		try {
-			contratante = service.salvar(contratante);
 			response.setData(contratante);
+			contratante = service.salvar(contratante);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getErros().add(e.getMessage());

@@ -3,6 +3,7 @@ package com.devnari.contrataai.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.devnari.contrataai.model.Prestador;
@@ -24,6 +25,8 @@ public class PrestadorService {
 	ServicoPrestadoService servicoPrestadoService;
 	@Autowired
 	ExperienciaService experienciaService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private UserDao userDao;
@@ -68,7 +71,7 @@ public class PrestadorService {
 		if (prestador == null) {
 			throw new Exception("Prestador Não Informado!");
 		}
-
+		prestador.getUsuario().setPassword(passwordEncoder.encode(prestador.getUsuario().getPassword()));
 		userDao.save(prestador.getUsuario());
 		return persistencia.save(prestador);
 	}

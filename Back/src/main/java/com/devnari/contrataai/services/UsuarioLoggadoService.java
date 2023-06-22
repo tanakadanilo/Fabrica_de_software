@@ -80,8 +80,8 @@ public class UsuarioLoggadoService implements UserDetailsService {
 		}
 
 	}
-
 	public Usuario save(Usuario usuario) {
+
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		return userDao.save(usuario);
 	}

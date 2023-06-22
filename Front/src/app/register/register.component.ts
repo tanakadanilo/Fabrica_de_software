@@ -40,38 +40,36 @@ export class RegisterComponent {
       username: '',
       password: '',
     },
+    prestador: false,
   };
 
   constructor(
     private formBuilder: FormBuilder,
     private regCliente: HttpClient,
     private toastrService: NbToastrService,
-    private http: HttpClient
+    private http: HttpClient,
+    private service: ServiceService
   ) {
     this.form = this.formBuilder.group({
       nomecompleto: ['', Validators.required],
       cpf: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
-
     });
     this.formreg2 = this.formBuilder.group({
       cep: ['', Validators.required],
       logradouro: ['', Validators.required],
-      numero: ['',],
-      quadra: ['',],
+      numero: [''],
+      quadra: [''],
       lote: [''],
       cidade: ['', Validators.required],
       uf: ['', Validators.required],
-      Complemento: ['',],
-      bairro:['',Validators.required]
+      Complemento: [''],
+      bairro: ['', Validators.required],
     });
-    this.formpass =this.formBuilder.group({
-      password: ['',Validators.required]
-
-    })
-
-    this.cadastrar();
+    this.formpass = this.formBuilder.group({
+      password: ['', Validators.required],
+    });
   }
   verificarNome(value: string) {
     if (!value) {
@@ -138,8 +136,22 @@ export class RegisterComponent {
     this.dadosPf.usuario.username = this.dadosPf.contato.email;
     this.regCliente
       .post('http://localhost:8080/contratante', this.dadosPf)
-      .subscribe((response: any) => {
-        console.log(response);
+      .subscribe({
+        next: (response: any) => {
+          if (response.erros.length > 0) {
+            // * ignorar pois só não está loggado
+            console.log(response);
+            this.service.toastError(response.erros[0]);
+
+            return;
+          }
+          this.service.toastSucess('cadastro realizado com sucesso!');
+        },
+        error: (error) => {
+          console.log(error.error.message);
+
+          this.service.toastError('Dados Incompletos!');
+        },
       });
     console.log('funfo');
   }
@@ -163,7 +175,6 @@ export class RegisterComponent {
                 uf: response.uf,
                 bairro: response.bairro,
               });
-              console.log(response);
             }
           },
           () => {

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.devnari.contrataai.model.Contratante;
@@ -22,8 +23,12 @@ public class ContratanteService {
 
 	@Autowired
 	PrestadorService prestadorService;
+
 	@Autowired
 	private UserDao userDao;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public List<Contratante> buscarTodos() {
 		List<Contratante> contratantes = persistencia.findAll();
@@ -62,6 +67,7 @@ public class ContratanteService {
 			throw new Exception("CPF Já Cadastrado no Sistema");
 		}
 		contratante.setId(null);
+		contratante.getUsuario().setPassword(passwordEncoder.encode(contratante.getUsuario().getPassword()));
 		userDao.save(contratante.getUsuario());
 		return persistencia.save(contratante);
 	}

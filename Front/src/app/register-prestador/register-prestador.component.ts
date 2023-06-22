@@ -91,7 +91,8 @@ export class RegisterPrestadorComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
+    private service:ServiceService
   ) {
     this.form = this.formBuilder.group({
       nomecompleto: ['', Validators.required],
@@ -102,13 +103,13 @@ export class RegisterPrestadorComponent implements OnInit {
     this.formreg2 = this.formBuilder.group({
       cep: ['', Validators.required],
       logradouro: ['', Validators.required],
-      numero: ['',],
-      quadra: ['',],
+      numero: [''],
+      quadra: [''],
       lote: [''],
       cidade: ['', Validators.required],
       uf: ['', Validators.required],
-      complemento: ['',],
-      bairro:['',Validators.required]
+      complemento: [''],
+      bairro: ['', Validators.required],
     });
     this.infoprof = this.formBuilder.group({
       servico: ['', Validators.required],
@@ -150,11 +151,17 @@ export class RegisterPrestadorComponent implements OnInit {
   cadastrar() {
     console.log(this.dadosPj);
     this.dadosPj.usuario.username = this.dadosPj.contato.email;
+    this.dadosPj.usuario.prestador = true;
     this.preenchedisponibilidade();
     this.http
       .post('http://localhost:8080/prestador', this.dadosPj)
       .subscribe((response: any) => {
-        console.log(response);
+        if (response.erros.length > 0) {
+          // * ignorar pois só não está loggado
+          this.service.toastError(response.erros[0]);
+          return;
+        }
+        this.service.toastSucess("cadastro realizado com sucesso!")
       });
   }
 
