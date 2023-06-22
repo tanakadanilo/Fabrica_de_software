@@ -26,7 +26,6 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { NbToastrModule } from '@nebular/theme';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './exports/footer/footer.component';
@@ -43,7 +42,8 @@ import { PerfilprestadorComponent } from './perfilprestador/perfilprestador.comp
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoggoutComponent } from './exports/loggout/loggout.component';
-
+import { NbDialogModule } from '@nebular/theme';
+import { ConfirmationDialogComponent } from './exports/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +59,7 @@ import { LoggoutComponent } from './exports/loggout/loggout.component';
     PerfilprestadorComponent,
     CadastrarComponent,
     LoggoutComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,7 +91,8 @@ import { LoggoutComponent } from './exports/loggout/loggout.component';
     HttpClientModule,
     NbSelectModule,
     NbToastrModule.forRoot(),
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
+    NbDialogModule.forChild(),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
@@ -98,7 +100,7 @@ import { LoggoutComponent } from './exports/loggout/loggout.component';
     provideNgxMask(),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
-
+  entryComponents: [ConfirmationDialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
