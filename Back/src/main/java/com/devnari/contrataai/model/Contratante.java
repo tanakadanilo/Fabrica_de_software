@@ -26,11 +26,13 @@ public class Contratante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	private String nome;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
+
 	private String cpf;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
@@ -42,4 +44,6 @@ public class Contratante {
 
 	// * opcional
 	private String foto;
+
+	private Usuario usuario;
 }

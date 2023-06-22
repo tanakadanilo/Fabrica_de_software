@@ -5,6 +5,8 @@ import { DiasSemana } from '../exports/model/dias-semana';
 import { Horario } from '../exports/model/horario';
 import { Disponibilidade } from '../exports/model/disponibilidade';
 import { dadosPj } from '../exports/model/dadosPj';
+import { Buffer } from 'buffer';
+
 import { ReactiveFormsModule } from '@angular/forms'; // Import the
 // import { documentoValidator } from '../exports/model/documentoValidator';
 @Component({
@@ -33,7 +35,7 @@ export class RegisterPrestadorComponent implements OnInit {
     nome: '',
     cpf: '',
     especializacao: '',
-    urlImagem: '',
+    foto: '',
     descricaoAdicional: '',
     endereco: {
       cep: '',
@@ -62,7 +64,6 @@ export class RegisterPrestadorComponent implements OnInit {
 
     // const cnpjValido = documentoValidator.validarCNPJ(this.dadosPj.cpf);
     // console.log('CNPJ válido:', cnpjValido)
-
   }
 
   preencheu(value: string) {
@@ -84,7 +85,6 @@ export class RegisterPrestadorComponent implements OnInit {
     const apenasLetras = /^[A-za-z]+$/;
     return !nome.match(apenasLetras);
   }
-
 
   validaemail(value: string) {
     if (!value) {
@@ -114,8 +114,8 @@ export class RegisterPrestadorComponent implements OnInit {
     });
     this.infoprof = this.formBuilder.group({
       servico: ['', Validators.required],
-      inputservico:[''],
-      selecionado:['',Validators.required]
+      inputservico: [''],
+      selecionado: ['', Validators.required],
     });
 
     this.cadastrar();
@@ -128,6 +128,7 @@ export class RegisterPrestadorComponent implements OnInit {
       reader.onload = (e) => {
         const img = document.getElementById('preview-img') as HTMLImageElement;
         img.src = e.target?.result as string;
+        this.dadosPj.foto! = e.target!.result as string;
       };
       reader.readAsDataURL(file);
     }
@@ -145,10 +146,16 @@ export class RegisterPrestadorComponent implements OnInit {
     });
   }
 
+  converterImagemParaBase64() {
+    this.dadosPj.foto = Buffer.from(this.dadosPj.foto).toString(
+      'base64'
+    );
+  }
   cadastrar() {
-    console.log(this.selecionado2);
+    console.log(this.dadosPj);
 
     this.preenchedisponibilidade();
+    this.converterImagemParaBase64();
     this.http
       .post('http://localhost:8080/prestador', this.dadosPj)
       .subscribe((response: any) => {
@@ -368,7 +375,4 @@ export class RegisterPrestadorComponent implements OnInit {
         });
     }
   }
-
-
-
 }

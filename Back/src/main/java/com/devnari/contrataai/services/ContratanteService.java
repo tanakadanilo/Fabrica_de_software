@@ -21,6 +21,9 @@ public class ContratanteService {
 	@Autowired
 	PrestadorService prestadorService;
 
+	@Autowired
+	UsuarioLoggadoService usuarioService;
+
 	public List<Contratante> buscarTodos() {
 		List<Contratante> contratantes = persistencia.findAll();
 		return contratantes;
@@ -52,6 +55,7 @@ public class ContratanteService {
 			throw new Exception("CPF Já Cadastrado no Sistema");
 		}
 		contratante.setId(null);
+		usuarioService.save(contratante.getUsuario());
 		return persistencia.save(contratante);
 	}
 

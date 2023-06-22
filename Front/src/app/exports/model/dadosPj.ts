@@ -5,7 +5,7 @@ export interface dadosPj {
   nome: string;
   cpf: string;
   especializacao: string;
-  urlImagem: string;
+  foto: string;
   endereco: endereco;
   contato: contato;
   listadeservico: string[];

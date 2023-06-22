@@ -1,5 +1,7 @@
 package com.devnari.contrataai.services;
 
+import java.io.FileOutputStream;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,21 @@ public class PrestadorService {
 	ServicoPrestadoService servicoPrestadoService;
 	@Autowired
 	ExperienciaService experienciaService;
+
+	@Autowired
+	UsuarioLoggadoService usuarioService;
+
+	private void downloadImagem(Prestador prestador) throws Exception {
+		String base64File = prestador.getFoto();
+		String filePath = this.getClass().getClassLoader().getResource("").getPath();
+		byte[] imageBytes = Base64.getDecoder().decode(base64File);
+
+		FileOutputStream outputStream;
+		outputStream = new FileOutputStream("C:\\Users\\danilo\\Desktop\\temp" + "." + prestador.getCpf());
+		outputStream.write(imageBytes);
+		outputStream.close();
+
+	}
 
 	public List<Prestador> buscarTodos() {
 		return persistencia.findAll();
@@ -58,6 +75,8 @@ public class PrestadorService {
 		if (prestador == null) {
 			throw new Exception("Prestador Não Informado!");
 		}
+//		downloadImagem(prestador);
+		usuarioService.save(prestador.getUsuario());
 		return persistencia.save(prestador);
 	}
 

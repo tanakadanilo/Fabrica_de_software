@@ -62,5 +62,7 @@ public class Prestador {
 	private String descricaoAdicional;
 
 	private String especializacao;
+	
+	private Usuario usuario;
 
 }
