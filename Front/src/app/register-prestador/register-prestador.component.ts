@@ -53,6 +53,9 @@ export class RegisterPrestadorComponent implements OnInit {
     },
     disponibilidades: [],
     listadeservico: [],
+    usuario: {
+
+    }
   };
 
   ngOnInit() {
@@ -98,7 +101,7 @@ export class RegisterPrestadorComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.form = this.formBuilder.group({
       nomecompleto: ['', Validators.required],
-      cpf: ['', Validators.required],
+      cpf: ['', Validators.required, Validators.pattern(/^\d{11}$/)],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
     });
@@ -148,7 +151,7 @@ export class RegisterPrestadorComponent implements OnInit {
 
   cadastrar() {
     console.log(this.dadosPj);
-
+    this.dadosPj.usuario.username = this.dadosPj.contato.email
     this.preenchedisponibilidade();
     this.http
       .post('http://localhost:8080/prestador', this.dadosPj)
@@ -354,6 +357,145 @@ export class RegisterPrestadorComponent implements OnInit {
       this.dadosPj.disponibilidades.push(disponibilidade);
     }
   }
+  validateCPF_CNPJ(value: string) {
+    const isCPF = value.length === 11;
+    const isCNPJ = value.length === 14;
+
+    const isValid = isCPF ? this.validateCPF(value) : (isCNPJ ? this.validateCNPJ(value) : false);
+    this.form.controls['cpf'].setErrors(isValid ? null : { invalid: true });
+  }
+  getInputStatus(controlName: string): string {
+    const control = this.form.get(controlName);
+    return control?.touched && control?.errors ? 'danger' : 'success';
+  }
+
+  validateDocument(document: string): boolean {
+    const cleanedDocument = document.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+    if (cleanedDocument.length === 11) {
+      return this.validateCPF(cleanedDocument);
+    } else if (cleanedDocument.length === 14) {
+      return this.validateCNPJ(cleanedDocument);
+    } else {
+      return false;
+    }
+  }
+
+  private validateCPF(cpf: string): boolean {
+    cpf = cpf.trim();
+
+    if (
+      cpf.length !== 11 ||
+      cpf === '00000000000' ||
+      cpf === '11111111111' ||
+      cpf === '22222222222' ||
+      cpf === '33333333333' ||
+      cpf === '44444444444' ||
+      cpf === '55555555555' ||
+      cpf === '66666666666' ||
+      cpf === '77777777777' ||
+      cpf === '88888888888' ||
+      cpf === '99999999999'
+    ) {
+      return false;
+    }
+
+    let sum = 0;
+    let remainder;
+
+    for (let i = 1; i <= 9; i++) {
+      sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+    }
+
+    remainder = (sum * 10) % 11;
+
+    if (remainder === 10 || remainder === 11) {
+      remainder = 0;
+    }
+
+    if (remainder !== parseInt(cpf.substring(9, 10))) {
+      return false;
+    }
+
+    sum = 0;
+
+    for (let i = 1; i <= 10; i++) {
+      sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+    }
+
+    remainder = (sum * 10) % 11;
+
+    if (remainder === 10 || remainder === 11) {
+      remainder = 0;
+    }
+
+    if (remainder !== parseInt(cpf.substring(10, 11))) {
+      return false;
+    }
+
+    return true;
+  }
+
+  private validateCNPJ(cnpj: string): boolean {
+    cnpj = cnpj.trim();
+
+    if (
+      cnpj.length !== 14 ||
+      cnpj === '00000000000000' ||
+      cnpj === '11111111111111' ||
+      cnpj === '22222222222222' ||
+      cnpj === '33333333333333' ||
+      cnpj === '44444444444444' ||
+      cnpj === '55555555555555' ||
+      cnpj === '66666666666666' ||
+      cnpj === '77777777777777' ||
+      cnpj === '88888888888888' ||
+      cnpj === '99999999999999'
+    ) {
+      return false;
+    }
+
+    let size = cnpj.length - 2;
+    let numbers = cnpj.substring(0, size);
+    const digits = cnpj.substring(size);
+    let sum = 0;
+    let pos = size - 7;
+
+    for (let i = size; i >= 1; i--) {
+      sum += parseInt(numbers.charAt(size - i)) * pos--;
+      if (pos < 2) {
+        pos = 9;
+      }
+    }
+
+    let result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
+
+    if (result !== parseInt(digits.charAt(0))) {
+      return false;
+    }
+
+    size += 1;
+    numbers = cnpj.substring(0, size);
+    sum = 0;
+    pos = size - 7;
+
+    for (let i = size; i >= 1; i--) {
+      sum += parseInt(numbers.charAt(size - i)) * pos--;
+      if (pos < 2) {
+        pos = 9;
+      }
+    }
+
+    result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
+
+    if (result !== parseInt(digits.charAt(1))) {
+      return false;
+    }
+
+    return true;
+  }
+
+
 
   buscarCep(cep: string) {
     if (cep && cep.length === 8) {

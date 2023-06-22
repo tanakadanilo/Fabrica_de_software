@@ -12,4 +12,5 @@ export interface dadosPj {
   //servicosPrestados: string[],
   disponibilidades: Disponibilidade[];
   descricaoAdicional: string;
+  usuario: any;
 }
