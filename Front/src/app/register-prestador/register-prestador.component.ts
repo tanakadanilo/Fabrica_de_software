@@ -1,10 +1,11 @@
+import { dadosPj } from './../exports/model/dadosPj';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DiasSemana } from '../exports/model/dias-semana';
 import { Horario } from '../exports/model/horario';
 import { Disponibilidade } from '../exports/model/disponibilidade';
-import { dadosPj } from '../exports/model/dadosPj';
+
 import { Buffer } from 'buffer';
 
 import { ReactiveFormsModule } from '@angular/forms'; // Import the
@@ -60,13 +61,6 @@ export class RegisterPrestadorComponent implements OnInit {
 
   ngOnInit() {
     this.obterItensDoBackend();
-    // const validator = new DocumentoValidator();
-
-    // const cpfValido = documentoValidator.validarCPF(this.dadosPj.cpf);
-    // console.log('CPF válido:', cpfValido);
-
-    // const cnpjValido = documentoValidator.validarCNPJ(this.dadosPj.cpf);
-    // console.log('CNPJ válido:', cnpjValido)
   }
 
   preencheu(value: string) {
@@ -84,10 +78,7 @@ export class RegisterPrestadorComponent implements OnInit {
     const regex = /^[a-zA-Z]{1,}\s+[a-zA-Z]{1,}/;
     return !regex.test(value);
   }
-  verificaLetras(nome: string) {
-    const apenasLetras = /^[A-za-z]+$/;
-    return !nome.match(apenasLetras);
-  }
+
 
   validaemail(value: string) {
     if (!value) {
@@ -357,31 +348,8 @@ export class RegisterPrestadorComponent implements OnInit {
       this.dadosPj.disponibilidades.push(disponibilidade);
     }
   }
-  validateCPF_CNPJ(value: string) {
-    const isCPF = value.length === 11;
-    const isCNPJ = value.length === 14;
 
-    const isValid = isCPF ? this.validateCPF(value) : (isCNPJ ? this.validateCNPJ(value) : false);
-    this.form.controls['cpf'].setErrors(isValid ? null : { invalid: true });
-  }
-  getInputStatus(controlName: string): string {
-    const control = this.form.get(controlName);
-    return control?.touched && control?.errors ? 'danger' : 'success';
-  }
-
-  validateDocument(document: string): boolean {
-    const cleanedDocument = document.replace(/\D/g, ''); // Remove caracteres não numéricos
-
-    if (cleanedDocument.length === 11) {
-      return this.validateCPF(cleanedDocument);
-    } else if (cleanedDocument.length === 14) {
-      return this.validateCNPJ(cleanedDocument);
-    } else {
-      return false;
-    }
-  }
-
-  private validateCPF(cpf: string): boolean {
+  validateCPF(cpf: string): boolean {
     cpf = cpf.trim();
 
     if (
@@ -436,7 +404,7 @@ export class RegisterPrestadorComponent implements OnInit {
     return true;
   }
 
-  private validateCNPJ(cnpj: string): boolean {
+  validateCNPJ(cnpj: string): boolean {
     cnpj = cnpj.trim();
 
     if (
@@ -511,4 +479,7 @@ export class RegisterPrestadorComponent implements OnInit {
         });
     }
   }
+
+
+
 }

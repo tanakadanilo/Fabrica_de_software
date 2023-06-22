@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { ServiceService } from './../exports/service/service.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NbToastrService } from '@nebular/theme';
 
 import { dadosPf } from '../exports/model/dadosPf';
 import { endereco } from '../exports/model/endereco';
@@ -32,22 +34,24 @@ export class RegisterComponent {
       email: '',
       telefone: '',
     },
-    usuario:{
-      username:'',
-      password:''
-    }
+    usuario: {
+      username: '',
+      password: '',
+    },
   };
 
   constructor(
     private formBuilder: FormBuilder,
-    private regCliente: HttpClient
+    private regCliente: HttpClient,
+    private toastrService: NbToastrService,
+    private http: HttpClient
   ) {
     this.form = this.formBuilder.group({
       nomecompleto: ['', Validators.required],
       cpf: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
     this.formreg2 = this.formBuilder.group({
       cep: ['', Validators.required],
@@ -98,13 +102,61 @@ export class RegisterComponent {
     }
   }
 
+  verificarCPFPreenchido() {
+    const cpf = this.dadosPf.cpf;
+    if (cpf.length === 11) {
+      this.checacpf();
+    }
+  }
+  cpfValido = true;
+  checacpf() {
+    let cpfValido = ServiceService.cpf(this.dadosPf.cpf);
+    if (cpfValido == false) {
+      this.toastrService.show('CPF inválido', 'ERRO', {
+        status: 'danger',
+        duration: 5000,
+      });
+      this.cpfValido = false;
+      return;
+    }
+    this.cpfValido = true;
+  }
   cadastrar() {
-    this.dadosPf.usuario.username = this.dadosPf.contato.email
+    this.dadosPf.usuario.username = this.dadosPf.contato.email;
     this.regCliente
       .post('http://localhost:8080/contratante', this.dadosPf)
       .subscribe((response: any) => {
         console.log(response);
       });
     console.log('funfo');
+  }
+
+  verificarCEPPreenchido() {
+    const cep = this.dadosPf.endereco.cep;
+    if (cep.length === 8) {
+      this.buscarCep(this.dadosPf.endereco.cep);
+    }
+  }
+  buscarCep(cep: string) {
+    if (cep && cep.length === 8) {
+      const headers = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http
+        .get(`https://viacep.com.br/ws/${cep}/json/`, { headers })
+        .subscribe(
+          (response: any) => {
+            this.formreg2.patchValue({
+              logradouro: response.logradouro,
+              cidade: response.localidade,
+              uf: response.uf,
+              Complemento: response.bairro,
+            });
+          },
+          () => {
+            this.toastrService.show('Erro ao buscar CEP', 'ERRO');
+          }
+        )
+    } else{
+      this.toastrService.show('CEP Inválido', 'erro');
+    }
   }
 }
