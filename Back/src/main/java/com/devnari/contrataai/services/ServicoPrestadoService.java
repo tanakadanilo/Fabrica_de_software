@@ -53,5 +53,6 @@ public class ServicoPrestadoService {
 		persistencia.deleteById(id);
 		return "deletado Com Sucesso!";
 	}
+	
 
 }

@@ -32,6 +32,10 @@ export class RegisterComponent {
       email: '',
       telefone: '',
     },
+    usuario:{
+      username:'',
+      password:''
+    }
   };
 
   constructor(
@@ -94,6 +98,7 @@ export class RegisterComponent {
   }
 
   cadastrar() {
+    this.dadosPf.usuario.username = this.dadosPf.contato.email
     this.regCliente
       .post('http://localhost:8080/contratante', this.dadosPf)
       .subscribe((response: any) => {

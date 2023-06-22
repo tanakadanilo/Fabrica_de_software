@@ -18,6 +18,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -63,6 +64,7 @@ public class Prestador {
 
 	private String especializacao;
 	
+	@OneToOne
 	private Usuario usuario;
 
 }

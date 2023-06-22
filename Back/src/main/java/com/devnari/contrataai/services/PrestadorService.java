@@ -35,7 +35,7 @@ public class PrestadorService {
 		byte[] imageBytes = Base64.getDecoder().decode(base64File);
 
 		FileOutputStream outputStream;
-		outputStream = new FileOutputStream("C:\\Users\\danilo\\Desktop\\temp" + "." + prestador.getCpf());
+		outputStream = new FileOutputStream(filePath + "." + prestador.getCpf());
 		outputStream.write(imageBytes);
 		outputStream.close();
 
@@ -75,7 +75,7 @@ public class PrestadorService {
 		if (prestador == null) {
 			throw new Exception("Prestador Não Informado!");
 		}
-//		downloadImagem(prestador);
+		downloadImagem(prestador);
 		usuarioService.save(prestador.getUsuario());
 		return persistencia.save(prestador);
 	}

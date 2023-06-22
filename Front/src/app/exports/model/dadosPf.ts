@@ -5,5 +5,6 @@ export interface dadosPf {
   cpf: string,
   endereco: endereco,
   contato: contato,
+  usuario: any
 
 }
