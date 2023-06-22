@@ -45,7 +45,6 @@ public class Contratante {
 
 	// * opcional
 	private String foto;
-
 	@OneToOne
 	private Usuario usuario;
 }

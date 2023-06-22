@@ -27,6 +27,7 @@ public class PrestadorService {
 	@Autowired
 	UsuarioLoggadoService usuarioService;
 
+
 	public List<Prestador> buscarTodos() {
 		return persistencia.findAll();
 	}
@@ -61,6 +62,8 @@ public class PrestadorService {
 		if (prestador == null) {
 			throw new Exception("Prestador Não Informado!");
 		}
+
+
 		usuarioService.save(prestador.getUsuario());
 		return persistencia.save(prestador);
 	}

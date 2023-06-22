@@ -10,7 +10,7 @@
 <body>
   <nb-layout>
     <nb-layout-column>
-      <h1>Cadastre-se</h1>
+      <h1 style="align-items: center;">Cadastre-se</h1>
       <form>
         <nb-stepper
           style="width: 50px !important"
@@ -70,7 +70,7 @@
                     <br />
                     <div class="container">
                       <div class="row">
-                        <div class="col md-3 mx-auto">
+                        <div class="col md-6">
                           <label
                             class="label"
                             for="input-email"
@@ -92,7 +92,26 @@
                             "
                           /><br />
                         </div>
-                        <div class="col md-3 mx-auto">
+                        <div class="col-md-6">
+                          <label class="label" for="input-password"
+                            >Senha</label
+                          >
+                          <input
+                            required
+                            type="password"
+                            nbInput
+                            status="basic"
+                            placeholder="Sua senha aqui!"
+                            formControlName="password"
+                            [(ngModel)]="dadosPf.usuario.password"
+                            [status]="
+                              preencheu(dadosPf.usuario.password)
+                                ? 'danger'
+                                : 'success'
+                            "
+                          />
+                        </div>
+                        <div class="col md-6">
                           <label class="label" for="input-telefone"
                             >Celular</label
                           ><br />
@@ -106,10 +125,10 @@
                             formControlName="telefone"
                             [(ngModel)]="dadosPf.contato.telefone"
                             [status]="
-                            preencheu(dadosPf.contato.telefone)
-                              ? 'danger'
-                              : 'success'
-                          "
+                              preencheu(dadosPf.contato.telefone)
+                                ? 'danger'
+                                : 'success'
+                            "
                           /><br /><br />
                         </div>
                       </div>
@@ -154,8 +173,8 @@
                       required
                       [(ngModel)]="dadosPf.endereco.cep"
                       [status]="
-                      preencheu(dadosPf.endereco.cep) ? 'danger' : 'success'
-                    "
+                        preencheu(dadosPf.endereco.cep) ? 'danger' : 'success'
+                      "
                     /><br />
                     <label class="label" for="input-logradouro"
                       >Logradouro</label
@@ -169,8 +188,10 @@
                       required
                       [(ngModel)]="dadosPf.endereco.logradouro"
                       [status]="
-                      preencheu(dadosPf.endereco.logradouro) ? 'danger' : 'success'
-                    "
+                        preencheu(dadosPf.endereco.logradouro)
+                          ? 'danger'
+                          : 'success'
+                      "
                     />
                     <div class="row">
                       <div class="col-md-3">
@@ -187,8 +208,10 @@
                           required
                           [(ngModel)]="dadosPf.endereco.numero"
                           [status]="
-                      preencheu(dadosPf.endereco.numero) ? 'danger' : 'success'
-                    "
+                            preencheu(dadosPf.endereco.numero)
+                              ? 'danger'
+                              : 'success'
+                          "
                         />
                       </div>
                       <div class="col-md-3">
@@ -202,8 +225,10 @@
                           formControlName="quadra"
                           [(ngModel)]="dadosPf.endereco.quadra"
                           [status]="
-                          preencheu(dadosPf.endereco.quadra) ? 'danger' : 'success'
-                        "
+                            preencheu(dadosPf.endereco.quadra)
+                              ? 'danger'
+                              : 'success'
+                          "
                         />
                       </div>
                       <div class="col-md-3">
@@ -217,8 +242,10 @@
                           formControlName="lote"
                           [(ngModel)]="dadosPf.endereco.lote"
                           [status]="
-                          preencheu(dadosPf.endereco.lote) ? 'danger' : 'success'
-                        "
+                            preencheu(dadosPf.endereco.lote)
+                              ? 'danger'
+                              : 'success'
+                          "
                         />
                       </div>
                     </div>
@@ -237,10 +264,10 @@
                           required
                           [(ngModel)]="dadosPf.endereco.cidade"
                           [status]="
-                          preencheu(dadosPf.endereco.cidade)
-                            ? 'danger'
-                            : 'success'
-                        "
+                            preencheu(dadosPf.endereco.cidade)
+                              ? 'danger'
+                              : 'success'
+                          "
                         />
                       </div>
                       <div class="col-md-3">
@@ -256,9 +283,11 @@
                           required
                           [(ngModel)]="dadosPf.endereco.uf"
                           [status]="
-                          preencheu(dadosPf.endereco.uf) ? 'danger' : 'success'
-                        "
-                      />
+                            preencheu(dadosPf.endereco.uf)
+                              ? 'danger'
+                              : 'success'
+                          "
+                        />
                         />
                       </div>
                     </div>
@@ -274,10 +303,10 @@
                       formControlName="Complemento"
                       [(ngModel)]="dadosPf.endereco.complemento"
                       [status]="
-                      preencheu(dadosPf.endereco.complemento)
-                        ? 'danger'
-                        : 'success'
-                    "
+                        preencheu(dadosPf.endereco.complemento)
+                          ? 'danger'
+                          : 'success'
+                      "
                     /><br />
                     <br /><br />
                     <button
