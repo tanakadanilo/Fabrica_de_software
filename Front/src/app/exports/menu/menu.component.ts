@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ServiceService } from '../service/service.service';
 import { Buffer } from 'buffer';
-import { Observable, buffer } from 'rxjs';
 import { NbMenuItem } from '@nebular/theme';
 
 @Component({
@@ -30,7 +29,7 @@ export class MenuComponent {
       this.service.usuario = response.data.usuario;
       this.user = {
         name: response.data.usuario.username,
-        picture: this.decodeImageBase64(response.data.imagem),
+        picture: this.user.picture,
         prestador: response.data.usuario.prestador,
       };
 
@@ -62,7 +61,7 @@ export class MenuComponent {
   userPictureOnly: boolean = true;
   user = {
     name: '',
-    picture: '',
+    picture: '/assets/images/perfil.jpg',
     prestador: '',
   };
 }

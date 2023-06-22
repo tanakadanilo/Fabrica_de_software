@@ -146,16 +146,10 @@ export class RegisterPrestadorComponent implements OnInit {
     });
   }
 
-  converterImagemParaBase64() {
-    this.dadosPj.foto = Buffer.from(this.dadosPj.foto).toString(
-      'base64'
-    );
-  }
   cadastrar() {
     console.log(this.dadosPj);
 
     this.preenchedisponibilidade();
-    this.converterImagemParaBase64();
     this.http
       .post('http://localhost:8080/prestador', this.dadosPj)
       .subscribe((response: any) => {
