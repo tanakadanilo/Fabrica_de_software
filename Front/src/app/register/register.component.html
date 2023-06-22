@@ -66,7 +66,7 @@
                               placeholder="000.000.000-00"
                               formControlName="cpf"
                               id="cpfInput"
-                              (input)="verificarCPFPreenchido()"
+                              (blur)="verificarCPFPreenchido()"
                               [(ngModel)]="dadosPf.cpf"
                               [status]="
                                 preencheu(dadosPf.cpf) ? 'danger' : 'success'
@@ -196,7 +196,6 @@
                             status="basic"
                             placeholder="Número"
                             formControlName="numero"
-                            required
                             [(ngModel)]="dadosPf.endereco.numero"
                             [status]="
                               preencheu(dadosPf.endereco.numero)
@@ -361,7 +360,7 @@
                     <img id="preview-img" class="image-preview" src="" alt="" />
                   </div>
                   <br /><br /> -->
-                  <form [formGroup]="form">
+                  <form [formGroup]="formpass">
                     <div class="tentativa">
                       <label class="labelse" for="input-password"
                         >Senha<br

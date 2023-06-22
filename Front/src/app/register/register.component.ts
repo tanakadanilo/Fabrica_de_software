@@ -16,6 +16,7 @@ export class RegisterComponent {
   linearMode = false;
   form: FormGroup;
   formreg2: FormGroup;
+  formpass: FormGroup;
 
   dadosPf: dadosPf = {
     nome: '',
@@ -52,19 +53,23 @@ export class RegisterComponent {
       cpf: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
-      password: ['', Validators.required],
+
     });
     this.formreg2 = this.formBuilder.group({
       cep: ['', Validators.required],
       logradouro: ['', Validators.required],
-      numero: ['', Validators.required],
-      quadra: ['', Validators.required],
-      lote: ['', Validators.required],
+      numero: ['',],
+      quadra: ['',],
+      lote: [''],
       cidade: ['', Validators.required],
       uf: ['', Validators.required],
-      Complemento: ['', Validators.required],
+      Complemento: ['',],
       bairro:['',Validators.required]
     });
+    this.formpass =this.formBuilder.group({
+      password: ['',Validators.required]
+
+    })
 
     this.cadastrar();
   }
@@ -110,19 +115,25 @@ export class RegisterComponent {
       this.checacpf();
     }
   }
-  cpfValido = true;
+  verificarCEPPreenchido() {
+    const cep = this.dadosPf.endereco.cep;
+    if (cep.length === 8) {
+      this.buscarCep(this.dadosPf.endereco.cep);
+    }
+  }
+  cpfValido: boolean = false;
+
   checacpf() {
-    let cpfValido = ServiceService.cpf(this.dadosPf.cpf);
-    if (cpfValido == false) {
+    this.cpfValido = ServiceService.cpf(this.dadosPf.cpf);
+    if (!this.cpfValido) {
       this.toastrService.show('CPF inválido', 'ERRO', {
         status: 'danger',
         duration: 5000,
       });
-      this.cpfValido = false;
       return;
     }
-    this.cpfValido = true;
   }
+
   cadastrar() {
     this.dadosPf.usuario.username = this.dadosPf.contato.email;
     this.regCliente
@@ -133,12 +144,7 @@ export class RegisterComponent {
     console.log('funfo');
   }
 
-  verificarCEPPreenchido() {
-    const cep = this.dadosPf.endereco.cep;
-    if (cep.length === 8) {
-      this.buscarCep(this.dadosPf.endereco.cep);
-    }
-  }
+
   buscarCep(cep: string) {
     if (cep && cep.length === 8) {
       const headers = new HttpHeaders().set('Content-Type', 'application/json');
