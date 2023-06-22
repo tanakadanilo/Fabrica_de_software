@@ -35,12 +35,28 @@
               name="password"
             />
           </div>
-          <nb-checkbox status="success">Lembrar-me</nb-checkbox>
-          <a [routerLink]="['/register']" style="float: right">Cadastre-se</a
+                    <nb-checkbox status="success">Lembrar-me</nb-checkbox>
+          <!-- <a [routerLink]="['/register']" style="float: right">Cadastre-se</a
           ><br />
           <a [routerLink]="['/recovery']" style="float: right"
             >Recuperar senha</a
+          > -->
+
+
+          <a [routerLink]="['/recovery']" style="float: right"
+            >Recuperar senha</a
           >
+          <br><br>
+          <div class="row">
+            <div class="col-md-6">
+              <a [routerLink]="['/register']" style="float: left">Quero contratar!</a
+                ><br />
+            </div>
+            <div class="col-md-6">
+              <a [routerLink]="['/registerp']" style="float: right">Seja um prestador!</a
+                ><br />
+            </div>
+          </div>
           <button
             nbButton
             status="primary"

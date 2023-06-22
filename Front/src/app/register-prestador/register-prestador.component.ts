@@ -5,7 +5,7 @@ import { DiasSemana } from '../exports/model/dias-semana';
 import { Horario } from '../exports/model/horario';
 import { Disponibilidade } from '../exports/model/disponibilidade';
 import { dadosPj } from '../exports/model/dadosPj';
-import { ReactiveFormsModule } from '@angular/forms'; // Import the
+import { ReactiveFormsModule } from '@angular/forms';
 // import { documentoValidator } from '../exports/model/documentoValidator';
 @Component({
   selector: 'app-register-prestador',

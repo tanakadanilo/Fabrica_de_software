@@ -10,11 +10,17 @@ body {
 .label {
   margin-top: 10px;
   margin-bottom: 5px;
-  color: #8892ad;
-  text-align: center;
-
 }
-.tabeladisp{
+.labelcentral {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #131620;
+  text-align: center;
+}
+
+.tabeladisp {
   text-align: center;
 }
 .row1 {
@@ -114,6 +120,7 @@ body {
   /* color: #142c75 !important; */
   font-family: Open Sans, sans-serif;
   font-size: 0.9375rem;
+
   font-weight: 400;
   line-height: 1.25rem;
   margin-bottom: 1.875rem;
@@ -139,20 +146,35 @@ body {
   max-width: 600px;
   margin: 0 auto;
 }
+
+.addserv {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: 10px;
+  background-color: #6d30b3;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 5px;
+  border: none;
+  margin-right: 10px;
+  transition: all 0.3s ease-in-out;
+}
 .infoprof {
   background-color: #fffeff;
-
+  display: flex;
+  justify-content: center;
   border-radius: 0rem;
   box-shadow: none;
-
   font-family: Open Sans, sans-serif;
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.25rem;
-  width: 80%;
+  width: 50%;
   height: 50%;
   padding: 1rem;
-
   scrollbar-face-color: #e4e9f2;
   scrollbar-track-color: #f7f9fc;
   max-width: 300em;
@@ -166,10 +188,10 @@ table {
   margin-right: auto;
 }
 
-th,
-td {
+.td {
   padding: 8px;
   text-align: center;
+  vertical-align: middle;
 }
 
 .empcell {
@@ -179,6 +201,11 @@ th {
   background-color: #f2f2f200;
 }
 
+.center-text {
+  text-align: right;
+  vertical-align: middle;
+  width: 33.33%;
+}
 td button {
   width: 100%;
   padding: 8px;
@@ -186,6 +213,8 @@ td button {
   background-color: #f1eded;
   cursor: pointer;
   border-radius: 5px;
+  float: right;
+  padding: 2px;
 }
 
 td button.selected {
@@ -266,7 +295,6 @@ table td button:hover:not(.selected) {
   }
 }
 .table-wrapper {
-
   width: 100%;
   display: flex !important;
   justify-content: center !important;
@@ -291,13 +319,18 @@ table td button:hover:not(.selected) {
 .table-wrapper tbody td {
   padding: 10px;
 }
+.card {
+  margin: 0;
+  border: 0;
+}
 
 .table-wrapper button {
   background-color: #e74c3c;
   color: #fff;
   border: none;
-  padding: 5px 10px;
+  padding: 2.5px 5px;
   cursor: pointer;
+  width: 2rem;
 }
 
 .table-wrapper button:hover {

@@ -14,7 +14,7 @@
 
       <nb-stepper style="width: 50px !important" #stepper [linear]="linearMode">
         <nb-step [stepControl]="form" label="Dados Pessoais">
-          <nb-card style="margin: 0; border: 0">
+          <nb-card class="card">
             <nb-card-header
               style="width: 50%; margin: 0 auto; text-align: center"
               >Dados Pessoais</nb-card-header
@@ -76,7 +76,9 @@
                         formControlName="email"
                         [(ngModel)]="dadosPj.contato.email"
                         [status]="
-                          validaemail(dadosPj.contato.email) ? 'danger' : 'success'
+                          validaemail(dadosPj.contato.email)
+                            ? 'danger'
+                            : 'success'
                         "
                       /><br />
                     </div>
@@ -119,261 +121,253 @@
         </nb-step>
 
         <nb-step label="Endereço">
-          <nb-card>
+          <nb-card class="card">
             <nb-card-header
               style="width: 50%; margin: 0 auto; text-align: center"
               >Endereço</nb-card-header
             >
-            <nb-card-body class="card1">
-              <div class="tentativa">
-                <form [formGroup]="formreg2">
-                  <label class="label" for="input-CEP">CEP</label><br />
-                  <input
-                    requierd
-                    type="text"
-                    nbInput
-                    mask="00.000-000"
-                    [showMaskTyped]="true"
-                    status="basic"
-                    placeholder="00.000-000"
-                    formControlName="cep"
-                    required
-                    [(ngModel)]="dadosPj.endereco.cep"
-                    [status]="
-                      preencheu(dadosPj.endereco.cep) ? 'danger' : 'success'
-                    "
-                  /><br />
-                  <label class="label" for="input-logradouro">Logradouro</label
-                  ><br />
-                  <input
-                    type="text"
-                    nbInput
-                    status="basic"
-                    placeholder="Insira o CEP"
-                    formControlName="logradouro"
-                    required
-                    [(ngModel)]="dadosPj.endereco.logradouro"
-                    [status]="
-                      preencheu(dadosPj.endereco.logradouro)
-                        ? 'danger'
-                        : 'success'
-                    "
-                  />
-                  <div class="row">
-                    <div class="col-md-3">
-                      <label class="label" for="input-numero">Número</label
-                      ><br />
-                      <input
-                        style="width: 100px !important"
-                        type="text"
-                        nbInput
-                        status="basic"
-                        placeholder="Número"
-                        formControlName="numero"
-                        required
-                        [(ngModel)]="dadosPj.endereco.numero"
-                        [status]="
-                          preencheu(dadosPj.endereco.numero)
-                            ? 'danger'
-                            : 'success'
-                        "
-                      />
-                    </div>
-                    <div class="col-md-3">
-                      <label class="label" for="input-qd">Quadra</label><br />
-                      <input
-                        style="width: 100px !important"
-                        type="text"
-                        nbInput
-                        status="basic"
-                        placeholder="QD"
-                        formControlName="quadra"
-                        [(ngModel)]="dadosPj.endereco.quadra"
-                        [status]="
-                          preencheu(dadosPj.endereco.quadra)
-                            ? 'danger'
-                            : 'success'
-                        "
-                      />
-                    </div>
-                    <div class="col-md-3">
-                      <label class="label" for="input-lt">Lote</label><br />
-                      <input
-                        style="width: 100px !important"
-                        type="text"
-                        nbInput
-                        status="basic"
-                        placeholder="Lote"
-                        formControlName="lote"
-                        [(ngModel)]="dadosPj.endereco.lote"
-                        [status]="
-                          preencheu(dadosPj.endereco.lote)
-                            ? 'danger'
-                            : 'success'
-                        "
-                      />
-                    </div>
-                  </div>
-                  <br />
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label class="label" for="input-cidade">Cidade</label
-                      ><br />
-                      <input
-                        style="align-items: left; width: 130px !important"
-                        type="text"
-                        nbInput
-                        status="basic"
-                        placeholder="Insira o CEP!"
-                        formControlName="cidade"
-                        required
-                        [(ngModel)]="dadosPj.endereco.cidade"
-                        [status]="
-                          preencheu(dadosPj.endereco.cidade)
-                            ? 'danger'
-                            : 'success'
-                        "
-                      />
-                    </div>
-                    <div class="col-md-3">
-                      <label class="label" for="input-estado">Estado</label
-                      ><br />
-                      <input
-                        style="align-items: right; width: 130px !important"
-                        type="text"
-                        nbInput
-                        status="basic"
-                        placeholder="Insira o CEP!"
-                        formControlName="uf"
-                        required
-                        [(ngModel)]="dadosPj.endereco.uf"
-                        [status]="
-                          preencheu(dadosPj.endereco.uf) ? 'danger' : 'success'
-                        "
-                      />
-                    </div>
-                  </div>
-                  <label class="label" for="input-complemento"
-                    >Complemento e Referência</label
-                  ><br />
-                  <input
-                    style="align-items: center; width: 260px !important"
-                    type="text"
-                    nbInput
-                    status="basic"
-                    placeholder=""
-                    formControlName="complemento"
-                    [(ngModel)]="dadosPj.endereco.complemento"
-                    [status]="
-                      preencheu(dadosPj.endereco.complemento)
-                        ? 'danger'
-                        : 'success'
-                    "
-                  /><br />
-                  <br /><br />
-                  <button
-                    style="align-items: left; width: 130px !important"
-                    status="basic"
-                    nbButton
-                    nbStepperPrevious
-                  >
-                    Voltar
-                  </button>
 
-                  <button
-                    style="float: right; width: 80px; height: 40px"
-                    nbButton
-                    nbStepperNext
-                    [disabled]="!formreg2.valid"
-                  >
-                    Avançar
-                  </button>
-                </form>
-              </div>
-            </nb-card-body>
+            <div class="tentativa">
+              <form [formGroup]="formreg2">
+                <label class="label" for="input-CEP">CEP</label><br />
+                <input
+                  requierd
+                  type="text"
+                  nbInput
+                  mask="00.000-000"
+                  [showMaskTyped]="true"
+                  status="basic"
+                  placeholder="00.000-000"
+                  formControlName="cep"
+                  required
+                  [(ngModel)]="dadosPj.endereco.cep"
+                  [status]="
+                    preencheu(dadosPj.endereco.cep) ? 'danger' : 'success'
+                  "
+                /><br />
+                <label class="label" for="input-logradouro">Logradouro</label
+                ><br />
+                <input
+                  type="text"
+                  nbInput
+                  status="basic"
+                  placeholder="Insira o CEP"
+                  formControlName="logradouro"
+                  required
+                  [(ngModel)]="dadosPj.endereco.logradouro"
+                  [status]="
+                    preencheu(dadosPj.endereco.logradouro)
+                      ? 'danger'
+                      : 'success'
+                  "
+                />
+                <div class="row">
+                  <div class="col-md-3">
+                    <label class="label" for="input-numero">Número</label><br />
+                    <input
+                      style="width: 100px !important"
+                      type="text"
+                      nbInput
+                      status="basic"
+                      placeholder="Número"
+                      formControlName="numero"
+                      required
+                      [(ngModel)]="dadosPj.endereco.numero"
+                      [status]="
+                        preencheu(dadosPj.endereco.numero)
+                          ? 'danger'
+                          : 'success'
+                      "
+                    />
+                  </div>
+                  <div class="col-md-3">
+                    <label class="label" for="input-qd">Quadra</label><br />
+                    <input
+                      style="width: 100px !important"
+                      type="text"
+                      nbInput
+                      status="basic"
+                      placeholder="QD"
+                      formControlName="quadra"
+                      [(ngModel)]="dadosPj.endereco.quadra"
+                      [status]="
+                        preencheu(dadosPj.endereco.quadra)
+                          ? 'danger'
+                          : 'success'
+                      "
+                    />
+                  </div>
+                  <div class="col-md-3">
+                    <label class="label" for="input-lt">Lote</label><br />
+                    <input
+                      style="width: 100px !important"
+                      type="text"
+                      nbInput
+                      status="basic"
+                      placeholder="Lote"
+                      formControlName="lote"
+                      [(ngModel)]="dadosPj.endereco.lote"
+                      [status]="
+                        preencheu(dadosPj.endereco.lote) ? 'danger' : 'success'
+                      "
+                    />
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-md-6">
+                    <label class="label" for="input-cidade">Cidade</label><br />
+                    <input
+                      style="align-items: left; width: 130px !important"
+                      type="text"
+                      nbInput
+                      status="basic"
+                      placeholder="Insira o CEP!"
+                      formControlName="cidade"
+                      required
+                      [(ngModel)]="dadosPj.endereco.cidade"
+                      [status]="
+                        preencheu(dadosPj.endereco.cidade)
+                          ? 'danger'
+                          : 'success'
+                      "
+                    />
+                  </div>
+                  <div class="col-md-3">
+                    <label class="label" for="input-estado">Estado</label><br />
+                    <input
+                      style="align-items: right; width: 130px !important"
+                      type="text"
+                      nbInput
+                      status="basic"
+                      placeholder="Insira o CEP!"
+                      formControlName="uf"
+                      required
+                      [(ngModel)]="dadosPj.endereco.uf"
+                      [status]="
+                        preencheu(dadosPj.endereco.uf) ? 'danger' : 'success'
+                      "
+                    />
+                  </div>
+                </div>
+                <label class="label" for="input-complemento"
+                  >Complemento e Referência</label
+                ><br />
+                <input
+                  style="align-items: center; width: 260px !important"
+                  type="text"
+                  nbInput
+                  status="basic"
+                  placeholder=""
+                  formControlName="complemento"
+                  [(ngModel)]="dadosPj.endereco.complemento"
+                  [status]="
+                    preencheu(dadosPj.endereco.complemento)
+                      ? 'danger'
+                      : 'success'
+                  "
+                /><br />
+                <br /><br />
+                <button
+                  style="align-items: left; width: 130px !important"
+                  status="basic"
+                  nbButton
+                  nbStepperPrevious
+                >
+                  Voltar
+                </button>
+
+                <button
+                  style="float: right; width: 80px; height: 40px"
+                  nbButton
+                  nbStepperNext
+                  [disabled]="!formreg2.valid"
+                >
+                  Avançar
+                </button>
+              </form>
+            </div>
           </nb-card>
         </nb-step>
         <nb-step label="Informações Profissionais">
-          <nb-card>
+          <nb-card class="card">
             <nb-card-header
               style="width: 50%; margin: 0 auto; text-align: center !important"
               >Informações Profissionais</nb-card-header
             >
-            <nb-card-body>
+            <nb-card-body class="card1">
               <div class="infoprof">
                 <form [formGroup]="infoprof">
-                  <div class="col-md-3">
-                    <label class="label" for="input-">Área de Atuação</label
-                    ><br />
-                    <nb-select
-                      [(ngModel)]="selecionado"
-                      formControlName="selecionado"
-                    >
-                      <nb-option *ngFor="let item of itens" [value]="item">{{
-                        item
-                      }}</nb-option>
-                    </nb-select>
-                  </div>
-                  <div class="col-md-3">
-                    <label class="label" for="input-complemento">Serviços</label
-                    ><br />
+                  <label class="labelcentral" for="input-"
+                    >Área de Atuação</label
+                  >
+                  <nb-select
+                    [(ngModel)]="selecionado"
+                    formControlName="selecionado"
+                    shape="semi-round"
+                  >
+                    <nb-option *ngFor="let item of itens" [value]="item">{{
+                      item
+                    }}</nb-option>
+                  </nb-select>
 
-                    <div>
+                  <label class="labelcentral" for="input-complemento"
+                    >Serviços</label
+                  ><br />
+                  <div class="row">
+                    <div class="col-md-6">
                       <input
-                        style="align-items: center; width: 260px !important"
                         type="text"
                         nbInput
+                        title="Escreva um serviço para ser contratado e clique em adiconar."
                         status="basic"
-                        placeholder=""
+                        placeholder="Serviços"
                         formControlName="inputservico"
                         [(ngModel)]="servico"
+                        fullWidth=""
                       />
-                      <button
-                        (click)="adicionarServico()"
-                        style="margin-left: 10px"
-                      >
-                        <mat-icon>Adicionar</mat-icon>
+                    </div>
+                    <div class="col-md-6">
+                      <button class="addserv" (click)="adicionarServico()">
+                        Adicionar
                       </button>
                     </div>
-                    <div class="table-wrapper">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>Nome de Serviço</th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr
-                            *ngFor="
-                              let servico of dadosPj.listadeservico;
-                              let i = index
-                            "
-                          >
-                            <td>{{ i + 1 }}</td>
-                            <td>
-                              {{ servico }}
-                            </td>
+                  </div>
+                  <br />
+                  <br /><br />
+                  <div class="table-wrapper">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="center-text">Serviços:</th>
+                          <th class="center-text"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="
+                            let servico of dadosPj.listadeservico;
+                            let i = index
+                          "
+                        >
+                          <td class="td">
+                            {{ servico }}
+                            <button (click)="removerServico(i)">X</button>
+                          </td>
 
-                            <td>
-                              <button (click)="removerServico(i)">
-                                <mat-icon>Remover</mat-icon>
-                              </button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br />
                   </div>
 
+                  <caption class="labelcentral">
+                    Disponibilidade de Horários
+                  </caption>
                   <div class="tabeladispon">
                     <table class="tabeladisp">
-                      <tr>
-                        <caption class="label">
-                          Disponibilidade de Horários
-                        </caption>
-                      </tr>
+                      <tr></tr>
                       <tr>
                         <th></th>
                         <th>Segunda</th>
@@ -520,30 +514,38 @@
                         </td>
                       </tr>
                     </table>
-                    <button
-                      style="align-items: left; width: 130px !important"
-                      status="basic"
-                      nbButton
-                      nbStepperPrevious
-                    >
-                      Voltar
-                    </button>
-
-                    <button
-                      style="float: right; width: 80px; height: 40px"
-                      nbButton
-                      nbStepperNext
-                    >
-                      Avançar
-                    </button>
                   </div>
+                  <label class="labelcentral" for="input-complementares"
+                    >Informações complementares</label
+                  ><br />
+                  <textarea
+                    nbInput
+                    fullWidth
+                    placeholder="Insira aqui formações, cursos e outras informações sobre você!"
+                  ></textarea>
+                  <button
+                    style="align-items: left; width: 130px !important"
+                    status="basic"
+                    nbButton
+                    nbStepperPrevious
+                  >
+                    Voltar
+                  </button>
+
+                  <button
+                    style="float: right; width: 80px; height: 40px"
+                    nbButton
+                    nbStepperNext
+                  >
+                    Avançar
+                  </button>
                 </form>
               </div>
             </nb-card-body>
           </nb-card>
         </nb-step>
         <nb-step label="Imagem de Perfil">
-          <nb-card>
+          <nb-card class="card">
             <nb-card-header>Imagem de Perfil</nb-card-header>
             <nb-card-body>
               <div class="file-input">
@@ -577,12 +579,6 @@
           >
             Completar Cadastro
           </button>
-        </nb-step>
-        <nb-step [hidden]="true">
-          <div class="step-container">
-            <h3>Wizard completed!</h3>
-            <button nbButton (click)="stepper.reset()">Try again</button>
-          </div>
         </nb-step>
       </nb-stepper>
     </nb-layout-column>
