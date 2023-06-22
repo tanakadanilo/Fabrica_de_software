@@ -56,6 +56,45 @@ export class ServiceService {
     );
   }
 
+    public static cnpj(cnpj: string): boolean {
+    if (cnpj == null) {
+      return false;
+    }
+    if (cnpj.length != 14) {
+      return false;
+    }
+    let tamanho: number = cnpj.length - 2;
+    let digitos: string = cnpj.substring(tamanho);
+    let soma: number = 0;
+    let pos: number = tamanho - 7;
+    for (let i: number = tamanho; i >= 1; i--) {
+      soma += Number(cnpj.charAt(tamanho - i)) * pos--;
+      if (pos < 2) {
+        pos = 9;
+      }
+    }
+    let resultado: number = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+    if (resultado != Number(digitos.charAt(0))) {
+      return false;
+    }
+    tamanho = tamanho + 1;
+    digitos = cnpj.substring(tamanho);
+    soma = 0;
+    pos = tamanho - 7;
+    for (let i: number = tamanho; i >= 1; i--) {
+      soma += Number(cnpj.charAt(tamanho - i)) * pos--;
+      if (pos < 2) {
+        pos = 9;
+      }
+    }
+    resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+    if (resultado != Number(digitos.charAt(0))) {
+      return false;
+    }
+    return true;
+   }
+
+
   public static cpf(cpf: string): boolean {
     if (cpf == null) {
       return false;

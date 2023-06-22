@@ -144,7 +144,6 @@ export class RegisterComponent {
     console.log('funfo');
   }
 
-
   buscarCep(cep: string) {
     if (cep && cep.length === 8) {
       const headers = new HttpHeaders().set('Content-Type', 'application/json');

@@ -4,11 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DiasSemana } from '../exports/model/dias-semana';
 import { Horario } from '../exports/model/horario';
+import { NbToastrService } from '@nebular/theme';
 import { Disponibilidade } from '../exports/model/disponibilidade';
 
-import { Buffer } from 'buffer';
-
 import { ReactiveFormsModule } from '@angular/forms'; // Import the
+import { ServiceService } from '../exports/service/service.service';
 // import { documentoValidator } from '../exports/model/documentoValidator';
 @Component({
   selector: 'app-register-prestador',
@@ -25,6 +25,7 @@ export class RegisterPrestadorComponent implements OnInit {
   itens: any;
   infoprof: FormGroup;
   selecionado2: boolean = false;
+  formpass: FormGroup;
 
   disponibilidade: boolean[][] = [
     [false, false, false, false, false, false, false],
@@ -47,7 +48,7 @@ export class RegisterPrestadorComponent implements OnInit {
       cidade: '',
       uf: '',
       complemento: '',
-      bairro:''
+      bairro: '',
     },
     contato: {
       email: '',
@@ -55,9 +56,7 @@ export class RegisterPrestadorComponent implements OnInit {
     },
     disponibilidades: [],
     listadeservico: [],
-    usuario: {
-
-    }
+    usuario: {},
   };
 
   ngOnInit() {
@@ -80,7 +79,6 @@ export class RegisterPrestadorComponent implements OnInit {
     return !regex.test(value);
   }
 
-
   validaemail(value: string) {
     if (!value) {
       return true;
@@ -90,27 +88,35 @@ export class RegisterPrestadorComponent implements OnInit {
   }
   selectedCells: string[] = [];
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private toastrService: NbToastrService
+  ) {
     this.form = this.formBuilder.group({
       nomecompleto: ['', Validators.required],
-      cpf: ['', Validators.required, Validators.pattern(/^\d{11}$/)],
+      cpf: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
     });
     this.formreg2 = this.formBuilder.group({
       cep: ['', Validators.required],
       logradouro: ['', Validators.required],
-      numero: ['', Validators.required],
-      quadra: ['', Validators.required],
-      lote: ['', Validators.required],
+      numero: ['',],
+      quadra: ['',],
+      lote: [''],
       cidade: ['', Validators.required],
       uf: ['', Validators.required],
-      complemento: ['', Validators.required],
+      complemento: ['',],
+      bairro:['',Validators.required]
     });
     this.infoprof = this.formBuilder.group({
       servico: ['', Validators.required],
       inputservico: [''],
       selecionado: ['', Validators.required],
+    });
+    this.formpass = this.formBuilder.group({
+      password: ['', Validators.required],
     });
 
     this.cadastrar();
@@ -143,7 +149,7 @@ export class RegisterPrestadorComponent implements OnInit {
 
   cadastrar() {
     console.log(this.dadosPj);
-    this.dadosPj.usuario.username = this.dadosPj.contato.email
+    this.dadosPj.usuario.username = this.dadosPj.contato.email;
     this.preenchedisponibilidade();
     this.http
       .post('http://localhost:8080/prestador', this.dadosPj)
@@ -350,137 +356,56 @@ export class RegisterPrestadorComponent implements OnInit {
     }
   }
 
-  validateCPF(cpf: string): boolean {
-    cpf = cpf.trim();
-
-    if (
-      cpf.length !== 11 ||
-      cpf === '00000000000' ||
-      cpf === '11111111111' ||
-      cpf === '22222222222' ||
-      cpf === '33333333333' ||
-      cpf === '44444444444' ||
-      cpf === '55555555555' ||
-      cpf === '66666666666' ||
-      cpf === '77777777777' ||
-      cpf === '88888888888' ||
-      cpf === '99999999999'
-    ) {
-      return false;
+  verificarCPFPreenchido() {
+    const cpf = this.dadosPj.cpf;
+    if (cpf.length === 14) {
+      this.checacpf();
     }
-
-    let sum = 0;
-    let remainder;
-
-    for (let i = 1; i <= 9; i++) {
-      sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+  }
+  cpfValido: boolean = false;
+  checacpf() {
+    this.cpfValido = ServiceService.cnpj(this.dadosPj.cpf);
+    if (!this.cpfValido) {
+      this.toastrService.show('CNPJ inválido', 'ERRO', {
+        status: 'danger',
+        duration: 5000,
+      });
+      return;
     }
-
-    remainder = (sum * 10) % 11;
-
-    if (remainder === 10 || remainder === 11) {
-      remainder = 0;
-    }
-
-    if (remainder !== parseInt(cpf.substring(9, 10))) {
-      return false;
-    }
-
-    sum = 0;
-
-    for (let i = 1; i <= 10; i++) {
-      sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
-    }
-
-    remainder = (sum * 10) % 11;
-
-    if (remainder === 10 || remainder === 11) {
-      remainder = 0;
-    }
-
-    if (remainder !== parseInt(cpf.substring(10, 11))) {
-      return false;
-    }
-
-    return true;
   }
 
-  validateCNPJ(cnpj: string): boolean {
-    cnpj = cnpj.trim();
-
-    if (
-      cnpj.length !== 14 ||
-      cnpj === '00000000000000' ||
-      cnpj === '11111111111111' ||
-      cnpj === '22222222222222' ||
-      cnpj === '33333333333333' ||
-      cnpj === '44444444444444' ||
-      cnpj === '55555555555555' ||
-      cnpj === '66666666666666' ||
-      cnpj === '77777777777777' ||
-      cnpj === '88888888888888' ||
-      cnpj === '99999999999999'
-    ) {
-      return false;
+  verificarCEPPreenchido() {
+    const cep = this.dadosPj.endereco.cep;
+    if (cep.length === 8) {
+      this.buscarCep(this.dadosPj.endereco.cep);
     }
-
-    let size = cnpj.length - 2;
-    let numbers = cnpj.substring(0, size);
-    const digits = cnpj.substring(size);
-    let sum = 0;
-    let pos = size - 7;
-
-    for (let i = size; i >= 1; i--) {
-      sum += parseInt(numbers.charAt(size - i)) * pos--;
-      if (pos < 2) {
-        pos = 9;
-      }
-    }
-
-    let result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
-
-    if (result !== parseInt(digits.charAt(0))) {
-      return false;
-    }
-
-    size += 1;
-    numbers = cnpj.substring(0, size);
-    sum = 0;
-    pos = size - 7;
-
-    for (let i = size; i >= 1; i--) {
-      sum += parseInt(numbers.charAt(size - i)) * pos--;
-      if (pos < 2) {
-        pos = 9;
-      }
-    }
-
-    result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
-
-    if (result !== parseInt(digits.charAt(1))) {
-      return false;
-    }
-
-    return true;
   }
-
-
-
   buscarCep(cep: string) {
     if (cep && cep.length === 8) {
       const headers = new HttpHeaders().set('Content-Type', 'application/json');
       this.http
         .get(`https://viacep.com.br/ws/${cep}/json/`, { headers })
-        .subscribe((response: any) => {
-          this.formreg2.patchValue({
-            logradouro: response.logradouro,
-            cidade: response.localidade,
-            uf: response.uf,
-          });
-        });
+        .subscribe(
+          (response: any) => {
+            if (response.erro) {
+              this.toastrService.show('CEP inválido', 'ERRO', {
+                status: 'danger',
+                duration: 5000,
+              });
+            } else {
+              this.formreg2.patchValue({
+                logradouro: response.logradouro,
+                cidade: response.localidade,
+                uf: response.uf,
+                bairro: response.bairro,
+              });
+              console.log(response);
+            }
+          },
+          () => {
+            this.toastrService.show('Erro ao buscar CEP', 'ERRO');
+          }
+        );
     }
   }
-
-
-
 }

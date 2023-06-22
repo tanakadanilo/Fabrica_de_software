@@ -10,6 +10,8 @@ body {
 .label {
   margin-top: 10px;
   margin-bottom: 5px;
+  margin-right: 10px;
+  color:#222b45;
 }
 .labelcentral {
   display: flex;
@@ -237,6 +239,11 @@ td button.selected {
 ul {
   margin-top: 16px;
   list-style-type: none;
+}
+
+.step {
+  width: 80%;
+  margin: 0 auto;
 }
 
 ul li {
