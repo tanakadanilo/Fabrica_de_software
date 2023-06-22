@@ -14,7 +14,7 @@ public enum UF {
 	TO("Tocantins", "TO", "Palmas"), PI("Piauí", "PI", "Teresina"), SP("São Paulo", "SP", "São Paulo"),
 	RO("Rondônia", "RO", "Porto Velho"), RR("Roraima", "RR", "Boa Vista"),
 	PR("Paraná", "PR", "Curitiba"), CE("Ceará", "CE", "Fortaleza"), PE("Pernambuco", "PE", "Recife"),
-	SANTA_CATARINA("Santa Catarina", "SC", "Florianópolis"), PARAIBA("Paraíba", "PB", "João Pessoa"),
+	SC("Santa Catarina", "SC", "Florianópolis"), PARAIBA("Paraíba", "PB", "João Pessoa"),
 	RN("Rio Grande do Norte", "RN", "Natal"), ES("Espírito Santo", "ES", "Vitória"),
 	RJ("Rio de Janeiro", "RJ", "Rio de Janeiro"), SE("Sergipe", "SE", "Aracaju"),
 	DF("Distrito Federal", "DF", "Brasília");
