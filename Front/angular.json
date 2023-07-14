@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "front": {
+    "Front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -26,11 +26,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/@nebular/theme/styles/prebuilt/default.css",
-              "src/themes.scss"
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
           },
@@ -65,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "front:build:production"
+              "browserTarget": "Front:build:production"
             },
             "development": {
-              "browserTarget": "front:build:development"
+              "browserTarget": "Front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "front:build"
+            "browserTarget": "Front:build"
           }
         },
         "test": {
@@ -93,18 +90,13 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/@nebular/theme/styles/prebuilt.css"
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
           }
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "e76058f1-3066-4104-b812-9391467ffa2c"
   }
 }
