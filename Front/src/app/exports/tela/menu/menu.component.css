@@ -1,0 +1,14 @@
+.menu {
+  background-color: blue;
+  margin: 3em 0;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2em;
+}
+.item-menu {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
