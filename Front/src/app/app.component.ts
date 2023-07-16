@@ -9,6 +9,6 @@ export class AppComponent {
   title = 'Front';
 
   constructor(){
-    alert("print('hello World!')")
+    // alert("print('hello World!')")
   }
 }
