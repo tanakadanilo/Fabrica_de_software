@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Prestador } from '../interface/prestador';
 
 @Injectable({
   providedIn: 'root'
@@ -17,4 +18,23 @@ export class BaseServiceService {
   getServicos() {
     return this.get(this.URL_SERVICOS);
   }
+
+  getPrestadorVazio(): Prestador {
+
+    return {
+      id: 0,
+      nome: "",
+      contato: "",
+      cpf: "",
+      endereco: '',
+      foto: '',
+      servicosPrestados: '',
+      historicoServicosPrestados: '',
+      portfolio: '',
+      disponibilidades: '',
+      descricaoAdicional: '',
+      especializacao: ''
+    }
+  }
+
 }

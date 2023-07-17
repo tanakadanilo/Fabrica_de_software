@@ -4,3 +4,10 @@
 body {
     font-family: var(--font-family);
 }
+
+.item-lista{
+    text-align: center;
+    margin: 2em ;
+    display: block;
+}
+
