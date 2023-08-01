@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class MenuComponent {
 
+  constructor(private router: Router){}
 
   items = [
     {
@@ -28,7 +30,9 @@ export class MenuComponent {
 
   ];
 
-  mostrarPerfil(){}
+  mostrarPerfil(){
+   this.router.navigate(["/perfil"])
+  }
 
   desconectar(){}
 }
