@@ -1,16 +1,12 @@
-<span class="p-float-label">
-  <input pInputText id="username" [(ngModel)]="username" />
-  <label htmlFor="username">Username</label>
-</span>
+<div class="main"><span class="p-float-label">
+    <input pInputText id="username" [(ngModel)]="username" />
+    <label htmlFor="username">Username</label>
+  </span>
 
-<span class="p-float-label">
-  <p-password [(ngModel)]="password" [toggleMask]="true"></p-password>
-  <label htmlFor="password">password</label>
-</span>
-<button
-  (click)="entrar()"
-  pButton
-  pRipple
-  label="Entrar"
-  class="p-button-success"
-></button>
+  <span class="p-float-label">
+    <p-password [(ngModel)]="password" [toggleMask]="true"></p-password>
+    <label htmlFor="password">password</label>
+  </span>
+  <button (click)="entrar()" pButton pRipple label="Entrar" class="p-button-success"></button>
+  <button (click)="cadastrar()" pButton pRipple label="Cadastrar" class="p-button-success"></button>
+</div>

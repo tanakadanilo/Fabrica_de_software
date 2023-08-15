@@ -10,7 +10,7 @@ import { DividerModule } from 'primeng/divider';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
-
+import { DropdownModule } from 'primeng/dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -21,6 +21,7 @@ import { MenuComponent } from './exports/tela/menu/menu.component';
 import { PerfilComponent } from './tela/perfil/perfil.component';
 import { LoginComponent } from './tela/login/login.component';
 import { MessageService } from 'primeng/api';
+import { CadastroComponent } from './tela/cadastro/cadastro.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { MessageService } from 'primeng/api';
     MenuComponent,
     PerfilComponent,
     LoginComponent,
+    CadastroComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { MessageService } from 'primeng/api';
     InputTextModule,
     InputTextareaModule,
     PasswordModule,
-    ToastModule
+    ToastModule,
+    DropdownModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

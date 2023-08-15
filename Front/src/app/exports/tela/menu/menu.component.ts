@@ -35,4 +35,12 @@ export class MenuComponent {
   }
 
   desconectar(){}
+
+  mostrarServicos(){
+    this.router.navigate(["/"]);
+  }
+  
+mostrarLogin(){
+    this.router.navigate(["/login"]);
+  }
 }

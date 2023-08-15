@@ -18,6 +18,7 @@ import com.devnari.contrataai.model.Contratante;
 import com.devnari.contrataai.model.Prestador;
 import com.devnari.contrataai.model.Servico;
 import com.devnari.contrataai.model.ServicoPrestado;
+import com.devnari.contrataai.model.Usuario;
 import com.devnari.contrataai.model.auxiliares.Contato;
 import com.devnari.contrataai.model.auxiliares.Disponibilidade;
 import com.devnari.contrataai.model.auxiliares.Endereco;
@@ -112,7 +113,14 @@ public class PreencheBanco {
 				sp.setServico(s);
 				sp = servicoPrestadoService.salvar(sp);
 
+				Usuario usuario = new Usuario();
+				usuario.setLogin("login" + i);
+				usuario.setPassword("senha" + i);
+				usuario.setUsername("username" + i);
+				usuario.setPrestador(true);
+				
 				Prestador p = new Prestador();
+				p.setUsuario(usuario);
 				p.setContato(c);
 				p.setCpf("" + p.hashCode());
 				p.setDescricaoAdicional("Descrição " + i);
@@ -128,7 +136,13 @@ public class PreencheBanco {
 				p = prestadorService.salvar(p);
 
 				sp.setPrestador(p);
-
+				
+				Usuario usuario2 = new Usuario();
+				usuario2.setLogin("login" + i);
+				usuario2.setPassword("senha" + i);
+				usuario2.setUsername("username" + i);
+				usuario2.setPrestador(false);
+				
 				Contratante contratante = new Contratante();
 				contratante.setContato(c);
 				contratante.setCpf("" + contratante.hashCode());

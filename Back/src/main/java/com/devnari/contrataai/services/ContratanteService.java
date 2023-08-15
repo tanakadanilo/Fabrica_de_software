@@ -66,9 +66,9 @@ public class ContratanteService {
 		if (persistencia.findByCpfEquals(contratante.getCpf()) != null) {
 			throw new Exception("CPF Já Cadastrado no Sistema");
 		}
-		contratante.setId(null);
-		contratante.getUsuario().setPassword(passwordEncoder.encode(contratante.getUsuario().getPassword()));
-		userDao.save(contratante.getUsuario());
+//		contratante.setId(null);
+//		contratante.getUsuario().setPassword(passwordEncoder.encode(contratante.getUsuario().getPassword()));
+//		userDao.save(contratante.getUsuario());
 		return persistencia.save(contratante);
 	}
 

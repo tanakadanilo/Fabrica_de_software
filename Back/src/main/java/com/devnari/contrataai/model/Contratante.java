@@ -47,6 +47,6 @@ public class Contratante {
 
 	// * opcional
 	private String foto;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Usuario usuario;
 }

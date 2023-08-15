@@ -1,10 +1,13 @@
+import { Contato } from "./contato";
+import { Endereco } from "./endereco";
+
 export interface Prestador {
 
     id: number;
     nome: string;
-    contato: string;
+    contato: Contato;
     cpf: string;
-    endereco: string;
+    endereco: Endereco;
     foto: string;
     servicosPrestados: string;
     historicoServicosPrestados: string;

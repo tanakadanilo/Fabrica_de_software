@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
 
 @Component({
@@ -10,7 +11,10 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private service: BaseServiceService) {}
+  constructor(private service: BaseServiceService,private router: Router) {}
+  cadastrar(){
+    this.router.navigate(["/cadastrar"]);
+  }
   entrar() {
     this.service.toast('senha errada');
 

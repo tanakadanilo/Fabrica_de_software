@@ -66,7 +66,7 @@ public class Prestador {
 
 	private String especializacao;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Usuario usuario;
 
 }

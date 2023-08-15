@@ -71,8 +71,8 @@ public class PrestadorService {
 		if (prestador == null) {
 			throw new Exception("Prestador Não Informado!");
 		}
-		prestador.getUsuario().setPassword(passwordEncoder.encode(prestador.getUsuario().getPassword()));
-		userDao.save(prestador.getUsuario());
+//		prestador.getUsuario().setPassword(passwordEncoder.encode(prestador.getUsuario().getPassword()));
+//		userDao.save(prestador.getUsuario());
 		return persistencia.save(prestador);
 	}
 
