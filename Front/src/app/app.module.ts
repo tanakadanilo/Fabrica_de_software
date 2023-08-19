@@ -13,6 +13,9 @@ import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PaginatorModule } from 'primeng/paginator';
+import { DialogModule } from 'primeng/dialog';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './tela/main/main.component';
@@ -50,6 +53,8 @@ import { CadastroPrestadorComponent } from './tela/cadastro-prestador/cadastro-p
     PasswordModule,
     ToastModule,
     DropdownModule,
+    PaginatorModule,
+    DialogModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

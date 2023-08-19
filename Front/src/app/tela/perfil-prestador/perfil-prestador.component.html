@@ -1,86 +1,107 @@
-<div class="body container">
-  <div class="servicos col-md-6">
-    <h1>Serviços</h1>
-    <div class="servico row mt-2" *ngFor="let servico of servicos">
-      <div>
-        <label htmlFor="area" class="col-md-2">Área:</label>
-        <input pInputText class="col-md-10" id="area" [(ngModel)]="servico.area" />
+<div class="body">
+  <img src="{{ prestador.foto }}" alt="Imagem de Perfil" />
+  <div class="container">
+    <div class="informacoes-pessoais">
+      <div class="row">
+        <h1>Informações Pessoais</h1>
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="cpf" class="col-md-3">CPF:</label>
+          <input pInputText class="col-md-9" id="area" [(ngModel)]="prestador.cpf" />
+        </div>
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="nome" class="col-md-3">Nome:</label>
+          <input pInputText class="col-md-9" id="nome" [(ngModel)]="prestador.nome" />
+        </div>
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="telefone" class="col-md-3">Telefone:</label>
+          <input pInputText class="col-md-9" id="telefone" [(ngModel)]="prestador.contato.telefone" />
+        </div>
       </div>
-      <div>
-        <label htmlFor="area" class="col-md-2">Descricao:</label>
-        <input pInputText class="col-md-10" id="area" [(ngModel)]="servico.descricao" />
+    </div>
+    <div class="contato">
+      <div class="row">
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="email" class="col-md-3">Email:</label>
+          <input pInputText class="col-md-9" id="email" [(ngModel)]="prestador.contato.email" />
+        </div>
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="contato" class="col-md-3">Contato:</label>
+          <input pInputText class="col-md-9" id="contato" [(ngModel)]="prestador.contato.contato" />
+        </div>
       </div>
-      <div>
-        <label htmlFor="area" class="col-md-2">Especialidade:</label>
-        <input pInputText class="col-md-10" id="area" [(ngModel)]="servico.especialidade" />
-        <p-divider class="p-divider-solid"></p-divider>
+    </div>
+    <div class="endereco mt-5">
+      <div class="row">
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="cep" class="col-md-3">CEP:</label>
+          <input pInputText class="col-md-9" id="cep" [(ngModel)]="prestador.endereco.cep" />
+        </div>
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="logradouro" class="col-md-3">Logradouro:</label>
+          <input pInputText class="col-md-9" id="logradouro" [(ngModel)]="prestador.endereco.logradouro" />
+        </div>
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="numero" class="col-md-3">Número:</label>
+          <input pInputText class="col-md-9" id="numero" [(ngModel)]="prestador.endereco.numero" />
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="cidade" class="col-md-3">Cidade:</label>
+          <input pInputText class="col-md-9" id="cidade" [(ngModel)]="prestador.endereco.cidade" />
+        </div>
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="quadra" class="col-md-3">Quadra:</label>
+          <input pInputText class="col-md-9" id="quadra" [(ngModel)]="prestador.endereco.quadra" />
+        </div>
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="lote" class="col-md-3">Lote:</label>
+          <input pInputText class="col-md-9" id="lote" [(ngModel)]="prestador.endereco.lote" />
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="especializacao" class="col-md-3">Especializacao:</label>
+          <input pInputText class="col-md-9" id="especializacao" [(ngModel)]="prestador.especializacao" />
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col-md-4 mt-3">
+          <label htmlFor="descricaoAdicional" class="col-md-3">Descricao Adicional:</label>
+          <textarea pInputTextarea class="col-md-9" id="descricaoAdicional" [(ngModel)]="prestador.descricaoAdicional">
+          </textarea>
+        </div>
+      </div>
+      <div class="row">
+        <p-button (click)="showDialog()" class="mt-3" icon="pi pi-file-edit" label="Editar Serviços"></p-button>
       </div>
     </div>
   </div>
-
-  <div class="informacoes-pessoais col-md-5">
-    <h1>Informações Pessoais</h1>
-    <img src="{{ prestador.foto }}" alt="Imagem de Perfil" />
-    <div>
-      <div class="input-group">
-        <label htmlFor="cpf" class="col-md-2">CPF:</label>
-        <input pInputText class="col-md-10" id="area" [(ngModel)]="prestador.cpf" />
-      </div>
-      <div class="input-group">
-        <label htmlFor="nome" class="col-md-2">Nome:</label>
-        <input pInputText class="col-md-10" id="nome" [(ngModel)]="prestador.nome" />
-      </div>
-      <div class="contato">
-        <div class="input-group">
-          <label htmlFor="telefone" class="col-md-2">Telefone:</label>
-          <input pInputText class="col-md-10" id="telefone" [(ngModel)]="prestador.contato.telefone" />
-        </div>
-        <div class="input-group">
-          <label htmlFor="email" class="col-md-2">Email:</label>
-          <input pInputText class="col-md-10" id="email" [(ngModel)]="prestador.contato.email" />
-        </div>
-        <div class="input-group">
-          <label htmlFor="contato" class="col-md-2">Contato:</label>
-          <input pInputText class="col-md-10" id="contato" [(ngModel)]="prestador.contato.contato" />
+  <p-dialog header="Serviços" [(visible)]="mostrarDialog" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
+    [resizable]="false">
+    <div class="container">
+      <div class="servicos">
+        <h1>Serviços</h1>
+        <div class="row">
+          <div class="servico col-md-6 mt-5" *ngFor="let servico of servicosPagina">
+            <div>
+              <label htmlFor="area" class="col-md-4">Área:</label>
+              <input pInputText class="col-md-8" id="area" [(ngModel)]="servico.area" />
+            </div>
+            <div>
+              <label htmlFor="area" class="col-md-4">Descricao:</label>
+              <input pInputText class="col-md-8" id="area" [(ngModel)]="servico.descricao" />
+            </div>
+            <div>
+              <label htmlFor="area" class="col-md-4">Especialidade:</label>
+              <input pInputText class="col-md-8" id="area" [(ngModel)]="servico.especialidade" />
+            </div>
+            <p-button label="Editar" icon="pi pi-file-edit" styleClass="p-button-success"></p-button>
+          </div>
         </div>
       </div>
+      <p-paginator (onPageChange)="mudarPagina($event)" [first]="0" [rows]="5" [totalRecords]="120"
+        [rowsPerPageOptions]="[5, 10, 15]"></p-paginator>
     </div>
-    <div class="endereco">
-      <div class="input-group">
-        <label htmlFor="cep" class="col-md-2">CEP:</label>
-        <input pInputText class="col-md-10" id="cep" [(ngModel)]="prestador.endereco.cep" />
-      </div>
-      <div class="input-group">
-        <label htmlFor="logradouro" class="col-md-2">Logradouro:</label>
-        <input pInputText class="col-md-10" id="logradouro" [(ngModel)]="prestador.endereco.logradouro" />
-      </div>
-      <div class="input-group">
-        <label htmlFor="numero" class="col-md-2">Número:</label>
-        <input pInputText class="col-md-10" id="numero" [(ngModel)]="prestador.endereco.numero" />
-      </div>
-      <div class="input-group">
-        <label htmlFor="cidade" class="col-md-2">Cidade:</label>
-        <input pInputText class="col-md-10" id="cidade" [(ngModel)]="prestador.endereco.cidade" />
-      </div>
-      <div class="input-group">
-        <label htmlFor="quadra" class="col-md-2">Quadra:</label>
-        <input pInputText class="col-md-10" id="quadra" [(ngModel)]="prestador.endereco.quadra" />
-      </div>
-      <div class="input-group">
-        <label htmlFor="lote" class="col-md-2">Lote:</label>
-        <input pInputText class="col-md-10" id="lote" [(ngModel)]="prestador.endereco.lote" />
-      </div>
-
-      <div class="input-group">
-        <label htmlFor="especializacao" class="col-md-2">Especializacao:</label>
-        <input pInputText class="col-md-10" id="especializacao" [(ngModel)]="prestador.especializacao" />
-      </div>
-      <div class="input-group">
-        <label htmlFor="descricaoAdicional" class="col-md-2">Descricao Adicional:</label>
-        <textarea pInputTextarea class="col-md-10" id="descricaoAdicional" [(ngModel)]="prestador.descricaoAdicional">
-        </textarea>
-      </div>
-
-    </div>
-  </div>
+  </p-dialog>
 </div>
