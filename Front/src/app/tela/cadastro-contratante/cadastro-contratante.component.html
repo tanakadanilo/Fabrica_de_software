@@ -1,77 +1,88 @@
 <div class="body container">
 
-    <p-dropdown [options]="ufs" [(ngModel)]="contratante.endereco.uf" optionLabel=""></p-dropdown>
-    <div class="informacoes-pessoais col-md-5">
+    <div class="informacoes-pessoais">
+        <img  src="../../../assets/images/images.jpeg" alt="Imagem de Perfil" />
         <h1>Informações Pessoais</h1>
-        <img src="{{ contratante.foto }}" alt="Imagem de Perfil" />
-        <div>
-            <div class="input-group">
-                <label htmlFor="area" class="col-md-2">CPF:</label>
-                <input pInputText class="col-md-10" id="area" [(ngModel)]="contratante.cpf" />
+        <div class="row">
+            <div class="col-md-4 mt-3">
+                <label htmlFor="area" class="col-md-3">CPF:</label>
+                <input pInputText class="col-md-9" id="area" [(ngModel)]="contratante.cpf" />
             </div>
-            <div class="input-group">
-                <label htmlFor="nome" class="col-md-2">Nome:</label>
-                <input pInputText class="col-md-10" id="nome" [(ngModel)]="contratante.nome" />
+            <div class="col-md-4 mt-3">
+                <label htmlFor="nome" class="col-md-3">Nome:</label>
+                <input pInputText class="col-md-9" id="nome" [(ngModel)]="contratante.nome" />
             </div>
-            <div class="input-group">
-                <label htmlFor="telefone" class="col-md-2">Telefone:</label>
-                <input pInputText class="col-md-10" id="telefone" [(ngModel)]="contratante.contato.telefone" />
-            </div>
-            <div class="input-group">
-                <label htmlFor="email" class="col-md-2">Email:</label>
-                <input pInputText class="col-md-10" id="email" [(ngModel)]="contratante.contato.email" />
-            </div>
-            <div class="contato">
-                <div class="input-group">
-                    <label htmlFor="telefone" class="col-md-2">Telefone:</label>
-                    <input pInputText class="col-md-10" id="telefone" [(ngModel)]="contratante.contato.telefone" />
-                </div>
-                <div class="input-group">
-                    <label htmlFor="email" class="col-md-2">Email:</label>
-                    <input pInputText class="col-md-10" id="email" [(ngModel)]="contratante.contato.email" />
-                </div>
-                <div class="input-group">
-                    <label htmlFor="contato" class="col-md-2">Contato:</label>
-                    <input pInputText class="col-md-10" id="contato" [(ngModel)]="contratante.contato.contato" />
-                </div>
-                <div class="endereco">
-                    <div class="input-group">
-                        <label htmlFor="cep" class="col-md-2">CEP:</label>
-                        <input pInputText class="col-md-10" id="cep" [(ngModel)]="contratante.endereco.cep" />
-                    </div>
-                    <div class="input-group">
-                        <label htmlFor="logradouro" class="col-md-2">Logradouro:</label>
-                        <input pInputText class="col-md-10" id="logradouro"
-                            [(ngModel)]="contratante.endereco.logradouro" />
-                    </div>
-                    <div class="input-group">
-                        <label htmlFor="numero" class="col-md-2">Número:</label>
-                        <input pInputText class="col-md-10" id="numero" [(ngModel)]="contratante.endereco.numero" />
-                    </div>
-                    <div class="input-group">
-                        <label htmlFor="cidade" class="col-md-2">Cidade:</label>
-                        <input pInputText class="col-md-10" id="cidade" [(ngModel)]="contratante.endereco.cidade" />
-                    </div>
-                    <div class="input-group">
-                        <label htmlFor="quadra" class="col-md-2">Quadra:</label>
-                        <input pInputText class="col-md-10" id="quadra" [(ngModel)]="contratante.endereco.quadra" />
-                    </div>
-                    <div class="input-group">
-                        <label htmlFor="lote" class="col-md-2">Lote:</label>
-                        <input pInputText class="col-md-10" id="lote" [(ngModel)]="contratante.endereco.lote" />
-                    </div>
 
-                    <div class="input-group">
-                        <label htmlFor="bairro" class="col-md-2">Bairro:</label>
-                        <input pInputText class="col-md-10" id="bairro" [(ngModel)]="contratante.endereco.bairro" />
-                    </div>
-                    <div class="input-group">
-                        <label htmlFor="complemento" class="col-md-2">Complemento:</label>
-                        <input pInputText class="col-md-10" id="complemento"
-                            [(ngModel)]="contratante.endereco.complemento" />
-                    </div>
-
-                </div>
+            <div class="col-md-4 mt-3">
+                <label htmlFor="email" class="col-md-3">Email:</label>
+                <input pInputText class="col-md-9" id="email" [(ngModel)]="contratante.contato.email" />
             </div>
         </div>
     </div>
+    <div class="contato">
+        <div class="row">
+            <div class="col-md-4 mt-3">
+                <label htmlFor="telefone" class="col-md-3">Telefone:</label>
+                <input pInputText class="col-md-9" id="telefone" [(ngModel)]="contratante.contato.telefone" />
+            </div>
+            <div class="col-md-4 mt-3">
+                <label htmlFor="email" class="col-md-3">Email:</label>
+                <input pInputText class="col-md-9" id="email" [(ngModel)]="contratante.contato.email" />
+            </div>
+            <div class="col-md-4 mt-3">
+                <label htmlFor="contato" class="col-md-3">Contato:</label>
+                <input pInputText class="col-md-9" id="contato" [(ngModel)]="contratante.contato.contato" />
+            </div>
+        </div>
+        <div class="endereco mt-5">
+            <div class="row">
+                <div class="col-md-4 mt-3">
+                    <label htmlFor="uf" class="col-md-3">Estado:</label>
+                    <p-dropdown [options]="ufs" [(ngModel)]="contratante.endereco.uf" optionLabel="" id="uf"
+                        [style]="{'width':'75%'}"></p-dropdown>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <label htmlFor="cep" class="col-md-3">CEP:</label>
+                    <input pInputText class="col-md-9" id="cep" [(ngModel)]="contratante.endereco.cep" />
+                </div>
+                <div class="col-md-4 mt-3">
+                    <label htmlFor="logradouro" class="col-md-3">Logradouro:</label>
+                    <input pInputText class="col-md-9" id="logradouro" [(ngModel)]="contratante.endereco.logradouro" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mt-3">
+                    <label htmlFor="numero" class="col-md-3">Número:</label>
+                    <input pInputText class="col-md-9" id="numero" [(ngModel)]="contratante.endereco.numero" />
+                </div>
+                <div class="col-md-4 mt-3">
+                    <label htmlFor="cidade" class="col-md-3">Cidade:</label>
+                    <input pInputText class="col-md-9" id="cidade" [(ngModel)]="contratante.endereco.cidade" />
+                </div>
+                <div class="col-md-4 mt-3">
+                    <label htmlFor="quadra" class="col-md-3">Quadra:</label>
+                    <input pInputText class="col-md-9" id="quadra" [(ngModel)]="contratante.endereco.quadra" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mt-3">
+                    <label htmlFor="lote" class="col-md-3">Lote:</label>
+                    <input pInputText class="col-md-9" id="lote" [(ngModel)]="contratante.endereco.lote" />
+                </div>
+
+                <div class="col-md-4 mt-3">
+                    <label htmlFor="bairro" class="col-md-3">Bairro:</label>
+                    <input pInputText class="col-md-9" id="bairro" [(ngModel)]="contratante.endereco.bairro" />
+                </div>
+                <div class="col-md-4 mt-3">
+                    <label htmlFor="complemento" class="col-md-3">Complemento:</label>
+                    <input pInputText class="col-md-9" id="complemento"
+                        [(ngModel)]="contratante.endereco.complemento" />
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-5">
+            <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-success"></button>
+        </div>
+    </div>
+</div>
