@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PerfilComponent } from './tela/perfil/perfil.component';
+import { PerfilComponent } from './tela/perfil-prestador/perfil.component';
 import { MainComponent } from './tela/main/main.component';
 import { LoginComponent } from './tela/login/login.component';
-import { CadastroComponent } from './tela/cadastro/cadastro.component';
+import { CadastroComponent } from './tela/cadastro-contratante/cadastro-contratante.component';
 
 const routes: Routes = [
   { path: 'perfil', component: PerfilComponent },

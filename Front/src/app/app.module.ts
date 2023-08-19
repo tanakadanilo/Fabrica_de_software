@@ -21,7 +21,9 @@ import { MenuComponent } from './exports/tela/menu/menu.component';
 import { PerfilComponent } from './tela/perfil/perfil.component';
 import { LoginComponent } from './tela/login/login.component';
 import { MessageService } from 'primeng/api';
-import { CadastroComponent } from './tela/cadastro/cadastro.component';
+import { CadastroComponent } from './tela/cadastro-contratante/cadastro-contratante.component';
+import { CadastroPrestadorComponent } from './cadastro-prestador/cadastro-prestador.component';
+import { PerfilContratanteComponent } from './tela/perfil-contratante/perfil-contratante.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,9 @@ import { CadastroComponent } from './tela/cadastro/cadastro.component';
     MenuComponent,
     PerfilComponent,
     LoginComponent,
-    CadastroComponent,
+  CadastroComponent,
+  CadastroPrestadorComponent,
+  PerfilContratanteComponent,
   ],
   imports: [
     BrowserModule,

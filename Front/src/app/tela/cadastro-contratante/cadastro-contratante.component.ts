@@ -7,8 +7,8 @@ import { BaseServiceService } from 'src/app/exports/service/base-service.service
 
 @Component({
   selector: 'app-cadastro',
-  templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.css']
+  templateUrl: './cadastro-contratante.component.html',
+  styleUrls: ['./cadastro-contratante.component.css']
 })
 export class CadastroComponent {
   contratante! : Contratante;
@@ -20,8 +20,8 @@ export class CadastroComponent {
     this.contratante = service.getContratanteVazio();
   service.getContratante(2).subscribe({
       next: (a: any) => {
-        
-        if (a.erros?.length > 0) {          
+
+        if (a.erros?.length > 0) {
           this.service.toast("erro");
 
         } else {
