@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { CarouselModule } from 'primeng/carousel';
@@ -14,26 +14,25 @@ import { DropdownModule } from 'primeng/dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './tela/main/main.component';
 import { MenuComponent } from './exports/tela/menu/menu.component';
-import { PerfilComponent } from './tela/perfil/perfil.component';
+import { PerfilPrestadorComponent } from './tela/perfil-prestador/perfil-prestador.component';
 import { LoginComponent } from './tela/login/login.component';
 import { MessageService } from 'primeng/api';
 import { CadastroComponent } from './tela/cadastro-contratante/cadastro-contratante.component';
-import { CadastroPrestadorComponent } from './cadastro-prestador/cadastro-prestador.component';
 import { PerfilContratanteComponent } from './tela/perfil-contratante/perfil-contratante.component';
+import { CadastroPrestadorComponent } from './tela/cadastro-prestador/cadastro-prestador.component';
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     MenuComponent,
-    PerfilComponent,
+    PerfilPrestadorComponent,
     LoginComponent,
-  CadastroComponent,
-  CadastroPrestadorComponent,
-  PerfilContratanteComponent,
+    CadastroComponent,
+    CadastroPrestadorComponent,
+    PerfilContratanteComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,9 +49,9 @@ import { PerfilContratanteComponent } from './tela/perfil-contratante/perfil-con
     InputTextareaModule,
     PasswordModule,
     ToastModule,
-    DropdownModule
+    DropdownModule,
   ],
   providers: [MessageService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
