@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Servico } from 'src/app/exports/interface/servico';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
 import { Prestador } from 'src/app/exports/interface/prestador';
+import { ActivatedRoute } from '@angular/router';
 
 interface PageEvent {
   first: number;
@@ -20,8 +21,8 @@ export class PerfilPrestadorComponent {
   servicosPagina: any;
   mostrarDialog: boolean = false;
 
-  constructor(private servico: BaseServiceService) {
-    servico.getPrestador(2).subscribe({
+  constructor(private servico: BaseServiceService, private route: ActivatedRoute) {
+    servico.getPrestador(parseInt(route.snapshot.paramMap.get('id')!)).subscribe({
       next: (a: any) => {
         if (a.erros?.lenght > 0) {
         } else {

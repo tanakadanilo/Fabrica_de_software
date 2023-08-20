@@ -39,6 +39,14 @@ export class BaseServiceService {
   getContratante(id: number) {
     return this.get(this.URL_CONTRATANTE + "/" + id);
   }
+  getServico(id: number) {
+    return this.get(this.URL_SERVICOS + "/" + id);
+  }
+  getServicoPrestado(id: number) {
+    console.log(this.URL_SERVICOS + "prestado/" + id);
+    
+    return this.get(this.URL_SERVICOS + "prestado/" + id);
+  }
 
   getContatoVazio() {
     return {

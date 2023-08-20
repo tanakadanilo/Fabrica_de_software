@@ -7,7 +7,7 @@
       </p-carousel>
     <div class="servicos">
         <div class="linha" *ngFor="let servicos of servicosDivididos" style="display: flex">
-            <div class="item mt-5 col-md-4 p-button" *ngFor="let servico of servicos" style="display: block;margin: 2em;">
+            <div class="item mt-5 col-md-4 p-button" *ngFor="let servico of servicos" style="display: block;margin: 2em;" (click)="contratar(servico)">
                 <p>{{servico.area}}</p>
                 <p>{{servico.descricao}}</p>
                 <p>{{servico.especialidade}}</p>

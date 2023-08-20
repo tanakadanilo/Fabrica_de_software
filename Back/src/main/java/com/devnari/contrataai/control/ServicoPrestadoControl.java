@@ -44,6 +44,7 @@ public class ServicoPrestadoControl {
 		try {
 			Long idLong = StringUtil.converterStringParaLong(id);
 			ServicoPrestado servicoPrestado = service.buscarPorId(idLong);
+			servicoPrestado.getPrestador().setServicosPrestados(null);
 			response.setData(servicoPrestado);
 		} catch (Exception e) {
 			e.printStackTrace();

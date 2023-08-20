@@ -26,6 +26,7 @@ import { MessageService } from 'primeng/api';
 import { CadastroComponent } from './tela/cadastro-contratante/cadastro-contratante.component';
 import { PerfilContratanteComponent } from './tela/perfil-contratante/perfil-contratante.component';
 import { CadastroPrestadorComponent } from './tela/cadastro-prestador/cadastro-prestador.component';
+import { ContratarComponent } from './tela/contratar/contratar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { CadastroPrestadorComponent } from './tela/cadastro-prestador/cadastro-p
     CadastroComponent,
     CadastroPrestadorComponent,
     PerfilContratanteComponent,
+    ContratarComponent,
   ],
   imports: [
     BrowserModule,
