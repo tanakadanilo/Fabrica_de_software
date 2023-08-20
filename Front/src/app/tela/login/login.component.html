@@ -8,7 +8,7 @@
     </span>
 
     <span class="p-float-label label senha" >
-      <p-password [(ngModel)]="password" [toggleMask]="true" ></p-password>
+      <p-password [(ngModel)]="password" [toggleMask]="true" [feedback]="false" ></p-password>
       <label htmlFor="password">password</label>
     </span>
     <button (click)="entrar()" pButton pRipple label="Entrar" class="p-button-success"></button>
