@@ -7,11 +7,19 @@ import { CadastroComponent } from './tela/cadastro-contratante/cadastro-contrata
 import { CadastroPrestadorComponent } from './tela/cadastro-prestador/cadastro-prestador.component';
 import { BaseResolver } from './exports/resolver/base-resolver';
 import { ContratarComponent } from './tela/contratar/contratar.component';
+import { PerfilContratanteComponent } from './tela/perfil-contratante/perfil-contratante.component';
 
 const routes: Routes = [
   {
     path: 'perfil/:id',
     component: PerfilPrestadorComponent,
+    resolve: {
+      id: BaseResolver,
+    },
+  },
+  {
+    path: 'perfilu/:id',
+    component: PerfilContratanteComponent,
     resolve: {
       id: BaseResolver,
     },
@@ -27,8 +35,11 @@ const routes: Routes = [
       id: BaseResolver,
     },
   },
-  { path: 'cadastrarp', component: CadastroPrestadorComponent, pathMatch: 'full' },
-
+  {
+    path: 'cadastrarp',
+    component: CadastroPrestadorComponent,
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
