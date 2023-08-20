@@ -1,11 +1,11 @@
 <div class="menu">
-    <button class="aaa" (click)="mostrarServicos()">
-        <img src="../../../../assets/images/geo_200.png" alt="HomePage">
-    </button>  
+  <a [routerLink]="['']"> <img src="../../../../assets/images/geo_200.png" alt="HomePage" alt="logo" /> </a>
+
+
     <div class="item-menu">
-        <p-button  (click)="mostrarLogin()">Login</p-button>
+        <button pButton type="button" (click)="mostrarLogin()" icon="pi pi-user" label="Login"></button>
     </div>
     <p-menu #menu [model]="items" [popup]="true"></p-menu>
-    <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-bars" label="Perfil"></button>
+    <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-user" label="Perfil"></button>
 </div>
 

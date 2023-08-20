@@ -4,13 +4,22 @@ import { PerfilPrestadorComponent } from './tela/perfil-prestador/perfil-prestad
 import { MainComponent } from './tela/main/main.component';
 import { LoginComponent } from './tela/login/login.component';
 import { CadastroComponent } from './tela/cadastro-contratante/cadastro-contratante.component';
-import { ContratarComponent } from './tela/contratar/contratar.component';
+import { CadastroPrestadorComponent } from './tela/cadastro-prestador/cadastro-prestador.component';
 import { BaseResolver } from './exports/resolver/base-resolver';
+import { ContratarComponent } from './tela/contratar/contratar.component';
+import { PerfilContratanteComponent } from './tela/perfil-contratante/perfil-contratante.component';
 
 const routes: Routes = [
   {
     path: 'perfil/:id',
     component: PerfilPrestadorComponent,
+    resolve: {
+      id: BaseResolver,
+    },
+  },
+  {
+    path: 'perfilu/:id',
+    component: PerfilContratanteComponent,
     resolve: {
       id: BaseResolver,
     },
@@ -25,6 +34,11 @@ const routes: Routes = [
     resolve: {
       id: BaseResolver,
     },
+  },
+  {
+    path: 'cadastrarp',
+    component: CadastroPrestadorComponent,
+    pathMatch: 'full',
   },
 ];
 

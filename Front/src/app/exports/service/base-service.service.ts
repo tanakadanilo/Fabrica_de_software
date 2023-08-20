@@ -75,7 +75,7 @@ export class BaseServiceService {
       id: 0,
       nome: "",
       contato: contato,
-      cpf: "",
+      cpfCnpj: "",
       endereco: endereco,
       foto: '',
     }
@@ -88,7 +88,7 @@ export class BaseServiceService {
       id: 0,
       nome: "",
       contato: contato,
-      cpf: "",
+      cpfCnpj: "",
       endereco: endereco,
       foto: '',
       servicosPrestados: '',
