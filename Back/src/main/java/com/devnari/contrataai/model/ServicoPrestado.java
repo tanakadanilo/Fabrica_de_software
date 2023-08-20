@@ -1,7 +1,5 @@
 package com.devnari.contrataai.model;
 
-import org.springframework.data.annotation.Transient;
-
 import com.devnari.contrataai.model.auxiliares.Experiencia;
 
 import jakarta.persistence.CascadeType;
@@ -32,9 +30,7 @@ public class ServicoPrestado {
 	@Getter(value = AccessLevel.NONE)
 	private Experiencia experiencia;
 
-	@Transient
 	@ManyToOne
-	@Getter(value = AccessLevel.NONE)
 	private Prestador prestador;
 
 }

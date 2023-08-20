@@ -1,13 +1,11 @@
 <div class="menu">
-    <div class="item-menu">
-        <button pButton type="button" (click)="mostrarServicos()" icon="pi pi-bars" label="Serviços"></button>
-    </div>
-    <div class="item-menu">
-        <button pButton type="button" icon="pi pi-bars" label="Sobre Mim"></button>
-    </div>
+    <button class="aaa" (click)="mostrarServicos()">
+        <img src="../../../../assets/images/geo_200.png" alt="HomePage">
+    </button>  
     <div class="item-menu">
         <button pButton type="button" (click)="mostrarLogin()" icon="pi pi-bars" label="Login"></button>
     </div>
     <p-menu #menu [model]="items" [popup]="true"></p-menu>
     <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-bars" label="Perfil"></button>
 </div>
+

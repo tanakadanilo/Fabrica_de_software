@@ -31,7 +31,7 @@ export class MenuComponent {
   ];
 
   mostrarPerfil(){
-   this.router.navigate(["/perfil"])
+   this.router.navigate(["/perfil/2"])
   }
 
   desconectar(){}

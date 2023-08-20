@@ -50,6 +50,7 @@ public class PrestadorControl {
 		try {
 			Long idLong = StringUtil.converterStringParaLong(id);
 			Prestador prestador = service.buscarPorId(idLong);
+			prestador.getServicosPrestados().forEach(a ->a.setPrestador(null));
 			response.setData(prestador);
 		} catch (Exception e) {
 			e.printStackTrace();

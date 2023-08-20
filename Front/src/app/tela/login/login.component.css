@@ -1,0 +1,17 @@
+.main {
+width:  100%;
+align-items: center;
+display: flex;
+}
+
+.box-login {
+    display: inline-block;
+    padding: 20px 20px 20px 20px;
+    align-items: center;
+    margin: 0 auto;
+    
+}
+
+.p-float-label {
+    margin-bottom: 20px;
+}

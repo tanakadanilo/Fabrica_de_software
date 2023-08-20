@@ -12,6 +12,19 @@
   align-items: center;
   margin: 0 auto;  
 }
-.p-button {
-  font-size: 15px;
+/* Estilo para o botão */
+.aaa {
+  width: 150px; /* Largura do botão */
+  background-color: blue; /* Cor de fundo inicial */
+  transition: background-color 0.2s ease; /* Efeito de transição suave */
+  border: none !important;
+}
+img {
+  max-width: 100%;
+  height: 98px;
+  
+}
+/* Efeito de hover */
+.aaa:hover {
+  background-color: #57bef571; /* Cor de fundo ao passar o mouse */
 }
