@@ -1,1 +1,158 @@
-<p>cadastro-prestador works!</p>
+
+<div class="body container">
+  <div class="informacoes-pessoais col-md-5">
+    <h1>Informações Pessoais</h1>
+    <img src="{{ prestador.foto }}" alt="Imagem de Perfil" />
+    <div>
+      <div class="input-group">
+        <label htmlFor="area" class="col-md-2">CPF:</label>
+        <input
+          pInputText
+          class="col-md-10"
+          id="area"
+          [(ngModel)]="prestador.cpfCnpj"
+        />
+      </div>
+      <div class="input-group">
+        <label htmlFor="nome" class="col-md-2">Nome:</label>
+        <input
+          pInputText
+          class="col-md-10"
+          id="nome"
+          [(ngModel)]="prestador.nome"
+        />
+      </div>
+      <div class="input-group">
+        <label htmlFor="telefone" class="col-md-2">Telefone:</label>
+        <input
+          pInputText
+          class="col-md-10"
+          id="telefone"
+          [(ngModel)]="prestador.contato.telefone"
+        />
+      </div>
+      <div class="input-group">
+        <label htmlFor="email" class="col-md-2">Email:</label>
+        <input
+          pInputText
+          class="col-md-10"
+          id="email"
+          [(ngModel)]="prestador.contato.email"
+        />
+      </div>
+      <div class="contato">
+        <div class="input-group">
+          <label htmlFor="telefone" class="col-md-2">Telefone:</label>
+          <input
+            pInputText
+            class="col-md-10"
+            id="telefone"
+            [(ngModel)]="prestador.contato.telefone"
+          />
+        </div>
+        <div class="input-group">
+          <label htmlFor="email" class="col-md-2">Email:</label>
+          <input
+            pInputText
+            class="col-md-10"
+            id="email"
+            [(ngModel)]="prestador.contato.email"
+          />
+        </div>
+        <div class="input-group">
+          <label htmlFor="contato" class="col-md-2">Contato:</label>
+          <input
+            pInputText
+            class="col-md-10"
+            id="contato"
+            [(ngModel)]="prestador.contato.contato"
+          />
+        </div>
+        <div class="endereco">
+          <div class="input-group">
+            <label htmlFor="cep" class="col-md-2">CEP:</label>
+            <input
+              pInputText
+              class="col-md-10"
+              id="cep"
+              [(ngModel)]="prestador.endereco.cep"
+            />
+          </div>
+          <div class="input-group">
+            <label htmlFor="logradouro" class="col-md-2">Logradouro:</label>
+            <input
+              pInputText
+              class="col-md-10"
+              id="logradouro"
+              [(ngModel)]="prestador.endereco.logradouro"
+            />
+          </div>
+          <div class="input-group">
+            <label htmlFor="numero" class="col-md-2">Número:</label>
+            <input
+              pInputText
+              class="col-md-10"
+              id="numero"
+              [(ngModel)]="prestador.endereco.numero"
+            />
+          </div>
+          <div class="input-group">
+            <label htmlFor="cidade" class="col-md-2">Cidade:</label>
+            <input
+              pInputText
+              class="col-md-10"
+              id="cidade"
+              [(ngModel)]="prestador.endereco.cidade"
+            />
+          </div>
+          <div class="input-group">
+            <label htmlFor="cidade" class="col-md-2">Estado: </label>
+            <p-dropdown
+              [options]="ufs"
+              [(ngModel)]="prestador.endereco.uf"
+              optionLabel=""
+            ></p-dropdown>
+          </div>
+          <div class="input-group">
+            <label htmlFor="quadra" class="col-md-2">Quadra:</label>
+            <input
+              pInputText
+              class="col-md-10"
+              id="quadra"
+              [(ngModel)]="prestador.endereco.quadra"
+            />
+          </div>
+          <div class="input-group">
+            <label htmlFor="lote" class="col-md-2">Lote:</label>
+            <input
+              pInputText
+              class="col-md-10"
+              id="lote"
+              [(ngModel)]="prestador.endereco.lote"
+            />
+          </div>
+
+          <div class="input-group">
+            <label htmlFor="bairro" class="col-md-2">Bairro:</label>
+            <input
+              pInputText
+              class="col-md-10"
+              id="bairro"
+              [(ngModel)]="prestador.endereco.bairro"
+            />
+          </div>
+
+          <div class="input-group">
+            <label htmlFor="complemento" class="col-md-2">Complemento:</label>
+            <input
+              pInputText
+              class="col-md-10"
+              id="complemento"
+              [(ngModel)]="prestador.endereco.complemento"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

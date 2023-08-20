@@ -6,7 +6,7 @@ export interface Prestador {
     id: number;
     nome: string;
     contato: Contato;
-    cpf: string;
+    cpfCnpj: string;
     endereco: Endereco;
     foto: string;
     servicosPrestados: string;
@@ -16,3 +16,5 @@ export interface Prestador {
     descricaoAdicional: string;
     especializacao: string;
 }
+
+
