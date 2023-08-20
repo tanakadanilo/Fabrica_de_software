@@ -14,14 +14,8 @@ public class Servico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	// * preenchido pelo banco
 	private String area;
-
-	// * preenchido pelo banco
 	private String especialidade;
-
-	// * preenchido pelo banco
 	private String descricao;
 
 }

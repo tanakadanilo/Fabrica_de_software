@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.base.Response;
 import com.devnari.contrataai.model.ServicoPrestado;
+import com.devnari.contrataai.model.dto.ServicoPrestadoDto;
 import com.devnari.contrataai.services.ServicoPrestadoService;
 import com.devnari.contrataai.util.StringUtil;
 
@@ -44,7 +45,20 @@ public class ServicoPrestadoControl {
 		try {
 			Long idLong = StringUtil.converterStringParaLong(id);
 			ServicoPrestado servicoPrestado = service.buscarPorId(idLong);
-			servicoPrestado.getPrestador().setServicosPrestados(null);
+			response.setData(servicoPrestado);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping(value = "/detail/{id}")
+	public ResponseEntity<Response<ServicoPrestadoDto>> buscarDtoPorId(@PathVariable("id") String id) {
+		Response<ServicoPrestadoDto> response = new Response<>();
+		try {
+			Long idLong = StringUtil.converterStringParaLong(id);
+			ServicoPrestadoDto servicoPrestado = service.buscarDtoPorId(idLong);
 			response.setData(servicoPrestado);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devnari.contrataai.base.Response;
 import com.devnari.contrataai.model.Prestador;
 import com.devnari.contrataai.model.ServicoPrestado;
-import com.devnari.contrataai.model.auxiliares.Disponibilidade;
 import com.devnari.contrataai.services.PrestadorService;
 import com.devnari.contrataai.services.ServicoPrestadoService;
 import com.devnari.contrataai.util.StringUtil;
@@ -50,7 +49,6 @@ public class PrestadorControl {
 		try {
 			Long idLong = StringUtil.converterStringParaLong(id);
 			Prestador prestador = service.buscarPorId(idLong);
-			prestador.getServicosPrestados().forEach(a ->a.setPrestador(null));
 			response.setData(prestador);
 		} catch (Exception e) {
 			e.printStackTrace();

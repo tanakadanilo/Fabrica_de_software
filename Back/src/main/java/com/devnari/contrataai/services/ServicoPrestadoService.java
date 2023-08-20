@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devnari.contrataai.model.ServicoPrestado;
+import com.devnari.contrataai.model.dto.ServicoPrestadoDto;
 import com.devnari.contrataai.persistencia.ServicoPrestadoDao;
 
 @Service
@@ -31,6 +32,15 @@ public class ServicoPrestadoService {
 		return servicoPrestado;
 	}
 
+	public ServicoPrestadoDto buscarDtoPorId(Long id) throws Exception {
+		ServicoPrestadoDto servicoPrestadoDto = persistencia.findDtoById(id);
+		if (servicoPrestadoDto == null) {
+			throw new Exception("Serviço Prestado Não Encontrado!");
+		}
+
+		return servicoPrestadoDto;
+	}
+
 	public ServicoPrestado salvar(ServicoPrestado servicoPrestado) throws Exception {
 		if (servicoPrestado == null) {
 			throw new Exception("Serviço Prestado Não Informado!");
@@ -53,6 +63,5 @@ public class ServicoPrestadoService {
 		persistencia.deleteById(id);
 		return "deletado Com Sucesso!";
 	}
-	
 
 }

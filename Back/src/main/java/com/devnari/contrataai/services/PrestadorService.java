@@ -104,8 +104,9 @@ public class PrestadorService {
 		Experiencia experiencia = experienciaService.buscarPorId(idExperiencia);
 		ServicoPrestado servicoPrestado = new ServicoPrestado();
 		servicoPrestado.setExperiencia(experiencia);
-		servicoPrestado.setPrestador(prestador);
 		servicoPrestado.setServico(servico);
+		prestador.getServicosPrestados().add(servicoPrestado);
+		persistencia.save(prestador);
 		return servicoPrestadoService.salvar(servicoPrestado);
 	}
 

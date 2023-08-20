@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
@@ -19,13 +19,13 @@ public class HistoricoServico {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToOne
+	@ManyToOne
 	private Prestador prestador;
 
-	@OneToOne
+	@ManyToOne
 	private Contratante contratante;
 
-	@OneToOne
+	@ManyToOne
 	private ServicoPrestado servico;
 
 	@Temporal(TemporalType.DATE)

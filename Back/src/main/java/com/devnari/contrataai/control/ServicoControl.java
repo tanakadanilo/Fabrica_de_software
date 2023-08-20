@@ -54,6 +54,19 @@ public class ServicoControl {
 		}
 		return ResponseEntity.ok(response);
 	}
+	@GetMapping(value = "/detail/{id}")
+	public ResponseEntity<Response<Servico>> buscarDtoPorId(@PathVariable("id") String id) {
+		Response<Servico> response = new Response<>();
+		try {
+			Long idLong = StringUtil.converterStringParaLong(id);
+			Servico servico = service.buscarPorId(idLong);
+			response.setData(servico);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
+	}
 
 	@GetMapping(value = "/categorias")
 	public ResponseEntity<Response<List<String>>> listarCategorias(

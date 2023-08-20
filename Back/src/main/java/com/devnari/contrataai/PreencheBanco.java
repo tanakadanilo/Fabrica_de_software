@@ -135,8 +135,6 @@ public class PreencheBanco {
 //				p.getServicosPrestados().add(sp);
 				p = prestadorService.salvar(p);
 
-				sp.setPrestador(p);
-				
 				Usuario usuario2 = new Usuario();
 				usuario2.setLogin("login" + i);
 				usuario2.setPassword("senha" + i);

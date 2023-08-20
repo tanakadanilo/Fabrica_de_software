@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.devnari.contrataai.model.Contratante;
-import com.devnari.contrataai.model.Prestador;
 
 public interface ContratanteDao extends JpaRepository<Contratante, Long> {
 

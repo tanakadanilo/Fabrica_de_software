@@ -12,6 +12,7 @@ import com.devnari.contrataai.model.HistoricoServico;
 import com.devnari.contrataai.model.Prestador;
 import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.persistencia.ContratanteDao;
+import com.devnari.contrataai.persistencia.HistoricoServicoDao;
 import com.devnari.contrataai.persistencia.UserDao;
 import com.devnari.contrataai.util.StringUtil;
 
@@ -19,10 +20,13 @@ import com.devnari.contrataai.util.StringUtil;
 public class ContratanteService {
 
 	@Autowired
-	ContratanteDao persistencia;
+	private ContratanteDao persistencia;
 
 	@Autowired
-	PrestadorService prestadorService;
+	private HistoricoServicoDao historicoServicoDao;
+
+	@Autowired
+	private PrestadorService prestadorService;
 
 	@Autowired
 	private UserDao userDao;
@@ -66,7 +70,6 @@ public class ContratanteService {
 		if (persistencia.findByCpfEquals(contratante.getCpf()) != null) {
 			throw new Exception("CPF Já Cadastrado no Sistema");
 		}
-//		contratante.setId(null);
 //		contratante.getUsuario().setPassword(passwordEncoder.encode(contratante.getUsuario().getPassword()));
 //		userDao.save(contratante.getUsuario());
 		return persistencia.save(contratante);
@@ -87,13 +90,7 @@ public class ContratanteService {
 			historico.setDataContratacao(new Date());
 			historico.setPrestador(prestador);
 			historico.setServico(servico);
-
-			contratante.getHistoricoServicosContratados().add(historico);
-			prestador.getHistoricoServicosPrestados().add(historico);
-
-			prestadorService.salvar(prestador);
-			persistencia.save(contratante);
-
+			historicoServicoDao.save(historico);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
