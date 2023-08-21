@@ -29,3 +29,11 @@ img {
 .aaa:hover {
   background-color: #57bef571; /* Cor de fundo ao passar o mouse */
 }
+
+.p-button {
+  height: 2em;
+}
+.p-button:active{
+  outline: none; /* Remove a borda de foco padrão */
+  border: none !important; /* Remove qualquer borda ou destaque */
+}

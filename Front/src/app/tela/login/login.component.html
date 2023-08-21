@@ -11,7 +11,9 @@
       <p-password [(ngModel)]="password" [toggleMask]="true" [feedback]="false" ></p-password>
       <label htmlFor="password">password</label>
     </span>
+    <div class="d-flex justify-content-between">
     <button (click)="entrar()" pButton pRipple label="Entrar" class="p-button-success"></button>
     <button (click)="cadastrar()" pButton pRipple label="Cadastrar" class="p-button-success"></button>
+  </div>
   </div>
 </div>
