@@ -22,7 +22,9 @@ export class MainComponent {
     'assets/images/images.jpeg',
   ];
   servicosDivididos: Servico[][] = this.getServicos();
-  constructor(private service: BaseServiceService, private router: Router) {}
+  constructor(private service: BaseServiceService, private router: Router) {
+    
+  }
 
   private dividirServicos(servicos: Servico[]) {
     let colunas = 3;

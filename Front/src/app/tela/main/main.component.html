@@ -4,18 +4,18 @@
         <ng-template let-image pTemplate="item">
             <!--depois eu mudo erick-->
             <a href="https://noticias.maisesports.com.br/wp-content/uploads/2022/09/loud-aspas-valorant-champions-2022-2-1536x1025.jpg"  target="_blank">
-                <img class="cardsCarrosel" src="../../../assets/images/images.jpeg" alt="Imagem">
+                <div class="servicos">
+                    <div class="linha" *ngFor="let servicos of servicosDivididos" style="display: flex">
+                        <div class="item mt-5 col-md-4 p-button" *ngFor="let servico of servicos" style="display: block;margin: 2em;" (click)="contratar(servico)">
+                            <p>{{servico.area}}</p>
+                            <p>{{servico.descricao}}</p>
+                            <p>{{servico.especialidade}}</p>
+                        </div>
+                    </div>
+                </div>
               </a>
         </ng-template>
       </p-carousel>
-    <div class="servicos">
-        <div class="linha" *ngFor="let servicos of servicosDivididos" style="display: flex">
-            <div class="item mt-5 col-md-4 p-button" *ngFor="let servico of servicos" style="display: block;margin: 2em;" (click)="contratar(servico)">
-                <p>{{servico.area}}</p>
-                <p>{{servico.descricao}}</p>
-                <p>{{servico.especialidade}}</p>
-            </div>
-        </div>
-    </div>
+    
     <button (click)="getServicos()">Teste</button>
 </div>
