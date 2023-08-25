@@ -1,8 +1,11 @@
 <div class="main">
 
-    <p-carousel [value]="images" [numVisible]="4">
+    <p-carousel [value]="images" [circular]="true" [numVisible]="4">
         <ng-template let-image pTemplate="item">
-          <img [src]="image" alt="Imagem" />
+            <!--depois eu mudo erick-->
+            <a href="https://noticias.maisesports.com.br/wp-content/uploads/2022/09/loud-aspas-valorant-champions-2022-2-1536x1025.jpg"  target="_blank">
+                <img class="cardsCarrosel" src="../../../assets/images/images.jpeg" alt="Imagem">
+              </a>
         </ng-template>
       </p-carousel>
     <div class="servicos">

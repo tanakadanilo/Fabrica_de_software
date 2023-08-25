@@ -1,0 +1,6 @@
+.cardsCarrosel {
+    transition: transform 0.3s ease;
+}
+.cardsCarrosel:hover {
+    transform: scale(1.05); /* Aumenta a imagem em 5% */
+  }
