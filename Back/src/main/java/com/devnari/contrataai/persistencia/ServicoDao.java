@@ -10,8 +10,8 @@ import com.devnari.contrataai.model.Servico;
 
 public interface ServicoDao extends JpaRepository<Servico, Long> {
 
-	@Query("SELECT s from Servico s " + "where (:categoria = '' or s.area like %:area%)")
-	Page<Servico> findByArea(@Param("area") String categoria, Pageable pageable);
+	@Query("SELECT s from Servico s " + "where (:categoria = '' or s.area like %:categoria%)")
+	Page<Servico> findByArea(@Param("categoria") String categoria, Pageable pageable);
 
 	@Query("SELECT distinct s.area from Servico s " + "where (:categoria like '' or s.area like %:categoria%)")
 	Page<String> findCategorias(@Param("categoria") String categoria, Pageable pageable);

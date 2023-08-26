@@ -55,6 +55,20 @@ public class ServicoControl {
 		return ResponseEntity.ok(response);
 	}
 
+	@GetMapping(value = "/filtrar")
+	public ResponseEntity<Response<Page<Servico>>> paginarPorCategoria(@RequestParam("categoria") String categoria,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+		Response<Page<Servico>> response = new Response<>();
+		try {
+			Page<Servico> servico = service.buscarPorCategoria(categoria, page, size);
+			response.setData(servico);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
+	}
+
 	@GetMapping(value = "/detail/{id}")
 	public ResponseEntity<Response<Servico>> buscarDtoPorId(@PathVariable("id") String id) {
 		Response<Servico> response = new Response<>();
