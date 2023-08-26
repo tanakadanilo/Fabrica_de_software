@@ -49,11 +49,11 @@ export class BaseServiceService {
     return this.get(this.URL_SERVICOS_PRESTADOS + '/detail/' + id);
   }
   getServicoPrestado(id: number) {
-    console.log(this.URL_SERVICOS_PRESTADOS + '/' + id);
-
     return this.get(this.URL_SERVICOS_PRESTADOS + '/' + id);
   }
-
+  getCategorias() {
+    return this.get(this.URL_SERVICOS + '/' + "categorias");
+  }
   getContatoVazio() {
     return {
       contato: '',
