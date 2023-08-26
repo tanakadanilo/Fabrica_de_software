@@ -14,6 +14,7 @@ export class BaseServiceService {
 
   readonly URL_BACK = 'http://localhost:8080'
   readonly URL_SERVICOS = this.URL_BACK + "/servico"
+  readonly URL_SERVICOS_PRESTADOS = this.URL_SERVICOS + "prestado"
   readonly URL_PRESTADOR = this.URL_BACK + "/prestador"
   readonly URL_CONTRATANTE = this.URL_BACK + "/contratante"
 
@@ -42,10 +43,13 @@ export class BaseServiceService {
   getServico(id: number) {
     return this.get(this.URL_SERVICOS + "/" + id);
   }
+  getServicoDetail(id: number) {
+    return this.get(this.URL_SERVICOS_PRESTADOS + "/detail/" + id);
+  }
   getServicoPrestado(id: number) {
-    console.log(this.URL_SERVICOS + "prestado/" + id);
+    console.log(this.URL_SERVICOS_PRESTADOS + "/" + id);
     
-    return this.get(this.URL_SERVICOS + "prestado/" + id);
+    return this.get(this.URL_SERVICOS_PRESTADOS + "/" + id);
   }
 
   getContatoVazio() {
