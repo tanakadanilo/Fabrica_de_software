@@ -4,3 +4,20 @@
 .cardsCarrosel:hover {
     transform: scale(1.05); /* Aumenta a imagem em 5% */
   }
+
+  .cards-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  
+    .card {
+      width: calc(25% - 10px); /* Para exibir 3 cards por linha */
+      margin: 5rem 3rem 3rem 4rem;
+  
+      @media (max-width: 768px) {
+        width: 100%; /* Altere a largura para exibir 1 card por linha em dispositivos menores */
+      }
+    }
+  }

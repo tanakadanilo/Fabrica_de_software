@@ -27,6 +27,7 @@ import { CadastroComponent } from './tela/cadastro-contratante/cadastro-contrata
 import { PerfilContratanteComponent } from './tela/perfil-contratante/perfil-contratante.component';
 import { CadastroPrestadorComponent } from './tela/cadastro-prestador/cadastro-prestador.component';
 import { ContratarComponent } from './tela/contratar/contratar.component';
+import { CardModule } from 'primeng/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +58,7 @@ import { ContratarComponent } from './tela/contratar/contratar.component';
     DropdownModule,
     PaginatorModule,
     DialogModule,
+    CardModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

@@ -9,6 +9,17 @@ import { BaseServiceService } from 'src/app/exports/service/base-service.service
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent {
+
+  usuarios:any = [{
+    nome: "aaaaaaaaaaaaa"
+  },{
+    nome: "aaaaaaaaaaaaa"
+  },{
+    nome: "aaaaaaaaaaaaa"
+  },{
+    nome: "aaaaaaaaaaaaa"
+  }];
+
   images: string[] = [
     'assets/images/images.jpeg',
     'assets/images/images.jpeg',

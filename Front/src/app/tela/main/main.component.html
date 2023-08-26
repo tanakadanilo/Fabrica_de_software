@@ -16,6 +16,18 @@
               </a>
         </ng-template>
       </p-carousel>
+      <div class="cards-container">
+        <div *ngFor="let usuario of usuarios" class="card">
+          <p-card>
+            <ng-template pTemplate="title">
+              Título do Card
+            </ng-template>
+            <ng-template pTemplate="content">
+              {{ usuario.nome }}
+            </ng-template>
+          </p-card>
+        </div>
+      </div>
     
     <button (click)="getServicos()">Teste</button>
 </div>
