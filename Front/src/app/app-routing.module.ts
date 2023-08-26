@@ -8,6 +8,10 @@ import { CadastroPrestadorComponent } from './tela/cadastro-prestador/cadastro-p
 import { BaseResolver } from './exports/resolver/base-resolver';
 import { ContratarComponent } from './tela/contratar/contratar.component';
 import { PerfilContratanteComponent } from './tela/perfil-contratante/perfil-contratante.component';
+import { AvaliarComponent } from './tela/avaliar/avaliar.component';
+import { HistoricoComponent } from './tela/historico/historico.component';
+import { FinalizarContratacaoComponent } from './tela/finalizar-contratacao/finalizar-contratacao.component';
+import { RecuperarSenhaComponent } from './tela/recuperar-senha/recuperar-senha.component';
 
 const routes: Routes = [
   {
@@ -36,8 +40,37 @@ const routes: Routes = [
     },
   },
   {
+    path: 'avaliar/:id',
+    component: AvaliarComponent,
+    pathMatch: 'full',
+    resolve: {
+      id: BaseResolver,
+    },
+  },
+  {
+    path: 'historico/:id',
+    component: HistoricoComponent,
+    pathMatch: 'full',
+    resolve: {
+      id: BaseResolver,
+    },
+  },
+  {
+    path: 'contratado/:id',
+    component:FinalizarContratacaoComponent,
+    pathMatch: 'full',
+    resolve: {
+      id: BaseResolver,
+    },
+  },
+  {
     path: 'cadastrarp',
     component: CadastroPrestadorComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'recuperar',
+    component: RecuperarSenhaComponent,
     pathMatch: 'full',
   },
 ];

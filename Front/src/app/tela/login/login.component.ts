@@ -15,6 +15,12 @@ export class LoginComponent {
   cadastrar(){
     this.router.navigate(["/cadastrar"]);
   }
+  cadastrarPrestador(){
+    this.router.navigate(["/cadastrarp"]);
+  }
+  recuperarSenha() {
+    this.router.navigate(["/recuperar"]);
+  }
   entrar() {
     this.service.toast('senha errada');
 

@@ -28,6 +28,10 @@ import { PerfilContratanteComponent } from './tela/perfil-contratante/perfil-con
 import { CadastroPrestadorComponent } from './tela/cadastro-prestador/cadastro-prestador.component';
 import { ContratarComponent } from './tela/contratar/contratar.component';
 import { CardModule } from 'primeng/card';
+import { AvaliarComponent } from './tela/avaliar/avaliar.component';
+import { HistoricoComponent } from './tela/historico/historico.component';
+import { FinalizarContratacaoComponent } from './tela/finalizar-contratacao/finalizar-contratacao.component';
+import { RecuperarSenhaComponent } from './tela/recuperar-senha/recuperar-senha.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +43,10 @@ import { CardModule } from 'primeng/card';
     CadastroPrestadorComponent,
     PerfilContratanteComponent,
     ContratarComponent,
+    AvaliarComponent,
+    HistoricoComponent,
+    FinalizarContratacaoComponent,
+    RecuperarSenhaComponent,
   ],
   imports: [
     BrowserModule,
