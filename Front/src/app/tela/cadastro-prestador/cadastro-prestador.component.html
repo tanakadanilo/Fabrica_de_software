@@ -4,8 +4,8 @@
       <img  src="../../../assets/images/images.jpeg" alt="Imagem de Perfil" />
       <h1>Informações Pessoais</h1>
       <img src="{{ prestador.foto }}" alt="Imagem de Perfil" />
-      <div>
-          <div class="input-group">
+      <div class="row">
+          <div class="col-md-4 mt-3">
               <label htmlFor="area" class="col-md-3">CPF:</label>
               <input pInputText class="col-md-9" id="area" [(ngModel)]="prestador.cpfCnpj" />
           </div>
