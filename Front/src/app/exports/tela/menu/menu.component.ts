@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { BaseServiceService } from '../../service/base-service.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent {
-
-  constructor(private router: Router){}
+  constructor(private service: BaseServiceService) {}
 
   items = [
     {
@@ -16,31 +15,28 @@ export class MenuComponent {
       icon: 'pi pi-refresh',
       command: () => {
         this.mostrarPerfil();
-      }
+      },
     },
     {
       label: 'Desconectar',
       icon: 'pi pi-times',
       command: () => {
         this.desconectar();
-      }
-    }
-
-
-
+      },
+    },
   ];
 
-  mostrarPerfil(){
-   this.router.navigate(["/perfil/2"])
+  mostrarPerfil() {
+    this.service.navigate('/perfil/2');
   }
 
-  desconectar(){}
+  desconectar() {}
 
-  mostrarServicos(){
-    this.router.navigate(["/"]);
+  mostrarServicos() {
+    this.service.navigate('/');
   }
-  
-mostrarLogin(){
-    this.router.navigate(["/login"]);
+
+  mostrarLogin() {
+    this.service.navigate('/login');
   }
 }

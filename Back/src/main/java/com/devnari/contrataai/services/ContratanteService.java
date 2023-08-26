@@ -1,9 +1,10 @@
 package com.devnari.contrataai.services;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +35,8 @@ public class ContratanteService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	public List<Contratante> buscarTodos() {
-		List<Contratante> contratantes = persistencia.findAll();
+	public Page<Contratante> buscarTodos(int page, int size) {
+		Page<Contratante> contratantes = persistencia.findAll(PageRequest.of(page, size));
 		return contratantes;
 	}
 
@@ -53,13 +54,13 @@ public class ContratanteService {
 		return contratante;
 	}
 
-	public List<Contratante> buscarPorNome(String nome) throws Exception {
-		List<Contratante> contratantes = persistencia.findByNome(nome);
+	public Page<Contratante> buscarPorNome(String nome, int page, int size) throws Exception {
+		Page<Contratante> contratantes = persistencia.findByNome(nome, PageRequest.of(page, size));
 		return contratantes;
 	}
 
-	public List<Contratante> buscarPorCpf(String cpf) throws Exception {
-		List<Contratante> contratantes = persistencia.findByCpf(cpf);
+	public Page<Contratante> buscarPorCpf(String cpf, int page, int size) throws Exception {
+		Page<Contratante> contratantes = persistencia.findByCpf(cpf, PageRequest.of(page, size));
 		return contratantes;
 	}
 

@@ -12,8 +12,7 @@ export class ContratarComponent implements OnInit {
 
   constructor(
     private service: BaseServiceService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +32,6 @@ export class ContratarComponent implements OnInit {
   }
 
   abrirPerfilPrestador() {
-    this.router.navigate(['/perfil/' + this.servico.prestador.id]);
+    this.service.navigate('/perfil/' + this.servico.prestador.id);
   }
 }

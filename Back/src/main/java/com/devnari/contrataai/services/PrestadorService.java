@@ -1,8 +1,9 @@
 package com.devnari.contrataai.services;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +32,8 @@ public class PrestadorService {
 	@Autowired
 	private UserDao userDao;
 
-	public List<Prestador> buscarTodos() {
-		return persistencia.findAll();
+	public Page<Prestador> buscarTodos(int page, int size) {
+		return persistencia.findAll(PageRequest.of(page, size));
 	}
 
 	public Prestador buscarPorId(Long id) throws Exception {
@@ -44,15 +45,15 @@ public class PrestadorService {
 		return prestador;
 	}
 
-	public List<Prestador> buscarPorCpf(String cpf) {
+	public Page<Prestador> buscarPorCpf(String cpf, int page, int size) {
 		cpf = StringUtil.tratarStringNullEUndefinned(cpf);
-		List<Prestador> prestadores = persistencia.findByCpf(cpf);
+		Page<Prestador> prestadores = persistencia.findByCpf(cpf, PageRequest.of(page, size));
 		return prestadores;
 	}
 
-	public List<Prestador> buscarPorNome(String nome) {
+	public Page<Prestador> buscarPorNome(String nome, int page, int size) {
 		nome = StringUtil.tratarStringNullEUndefinned(nome);
-		List<Prestador> prestadores = persistencia.findByNome(nome);
+		Page<Prestador> prestadores = persistencia.findByNome(nome, PageRequest.of(page, size));
 		return prestadores;
 	}
 

@@ -1,0 +1,7 @@
+<p-toast position="top-right" key="custom" [baseZIndex]="10000">
+    <ng-container *ngIf="errorMessage">
+      <div class="p-toast-message p-toast-message-error">
+        {{ errorMessage }}
+      </div>
+    </ng-container>
+  </p-toast>

@@ -1,8 +1,7 @@
 package com.devnari.contrataai.control;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,10 +25,11 @@ public class UsuarioControl {
 	private UsuarioLoggadoService userService;
 
 	@GetMapping
-	public ResponseEntity<Response<List<Usuario>>> listAll(HttpServletRequest request) {
-		Response<List<Usuario>> response = new Response<>();
+	public ResponseEntity<Response<Page<Usuario>>> PageAll(HttpServletRequest request,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+		Response<Page<Usuario>> response = new Response<>();
 		try {
-			List<Usuario> usuarios = userService.findAll();
+			Page<Usuario> usuarios = userService.findAll(page, size);
 			response.setData(usuarios);
 		} catch (Exception e) {
 			e.printStackTrace();

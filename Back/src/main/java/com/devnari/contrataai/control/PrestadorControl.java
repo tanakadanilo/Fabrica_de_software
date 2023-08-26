@@ -1,9 +1,9 @@
 package com.devnari.contrataai.control;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.base.Response;
@@ -31,10 +32,11 @@ public class PrestadorControl {
 	ServicoPrestadoService servicoPrestadoService;
 
 	@GetMapping(value = "")
-	public ResponseEntity<Response<List<Prestador>>> buscarTodos() {
-		Response<List<Prestador>> response = new Response<>();
+	public ResponseEntity<Response<Page<Prestador>>> buscarTodos(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "100") int size) {
+		Response<Page<Prestador>> response = new Response<>();
 		try {
-			List<Prestador> prestadores = service.buscarTodos();
+			Page<Prestador> prestadores = service.buscarTodos(page, size);
 			response.setData(prestadores);
 		} catch (Exception e) {
 			e.printStackTrace();

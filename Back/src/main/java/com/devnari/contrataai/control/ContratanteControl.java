@@ -1,8 +1,7 @@
 package com.devnari.contrataai.control;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.base.Response;
@@ -18,6 +18,8 @@ import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.services.ContratanteService;
 import com.devnari.contrataai.services.ServicoPrestadoService;
 import com.devnari.contrataai.util.StringUtil;
+
+import jakarta.websocket.server.PathParam;
 
 @RestController
 @RequestMapping(value = "/contratante")
@@ -30,11 +32,26 @@ public class ContratanteControl {
 	ServicoPrestadoService servicoPrestadoService;
 
 	@GetMapping(value = "")
-	public ResponseEntity<Response<List<Contratante>>> buscarTodos() {
-		Response<List<Contratante>> response = new Response<>();
+	public ResponseEntity<Response<Page<Contratante>>> buscarTodos(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size) {
+		Response<Page<Contratante>> response = new Response<>();
 		try {
-			List<Contratante> contratantes = service.buscarTodos();
+			Page<Contratante> contratantes = service.buscarTodos(page, size);
 			response.setData(contratantes);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping(value = "/nome={nome}")
+	public ResponseEntity<Response<Page<Contratante>>> buscarPorNome(@PathVariable("nome") String nome,
+			@PathParam("page") Integer page, @PathParam("size") Integer size) {
+		Response<Page<Contratante>> response = new Response<>();
+		try {
+			Page<Contratante> contratante = service.buscarPorNome(nome, page, size);
+			response.setData(contratante);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getErros().add(e.getMessage());

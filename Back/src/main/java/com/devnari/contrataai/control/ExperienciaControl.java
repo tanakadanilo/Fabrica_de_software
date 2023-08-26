@@ -1,8 +1,7 @@
 package com.devnari.contrataai.control;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.base.Response;
@@ -25,10 +25,11 @@ public class ExperienciaControl {
 	ExperienciaService service;
 
 	@GetMapping
-	public ResponseEntity<Response<List<Experiencia>>> buscarTodos() {
-		Response<List<Experiencia>> response = new Response<>();
+	public ResponseEntity<Response<Page<Experiencia>>> buscarTodos(@RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+		Response<Page<Experiencia>> response = new Response<>();
 		try {
-			List<Experiencia> experiencias = service.buscarTodos();
+			Page<Experiencia> experiencias = service.buscarTodos(page, size);
 			response.setData(experiencias);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,7 +1,7 @@
 package com.devnari.contrataai.persistencia;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,9 +10,11 @@ import com.devnari.contrataai.model.Contratante;
 
 public interface ContratanteDao extends JpaRepository<Contratante, Long> {
 
-	List<Contratante> findByNome(String nome);
+	@Query("select contratante from Contratante contratante where contratante.nome like %:nome%")
+	Page<Contratante> findByNome(@Param("nome") String nome, Pageable pageable);
 
-	List<Contratante> findByCpf(String cpf);
+	@Query("select contratante from Contratante contratante where contratante.nome like %:cpf%")
+	Page<Contratante> findByCpf(@Param("cpf") String cpf, Pageable pageable);
 
 	@Query("select contratante from Contratante contratante where contratante.usuario.username = :username")
 	Contratante findByUsername(@Param("username") String userName);

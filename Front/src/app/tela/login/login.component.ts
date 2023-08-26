@@ -1,41 +1,37 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
+import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent extends TelaBaseComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private service: BaseServiceService,private router: Router) {}
-  cadastrar(){
-    this.router.navigate(["/cadastrar"]);
+  constructor(override service: BaseServiceService) {
+    super(service);
   }
-  cadastrarPrestador(){
-    this.router.navigate(["/cadastrarp"]);
+  cadastrar() {
+    this.service.navigate('/cadastrar');
+  }
+  cadastrarPrestador() {
+    this.service.navigate('/cadastrarp');
   }
   recuperarSenha() {
-    this.router.navigate(["/recuperar"]);
+    this.service.navigate('/recuperar');
   }
   entrar() {
-    this.service.toast('senha errada');
-
     this.service
       .get(
         `http://localhost:8080/login/login?username=${this.username}&password=${this.password}`
       )
       .subscribe({
         next: (a: any) => {
-          
           if (a.erros?.length > 0) {
-            console.log('senha errada');
-            
-            this.service.toast('senha errada');
-
+            this.toastError(a.erros);
           } else {
             console.log(a.data);
             localStorage.setItem('token', a.data);
@@ -43,11 +39,9 @@ export class LoginComponent {
           }
         },
         error: (err) => {
-          this.service.toast('senha errada');
+          this.toastError(err);
           console.log(err);
         },
       });
   }
-
-  toastError(mesage: string) {}
 }

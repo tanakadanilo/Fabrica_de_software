@@ -1,9 +1,10 @@
 package com.devnari.contrataai.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.devnari.contrataai.model.Servico;
 import com.devnari.contrataai.persistencia.ServicoDao;
@@ -14,8 +15,9 @@ public class ServicoService {
 	@Autowired
 	ServicoDao persistencia;
 
-	public List<Servico> buscarTodos() {
-		return persistencia.findAll();
+	public Page<Servico> buscarTodos(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size) {
+		return persistencia.findAll(PageRequest.of(page, size));
 	}
 
 	public Servico buscarPorId(Long id) throws Exception {
@@ -28,18 +30,18 @@ public class ServicoService {
 		return servico;
 	}
 
-	public List<Servico> buscarPorParametros(String nomeCategoria, String nomeServico) {
-		List<Servico> servicos = persistencia.findByParams(nomeCategoria, nomeServico);
+	public Page<Servico> buscarPorParametros(String nomeCategoria, String nomeServico, int page, int size) {
+		Page<Servico> servicos = persistencia.findByParams(nomeCategoria, nomeServico, PageRequest.of(page, size));
 		return servicos;
 	}
 
-	public List<Servico> buscarPorCategoria(String categoria) {
-		List<Servico> servicos = persistencia.findByArea(categoria);
+	public Page<Servico> buscarPorCategoria(String categoria, int page, int size) {
+		Page<Servico> servicos = persistencia.findByArea(categoria, PageRequest.of(page, size));
 		return servicos;
 	}
 
-	public List<String> buscarCategorias(String categoria) {
-		List<String> servicos = persistencia.findCategorias(categoria);
+	public Page<String> buscarCategorias(String categoria, int page, int size) {
+		Page<String> servicos = persistencia.findCategorias(categoria, PageRequest.of(page, size));
 		return servicos;
 	}
 

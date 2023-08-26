@@ -1,8 +1,8 @@
 package com.devnari.contrataai.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.devnari.contrataai.model.auxiliares.Endereco;
@@ -14,8 +14,8 @@ public class EnderecoService {
 	@Autowired
 	EnderecoDao persistencia;
 
-	public List<Endereco> buscarTodos() {
-		return persistencia.findAll();
+	public Page<Endereco> buscarTodos(int page, int size) {
+		return persistencia.findAll(PageRequest.of(page, size));
 	}
 
 	public Endereco buscarPorId(Long id) throws Exception {

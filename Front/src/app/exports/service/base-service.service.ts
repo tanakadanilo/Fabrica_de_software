@@ -6,27 +6,29 @@ import { Endereco } from '../interface/endereco';
 import { Uf } from '../enum/uf';
 import { Contratante } from '../interface/contratante';
 import { Contato } from '../interface/contato';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BaseServiceService {
-
-  readonly URL_BACK = 'http://localhost:8080'
-  readonly URL_SERVICOS = this.URL_BACK + "/servico"
-  readonly URL_SERVICOS_PRESTADOS = this.URL_SERVICOS + "prestado"
-  readonly URL_PRESTADOR = this.URL_BACK + "/prestador"
-  readonly URL_CONTRATANTE = this.URL_BACK + "/contratante"
+  readonly URL_BACK = 'http://localhost:8080';
+  readonly URL_SERVICOS = this.URL_BACK + '/servico';
+  readonly URL_SERVICOS_PRESTADOS = this.URL_SERVICOS + 'prestado';
+  readonly URL_PRESTADOR = this.URL_BACK + '/prestador';
+  readonly URL_CONTRATANTE = this.URL_BACK + '/contratante';
 
   user: any = '';
 
-  constructor(private http: HttpClient, private messageService: MessageService) { }
+  messageService: MessageService;
 
-
-  toast(message: string) {
-    this.messageService.add({ key: 'toast1', severity: 'success', summary: 'Success', detail: 'key: toast1' });
+  constructor(
+    private http: HttpClient,
+    messageService: MessageService,
+    private router: Router
+  ) {
+    this.messageService = messageService;
   }
-
 
   get(url: string) {
     return this.http.get(url);
@@ -35,64 +37,63 @@ export class BaseServiceService {
     return this.get(this.URL_SERVICOS);
   }
   getPrestador(id: number) {
-    return this.get(this.URL_PRESTADOR + "/" + id);
+    return this.get(this.URL_PRESTADOR + '/' + id);
   }
   getContratante(id: number) {
-    return this.get(this.URL_CONTRATANTE + "/" + id);
+    return this.get(this.URL_CONTRATANTE + '/' + id);
   }
   getServico(id: number) {
-    return this.get(this.URL_SERVICOS + "/" + id);
+    return this.get(this.URL_SERVICOS + '/' + id);
   }
   getServicoDetail(id: number) {
-    return this.get(this.URL_SERVICOS_PRESTADOS + "/detail/" + id);
+    return this.get(this.URL_SERVICOS_PRESTADOS + '/detail/' + id);
   }
   getServicoPrestado(id: number) {
-    console.log(this.URL_SERVICOS_PRESTADOS + "/" + id);
-    
-    return this.get(this.URL_SERVICOS_PRESTADOS + "/" + id);
+    console.log(this.URL_SERVICOS_PRESTADOS + '/' + id);
+
+    return this.get(this.URL_SERVICOS_PRESTADOS + '/' + id);
   }
 
   getContatoVazio() {
     return {
-      'contato': '',
-      'email': '',
-      'telefone': '',
-    }
+      contato: '',
+      email: '',
+      telefone: '',
+    };
   }
   getEnderecoVazio() {
     return {
-      'bairro': '',
-      'cep': '',
-      'cidade': '',
-      'complemento': '',
-      'logradouro': '',
-      'lote': '',
-      'numero': '',
-      'quadra': '',
-      'uf': Uf.AC
-    }
+      bairro: '',
+      cep: '',
+      cidade: '',
+      complemento: '',
+      logradouro: '',
+      lote: '',
+      numero: '',
+      quadra: '',
+      uf: Uf.AC,
+    };
   }
   getContratanteVazio(): Contratante {
     let endereco: Endereco = this.getEnderecoVazio();
     let contato: Contato = this.getContatoVazio();
     return {
       id: 0,
-      nome: "",
+      nome: '',
       contato: contato,
-      cpfCnpj: "",
+      cpfCnpj: '',
       endereco: endereco,
       foto: '',
-    }
-
+    };
   }
   getPrestadorVazio(): Prestador {
     let endereco: Endereco = this.getEnderecoVazio();
     let contato: Contato = this.getContatoVazio();
     return {
       id: 0,
-      nome: "",
+      nome: '',
       contato: contato,
-      cpfCnpj: "",
+      cpfCnpj: '',
       endereco: endereco,
       foto: '',
       servicosPrestados: '',
@@ -100,12 +101,16 @@ export class BaseServiceService {
       portfolio: '',
       disponibilidades: '',
       descricaoAdicional: '',
-      especializacao: ''
-    }
+      especializacao: '',
+    };
   }
 
   setUser(user: any) {
     this.user = user;
-    console.log("loggou coroi");
+    console.log('loggou coroi');
+  }
+
+  navigate(url: string) {
+    this.router.navigate([url]);
   }
 }

@@ -1,8 +1,7 @@
 package com.devnari.contrataai.control;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +26,13 @@ public class ServicoControl {
 	ServicoService service;
 
 	@GetMapping(value = "")
-	public ResponseEntity<Response<List<Servico>>> buscarTodos(
+	public ResponseEntity<Response<Page<Servico>>> buscarTodos(
 			@RequestParam(value = "nomeCategoria", required = false, defaultValue = "") String nomeCategoria,
-			@RequestParam(value = "nomeServico", required = false, defaultValue = "") String nomeServico) {
-		Response<List<Servico>> response = new Response<>();
+			@RequestParam(value = "nomeServico", required = false, defaultValue = "") String nomeServico,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+		Response<Page<Servico>> response = new Response<>();
 		try {
-			List<Servico> servicos = service.buscarPorParametros(nomeCategoria, nomeServico);
+			Page<Servico> servicos = service.buscarPorParametros(nomeCategoria, nomeServico, page, size);
 			response.setData(servicos);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,6 +54,7 @@ public class ServicoControl {
 		}
 		return ResponseEntity.ok(response);
 	}
+
 	@GetMapping(value = "/detail/{id}")
 	public ResponseEntity<Response<Servico>> buscarDtoPorId(@PathVariable("id") String id) {
 		Response<Servico> response = new Response<>();
@@ -69,11 +70,12 @@ public class ServicoControl {
 	}
 
 	@GetMapping(value = "/categorias")
-	public ResponseEntity<Response<List<String>>> listarCategorias(
-			@RequestParam(name = "categoria", required = false, defaultValue = "") String categoria) {
-		Response<List<String>> response = new Response<>();
+	public ResponseEntity<Response<Page<String>>> PagearCategorias(
+			@RequestParam(name = "categoria", required = false, defaultValue = "") String categoria,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+		Response<Page<String>> response = new Response<>();
 		try {
-			List<String> categorias = service.buscarCategorias(categoria);
+			Page<String> categorias = service.buscarCategorias(categoria, page, size);
 			response.setData(categorias);
 		} catch (Exception e) {
 			e.printStackTrace();

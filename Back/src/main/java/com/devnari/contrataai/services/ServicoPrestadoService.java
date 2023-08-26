@@ -1,8 +1,8 @@
 package com.devnari.contrataai.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.devnari.contrataai.model.ServicoPrestado;
@@ -19,8 +19,8 @@ public class ServicoPrestadoService {
 	@Autowired
 	ExperienciaService experienciaService;
 
-	public List<ServicoPrestado> buscarTodos() {
-		return persistencia.findAll();
+	public Page<ServicoPrestado> buscarTodos(int page, int size) {
+		return persistencia.findAll(PageRequest.of(page, size));
 	}
 
 	public ServicoPrestado buscarPorId(Long id) throws Exception {

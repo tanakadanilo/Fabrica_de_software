@@ -1,10 +1,11 @@
 package com.devnari.contrataai.services;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -80,14 +81,15 @@ public class UsuarioLoggadoService implements UserDetailsService {
 		}
 
 	}
+
 	public Usuario save(Usuario usuario) {
 
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		return userDao.save(usuario);
 	}
 
-	public List<Usuario> findAll() {
-		return userDao.findAll();
+	public Page<Usuario> findAll(int page, int size) {
+		return userDao.findAll(PageRequest.of(page, size));
 	}
 
 }
