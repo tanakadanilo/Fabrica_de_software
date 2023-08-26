@@ -26,59 +26,38 @@ export class MainComponent extends TelaBaseComponent {
     },
   ];
 
-  images: string[] = [
-    'assets/images/images.jpeg',
-    'assets/images/images.jpeg',
-    'assets/images/images.jpeg',
-    'assets/images/images.jpeg',
-    'assets/images/images.jpeg',
-    'assets/images/images.jpeg',
-    'assets/images/images.jpeg',
-    'assets/images/images.jpeg',
-    'assets/images/images.jpeg',
-    'assets/images/images.jpeg',
-  ];
-  servicosDivididos: Servico[][] = this.getServicos();
+  categorias!: string[];
+
   constructor(override service: BaseServiceService) {
     super(service);
+    this.getCategorias();
   }
 
-  private dividirServicos(servicos: Servico[]) {
-    let colunas = 3;
-    let totalLinhas = Math.ceil(servicos.length / colunas);
+  // private dividirServicos(servicos: Servico[]) {
+  //   let colunas = 5;
+  //   let totalLinhas = Math.ceil(servicos.length / colunas);
 
-    for (let i = 0; i < totalLinhas; i++) {
-      this.servicosDivididos[i] = servicos.slice(
-        i * colunas,
-        i * colunas + colunas
-      );
-    }
-  }
-  public getServicos(): Servico[][] {
-    this.service.getServicos().subscribe({
+  //   for (let i = 0; i < totalLinhas; i++) {
+  //     this.servicosDivididos[i] = servicos.slice(
+  //       i * colunas,
+  //       i * colunas + colunas
+  //     );
+  //   }
+  // }
+  public getCategorias(): void {
+    this.service.getCategorias().subscribe({
       next: (a: any) => {
         if (a.erros?.lenght > 0) {
           this.toastError(a.erros);
         } else {
           console.log(a.data);
-          this.dividirServicos(a.data.content);
+          this.categorias = a.data.content;
         }
       },
       error(err) {
         console.log(err);
       },
     });
-
-    return [
-      [
-        {
-          id: 1,
-          area: 'área de atuação',
-          descricao: 'descricao do servico',
-          especialidade: 'especialidade',
-        },
-      ],
-    ];
   }
 
   contratar(servico: Servico) {
