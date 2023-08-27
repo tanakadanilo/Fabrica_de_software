@@ -7,5 +7,9 @@ import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.comp
   styleUrls: ['./recuperar-senha.component.css']
 })
 export class RecuperarSenhaComponent extends TelaBaseComponent{
+  email: string = '';
 
+  recuperarSenha() {
+    // Adicione aqui a lógica para enviar o email de recuperação de senha
+  } 
 }

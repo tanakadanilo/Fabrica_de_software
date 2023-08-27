@@ -1,0 +1,24 @@
+.recuperar-senha-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    
+  }
+  
+  .recuperar-senha-box {
+    width: 450px;
+    height: 250px;
+    background-color: #e6e6e6;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .email-input {
+  display: block;
+  width: 100%;
+  margin-bottom: 2rem; /* Adicione margem inferior para espaçamento */
+}

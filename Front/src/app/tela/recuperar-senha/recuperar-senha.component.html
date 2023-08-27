@@ -1,1 +1,9 @@
-<p>recuperar-senha works!</p>
+<div class="recuperar-senha-container">
+    <div class="recuperar-senha-box">
+      <h2>Recuperação de Senha</h2>
+      <p>Insira seu email para receber sua senha:</p>
+      <input type="email" [(ngModel)]="email" placeholder="Email" class="email-input">
+      <button pButton type="button" label="Recuperar Senha" (click)="recuperarSenha()"></button>
+    </div>
+  </div>
+  
