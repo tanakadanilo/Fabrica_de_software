@@ -1,1 +1,8 @@
-<p>avaliar works!</p>
+
+<p-button icon="pi pi-external-link" label="Show" (onClick)="visible = true"></p-button>
+<p-dialog header="Header" [(visible)]="visible" [modal]="true" [closable]="false" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <p class="m-0">
+        Avalie de 0 a 10 o quanto vc gostou da comida de rabo agendada no nosso site s2
+    </p>
+    <p-button (onClick)="visible = false">avaliar</p-button>
+</p-dialog>
