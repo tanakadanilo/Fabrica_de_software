@@ -33,6 +33,7 @@ import { HistoricoComponent } from './tela/historico/historico.component';
 import { FinalizarContratacaoComponent } from './tela/finalizar-contratacao/finalizar-contratacao.component';
 import { RecuperarSenhaComponent } from './tela/recuperar-senha/recuperar-senha.component';
 import { TelaBaseComponent } from './exports/tela/tela-base/tela-base.component';
+
 @NgModule({
   declarations: [
     AppComponent,
