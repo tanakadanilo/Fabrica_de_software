@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class BaseServiceService {
   readonly URL_BACK = 'http://localhost:8080';
+  readonly URL_ENVIAR_EMAIL = this.URL_BACK + '/email/enviar';
   readonly URL_SERVICOS = this.URL_BACK + '/servico';
   readonly URL_SERVICOS_PRESTADOS = this.URL_SERVICOS + 'prestado';
   readonly URL_PRESTADOR = this.URL_BACK + '/prestador';
@@ -28,6 +29,12 @@ export class BaseServiceService {
     private router: Router
   ) {
     this.messageService = messageService;
+  }
+
+  post(url: string, body?: any) {
+    console.log('coisou');
+
+    return this.http.post(url, body ? body : new Object());
   }
 
   get(url: string) {
@@ -52,7 +59,7 @@ export class BaseServiceService {
     return this.get(this.URL_SERVICOS_PRESTADOS + '/' + id);
   }
   getCategorias() {
-    return this.get(this.URL_SERVICOS + '/' + "categorias");
+    return this.get(this.URL_SERVICOS + '/' + 'categorias');
   }
   getContatoVazio() {
     return {
@@ -112,5 +119,36 @@ export class BaseServiceService {
 
   navigate(url: string) {
     this.router.navigate([url]);
+  }
+
+  enviarEmail(destinatario: string, assunto: string, corpo: string) {
+    this.post(
+      `${this.URL_ENVIAR_EMAIL}?to=${
+        destinatario ? encodeURIComponent(destinatario) : ''
+      }&subject=${assunto ? encodeURIComponent(assunto) : ''}&body=${
+        corpo ? encodeURIComponent(corpo) : ''
+      }`,
+      null
+    ).subscribe({
+      next: (a: any) => {
+        if (a.erros?.lenght > 0) {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: '' + a.erros,
+          });
+        } else {
+          console.log(a.data);
+          this.messageService.add({
+            severity: 'Success',
+            summary: 'Email Enviado!',
+            detail: '' + a.data,
+          });
+        }
+      },
+      error(err) {
+        console.log(err);
+      },
+    });
   }
 }

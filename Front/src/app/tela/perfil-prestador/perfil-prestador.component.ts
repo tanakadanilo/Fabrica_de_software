@@ -37,7 +37,7 @@ export class PerfilPrestadorComponent {
       next: (a: any) => {
         if (a.erros?.lenght > 0) {
         } else {
-          this.servicos = a.data;
+          this.servicos = a.data.content;
           this.servicosPagina = this.servicos.slice(0, 5);
         }
       },
