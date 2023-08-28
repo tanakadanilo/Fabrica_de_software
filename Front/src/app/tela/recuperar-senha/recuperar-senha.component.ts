@@ -10,12 +10,14 @@ export class RecuperarSenhaComponent extends TelaBaseComponent {
   email: string = '';
 
   recuperarSenha() {
-    console.log("inicio envio email");
-    
+    console.log('inicio envio email');
+
     this.service.enviarEmail(
-      'tanakadanilo867@gmail.com',
-      'teste-codigo',
-      'Email enviado pelo código Angular'
+      this.email,
+      'Email de recuperação de senha',
+      `Clique aqui para recuperar sua senha.
+      Caso não tenha sido voce quem pediu a recuperação de senha, por favor ignore este email.
+    `
     );
   }
 }
