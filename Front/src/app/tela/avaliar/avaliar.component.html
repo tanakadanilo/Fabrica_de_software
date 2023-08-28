@@ -1,8 +1,30 @@
-
+<!-- 
 <p-button icon="pi pi-external-link" label="Show" (onClick)="visible = true"></p-button>
 <p-dialog header="Header" [(visible)]="visible" [modal]="true" [closable]="false" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
-    <p class="m-0">
-        Avalie de 0 a 10 o quanto vc gostou da comida de rabo agendada no nosso site s2
-    </p>
+        <div class="popup" id="popup">
+            <h2>Avalie o serviço deste prestador</h2>
+            <div class="stars">
+              <span class="star" (click)="rate(1)">★</span>
+              <span class="star" (click)="rate(2)">★</span>
+              <span class="star" (click)="rate(3)">★</span>
+              <span class="star" (click)="rate(4)">★</span>
+              <span class="star" (click)="rate(5)">★</span>
+            </div>
+            <p id="rating">{{stars}} estrelas</p>
+          </div>
+   
     <p-button (onClick)="visible = false">avaliar</p-button>
+</p-dialog> -->
+<p-button (click)="openPopup()">Abrir Popup</p-button>
+
+<p-dialog header="Avalie este item" [(visible)]="visible" [modal]="true" [baseZIndex]="10000" closable]="false">
+  <div class="stars">
+    <span class="star" (click)="rate(1)" [class.active]="stars! >= 1">★</span>
+    <span class="star" (click)="rate(2)" [class.active]="stars! >= 2">★</span>
+    <span class="star" (click)="rate(3)" [class.active]="stars! >= 3">★</span>
+    <span class="star" (click)="rate(4)" [class.active]="stars! >= 4">★</span>
+    <span class="star" (click)="rate(5)" [class.active]="stars! >= 5">★</span>
+  </div>
+  <p>{{ stars }} stars  </p>
+  <p-button (onClick)="closePopup()">avaliar</p-button>
 </p-dialog>
