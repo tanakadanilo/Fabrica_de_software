@@ -1,9 +1,11 @@
 <div class="body">
-  <img src="{{ contratante.foto }}" alt="Imagem de Perfil" />
-  <div class="container">
-    <div class="informacoes-pessoais">
-      <div class="row">
+
+    <img src="{{ contratante.foto }}" alt="Imagem de Perfil" />
+
+    <div class="container">
+      <div class="informacoes-pessoais">
         <h1>Informações Pessoais</h1>
+        <div class="row">
         <div class=" col-md-4 mt-3">
           <label htmlFor="cpf" class="col-md-3">CPF:</label>
           <input pInputText class="col-md-9" id="area" [(ngModel)]="contratante.cpfCnpj" />
