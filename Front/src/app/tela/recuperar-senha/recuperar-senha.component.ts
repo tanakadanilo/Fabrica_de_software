@@ -4,12 +4,20 @@ import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.comp
 @Component({
   selector: 'app-recuperar-senha',
   templateUrl: './recuperar-senha.component.html',
-  styleUrls: ['./recuperar-senha.component.css']
+  styleUrls: ['./recuperar-senha.component.css'],
 })
-export class RecuperarSenhaComponent extends TelaBaseComponent{
+export class RecuperarSenhaComponent extends TelaBaseComponent {
   email: string = '';
 
   recuperarSenha() {
-    // Adicione aqui a lógica para enviar o email de recuperação de senha
-  } 
+    console.log('inicio envio email');
+
+    this.service.enviarEmail(
+      this.email,
+      'Email de recuperação de senha',
+      `Clique aqui para recuperar sua senha.
+      Caso não tenha sido voce quem pediu a recuperação de senha, por favor ignore este email.
+    `
+    );
+  }
 }

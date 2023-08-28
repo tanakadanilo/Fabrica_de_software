@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-avaliar',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./avaliar.component.css']
 })
 export class AvaliarComponent {
-
-}
+    visible = false;
+  }
