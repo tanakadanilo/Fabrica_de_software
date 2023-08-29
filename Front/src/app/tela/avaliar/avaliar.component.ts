@@ -19,6 +19,5 @@ export class AvaliarComponent {
 
   rate(stars: number) {
     this.stars = stars;
-    this.closePopup();
   }
 }
