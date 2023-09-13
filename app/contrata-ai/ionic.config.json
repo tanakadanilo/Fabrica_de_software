@@ -1,0 +1,7 @@
+{
+  "name": "contrata-ai",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
