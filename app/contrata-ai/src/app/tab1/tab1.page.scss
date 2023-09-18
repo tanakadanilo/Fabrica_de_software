@@ -1,0 +1,54 @@
+//  * Teleportando no final
+
+
+// .gif-container {
+//     width: 100%;
+//     height: 100vh; /* Ajuste conforme necessário */
+//     overflow: hidden;
+//     position: relative;
+//   }
+
+//   .gif {
+//     position: absolute;
+//     animation: moveHorizontally 5s linear infinite; /* Ajuste a duração e velocidade conforme necessário */
+//   }
+// @keyframes moveHorizontally {
+//   0% {
+//     left: 0; /* Início: posição inicial à esquerda */
+//   }
+//   100% {
+//     left: calc(
+//       100% - 100px
+//     ); /* Fim: posição à direita, ajuste conforme necessário */
+//   }
+// }
+
+
+//  * Dando drift
+.gif-container {
+  width: 100%;
+  height: 100vh; /* Ajuste conforme necessário */
+  overflow: hidden;
+  position: relative;
+}
+
+.gif {
+  position: absolute;
+  animation: moveHorizontally 5s linear infinite; /* Ajuste a duração e velocidade conforme necessário */
+  transform-origin: center; /* Define o ponto de origem para inverter */
+}
+
+@keyframes moveHorizontally {
+  0% {
+    left: 0; /* Início: posição inicial à esquerda */
+    transform: scaleX(1); /* Não invertido */
+  }
+  50% {
+    left: calc(100% - 100px); /* Metade da animação: posição à direita */
+    transform: scaleX(-1); /* Invertido horizontalmente */
+  }
+  100% {
+    left: 0; /* Fim: posição inicial à esquerda */
+    transform: scaleX(1); /* Não invertido novamente */
+  }
+}

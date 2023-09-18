@@ -1,17 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Passarinho Voando
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content class="gif-container"  (mousemove)="atualizarPosicao($event)">
+  <img src="\assets\icon\makarios-voando.gif" alt="GIF animado"  [style.left.px]="initialX" [style.top.px]="initialY" class="gif">
 </ion-content>

@@ -1,17 +1,56 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Perfil
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-content [fullscreen]="true">
+    <ion-list>
+      <ion-item>
+        <ion-input label="CPF:" id="CPF:" value="{{contratante.cpf}}" />
+      </ion-item>
+      <ion-item>
+        <ion-input label="Nome:" id="Nome:" value="{{contratante.nome}}" />
+      </ion-item>
+      <ion-item>
+        <ion-input label="Email:" id="email" [(ngModel)]="contratante.contato.email" />
+      </ion-item>
+      <ion-item>
+        <ion-input label="Telefone:" id="telefone" [(ngModel)]="contratante.contato.telefone" />
+      </ion-item>
+      <ion-item>
+        <ion-input label="Contato:" id="contato" [(ngModel)]="contratante.contato.contato" />
+      </ion-item>
+      <ion-item>
+        <ion-input label="CEP:" id="cep" [(ngModel)]="contratante.endereco.cep" />
+      </ion-item>
+      <ion-item>
+        <ion-input label="Logradouro:" id="logradouro" [(ngModel)]="contratante.endereco.logradouro" />
+      </ion-item>
+      <ion-item>
+        <ion-input label="Número:" id="numero" [(ngModel)]="contratante.endereco.numero" />
+      </ion-item>
+      <ion-item>
+        <ion-input label="Cidade:" id="cidade" [(ngModel)]="contratante.endereco.cidade" />
+      </ion-item>
+      <ion-item>
+        <ion-input label="Quadra:" id="quadra" [(ngModel)]="contratante.endereco.quadra" />
+      </ion-item>
+      <ion-item>
+        <ion-input label="Lote:" id="lote" [(ngModel)]="contratante.endereco.lote" />
+      </ion-item>
+      <ion-item>
+        <ion-input label="Bairro:" id="bairro" [(ngModel)]="contratante.endereco.bairro" />
+      </ion-item>
+      <ion-item>
+        <ion-input label="Complemento:" id="complemento" [(ngModel)]="contratante.endereco.complemento" />
+      </ion-item>
+      <ion-item class="d-flex justify-content-center mt-5">
+        <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-success"></button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-content>
