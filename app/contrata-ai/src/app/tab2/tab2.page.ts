@@ -30,8 +30,8 @@ export class Tab2Page implements OnInit {
     usuario: 'Unknown User',
   };
   ufs: any;
-  ufSelecionada: any = '';
-  cities: any;
+  UrlImagem = '';
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {

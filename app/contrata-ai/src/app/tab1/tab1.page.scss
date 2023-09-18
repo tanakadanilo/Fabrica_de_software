@@ -1,6 +1,5 @@
 //  * Teleportando no final
 
-
 // .gif-container {
 //     width: 100%;
 //     height: 100vh; /* Ajuste conforme necessário */
@@ -22,7 +21,6 @@
 //     ); /* Fim: posição à direita, ajuste conforme necessário */
 //   }
 // }
-
 
 //  * Dando drift
 .gif-container {
@@ -51,4 +49,11 @@
     left: 0; /* Fim: posição inicial à esquerda */
     transform: scaleX(1); /* Não invertido novamente */
   }
+}
+
+.centralizado {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

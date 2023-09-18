@@ -5,6 +5,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content class="gif-container"  (mousemove)="atualizarPosicao($event)">
-  <img src="\assets\icon\makarios-voando.gif" alt="GIF animado"  [style.left.px]="initialX" [style.top.px]="initialY" class="gif">
+<ion-content class="gif-container" (mousemove)="atualizarPosicao($event)">
+  <img [src]="urlImagem" alt="GIF animado" [style.left.px]="initialX" [style.top.px]="initialY" class="gif"
+    id="passaro">
 </ion-content>
