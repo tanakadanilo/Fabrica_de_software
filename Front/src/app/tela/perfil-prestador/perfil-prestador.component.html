@@ -6,59 +6,45 @@
   <div class="container">
     <div class="informacoes-pessoais">
       <div class="row">
-        <div class=" col-md-4 mt-3">
-          <label htmlFor="cpf" class="col-md-3">CNPJ:</label>
-          <input pInputText class="col-md-9" id="area" [(ngModel)]="prestador.cpfCnpj" />
+        <div class="row">
+          <div class="row">
+            <div class="col-sm-3 mt-3">
+              <label htmlFor="cpf" class="col-md-3">CNPJ:</label>
+              <span class="col-md-9">{{ prestador.cpfCnpj }}</span>
+            </div>
+            <div class="col-sm-3 mt-3">
+              <label htmlFor="nome" class="col-md-3">Nome:</label>
+              <input pInputText class="col-md-9" id="nome" [(ngModel)]="prestador.nome" />
+            </div>
+            <div class="col-sm-3 mt-3">
+              <label htmlFor="telefone" class="col-md-3">Telefone:</label>
+              <input pInputText class="col-md-9" id="telefone" [(ngModel)]="prestador.contato.telefone" />
+            </div>
+          </div>
+          
         </div>
-        <div class=" col-md-4 mt-3">
-          <label htmlFor="nome" class="col-md-3">Nome:</label>
-          <input pInputText class="col-md-9" id="nome" [(ngModel)]="prestador.nome" />
-        </div>
-        <div class=" col-md-4 mt-3">
-          <label htmlFor="telefone" class="col-md-3">Telefone:</label>
-          <input pInputText class="col-md-9" id="telefone" [(ngModel)]="prestador.contato.telefone" />
-        </div>
+        
       </div>
     </div>
     <div class="contato">
       <div class="row">
-        <div class=" col-md-4 mt-3">
+        <div class="col-sm-3 mt-3">
           <label htmlFor="email" class="col-md-3">Email:</label>
           <input pInputText class="col-md-9" id="email" [(ngModel)]="prestador.contato.email" />
-        </div>
-        <div class=" col-md-4 mt-3">
-          <label htmlFor="contato" class="col-md-3">Contato:</label>
-          <input pInputText class="col-md-9" id="contato" [(ngModel)]="prestador.contato.contato" />
         </div>
       </div>
     </div>
     <div class="endereco mt-5">
       <div class="row">
-        <div class=" col-md-4 mt-3">
+        <div class="col-sm-3 mt-3">
           <label htmlFor="cep" class="col-md-3">CEP:</label>
-          <input pInputText class="col-md-9" id="cep" [(ngModel)]="prestador.endereco.cep" />
-        </div>
-        <div class=" col-md-4 mt-3">
-          <label htmlFor="logradouro" class="col-md-3">Logradouro:</label>
-          <input pInputText class="col-md-9" id="logradouro" [(ngModel)]="prestador.endereco.logradouro" />
-        </div>
-        <div class=" col-md-4 mt-3">
-          <label htmlFor="numero" class="col-md-3">Número:</label>
-          <input pInputText class="col-md-9" id="numero" [(ngModel)]="prestador.endereco.numero" />
+          <span id="cep" [(ngModel)]="prestador.endereco.cep" />
         </div>
       </div>
       <div class="row">
-        <div class=" col-md-4 mt-3">
+        <div class="col-sm-3 mt-3">
           <label htmlFor="cidade" class="col-md-3">Cidade:</label>
           <input pInputText class="col-md-9" id="cidade" [(ngModel)]="prestador.endereco.cidade" />
-        </div>
-        <div class=" col-md-4 mt-3">
-          <label htmlFor="quadra" class="col-md-3">Quadra:</label>
-          <input pInputText class="col-md-9" id="quadra" [(ngModel)]="prestador.endereco.quadra" />
-        </div>
-        <div class=" col-md-4 mt-3">
-          <label htmlFor="lote" class="col-md-3">Lote:</label>
-          <input pInputText class="col-md-9" id="lote" [(ngModel)]="prestador.endereco.lote" />
         </div>
       </div>
       <div class="align-items-start justify-content-between row mt-4">
