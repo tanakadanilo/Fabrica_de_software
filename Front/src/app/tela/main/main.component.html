@@ -1,17 +1,14 @@
 <div class="main">
-
-    <p-carousel [value]="categorias" [circular]="true" [numVisible]="4">
-        <ng-template let-categoria pTemplate="item">
-
-                <div class="servicos">
-                        <div class="item mt-5 col-md-4 p-button" style="display: block;margin: 2em;" (click)="contratar(categoria)">
-                            <p>{{categoria}}</p>
-                        </div>
-                    </div>
-        </ng-template>
-      </p-carousel>
+  <p-carousel [value]="categorias" [circular]="true" [numVisible]="4">
+    <ng-template let-categoria pTemplate="item">
+      <div class="servicos">
+        <div class="card mt-5 col-md-4 p-button" style="display: block;">
+          <p>{{categoria}}</p>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
   <h2>Prestadores mais bem avaliados</h2>
-
   <div class="scroll-container" id="cards-container">
     <div *ngFor="let usuario of usuarios" class="card">
       <p-card>
@@ -24,7 +21,5 @@
       </p-card>
     </div>
   </div>
-  
-    
-    <button (click)="getCategorias()">Teste</button>
+  <button (click)="getCategorias()">Teste</button>
 </div>
