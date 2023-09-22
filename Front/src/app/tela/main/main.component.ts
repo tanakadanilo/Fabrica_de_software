@@ -24,8 +24,38 @@ export class MainComponent extends TelaBaseComponent {
     {
       nome: 'aaaaaaaaaaaaa',
     },
+    {
+      nome: 'aaaaaaaaaaaaa',
+    },
+    {
+      nome: 'aaaaaaaaaaaaa',
+    },
+    {
+      nome: 'aaaaaaaaaaaaa',
+    },
+    {
+      nome: 'aaaaaaaaaaaaa',
+    },
+    {
+      nome: 'aaaaaaaaaaaaa',
+    },
+    {
+      nome: 'aaaaaaaaaaaaa',
+    },
+    {
+      nome: 'aaaaaaaaaaaaa',
+    },
+    {
+      nome: 'aaaaaaaaaaaaa',
+    },
+    {
+      nome: 'aaaaaaaaaaaaa',
+    },
+    {
+      nome: 'aaaaaaaaaaaaa',
+    },
   ];
-
+  
   categorias!: string[];
 
   constructor(override service: BaseServiceService) {

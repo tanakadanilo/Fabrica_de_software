@@ -13,11 +13,17 @@
     margin-top: 20px;
   
     .card {
-      width: calc(25% - 10px); /* Para exibir 3 cards por linha */
+      width: 5rem;
       margin: 5rem 3rem 3rem 4rem;
+      padding: 10px;
+      background-color: #f0f0f0;
   
       @media (max-width: 768px) {
         width: 100%; /* Altere a largura para exibir 1 card por linha em dispositivos menores */
       }
     }
+  }
+  .scroll-container {
+    max-height: 600px; /* Defina a altura máxima desejada para o contêiner */
+    overflow: auto; /* Isso permite a rolagem apenas para o contêiner */
   }

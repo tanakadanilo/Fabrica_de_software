@@ -12,18 +12,19 @@
       </p-carousel>
   <h2>Prestadores mais bem avaliados</h2>
 
-      <div class="cards-container">
-        <div *ngFor="let usuario of usuarios" class="card">
-          <p-card>
-            <ng-template pTemplate="title">
-              Título do Card
-            </ng-template>
-            <ng-template pTemplate="content">
-              {{ usuario.nome }}
-            </ng-template>
-          </p-card>
-        </div>
-      </div>
+  <div class="scroll-container" id="cards-container">
+    <div *ngFor="let usuario of usuarios" class="card">
+      <p-card>
+        <ng-template pTemplate="title">
+          Título do Card
+        </ng-template>
+        <ng-template pTemplate="content">
+          {{ usuario.nome }}
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+  
     
     <button (click)="getCategorias()">Teste</button>
 </div>
