@@ -87,8 +87,8 @@ public class PreencheBanco {
 
 				Servico s = new Servico();
 				s.setArea("Área descrita no item " + i);
-				s.setDescricao("Descrição " + i);
-				s.setEspecialidade("Especialista em enrolar, certificado " + i + " vezes");
+				s.setDescricao("Descrição Detalhada" + i);
+				s.setNome("Nome " + i);
 				s = servicoService.salvar(s);
 
 				Disponibilidade d = new Disponibilidade();

@@ -12,7 +12,7 @@ public class ServicoPrestadoDto {
 
 	private Long idServico;
 	private String area;
-	private String especialidade;
+	private String nome;
 	private String descricao;
 	private Long idExperiencia;
 	private Date tempoExperiencia;
@@ -23,13 +23,13 @@ public class ServicoPrestadoDto {
 	public ServicoPrestadoDto() {
 	}
 
-	public ServicoPrestadoDto(Long id, Long idServico, String area, String especialidade, String descricao,
+	public ServicoPrestadoDto(Long id, Long idServico, String area, String nome, String descricao,
 			Long idExperiencia, Date tempoExperiencia, String certificado, String descricaoAdcional,
 			Prestador prestador) {
 		this.id = id;
 		this.idServico = idServico;
 		this.area = area;
-		this.especialidade = especialidade;
+		this.nome = nome;
 		this.descricao = descricao;
 		this.idExperiencia = idExperiencia;
 		this.tempoExperiencia = tempoExperiencia;

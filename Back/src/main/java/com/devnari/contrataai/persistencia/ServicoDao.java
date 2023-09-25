@@ -16,8 +16,6 @@ public interface ServicoDao extends JpaRepository<Servico, Long> {
 	@Query("SELECT distinct s.area from Servico s " + "where (:categoria like '' or s.area like %:categoria%)")
 	Page<String> findCategorias(@Param("categoria") String categoria, Pageable pageable);
 
-	Page<Servico> findByEspecialidade(String especialidade, Pageable pageable);
-
 	@Query("SELECT s FROM Servico s "
 			+ "WHERE (CASE WHEN :nomeCategoria like '_%' THEN s.area like %:nomeCategoria% ELSE TRUE END) "
 			+ "AND (CASE WHEN :nomeServico like '_%' THEN s.descricao like %:nomeServico% ELSE TRUE END)")
