@@ -18,7 +18,7 @@ public interface ServicoDao extends JpaRepository<Servico, Long> {
 
 	Page<Servico> findByEspecialidade(String especialidade, Pageable pageable);
 
-	@Query("SELECT s FROM Servico s INNER JOIN Prestador p "
+	@Query("SELECT s FROM Servico s "
 			+ "WHERE (CASE WHEN :nomeCategoria like '_%' THEN s.area like %:nomeCategoria% ELSE TRUE END) "
 			+ "AND (CASE WHEN :nomeServico like '_%' THEN s.descricao like %:nomeServico% ELSE TRUE END)")
 	Page<Servico> findByParams(@Param("nomeCategoria") String nomeCategoria, @Param("nomeServico") String nomeServico,
