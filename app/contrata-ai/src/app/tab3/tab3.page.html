@@ -26,8 +26,39 @@
             {{ card.descricao }}
           </ion-card-content>
         </ion-card>
+        <ion-button (click)="editarCard(card)">Editar</ion-button>
       </ion-item>
     </ion-list>
+
+    <p>Editar</p>
+    <ion-modal [isOpen]="abrirModal" (willDismiss)="onWillDismiss($event)">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()">Cancelar</ion-button>
+            </ion-buttons>
+            <ion-title>Welcome</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="confirm()" [strong]="true">Confirmar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-card>
+            <ion-item>
+              <ion-input label="Área:" labelPlacement="floating" [(ngModel)]="card.area"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Nome:" labelPlacement="floating" [(ngModel)]="card.nome"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Descrição:" labelPlacement="floating" [(ngModel)]="card.descricao"></ion-input>
+            </ion-item>
+          </ion-card>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </ion-content>
 
 </ion-content>
