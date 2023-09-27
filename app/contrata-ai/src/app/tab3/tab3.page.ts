@@ -21,10 +21,15 @@ export class Tab3Page implements OnInit {
     this.carregarServicos();
   }
 
-  carregarServicos() {
-    this.servicoService.getServicos().subscribe((a: any) => {
-      this.cardList = a.data.content;
-    });
+  async carregarServicos() {
+    try {
+      this.cardList = await this.servicoService.getServicos();
+    } catch (error: any) {
+      console.log(error.error.erros);
+      alert(error.error.erros)
+    }
+    console.log(this.cardList);
+
   }
 
   editarCard(card: any) {
@@ -41,7 +46,15 @@ export class Tab3Page implements OnInit {
   }
 
   confirm() {
-    this.servicoService.editarServico(this.card).subscribe();
+    console.log(this.card);
+
+    if (!this.card.id) {// novo servico
+      this.servicoService.criarServico(this.card).subscribe((a: any) => {
+        console.log(a);
+      });
+    } else {
+      this.servicoService.editarServico(this.card).subscribe();
+    }
     this.carregarServicos();
     this.modal.dismiss(null, 'confirmar');
     this.abrirModal = false;
@@ -51,5 +64,14 @@ export class Tab3Page implements OnInit {
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
 
+  }
+
+  novoServico() {
+    this.abrirModal = true;
+    this.card = {
+      "area": "",
+      "nome": "",
+      "descricao": ""
+    };
   }
 }

@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .left-component {
+    flex: 1; /* Ocupa a maior parte do espaço à esquerda */
+    margin-right: 5px; /* Espaço entre os componentes */
+  }
+  
+  .right-component {
+    flex: 1; /* Ocupa a maior parte do espaço à direita */
+    margin-left: 5px; /* Espaço entre os componentes */
+  }
