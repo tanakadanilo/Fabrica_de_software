@@ -13,16 +13,9 @@ export class ServicoService extends BaseService {
     super(http);
   }
 
-  async getServicos(): Promise<any[]> {
-    return this.http.get<any[]>(this.URL_SERVICOS)
-      .pipe(
-        map((response:any) => {
-          
-          response.data.content
-        }),
-        catchError(this.handleError)
-      )
-      .toPromise();
+  getServicos(categoria:string) {
+    return this.http.get<any[]>(this.URL_SERVICOS+"?size=100&nomeCategoria=" +categoria)
+
   }
 
   private handleError(error: any): Observable<any> {

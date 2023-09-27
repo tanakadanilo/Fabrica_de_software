@@ -5,17 +5,17 @@ import { ServicoService } from '../services/servico.service';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  styleUrls: ['tab3.page.scss'],
 })
 export class Tab3Page implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
-
-
+  cities!: any[];
+  selectedCity ="";
   cardList: any;
   card: any;
   abrirModal: boolean = false;
 
-  constructor(private servicoService: ServicoService) { }
+  constructor(private servicoService: ServicoService) {}
 
   ngOnInit() {
     this.carregarServicos();
@@ -23,32 +23,38 @@ export class Tab3Page implements OnInit {
 
   async carregarServicos() {
     try {
-      this.cardList = await this.servicoService.getServicos();
+      this.servicoService.getServicos(this.selectedCity).subscribe((servicos: any) => {
+        this.cardList = servicos.data.content;
+      });
+      this.servicoService
+        .get('http://localhost:8080/servico/categorias')
+        .subscribe((categorias: any) => {
+          this.cities = categorias.data.content;
+          console.log(this.cities)
+        });
+
     } catch (error: any) {
       console.log(error.error.erros);
-      alert(error.error.erros)
+      alert(error.error.erros);
     }
     console.log(this.cardList);
-
-  }
-
-  editarCard(card: any) {
-    this.abrirModal = true;
-    this.card = card;
   }
 
   cancel() {
-    this.servicoService.get("http://localhost:8080/servico/" + this.card.id).subscribe((a: any) => {
-      this.card = a.data;
-      console.log(this.card);
-    });
+    this.servicoService
+      .get('http://localhost:8080/servico/' + this.card.id)
+      .subscribe((a: any) => {
+        this.card = a.data;
+        console.log(this.card);
+      });
     this.abrirModal = false;
   }
 
   confirm() {
     console.log(this.card);
 
-    if (!this.card.id) {// novo servico
+    if (!this.card.id) {
+      // novo servico
       this.servicoService.criarServico(this.card).subscribe((a: any) => {
         console.log(a);
       });
@@ -58,20 +64,18 @@ export class Tab3Page implements OnInit {
     this.carregarServicos();
     this.modal.dismiss(null, 'confirmar');
     this.abrirModal = false;
-
   }
 
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
-
   }
 
   novoServico() {
     this.abrirModal = true;
     this.card = {
-      "area": "",
-      "nome": "",
-      "descricao": ""
+      area: '',
+      nome: '',
+      descricao: '',
     };
   }
 }

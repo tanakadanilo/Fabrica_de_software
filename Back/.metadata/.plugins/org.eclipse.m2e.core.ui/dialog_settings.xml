@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="F:\git\Fabrica"/>
 			<item value="C:\Users\Erick\Documents\GitHub\Fabrica_de_software\Back"/>
 		</list>
 		<list key="projectNameTemplate">
