@@ -10,34 +10,34 @@ import { ServicoService } from '../services/servico.service';
 export class Tab3Page implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
   cities!: any[];
-  selectedCity ="";
+  selectedCity = "";
   cardList: any;
   card: any;
   abrirModal: boolean = false;
 
-  constructor(private servicoService: ServicoService) {}
+  constructor(private servicoService: ServicoService) { }
 
   ngOnInit() {
     this.carregarServicos();
+    this.carregarCategorias();
   }
 
+  async carregarCategorias() {
+    this.servicoService
+      .get('http://localhost:8080/servico/categorias')
+      .subscribe((categorias: any) => {
+        this.cities = categorias.data.content;
+      });
+  }
   async carregarServicos() {
     try {
       this.servicoService.getServicos(this.selectedCity).subscribe((servicos: any) => {
         this.cardList = servicos.data.content;
       });
-      this.servicoService
-        .get('http://localhost:8080/servico/categorias')
-        .subscribe((categorias: any) => {
-          this.cities = categorias.data.content;
-          console.log(this.cities)
-        });
-
     } catch (error: any) {
       console.log(error.error.erros);
       alert(error.error.erros);
     }
-    console.log(this.cardList);
   }
 
   cancel() {
@@ -64,10 +64,6 @@ export class Tab3Page implements OnInit {
     this.carregarServicos();
     this.modal.dismiss(null, 'confirmar');
     this.abrirModal = false;
-  }
-
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
   }
 
   novoServico() {
