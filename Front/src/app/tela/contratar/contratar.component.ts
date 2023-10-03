@@ -14,8 +14,11 @@ export class ContratarComponent implements OnInit {
     private service: BaseServiceService,
     private route: ActivatedRoute
   ) {}
+    prestador : any;
 
-  ngOnInit(): void {
+    date: Date = new Date();
+
+    ngOnInit(): void {
     let id = this.route.snapshot.data['id'];
     this.service.getServicoPrestado(id).subscribe({
       next: (a: any) => {

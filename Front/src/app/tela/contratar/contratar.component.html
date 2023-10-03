@@ -1,56 +1,54 @@
-<div class="container" *ngIf="servico">
-    <div class="servicos">
-        <h1>Serviços</h1>
-        <div class="row">
-            <div class="col-md-4">
-                <label htmlFor="area" class="col-md-4">Área:</label>
-                <input disabled="true" pInputText class="col-md-8" id="area" [(ngModel)]="servico.area" />
-            </div>
-            <div class="col-md-4">
-                <label class="col-md-4">Descricao:</label>
-                <input disabled="true" pInputText class="col-md-8" [(ngModel)]="servico.descricao" />
-            </div>
-            <div class="col-md-4">
-                <label class="col-md-4">Especialidade:</label>
-                <input disabled="true" pInputText class="col-md-8" [(ngModel)]="servico.especialidade" />
+<div class="container" *ngIf="servicoPrestado">
+    <!-- Dados do Prestador -->
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Foto do Prestador -->
+            <img src="assets\images\images.jpeg" alt="Imagem de Perfil" class="img-fluid" />
+        </div>
+        <div class="col-md-8">
+            <!-- Informações do Prestador -->
+            <div class="informacoes-pessoais">
+                <h1>Informações do Prestador</h1>
+                <div class="col-md-6">
+                    <label>Nome:</label>
+                    <span>{{ servicoPrestado.nomePrestador }}</span>
+                </div>
+                <div class="col-md-6">
+                    <label>Telefone:</label>
+                    <span>{{ servicoPrestado.contatoPrestador.telefone}}</span>
+                </div>
+                <div class="col-md-6">
+                    <label>Cidade:</label>
+                    <span>{{ servicoPrestado.enderecoPrestador.cidade }}</span>
+                </div>
+                <div class="col-md-6">
+                    <label>Email:</label>
+                    <span>{{ servicoPrestado.contatoPrestador.email }}</span>
+                </div>
             </div>
         </div>
-        <h3>Prestador</h3>
-        <div class="row">
-            <div class=" col-md-4 mt-3">
-                <label htmlFor="cpf" class="col-md-4">CPF:</label>
-                <input pInputText disabled="true" class="col-md-8" id="area" [(ngModel)]="servico.cpfPrestador" />
-            </div>
-            <div class=" col-md-4 mt-3">
-                <label htmlFor="nome" class="col-md-4">Nome:</label>
-                <input pInputText disabled="true" class="col-md-8" id="nome" [(ngModel)]="servico.nomePrestador" />
-            </div>
-            <div class=" col-md-4 mt-3">
-                <label htmlFor="telefone" class="col-md-4">Telefone:</label>
-                <input pInputText disabled="true" class="col-md-8" id="telefone"
-                    [(ngModel)]="servico.contatoPrestador.telefone" />
-            </div>
-        </div>
-        <div class="row">
-            <div class=" col-md-4 mt-3">
-                <label htmlFor="especializacao" class="col-md-4">Especializacao:</label>
-                <input pInputText disabled="true" class="col-md-8" id="especializacao"
-                    [(ngModel)]="servico.especializacaoPrestador" />
-            </div>
-        </div>
-        <div class="row">
-            <div class=" col-md-4 mt-3">
-                <label htmlFor="descricaoAdicional" class="col-md-4">Descricao Adicional:</label>
-                <textarea disabled="true" pInputTextarea class="col-md-8" id="descricaoAdicional"
-                    [(ngModel)]="servico.descricaoAdicionalPrestador">
-              </textarea>
-            </div>
-            <div class=" col-md-4 mt-3">
+    </div>
+    <!-- Serviço Escolhido -->
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Área Destacada para o Serviço Escolhido -->
+            <div class="area-destacada destacado">
+                <h2>Serviço Escolhido</h2>
 
-                <p-button label="Ir para o perfil do prestador" icon="pi pi-file-edit" styleClass="p-button-info"
-                    (click)="abrirPerfilPrestador()"></p-button>
             </div>
         </div>
-        <p-button label="Contratar" icon="pi pi-file-edit" styleClass="p-button-success"></p-button>
+        <div class="col-md-6">
+
+            <div class="calendario destacado">
+                <h2>Agendar Data e Hora</h2>
+                <p-calendar [(ngModel)]="date"></p-calendar>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <button pButton type="button" label="Contratar"></button>
+        </div>
     </div>
 </div>

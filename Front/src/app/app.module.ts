@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { DialogModule } from 'primeng/dialog';
-
+import { CalendarModule } from 'primeng/calendar';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './tela/main/main.component';
@@ -69,7 +69,8 @@ import { TelaBaseComponent } from './exports/tela/tela-base/tela-base.component'
     DropdownModule,
     PaginatorModule,
     DialogModule,
-    CardModule
+    CardModule,
+    CalendarModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
