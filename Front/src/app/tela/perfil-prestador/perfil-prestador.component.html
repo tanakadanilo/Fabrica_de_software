@@ -1,96 +1,50 @@
-<div class="body">
-  <div class="titulo-prestador">
-    <img src="{{ prestador.foto }}" alt="Imagem de Perfil" />
-    <h1 style="margin-top: 1em;">Informações Pessoais</h1>
-  </div>
-  <div class="container">
-    <div class="informacoes-pessoais">
-      <div class="row">
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <!-- Foto do Prestador -->
+      <img src="{{ prestador.foto }}" alt="Imagem de Perfil" class="img-fluid" />
+    </div>
+    <div class="col-md-8">
+      <!-- Informações do Prestador -->
+      <div class="informacoes-pessoais">
+        <h1>Informações Pessoais</h1>
         <div class="row">
-          <div class="row">
-            <div class="col-sm-3 mt-3">
-              <label htmlFor="cpf" class="col-md-3">CNPJ:</label>
-              <span class="col-md-9">{{ prestador.cpfCnpj }}</span>
-            </div>
-            <div class="col-sm-3 mt-3">
-              <label htmlFor="nome" class="col-md-3">Nome:</label>
-              <input pInputText class="col-md-9" id="nome" [(ngModel)]="prestador.nome" />
-            </div>
-            <div class="col-sm-3 mt-3">
-              <label htmlFor="telefone" class="col-md-3">Telefone:</label>
-              <input pInputText class="col-md-9" id="telefone" [(ngModel)]="prestador.contato.telefone" />
-            </div>
+          <div class="col-md-6">
+            <label>Nome:</label>
+            <span>{{ prestador.nome }}</span>
           </div>
-          
+          <div class="col-md-6">
+            <label>Telefone:</label>
+            <span>{{ prestador.contato.telefone }}</span>
+          </div>
+          <div class="col-md-6">
+            <label>Cidade:</label>
+            <span>{{ prestador.endereco.cidade }}</span>
+          </div>
+          <div class="col-md-6">
+            <label>Email:</label>
+            <span>{{ prestador.contato.email }}</span>
+          </div>
         </div>
-        
-      </div>
-    </div>
-    <div class="contato">
-      <div class="row">
-        <div class="col-sm-3 mt-3">
-          <label htmlFor="email" class="col-md-3">Email:</label>
-          <input pInputText class="col-md-9" id="email" [(ngModel)]="prestador.contato.email" />
-        </div>
-      </div>
-    </div>
-    <div class="endereco mt-5">
-      <div class="row">
-        <div class="col-sm-3 mt-3">
-          <label htmlFor="cep" class="col-md-3">CEP:</label>
-          <span id="cep" [(ngModel)]="prestador.endereco.cep" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3 mt-3">
-          <label htmlFor="cidade" class="col-md-3">Cidade:</label>
-          <input pInputText class="col-md-9" id="cidade" [(ngModel)]="prestador.endereco.cidade" />
-        </div>
-      </div>
-      <div class="align-items-start justify-content-between row mt-4">
-        <div class="col-md-6 mt-3">
-          <label htmlFor="especializacao" class="col-md-3">Especializacao:</label>
-          <textarea pInputTextarea class="col-md-9" id="especializacao" [(ngModel)]="prestador.especializacao">
-          </textarea>
-        </div>
-
-
-        <div class="col-md-6 mt-3">
-          <label htmlFor="descricaoAdicional" class="col-md-3">Descricao Adicional:</label>
-          <textarea pInputTextarea class="col-md-9" id="descricaoAdicional" [(ngModel)]="prestador.descricaoAdicional">
-          </textarea>
-        </div>
-      </div>
-      <div class="box-btn-edit justify-content-center" style="display: flex;">
-        <p-button (click)="showDialog()" class="mt-5" icon="pi pi-file-edit" label="Editar Serviços"></p-button>
       </div>
     </div>
   </div>
-  <p-dialog header="Serviços" [(visible)]="mostrarDialog" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
-    [resizable]="false">
-    <div class="container">
-      <div class="servicos">
-        <h1>Serviços</h1>
-        <div class="servico" *ngFor="let servico of servicosPagina">
-            <div class="row">
-            <div class="mt-2">
-              <label htmlFor="area" class="col-md-4">Área:</label>
-              <input pInputText class="col-md-8" id="area" [(ngModel)]="servico.area" />
-            </div>
-            <div class="mt-2">
-              <label htmlFor="area" class="col-md-4">Descricao:</label>
-              <input pInputText class="col-md-8" id="area" [(ngModel)]="servico.descricao" />
-            </div>
-            <div class="mt-2">
-              <label htmlFor="area" class="col-md-4">Especialidade:</label>
-              <input pInputText class="col-md-8" id="area" [(ngModel)]="servico.especialidade"/>
-            </div>
-            <p-button class="btn-edit"  label="Editar" icon="pi pi-file-edit" styleClass="p-button-success"></p-button>
-          </div>
-        </div>
+  <br><br><br><br><br>
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Áreas de Atuação -->
+      <div class="areas-de-atuacao destacado">
+        <h2>Áreas de Atuação</h2>
+        <!-- Coloque aqui o código para exibir as áreas de atuação do prestador -->
       </div>
-      <p-paginator (onPageChange)="mudarPagina($event)" [first]="0" [rows]="5" [totalRecords]="120"
-        [rowsPerPageOptions]="[5, 10, 15]"></p-paginator>
     </div>
-  </p-dialog>
+    <div class="col-md-6">
+      <!-- Serviços Prestados -->
+      <div class="servicos-prestados destacado">
+        <h2>Serviços Prestados</h2>
+        <!-- Coloque aqui o código para exibir os serviços prestados pelo prestador -->
+      </div>
+    </div>
+  </div>
+  <p-button label="Contratar Serviços" (click)="null"></p-button>
 </div>

@@ -17,9 +17,23 @@ interface PageEvent {
 })
 export class PerfilPrestadorComponent {
   servicos!: Servico[];
-  prestador!: Prestador;
+  //prestador!: Prestador;
   servicosPagina: any;
   mostrarDialog: boolean = false;
+
+
+  //prestador temporário para testes
+  prestador: any = {
+      nome: 'Roberto Carlos',
+      cpfCnpj: '06004122106',
+      contato: {
+        telefone: '40028922',
+        email: 'daniloRuimNoLol@gmail.com'
+      },
+      endereco: {
+        cidade: 'Maragoji'
+      }
+    }
 
   constructor(private servico: BaseServiceService, private route: ActivatedRoute) {
     servico.getPrestador(parseInt(route.snapshot.paramMap.get('id')!)).subscribe({

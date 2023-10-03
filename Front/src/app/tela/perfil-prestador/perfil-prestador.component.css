@@ -18,3 +18,49 @@
 .servico {
   margin-top: 3em;
 }
+
+/* Estilize a foto do prestador */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* Adicione bordas arredondadas à imagem */
+}
+
+/* Estilize o título "Informações Pessoais" */
+.informacoes-pessoais h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Estilize as labels das informações */
+.informacoes-pessoais label {
+  font-weight: bold;
+}
+
+/* Estilize as spans com os dados do prestador */
+.informacoes-pessoais span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Estilize as colunas das informações */
+.informacoes-pessoais .col-md-6 {
+  width: 50%;
+  float: left;
+  box-sizing: border-box;
+  padding-right: 15px;
+}
+
+/* Limpe o float após as colunas das informações */
+.informacoes-pessoais::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.destacado {
+  background-color: #f2f2f2; /* Cor de fundo destacada */
+  padding: 20px; /* Espaçamento interno para criar o efeito do quadrado */
+  border: 2px solid #dddddd; /* Borda ao redor do quadrado */
+  border-radius: 5px; /* Borda arredondada */
+  margin-bottom: 3rem;
+}
