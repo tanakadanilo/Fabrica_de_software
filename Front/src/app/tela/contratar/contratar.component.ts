@@ -8,24 +8,21 @@ import { BaseServiceService } from 'src/app/exports/service/base-service.service
   styleUrls: ['./contratar.component.css'],
 })
 export class ContratarComponent implements OnInit {
-  servico: any = '';
-
   constructor(
     private service: BaseServiceService,
     private route: ActivatedRoute
   ) {}
-    prestador : any;
+  servicoPrestado: any;
 
-    date: Date = new Date();
+  date: Date = new Date();
 
-    ngOnInit(): void {
+  ngOnInit(): void {
     let id = this.route.snapshot.data['id'];
     this.service.getServicoPrestado(id).subscribe({
       next: (a: any) => {
         if (a.erros?.lenght > 0) {
         } else {
-          this.servico = a.data;
-          console.log(this.servico);
+          this.servicoPrestado = a.data;
         }
       },
       error(err) {
@@ -35,6 +32,6 @@ export class ContratarComponent implements OnInit {
   }
 
   abrirPerfilPrestador() {
-    this.service.navigate('/perfil/' + this.servico.prestador.id);
+    this.service.navigate('/perfil/' + this.servicoPrestado.idPrestador);
   }
 }
