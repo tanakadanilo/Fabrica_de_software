@@ -41,11 +41,11 @@ public class ServicoPrestadoControl {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Response<ServicoPrestado>> buscarPorId(@PathVariable("id") String id) {
-		Response<ServicoPrestado> response = new Response<>();
+	public ResponseEntity<Response<ServicoPrestadoDto>> buscarPorId(@PathVariable("id") String id) {
+		Response<ServicoPrestadoDto> response = new Response<>();
 		try {
 			Long idLong = StringUtil.converterStringParaLong(id);
-			ServicoPrestado servicoPrestado = service.buscarPorId(idLong);
+			ServicoPrestadoDto servicoPrestado = service.buscarDtoPorId(idLong);
 			response.setData(servicoPrestado);
 		} catch (Exception e) {
 			e.printStackTrace();

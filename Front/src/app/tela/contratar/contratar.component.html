@@ -1,48 +1,48 @@
-<div class="container">
-    <div class="servico.servicos">
+<div class="container" *ngIf="servico">
+    <div class="servicos">
         <h1>Serviços</h1>
         <div class="row">
             <div class="col-md-4">
                 <label htmlFor="area" class="col-md-4">Área:</label>
-                <input disabled="true" pInputText class="col-md-8" id="area" [(ngModel)]="servico.servico.area" />
+                <input disabled="true" pInputText class="col-md-8" id="area" [(ngModel)]="servico.area" />
             </div>
             <div class="col-md-4">
                 <label class="col-md-4">Descricao:</label>
-                <input disabled="true" pInputText class="col-md-8" [(ngModel)]="servico.servico.descricao" />
+                <input disabled="true" pInputText class="col-md-8" [(ngModel)]="servico.descricao" />
             </div>
             <div class="col-md-4">
                 <label class="col-md-4">Especialidade:</label>
-                <input disabled="true" pInputText class="col-md-8" [(ngModel)]="servico.servico.especialidade" />
+                <input disabled="true" pInputText class="col-md-8" [(ngModel)]="servico.especialidade" />
             </div>
         </div>
         <h3>Prestador</h3>
         <div class="row">
             <div class=" col-md-4 mt-3">
                 <label htmlFor="cpf" class="col-md-4">CPF:</label>
-                <input pInputText disabled="true" class="col-md-8" id="area" [(ngModel)]="servico.prestador.cpf" />
+                <input pInputText disabled="true" class="col-md-8" id="area" [(ngModel)]="servico.cpfPrestador" />
             </div>
             <div class=" col-md-4 mt-3">
                 <label htmlFor="nome" class="col-md-4">Nome:</label>
-                <input pInputText disabled="true" class="col-md-8" id="nome" [(ngModel)]="servico.prestador.nome" />
+                <input pInputText disabled="true" class="col-md-8" id="nome" [(ngModel)]="servico.nomePrestador" />
             </div>
             <div class=" col-md-4 mt-3">
                 <label htmlFor="telefone" class="col-md-4">Telefone:</label>
                 <input pInputText disabled="true" class="col-md-8" id="telefone"
-                    [(ngModel)]="servico.prestador.contato.telefone" />
+                    [(ngModel)]="servico.contatoPrestador.telefone" />
             </div>
         </div>
         <div class="row">
             <div class=" col-md-4 mt-3">
                 <label htmlFor="especializacao" class="col-md-4">Especializacao:</label>
                 <input pInputText disabled="true" class="col-md-8" id="especializacao"
-                    [(ngModel)]="servico.prestador.especializacao" />
+                    [(ngModel)]="servico.especializacaoPrestador" />
             </div>
         </div>
         <div class="row">
             <div class=" col-md-4 mt-3">
                 <label htmlFor="descricaoAdicional" class="col-md-4">Descricao Adicional:</label>
                 <textarea disabled="true" pInputTextarea class="col-md-8" id="descricaoAdicional"
-                    [(ngModel)]="servico.prestador.descricaoAdicional">
+                    [(ngModel)]="servico.descricaoAdicionalPrestador">
               </textarea>
             </div>
             <div class=" col-md-4 mt-3">

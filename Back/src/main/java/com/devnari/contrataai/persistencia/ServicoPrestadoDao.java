@@ -13,4 +13,5 @@ public interface ServicoPrestadoDao extends JpaRepository<ServicoPrestado, Long>
 			+ " s.experiencia.certificado, s.experiencia.descricaoAdcional, p) "
 			+ " FROM com.devnari.contrataai.model.Prestador p join fetch p.servicosPrestados s where s.id = :id")
 	ServicoPrestadoDto findDtoById(@Param("id") Long id);
+
 }

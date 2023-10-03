@@ -19,10 +19,10 @@ export class ContratarComponent implements OnInit {
     let id = this.route.snapshot.data['id'];
     this.service.getServicoPrestado(id).subscribe({
       next: (a: any) => {
-        console.log(a.data);
         if (a.erros?.lenght > 0) {
         } else {
           this.servico = a.data;
+          console.log(this.servico);
         }
       },
       error(err) {

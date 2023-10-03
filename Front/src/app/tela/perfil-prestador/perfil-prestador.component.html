@@ -21,9 +21,9 @@
               <input pInputText class="col-md-9" id="telefone" [(ngModel)]="prestador.contato.telefone" />
             </div>
           </div>
-          
+
         </div>
-        
+
       </div>
     </div>
     <div class="contato">
@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-sm-3 mt-3">
           <label htmlFor="cep" class="col-md-3">CEP:</label>
-          <span id="cep" [(ngModel)]="prestador.endereco.cep" />
+          <span id="cep" [(ngModel)]="prestador.endereco.cep"></span>
         </div>
       </div>
       <div class="row">
@@ -72,7 +72,7 @@
       <div class="servicos">
         <h1>Serviços</h1>
         <div class="servico" *ngFor="let servico of servicosPagina">
-            <div class="row">
+          <div class="row">
             <div class="mt-2">
               <label htmlFor="area" class="col-md-4">Área:</label>
               <input pInputText class="col-md-8" id="area" [(ngModel)]="servico.area" />
@@ -83,9 +83,9 @@
             </div>
             <div class="mt-2">
               <label htmlFor="area" class="col-md-4">Especialidade:</label>
-              <input pInputText class="col-md-8" id="area" [(ngModel)]="servico.especialidade"/>
+              <input pInputText class="col-md-8" id="area" [(ngModel)]="servico.especialidade" />
             </div>
-            <p-button class="btn-edit"  label="Editar" icon="pi pi-file-edit" styleClass="p-button-success"></p-button>
+            <p-button class="btn-edit" label="Editar" icon="pi pi-file-edit" styleClass="p-button-success"></p-button>
           </div>
         </div>
       </div>
