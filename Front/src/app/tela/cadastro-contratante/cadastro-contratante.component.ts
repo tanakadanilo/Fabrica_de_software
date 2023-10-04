@@ -5,6 +5,7 @@ import { Contratante } from 'src/app/exports/interface/contratante';
 import { Paginavel } from 'src/app/exports/interface/paginavel';
 import { Response } from 'src/app/exports/interface/response';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
+import { ContratanteService } from 'src/app/exports/service/contratante.service';
 import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.component';
 
 @Component({
@@ -17,7 +18,7 @@ export class CadastroComponent extends TelaBaseComponent {
   ufs: Uf[];
   ufSelecionada: Uf = Uf.AC;
   constructor(
-    override service: BaseServiceService,
+    override service: ContratanteService,
     protected override route: ActivatedRoute
   ) {
     super(service, route);

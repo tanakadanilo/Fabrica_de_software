@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
+import { ServicosService } from 'src/app/exports/service/servicos.service';
 
 @Component({
   selector: 'app-contratar',
@@ -9,7 +10,7 @@ import { BaseServiceService } from 'src/app/exports/service/base-service.service
 })
 export class ContratarComponent implements OnInit {
   constructor(
-    private service: BaseServiceService,
+    private service: ServicosService,
     private route: ActivatedRoute
   ) {}
   servicoPrestado: any;
