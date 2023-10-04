@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Servico } from 'src/app/exports/interface/servico';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
@@ -128,11 +128,13 @@ export class MainComponent extends TelaBaseComponent {
     },
   ];
 
-  
   categorias!: string[];
 
-  constructor(override service: BaseServiceService) {
-    super(service);
+  constructor(
+    override service: BaseServiceService,
+    protected override route: ActivatedRoute
+  ) {
+    super(service, route);
     this.getCategorias();
   }
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
 import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.component';
 
@@ -11,8 +12,11 @@ export class LoginComponent extends TelaBaseComponent {
   username: string = '';
   password: string = '';
 
-  constructor(override service: BaseServiceService) {
-    super(service);
+  constructor(
+    override service: BaseServiceService,
+    protected override route: ActivatedRoute
+  ) {
+    super(service, route);
   }
   cadastrar() {
     this.service.navigate('/cadastrar');

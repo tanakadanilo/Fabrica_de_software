@@ -1,12 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Prestador } from '../interface/prestador';
-import { MessageService } from 'primeng/api';
-import { Endereco } from '../interface/endereco';
-import { Uf } from '../enum/uf';
-import { Contratante } from '../interface/contratante';
-import { Contato } from '../interface/contato';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { Uf } from '../enum/uf';
+import { Contato } from '../interface/contato';
+import { Contratante } from '../interface/contratante';
+import { Endereco } from '../interface/endereco';
+import { Prestador } from '../interface/prestador';
+
+import { Response } from '../interface/response';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -31,9 +34,38 @@ export class BaseServiceService {
     this.messageService = messageService;
   }
 
-  post(url: string, body?: any) {
-    console.log('coisou');
+  toPromisse(observable: Observable<Response<any>>): Promise<Response<any>> {
+    return new Promise<Response<Contratante>>((resolve, reject?) => {
+      observable.subscribe(
+        (data) => {
+          if (data.erros.length > 0) {
+            this.toastError(data.erros);
+          }
+          resolve(data);
+        },
+        (error) => {
+          if (reject) {
+            reject(error);
+          } else {
+            this.toastError(error);
+          }
+        }
+      );
+    });
+  }
 
+  toastError(messages: string[]) {
+    console.log(messages);
+    messages.forEach((message) => {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: message,
+      });
+    });
+  }
+
+  post(url: string, body?: any) {
     return this.http.post(url, body ? body : new Object());
   }
 
@@ -46,9 +78,12 @@ export class BaseServiceService {
   getPrestador(id: number) {
     return this.get(this.URL_PRESTADOR + '/' + id);
   }
-  getContratante(id: number) {
-    return this.get(this.URL_CONTRATANTE + '/' + id);
+  getContratante(id: number): Promise<Response<Contratante>> {
+    return this.toPromisse(
+      this.http.get<Response<Contratante>>(this.URL_CONTRATANTE + '/' + id)
+    );
   }
+
   getServico(id: number) {
     return this.get(this.URL_SERVICOS + '/' + id);
   }
