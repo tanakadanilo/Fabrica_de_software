@@ -7,12 +7,12 @@ import { Contratante } from '../interface/contratante';
 import { Response } from '../interface/response';
 import { Endereco } from '../interface/endereco';
 import { Contato } from '../interface/contato';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContratanteService extends BaseServiceService {
-
   readonly URL_CONTRATANTE = this.URL_BACK + '/contratante';
 
   constructor(
@@ -23,6 +23,12 @@ export class ContratanteService extends BaseServiceService {
     super(http, messageService, router);
   }
 
+  override toPromisse(
+    observable: Observable<Response<any>>
+  ): Promise<Response<Contratante>> {
+    return super.toPromisse(observable);
+  }
+  
   getContratante(id: number): Promise<Response<Contratante>> {
     return this.toPromisse(
       this.http.get<Response<Contratante>>(this.URL_CONTRATANTE + '/' + id)

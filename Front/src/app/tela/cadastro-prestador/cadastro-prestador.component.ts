@@ -13,26 +13,19 @@ import { PrestadorService } from 'src/app/exports/service/prestador.service';
 })
 export class CadastroPrestadorComponent extends TelaBaseComponent {
   prestador!: Prestador;
-  ufs: any;
-  ufSelecionada: any = '';
+  ufs!: Uf[];
+  ufSelecionada: Uf = Uf.AM;
   cities: any;
-  constructor(override service: PrestadorService, protected override route: ActivatedRoute) {
+  constructor(
+    override service: PrestadorService,
+    protected override route: ActivatedRoute
+  ) {
     super(service, route);
+  }
+
+  override ngOnInit(): void {
     this.ufs = Object.values(Uf);
-    this.prestador = service.getPrestadorVazio();
-    service.getPrestador(2).subscribe({
-      next: (a: any) => {
-        if (a.erros?.length > 0) {
-          this.toastError(a.erros);
-        } else {
-          console.log(a.data);
-          this.prestador = a.data;
-        }
-      },
-      error: (err) => {
-        this.toastError(err);
-        console.log(err);
-      },
-    });
+    this.prestador = this.service.getPrestadorVazio();
+    this.service.getPrestadorVazio();
   }
 }

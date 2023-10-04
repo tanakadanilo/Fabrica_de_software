@@ -6,6 +6,7 @@ import { Uf } from '../enum/uf';
 
 import { Response } from '../interface/response';
 import { Observable } from 'rxjs';
+import { Paginavel } from '../interface/paginavel';
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +47,28 @@ export class BaseServiceService {
     });
   }
 
+  toPromissePaginavel(
+    observable: Observable<Response<Paginavel<any>>>
+  ): Promise<Response<any>> {
+    return new Promise<Response<any>>((resolve, reject?) => {
+      observable.subscribe(
+        (data) => {
+          if (data.erros.length > 0) {
+            this.toastError(data.erros);
+          }
+          resolve(data);
+        },
+        (error) => {
+          if (reject) {
+            reject(error);
+          } else {
+            this.toastError(error);
+          }
+        }
+      );
+    });
+  }
+
   toastError(messages: string[]) {
     console.log(messages);
     messages.forEach((message) => {
@@ -64,7 +87,7 @@ export class BaseServiceService {
   get(url: string) {
     return this.http.get(url);
   }
-  
+
   getContatoVazio() {
     return {
       contato: '',

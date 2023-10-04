@@ -19,16 +19,8 @@ export class ContratarComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.route.snapshot.data['id'];
-    this.service.getServicoPrestado(id).subscribe({
-      next: (a: any) => {
-        if (a.erros?.lenght > 0) {
-        } else {
-          this.servicoPrestado = a.data;
-        }
-      },
-      error(err) {
-        console.log(err);
-      },
+    this.service.getServicoPrestado(id).then((data) => {
+      this.servicoPrestado = data.data;
     });
   }
 

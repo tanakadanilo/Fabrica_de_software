@@ -151,18 +151,8 @@ export class MainComponent extends TelaBaseComponent {
   //   }
   // }
   public getCategorias(): void {
-    this.service.getCategorias().subscribe({
-      next: (a: any) => {
-        if (a.erros?.lenght > 0) {
-          this.toastError(a.erros);
-        } else {
-          console.log(a.data);
-          this.categorias = a.data.content;
-        }
-      },
-      error(err) {
-        console.log(err);
-      },
+    this.service.getCategorias().then((data) => {
+      this.categorias = data.data.content;
     });
   }
 
@@ -171,8 +161,8 @@ export class MainComponent extends TelaBaseComponent {
   }
 
   teste() {
-    this.service.getServicoDetail(2).subscribe((r) => {
-      console.log(r);
+    this.service.getServicoDetail(2).then((data) => {
+      console.log(data);
     });
   }
 }

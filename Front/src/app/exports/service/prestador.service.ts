@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { Prestador } from '../interface/prestador';
 import { Endereco } from '../interface/endereco';
 import { Contato } from '../interface/contato';
+import { Response } from '../interface/response';
+import { Observable } from 'rxjs';
+import { Paginavel } from '../interface/paginavel';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +22,22 @@ export class PrestadorService extends BaseServiceService {
   ) {
     super(http, messageService, router);
   }
+  override toPromissePaginavel(
+    observable: Observable<Response<Paginavel<Prestador>>>
+  ): Promise<Response<any>> {
+    return super.toPromissePaginavel(observable);
+  }
 
-  getPrestador(id: number) {
-    return this.get(this.URL_PRESTADOR + '/' + id);
+  override toPromisse(
+    observable: Observable<Response<Prestador>>
+  ): Promise<Response<Prestador>> {
+    return super.toPromisse(observable);
+  }
+
+  getPrestador(id: number): Promise<Response<Prestador>> {
+    return this.toPromisse(
+      this.http.get<Response<Prestador>>(this.URL_PRESTADOR + '/' + id)
+    );
   }
   getPrestadorVazio(): Prestador {
     let endereco: Endereco = this.getEnderecoVazio();

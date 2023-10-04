@@ -35,33 +35,21 @@ export class PerfilPrestadorComponent extends TelaBaseComponent {
   }
 
   override ngOnInit() {
-    this.prestador = this.service.getPrestadorVazio();
+    let id: number = parseInt(this.route.snapshot.paramMap.get('id')!);
+    this.carregarPrestador(id);
+    this.carregarServicos();
+  }
 
-    this.service
-      .getPrestador(parseInt(this.route.snapshot.paramMap.get('id')!))
-      .subscribe({
-        next: (a: any) => {
-          if (a.erros?.lenght > 0) {
-          } else {
-            this.prestador = a.data;
-          }
-        },
-        error(err) {
-          console.log(err);
-        },
-      });
-    this.servicoService.getServicos().subscribe({
-      next: (a: any) => {
-        if (a.erros?.lenght > 0) {
-        } else {
-          this.servicos = a.data.content;
-          this.servicosPagina = this.servicos.slice(0, 5);
-          console.log(this.servicosPagina);
-        }
-      },
-      error(err) {
-        console.log(err);
-      },
+  carregarPrestador(id: number) {
+    this.service.getPrestador(id).then((data) => {
+      this.prestador = data.data;
+    });
+  }
+
+  carregarServicos() {
+    this.servicoService.getServicos().then((data) => {
+      this.servicos = data.data.content;
+      this.servicosPagina = this.servicos.slice(0, 5);
     });
   }
   mudarPagina(event: PageEvent) {
@@ -70,6 +58,7 @@ export class PerfilPrestadorComponent extends TelaBaseComponent {
       event.first + event.rows
     );
   }
+
   showDialog() {
     this.mostrarDialog = true;
   }
