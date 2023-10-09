@@ -15,10 +15,9 @@ export class ServicoService extends BaseService {
 
   getServicos(categoria:string) {
     return this.http.get<any[]>(this.URL_SERVICOS+"?size=100&nomeCategoria=" +categoria)
-
   }
 
-  private handleError(error: any): Observable<any> {
+  handleError(error: any): Observable<any> {
     console.error('Ocorreu um erro:', error);
     return throwError(error); // Retorna um Observable com o erro
   }
