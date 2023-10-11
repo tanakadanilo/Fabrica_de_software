@@ -10,7 +10,7 @@ import { Prestador } from '../model/prestador';
 })
 export class Tab1Page {
   @ViewChild(IonModal) modal!: IonModal;
-  cities!: any[];
+  categorias!: string[];
   selectedCity = '';
   prestadores!: Prestador[];
   card: any;
@@ -18,36 +18,30 @@ export class Tab1Page {
 
   constructor(private servicoService: PrestadorService) {}
 
-  ngOnInit() {
-    this.carregarPrestadores();
-    this.carregarCategorias();
+  async ngOnInit() {
+    await Promise.all([this.carregarPrestadores(), this.carregarCategorias()]);
   }
 
   async carregarCategorias() {
     this.servicoService
       .get('http://localhost:8080/servico/categorias')
-      .subscribe((categorias: any) => {
-        this.cities = categorias.data.content;
+      .then((categorias: any) => {
+        this.categorias = categorias.data.content;
       });
   }
   async carregarPrestadores() {
-    try {
-      this.servicoService.getPrestadores().subscribe((servicos: any) => {
+    this.servicoService
+      .getPrestadores(this.selectedCity)
+      .then((servicos: any) => {
         this.prestadores = servicos.data.content;
-        console.log(this.prestadores);
       });
-    } catch (error: any) {
-      console.log(error.error.erros);
-      alert(error.error.erros);
-    }
   }
 
   cancel() {
     this.servicoService
       .get('http://localhost:8080/servico/' + this.card.id)
-      .subscribe((a: any) => {
+      .then((a: any) => {
         this.card = a.data;
-        console.log(this.card);
       });
     this.abrirModal = false;
   }

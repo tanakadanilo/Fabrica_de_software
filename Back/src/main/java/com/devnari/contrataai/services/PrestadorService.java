@@ -1,6 +1,5 @@
 package com.devnari.contrataai.services;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,8 +31,8 @@ public class PrestadorService {
 	@Autowired
 	private UserDao userDao;
 
-	public Page<Prestador> buscarTodos(int page, int size) {
-		return persistencia.findAll(PageRequest.of(page, size));
+	public Page<Prestador> buscarPorCategoria(String categoria, int page, int size) {
+		return persistencia.findPrestadorByCategoriaDoServicoPrestado(categoria, PageRequest.of(page, size));
 	}
 
 	public Prestador buscarPorId(Long id) throws Exception {

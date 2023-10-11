@@ -14,18 +14,19 @@
 
   <ion-header collapse="condense">
 
-        <ion-toolbar>
+    <ion-toolbar>
 
       <ion-title size="large">Serviços Prestados</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <p-dropdown (click)="carregarServicos()" [options]="cities" [(ngModel)]="selectedCity"></p-dropdown>
+    <p-dropdown (click)="carregarServicos()" [options]="categorias" [(ngModel)]="categoriaSelecionada"
+      placeholder="Selecione a Categoria" [showClear]="true"></p-dropdown>
 
 
     <ion-list>
       <ion-item *ngFor="let card of cardList">
-        <ion-card class="ion-cartao" >
+        <ion-card class="ion-cartao">
           <ion-card-header>
             {{ card.area }}
           </ion-card-header>

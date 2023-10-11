@@ -32,11 +32,11 @@ public class PrestadorControl {
 	ServicoPrestadoService servicoPrestadoService;
 
 	@GetMapping(value = "")
-	public ResponseEntity<Response<Page<Prestador>>> buscarTodos(@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "100") int size) {
+	public ResponseEntity<Response<Page<Prestador>>> buscarTodos(@RequestParam(defaultValue = "") String categoria,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "100") int size) {
 		Response<Page<Prestador>> response = new Response<>();
 		try {
-			Page<Prestador> prestadores = service.buscarTodos(page, size);
+			Page<Prestador> prestadores = service.buscarPorCategoria(categoria, page, size);
 			response.setData(prestadores);
 		} catch (Exception e) {
 			e.printStackTrace();

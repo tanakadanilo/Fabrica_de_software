@@ -1,6 +1,5 @@
 package com.devnari.contrataai.persistencia;
 
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,7 +12,7 @@ public interface PrestadorDao extends JpaRepository<Prestador, Long> {
 
 	@Query("select prestador from Prestador prestador")
 	Page<Prestador> findAll(Pageable pageable);
-	
+
 	@Query("select prestador from Prestador prestador where prestador.nome like %:nome%")
 	Page<Prestador> findByNome(@Param("nome") String nome, Pageable pageable);
 
@@ -25,4 +24,7 @@ public interface PrestadorDao extends JpaRepository<Prestador, Long> {
 
 	@Query("select prestador from Prestador prestador left join prestador.servicosPrestados servico where servico.id = :id")
 	Prestador findPrestadorByServicoPrestado(@Param("id") Long id);
+
+	@Query("select prestador from Prestador prestador left join prestador.servicosPrestados.servico servico where servico.area = :area or  :area = ''")
+	Page<Prestador> findPrestadorByCategoriaDoServicoPrestado(@Param("area") String area, Pageable pageable);
 }

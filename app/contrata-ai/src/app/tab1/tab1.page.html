@@ -20,12 +20,11 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <p-dropdown (click)="carregarPrestadores()" [options]="cities" [(ngModel)]="selectedCity"></p-dropdown>
-
-
+    <p-dropdown (click)="carregarPrestadores()" [options]="categorias" [(ngModel)]="selectedCity"
+      placeholder="Selecione a Categoria" [showClear]="true"></p-dropdown>
     <ion-list>
       <ion-item *ngFor="let prestador of prestadores">
-        <ion-card class="ion-cartao">
+        <ion-card>
           <ion-card-header>
             {{ prestador.especializacao }}
           </ion-card-header>

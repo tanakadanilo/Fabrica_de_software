@@ -37,7 +37,6 @@ export class Tab2Page implements OnInit {
   ngOnInit() {
     this.http.get('http://localhost:8080/contratante').subscribe((a: any) => {
       this.contratante = a.data.content[1];
-      console.log(this.contratante);
     });
   }
 }
