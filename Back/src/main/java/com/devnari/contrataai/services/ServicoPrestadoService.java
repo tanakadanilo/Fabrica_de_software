@@ -1,5 +1,7 @@
 package com.devnari.contrataai.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +27,15 @@ public class ServicoPrestadoService {
 
 	public ServicoPrestado buscarPorId(Long id) throws Exception {
 		ServicoPrestado servicoPrestado = persistencia.findById(id).orElse(null);
+		if (servicoPrestado == null) {
+			throw new Exception("Serviço Prestado Não Encontrado!");
+		}
+
+		return servicoPrestado;
+	}
+
+	public List<ServicoPrestadoDto> buscarDtosPorIdPrestador(Long id) throws Exception {
+		List<ServicoPrestadoDto> servicoPrestado = persistencia.findDtoByIdPrestador(id);
 		if (servicoPrestado == null) {
 			throw new Exception("Serviço Prestado Não Encontrado!");
 		}

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Welcome</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let card of cardList">
+      <ion-card class="ion-cartao">
+        <ion-card-header>
+          {{ card.area }}
+        </ion-card-header>
+        <ion-card-content>
+          {{ card.nome }}
+        </ion-card-content>
+        <ion-card-content>
+          {{ card.descricao }}
+        </ion-card-content>
+      </ion-card>
+
+    </ion-item>
+
+  </ion-list>
+</ion-content>

@@ -7,7 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { ModalPrestadorComponent } from './modal-prestador/modal-prestador.component';
 @NgModule({
   imports: [
     IonicModule,
@@ -15,8 +15,8 @@ import { DropdownModule } from 'primeng/dropdown';
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    DropdownModule
+    DropdownModule,
   ],
-  declarations: [Tab1Page]
+  declarations: [Tab1Page, ModalPrestadorComponent],
 })
 export class Tab1PageModule {}

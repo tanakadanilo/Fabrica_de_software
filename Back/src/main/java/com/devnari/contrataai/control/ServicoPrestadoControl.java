@@ -1,5 +1,7 @@
 package com.devnari.contrataai.control;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +48,21 @@ public class ServicoPrestadoControl {
 		try {
 			Long idLong = StringUtil.converterStringParaLong(id);
 			ServicoPrestadoDto servicoPrestado = service.buscarDtoPorId(idLong);
+			response.setData(servicoPrestado);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping(value = "/prestador/{id}")
+	public ResponseEntity<Response<List<ServicoPrestadoDto>>> buscarDtosPorIdPrestador(@PathVariable("id") String id,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+		Response<List<ServicoPrestadoDto>> response = new Response<>();
+		try {
+			Long idLong = StringUtil.converterStringParaLong(id);
+			List<ServicoPrestadoDto> servicoPrestado = service.buscarDtosPorIdPrestador(idLong);
 			response.setData(servicoPrestado);
 		} catch (Exception e) {
 			e.printStackTrace();

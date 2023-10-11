@@ -5,6 +5,7 @@ import { Prestador } from '../model/prestador';
 import { MessageService } from 'primeng/api';
 import { Page } from '../model/page';
 import { Response } from '../model/response';
+import { ServicoPrestadoDto } from '../model/servico-prestado-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +27,13 @@ export class PrestadorService extends BaseService {
     ]);
 
     return this.get<Response<Page<Prestador>>>(this.URL_PRESTADOR, params);
+  }
+
+  carregarServicosPrestado(
+    id: number
+  ): Promise<Response<ServicoPrestadoDto[]>> {
+    return this.get<Response<ServicoPrestadoDto[]>>(
+      this.URL_BACK + '/servicoprestado/prestador/' + id
+    );
   }
 }

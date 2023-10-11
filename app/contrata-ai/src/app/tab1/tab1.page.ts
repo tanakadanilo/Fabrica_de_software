@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonModal } from '@ionic/angular';
+import { IonModal, ModalController } from '@ionic/angular';
 import { PrestadorService } from '../services/prestador.service';
 import { Prestador } from '../model/prestador';
+import { ModalPrestadorComponent } from './modal-prestador/modal-prestador.component';
 
 @Component({
   selector: 'app-tab1',
@@ -14,9 +15,10 @@ export class Tab1Page {
   selectedCity = '';
   prestadores!: Prestador[];
   card: any;
-  abrirModal: boolean = false;
-
-  constructor(private servicoService: PrestadorService) {}
+  constructor(
+    private servicoService: PrestadorService,
+    private modalController: ModalController
+  ) {}
 
   async ngOnInit() {
     await Promise.all([this.carregarPrestadores(), this.carregarCategorias()]);
@@ -37,29 +39,20 @@ export class Tab1Page {
       });
   }
 
-  cancel() {
-    this.servicoService
-      .get('http://localhost:8080/servico/' + this.card.id)
-      .then((a: any) => {
-        this.card = a.data;
-      });
-    this.abrirModal = false;
-  }
-
-  confirm() {
-    console.log(this.card);
-
-    this.carregarPrestadores();
-    this.modal.dismiss(null, 'confirmar');
-    this.abrirModal = false;
-  }
-
   novoServico() {
-    this.abrirModal = true;
     this.card = {
       area: '',
       nome: '',
       descricao: '',
     };
+  }
+
+  async abrirModal(prestador:Prestador) {
+    const modal = await this.modalController.create({
+      component: ModalPrestadorComponent,
+      componentProps: { dados: prestador } // Passando os dados como parâmetro
+    });
+
+    return await modal.present();
   }
 }
