@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancelar()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Welcome</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="contratar()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <h1>Dados da contratação</h1>
+  <ion-item *ngIf="servico">
+    <ion-card class="ion-cartao">
+      <ion-card-header>
+        Dados do prestador:
+      </ion-card-header>
+      <ion-card-content>
+        Nome: {{ servico.nomePrestador }}
+      </ion-card-content>
+      <ion-card-content>
+        CPF/CNPJ: {{ servico.cpfPrestador}}
+      </ion-card-content>
+      <ion-card-content>
+        Dados adicionais: {{ servico.descricaoAdcionalPrestador}}
+      </ion-card-content>
+      <ion-card-content>
+        Experiência: {{ servico.tempoExperiencia | date: 'dd/MM/yyyy' }}
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+  <ion-item *ngIf="servico">
+    <ion-card class="ion-cartao">
+      <ion-card-header>
+        Dados de contato:
+      </ion-card-header>
+      <ion-card-content>
+        Telefone: {{ servico.contatoPrestador.telefone }}
+      </ion-card-content>
+      <ion-card-content>
+        Email: {{ servico.contatoPrestador.email }}
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+
+  <ion-item *ngIf="servico">
+    <ion-card class="ion-cartao">
+      <ion-card-header>
+        Endereço do prestador:
+      </ion-card-header>
+      <ion-card-content>
+        Estado: {{ servico.enderecoPrestador.uf }}
+      </ion-card-content>
+      <ion-card-content>
+        Cidade: {{ servico.enderecoPrestador.cidade }}
+      </ion-card-content>
+      <ion-card-content>
+        CEP: {{ servico.enderecoPrestador.cep }}
+      </ion-card-content>
+      <ion-card-content>
+        Bairro: {{ servico.enderecoPrestador.bairro }}
+      </ion-card-content>
+      <ion-card-content>
+        Rua: {{ servico.enderecoPrestador.logradouro }}
+      </ion-card-content>
+      <ion-card-content>
+        Lote: {{ servico.enderecoPrestador.lote }}
+      </ion-card-content>
+      <ion-card-content>
+        Número: {{ servico.enderecoPrestador.numero }}
+      </ion-card-content>
+      <ion-card-content>
+        Complemento: {{ servico.enderecoPrestador.complemento }}
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+  <ion-item *ngIf="servico">
+    <ion-card class="ion-cartao">
+      <ion-card-header>
+        Dados do serviço:
+      </ion-card-header>
+      <ion-card-content>
+        Nome: {{ servico.nome }}
+      </ion-card-content>
+      <ion-card-content>
+        Descrição: {{ servico.descricao }}
+      </ion-card-content>
+      <ion-card-content>
+        Área: {{ servico.area }}
+      </ion-card-content>
+
+    </ion-card>
+  </ion-item>
+</ion-content>

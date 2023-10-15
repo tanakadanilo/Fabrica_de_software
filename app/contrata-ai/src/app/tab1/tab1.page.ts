@@ -50,7 +50,7 @@ export class Tab1Page {
   async abrirModal(prestador:Prestador) {
     const modal = await this.modalController.create({
       component: ModalPrestadorComponent,
-      componentProps: { dados: prestador } // Passando os dados como parâmetro
+      componentProps: { prestador: prestador } // Passando os dados como parâmetro
     });
 
     return await modal.present();

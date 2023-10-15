@@ -28,7 +28,6 @@ export class PrestadorService extends BaseService {
 
     return this.get<Response<Page<Prestador>>>(this.URL_PRESTADOR, params);
   }
-
   carregarServicosPrestado(
     id: number
   ): Promise<Response<ServicoPrestadoDto[]>> {
