@@ -41,6 +41,7 @@ export class BaseService {
           if (reject) {
             reject(error);
           } else {
+            
             this.toastError(error);
           }
         }
@@ -81,9 +82,9 @@ export class BaseService {
     });
   }
 
-  get<T>(url: string, params?: Map<string, any>): Promise<Response<any>> {
+  get<T>(url: string, params?: Map<string, any>): Promise<Response<T>> {
     url = this.adicionarParametrosRequisicao(url, params);
-    return this.toPromisse(this.http.get<Response<T>>(url));
+    return this.toPromisse<T>(this.http.get<Response<T>>(url));
   }
 
   post(url: string, obj: any) {

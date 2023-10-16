@@ -69,9 +69,9 @@ public class UsuarioLoggadoService implements UserDetailsService {
 		}
 		UsuarioLoggado usuarioLoggado = new UsuarioLoggado(usuario);
 		if (usuario.getPrestador()) {
-			usuarioLoggado.setIdPessoa(prestadorService.buscarPorUsername(usuarioLoggado.getUsername()).getId());
+			usuarioLoggado.setPessoa(prestadorService.buscarPorUsername(usuarioLoggado.getUsername()));
 		} else {
-			usuarioLoggado.setIdPessoa(contratanteService.buscarPorUsername(usuarioLoggado.getUsername()).getId());
+			usuarioLoggado.setPessoa(contratanteService.buscarPorUsername(usuarioLoggado.getUsername()));
 		}
 		usuarioLoggado.setToken(token);
 		if (usuarioLoggado.isAccountNonExpired()) {

@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Contratante {
+public class Contratante extends Pessoa{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class Contratante {
 	private Contato contato;
 
 	@Column(unique = true)
-	private String cpf;
+	protected String cpf;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "endereco_id")

@@ -25,7 +25,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Prestador {
+public class Prestador extends Pessoa{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

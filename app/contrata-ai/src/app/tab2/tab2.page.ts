@@ -1,5 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ModalCadastroComponent } from './modal-cadastro/modal-cadastro.component';
+import { UsuarioService } from '../services/usuario.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-tab2',
@@ -7,36 +10,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page implements OnInit {
-  contratante: any = {
-    nome: 'Unknown User',
-    contato: {
-      contato: 'Unknown',
-      email: 'Unknown@Unknown.com',
-      telefone: 'Unknown',
-    },
-    cpf: 'Unknown',
-    endereco: {
-      cep: 'Unknown',
-      logradouro: 'Unknown',
-      numero: 'Unknown',
-      cidade: 'Unknown',
-      quadra: 'Unknown',
-      lote: 'Unknown',
-      uf: 'Unknown',
-      bairro: 'Unknown',
-      complemento: 'Unknown',
-    },
-    foto: 'Unknown.Unknown',
-    usuario: 'Unknown User',
-  };
-  ufs: any;
-  UrlImagem = '';
+  messageService: MessageService;
 
-  constructor(private http: HttpClient) {}
+  usuario: string = '';
+  senha: string = '';
 
-  ngOnInit() {
-    this.http.get('http://localhost:8080/contratante').subscribe((a: any) => {
-      this.contratante = a.data.content[1];
+  constructor(
+    private service: UsuarioService,
+    private modalController: ModalController
+  ) {
+    this.messageService = service.messageService;
+  }
+
+  ngOnInit() {}
+  login() {
+    const login = new Map([
+      ['username', this.usuario ? this.usuario : ''],
+      ['password', this.senha ? this.senha : ''],
+    ]);
+    this.service.login(login);
+  }
+  async cadastrar() {
+    const modal = await this.modalController.create({
+      component: ModalCadastroComponent,
     });
+
+    return await modal.present();
   }
 }

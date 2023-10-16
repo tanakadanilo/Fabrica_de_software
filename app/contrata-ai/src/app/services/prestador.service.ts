@@ -18,7 +18,7 @@ export class PrestadorService extends BaseService {
   }
 
   getPrestador(id: number): Promise<Response<Prestador>> {
-    return this.get<Response<Prestador>>(this.URL_PRESTADOR + '/' + id);
+    return this.get<Prestador>(this.URL_PRESTADOR + '/' + id);
   }
 
   getPrestadores(categoria?: string): Promise<Response<Page<Prestador>>> {
@@ -26,12 +26,12 @@ export class PrestadorService extends BaseService {
       ['categoria', categoria ? categoria : ''],
     ]);
 
-    return this.get<Response<Page<Prestador>>>(this.URL_PRESTADOR, params);
+    return this.get<Page<Prestador>>(this.URL_PRESTADOR, params);
   }
   carregarServicosPrestado(
     id: number
   ): Promise<Response<ServicoPrestadoDto[]>> {
-    return this.get<Response<ServicoPrestadoDto[]>>(
+    return this.get<ServicoPrestadoDto[]>(
       this.URL_BACK + '/servicoprestado/prestador/' + id
     );
   }
