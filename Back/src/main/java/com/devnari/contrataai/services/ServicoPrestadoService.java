@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.model.dto.ServicoPrestadoDto;
+import com.devnari.contrataai.persistencia.PrestadorDao;
 import com.devnari.contrataai.persistencia.ServicoPrestadoDao;
 
 @Service
 public class ServicoPrestadoService {
-
+	@Autowired
+	PrestadorDao prestadorDao;
 	@Autowired
 	ServicoPrestadoDao persistencia;
 	@Autowired
@@ -44,12 +46,17 @@ public class ServicoPrestadoService {
 	}
 
 	public ServicoPrestadoDto buscarDtoPorId(Long id) throws Exception {
-		ServicoPrestadoDto servicoPrestadoDto = persistencia.findDtoById(id);
-		if (servicoPrestadoDto == null) {
+		try {
+			ServicoPrestadoDto servicoPrestadoDto = new ServicoPrestadoDto(persistencia.findById(id).orElse(null),
+					null);
+
+			servicoPrestadoDto
+					.adicionarDadosPrestador(prestadorDao.findPrestadorByServicoPrestado(servicoPrestadoDto.getId()));
+
+			return servicoPrestadoDto;
+		} catch (Exception e) {
 			throw new Exception("Serviço Prestado Não Encontrado!");
 		}
-
-		return servicoPrestadoDto;
 	}
 
 	public ServicoPrestado salvar(ServicoPrestado servicoPrestado) throws Exception {

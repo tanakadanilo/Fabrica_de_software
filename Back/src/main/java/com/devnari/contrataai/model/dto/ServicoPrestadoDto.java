@@ -38,7 +38,7 @@ public class ServicoPrestadoDto {
 	}
 
 	public ServicoPrestadoDto(Long id, Long idServico, String area, String nome, String descricao, Long idExperiencia,
-			Date tempoExperiencia, String certificado, String descricaoAdcional, Prestador prestador) {
+			Date tempoExperiencia, String certificado, String descricaoAdcional) {
 		this.id = id;
 		this.idServico = idServico;
 		this.area = area;
@@ -48,6 +48,10 @@ public class ServicoPrestadoDto {
 		this.tempoExperiencia = tempoExperiencia;
 		this.certificado = certificado;
 		this.descricaoAdcional = descricaoAdcional;
+		
+	}
+
+	public void adicionarDadosPrestador(Prestador prestador) {
 		this.idPrestador = prestador.getId();
 		this.nomePrestador = prestador.getNome();
 		this.contatoPrestador = prestador.getContato();
@@ -59,7 +63,6 @@ public class ServicoPrestadoDto {
 		this.especializacao = prestador.getEspecializacao();
 		this.descricaoAdcionalPrestador = prestador.getDescricaoAdicional();
 	}
-
 	public ServicoPrestadoDto(ServicoPrestado servicoPrestado, Prestador prestador) {
 		this.id = servicoPrestado.getId();
 		this.idServico = servicoPrestado.getServico().getId();

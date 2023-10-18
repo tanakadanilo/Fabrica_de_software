@@ -48,7 +48,7 @@ public class Prestador extends Pessoa{
 	private String foto;
 
 	@OneToMany(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "pessoa_id")
+	@JoinColumn(name = "prestador_id")
 	private List<ServicoPrestado> servicosPrestados = new ArrayList<>();
 
 // link do portfólio
