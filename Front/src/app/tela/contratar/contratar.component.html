@@ -11,36 +11,41 @@
                 <h1>Informações do Prestador</h1>
                 <div class="col-md-6">
                     <label>Nome:</label>
-                    <span>{{ servicoPrestado.nomePrestador }}</span>
+                    <span> {{ servicoPrestado.nomePrestador }}</span>
                 </div>
                 <div class="col-md-6">
                     <label>Telefone:</label>
-                    <span>{{ servicoPrestado.contatoPrestador.telefone}}</span>
+                    <span> {{ servicoPrestado.contatoPrestador.telefone}}</span>
                 </div>
                 <div class="col-md-6">
                     <label>Cidade:</label>
-                    <span>{{ servicoPrestado.enderecoPrestador.cidade }}</span>
+                    <span> {{ servicoPrestado.enderecoPrestador.cidade }}</span>
                 </div>
                 <div class="col-md-6">
                     <label>Email:</label>
-                    <span>{{ servicoPrestado.contatoPrestador.email }}</span>
+                    <span> {{ servicoPrestado.contatoPrestador.email }}</span>
                 </div>
             </div>
         </div>
     </div>
     <!-- Serviço Escolhido -->
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row boxes">
+        <div class="col-md-4">
             <!-- Área Destacada para o Serviço Escolhido -->
             <div class="area-destacada destacado">
-                <h2>Serviço Escolhido</h2>
+                <h3>Serviço(s) Escolhido(s)</h3>
 
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
+            <div class="area-destacada destacado">
+                <h6>Valor do Serviço(s)</h6>
 
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="calendario destacado">
-                <h2>Agendar Data e Hora</h2>
+                <h3>Agendar Data e Hora</h3>
                 <p-calendar [(ngModel)]="date"></p-calendar>
             </div>
         </div>

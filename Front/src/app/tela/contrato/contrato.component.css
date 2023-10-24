@@ -1,0 +1,23 @@
+.contrato {
+    font-family: Arial, sans-serif;
+   
+    justify-content: left; /* Centraliza horizontalmente */
+    align-items: left; /* Centraliza verticalmente */
+    height: 100vh; /* Isso garante que o contêiner ocupe toda a altura da janela de visualização */
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 1rem;
+    font-size: 14px;
+}
+
+strong {
+    font-weight: bold;
+}

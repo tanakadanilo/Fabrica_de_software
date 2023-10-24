@@ -6,3 +6,6 @@
     margin-top: 3rem;
   }
 
+.boxes {
+  width: auto !important;
+}

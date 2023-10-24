@@ -12,6 +12,7 @@ import { AvaliarComponent } from './tela/avaliar/avaliar.component';
 import { HistoricoComponent } from './tela/historico/historico.component';
 import { FinalizarContratacaoComponent } from './tela/finalizar-contratacao/finalizar-contratacao.component';
 import { RecuperarSenhaComponent } from './tela/recuperar-senha/recuperar-senha.component';
+import { ContratoComponent } from './tela/contrato/contrato.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,11 @@ const routes: Routes = [
   {
     path: 'recuperar',
     component: RecuperarSenhaComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'contrato',
+    component: ContratoComponent,
     pathMatch: 'full',
   },
 ];
