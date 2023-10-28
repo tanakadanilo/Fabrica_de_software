@@ -1,6 +1,5 @@
 package com.devnari.contrataai.model.auxiliares;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,8 +17,6 @@ public class Contato {
 	private Long id;
 
 	private String contato;
-	@Column(nullable = false)
 	private String email;
-	@Column(nullable = false)
 	private String telefone;
 }

@@ -3,7 +3,6 @@ package com.devnari.contrataai.model.auxiliares;
 import com.devnari.contrataai.enumerations.DiasSemana;
 import com.devnari.contrataai.enumerations.PeriodosDia;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,8 +19,6 @@ public class Disponibilidade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false)
 	private DiasSemana diaDaSemana;
-	@Column(nullable = false)
 	private PeriodosDia horario;
 }

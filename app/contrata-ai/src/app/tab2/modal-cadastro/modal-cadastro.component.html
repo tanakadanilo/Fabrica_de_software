@@ -1,81 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancelar()">Cancelar</ion-button>
+    </ion-buttons>
+    <ion-title>Welcome</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cadastrar()" [strong]="true">Cadastrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content class="ion-padding">
   <ion-list>
-    <ion-card>
-      <ion-card-header>
-        Dados pessoais:
-      </ion-card-header>
-      <ion-item>
-        <ion-input label="CPF:" id="CPF:" value="{{contratante.cpf}}" />
-      </ion-item>
-      <ion-item>
-        <ion-input label="Nome:" id="Nome:" value="{{contratante.nome}}" />
-      </ion-item>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>
-        Dados de contato:
-      </ion-card-header>
-      <ion-item>
-        <ion-input label="Email (login):" id="email" [(ngModel)]="contratante.contato.email" />
-      </ion-item>
-      <ion-item>
-        <ion-input label="Telefone:" id="telefone" [(ngModel)]="contratante.contato.telefone" />
-      </ion-item>
-      <ion-item>
-        <ion-input label="Contato:" id="contato" [(ngModel)]="contratante.contato.contato" />
-      </ion-item>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>
-        Endereço:
-      </ion-card-header>
-      <ion-item>
-        <ion-input label="CEP:" id="cep" [(ngModel)]="contratante.endereco.cep" />
-      </ion-item>
-      <ion-item>
-        <ion-input label="Logradouro:" id="logradouro" [(ngModel)]="contratante.endereco.logradouro" />
-      </ion-item>
-      <ion-item>
-        <ion-input label="Número:" id="numero" [(ngModel)]="contratante.endereco.numero" />
-      </ion-item>
-      <ion-item>
-        <ion-input label="Cidade:" id="cidade" [(ngModel)]="contratante.endereco.cidade" />
-      </ion-item>
-      <ion-item>
-        <ion-input label="Quadra:" id="quadra" [(ngModel)]="contratante.endereco.quadra" />
-      </ion-item>
-      <ion-item>
-        <ion-input label="Lote:" id="lote" [(ngModel)]="contratante.endereco.lote" />
-      </ion-item>
-      <ion-item>
-        <ion-input label="Bairro:" id="bairro" [(ngModel)]="contratante.endereco.bairro" />
-      </ion-item>
-      <ion-item>
-        <ion-input label="Complemento:" id="complemento" [(ngModel)]="contratante.endereco.complemento" />
-      </ion-item>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>
-        Dados de acesso:
-      </ion-card-header>
-      <ion-item>
-        <ion-input label="Login:" id="cep" [(ngModel)]="contratante.contato.email" disabled="true" />
-      </ion-item>
-      <ion-item>
-        <ion-input label="Senha:" id="cep" [(ngModel)]="usuario.password" />
-      </ion-item>
-      <ion-item>
-        <ion-input label="Confirmar senha:" id="cep" [(ngModel)]="senhaConfirmacao" />
-      </ion-item>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>
-        Ações:
-      </ion-card-header>
-      <ion-item>
-        <ion-button slot="start" size="default"(click)="login()">Login</ion-button>
-        <ion-button slot="end" size="default" (click)="cadastrar()">Cadastrar</ion-button>
-      </ion-item>
-    </ion-card>
+    <ion-item>
+      <ion-input label="CPF:" id="CPF:" value="{{contratante.cpf}}" />
+    </ion-item>
+    <ion-item>
+      <ion-input label="Nome:" id="Nome:" value="{{contratante.nome}}" />
+    </ion-item>
+    <ion-item>
+      <ion-input label="Email:" id="email" [(ngModel)]="contratante.contato.email" />
+    </ion-item>
+    <ion-item>
+      <ion-input label="Telefone:" id="telefone" [(ngModel)]="contratante.contato.telefone" />
+    </ion-item>
+    <ion-item>
+      <ion-input label="Contato:" id="contato" [(ngModel)]="contratante.contato.contato" />
+    </ion-item>
+    <ion-item>
+      <ion-input label="CEP:" id="cep" [(ngModel)]="contratante.endereco.cep" />
+    </ion-item>
+    <ion-item>
+      <ion-input label="Logradouro:" id="logradouro" [(ngModel)]="contratante.endereco.logradouro" />
+    </ion-item>
+    <ion-item>
+      <ion-input label="Número:" id="numero" [(ngModel)]="contratante.endereco.numero" />
+    </ion-item>
+    <ion-item>
+      <ion-input label="Cidade:" id="cidade" [(ngModel)]="contratante.endereco.cidade" />
+    </ion-item>
+    <ion-item>
+      <ion-input label="Quadra:" id="quadra" [(ngModel)]="contratante.endereco.quadra" />
+    </ion-item>
+    <ion-item>
+      <ion-input label="Lote:" id="lote" [(ngModel)]="contratante.endereco.lote" />
+    </ion-item>
+    <ion-item>
+      <ion-input label="Bairro:" id="bairro" [(ngModel)]="contratante.endereco.bairro" />
+    </ion-item>
+    <ion-item>
+      <ion-input label="Complemento:" id="complemento" [(ngModel)]="contratante.endereco.complemento" />
+    </ion-item>
+    <ion-item class="d-flex justify-content-center mt-5">
+      <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-success"></button>
+    </ion-item>
   </ion-list>
 </ion-content>

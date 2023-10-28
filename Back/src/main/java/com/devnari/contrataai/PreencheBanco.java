@@ -114,7 +114,7 @@ public class PreencheBanco {
 				sp = servicoPrestadoService.salvar(sp);
 
 				Usuario usuario = new Usuario();
-				usuario.setNome("nome" + i);
+				usuario.setLogin("login" + i);
 				usuario.setPassword("senha" + i);
 				usuario.setUsername("username" + i);
 				usuario.setPrestador(true);
@@ -136,7 +136,7 @@ public class PreencheBanco {
 				p = prestadorService.salvar(p);
 
 				Usuario usuario2 = new Usuario();
-				usuario2.setNome("nome" + i);
+				usuario2.setLogin("login" + i);
 				usuario2.setPassword("senha" + i);
 				usuario2.setUsername("username" + i);
 				usuario2.setPrestador(false);
