@@ -2,6 +2,7 @@ package com.devnari.contrataai.model;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,20 +20,23 @@ public class HistoricoServico {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Prestador prestador;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Contratante contratante;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private ServicoPrestado servico;
 
 	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	private Date dataContratacao;
 
 	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	private Date dataExecucaoServico;
 
+	@Column(nullable = true)
 	private Double avaliacao;
 }

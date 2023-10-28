@@ -1,5 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { Uf } from 'src/app/enum/uf';
+import { Contratante } from 'src/app/model/contratante';
+import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -8,39 +12,47 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./modal-cadastro.component.scss'],
 })
 export class ModalCadastroComponent implements OnInit {
-  contratante: any = {
-    nome: 'Unknown User',
-    contato: {
-      contato: 'Unknown',
-      email: 'Unknown@Unknown.com',
-      telefone: 'Unknown',
-    },
-    cpf: 'Unknown',
-    endereco: {
-      cep: 'Unknown',
-      logradouro: 'Unknown',
-      numero: 'Unknown',
-      cidade: 'Unknown',
-      quadra: 'Unknown',
-      lote: 'Unknown',
-      uf: 'Unknown',
-      bairro: 'Unknown',
-      complemento: 'Unknown',
-    },
-    foto: 'Unknown.Unknown',
-    usuario: 'Unknown User',
-  };
+  contratante!: Contratante;
   ufs: any;
   UrlImagem = '';
+  usuario!: Usuario;
 
-  constructor(private service: UsuarioService) {}
+  senhaConfirmacao: string = '';
+
+  constructor(
+    private modalController: ModalController,
+    private service: UsuarioService
+  ) {}
 
   ngOnInit() {
-    this.service.getUsuarios().then((usuarios: any)=>{
-      console.log(usuarios);      
-    })
+    this.contratante = this.service.getContratanteVazio();
+    this.service.getUsuarios().then((usuarios: any) => {
+      console.log(usuarios);
+    });
+    this.usuario = this.service.getUsuarioVazio();
   }
 
-  cancelar() {}
-  cadastrar() {}
+  cadastrar() {
+    this.usuario.nome = this.contratante.nome;
+    this.usuario.prestador = false;
+    this.usuario.username = this.contratante.contato.email!;
+    this.contratante.endereco.uf = this.obterSiglaEstadoPorNome(
+      this.contratante.endereco.uf
+    );
+    this.service.criarUsuario(this.usuario).then((data) => {
+      console.log('usuário criado com sucesso!', data);
+      this.usuario = data.data;
+      this.service.criarContratante(this.contratante).then((data) => {
+        console.log(data);
+        this.service.toastSuccess('Cadastrado com sucesso!');
+      });
+    });
+  }
+  login() {
+    this.modalController.dismiss();
+  }
+  obterSiglaEstadoPorNome(nome: string): string {
+    const estado = Object.entries(Uf).find(([_, value]) => value === nome);
+    return estado ? estado[0] : '';
+  }
 }

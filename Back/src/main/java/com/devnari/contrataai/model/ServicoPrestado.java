@@ -3,6 +3,7 @@ package com.devnari.contrataai.model;
 import com.devnari.contrataai.model.auxiliares.Experiencia;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,11 +22,11 @@ public class ServicoPrestado {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
 	@JoinColumn(name = "servico_id")
 	private Servico servico;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
 	private Experiencia experiencia;
 
 }

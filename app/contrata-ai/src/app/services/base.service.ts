@@ -41,7 +41,6 @@ export class BaseService {
           if (reject) {
             reject(error);
           } else {
-            
             this.toastError(error);
           }
         }
@@ -82,13 +81,21 @@ export class BaseService {
     });
   }
 
+  toastSuccess(message: string) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Successo',
+      detail: message,
+    });
+  }
+
   get<T>(url: string, params?: Map<string, any>): Promise<Response<T>> {
     url = this.adicionarParametrosRequisicao(url, params);
     return this.toPromisse<T>(this.http.get<Response<T>>(url));
   }
 
-  post(url: string, obj: any) {
-    return this.http.post(url, obj);
+  post<T>(url: string, obj: any): Promise<Response<T>> {
+    return this.toPromisse<T>(this.http.post<Response<T>>(url, obj));
   }
 
   put(url: string, obj: any) {

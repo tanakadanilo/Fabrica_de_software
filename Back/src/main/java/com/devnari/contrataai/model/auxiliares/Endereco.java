@@ -2,6 +2,7 @@ package com.devnari.contrataai.model.auxiliares;
 
 import com.devnari.contrataai.enumerations.UF;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -19,23 +20,21 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false)
 	private String cep;
+	@Column(nullable = false)
 	private String logradouro;
+	@Column(nullable = false)
 	private String numero;
+	@Column(nullable = false)
 	private String cidade;
 	private String quadra;
 	private String lote;
 	@Enumerated
+	@Column(nullable = false)
 	private UF uf;
+	@Column(nullable = false)
 	private String bairro;
 	private String complemento;
 
 }
-
-// cep: string,
-//logradouro: string,
-//numero: string,
-//quadra: string,
-//lote: string,
-//cidade: string,
-//uf: string,
