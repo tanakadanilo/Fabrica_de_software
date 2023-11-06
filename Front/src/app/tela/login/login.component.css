@@ -1,5 +1,5 @@
 .main {
-  margin-top: 10em;
+margin-top: 3em;
 width:  100%;
 align-items: center;
 display: flex;
@@ -7,7 +7,7 @@ display: flex;
 
 .box-login {
     display: inline-block;
-    padding: 20px 20px 20px 20px;
+    padding: 3rem 5.2rem 3rem 3rem;
     align-items: center;
     margin: 0 auto;
 
