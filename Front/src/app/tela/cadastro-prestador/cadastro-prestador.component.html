@@ -1,22 +1,16 @@
 <div class="body container">
 
   <div class="informacoes-pessoais">
-      <img  src="../../../assets/images/images.jpeg" alt="Imagem de Perfil" />
       <h1>Informações Pessoais</h1>
       <img src="{{ prestador.foto }}" alt="Imagem de Perfil" />
       <div class="row">
-          <div class="col-md-4 mt-3">
+          <div class="col-md-3 mt-3">
               <label htmlFor="area" class="col-md-3">CPF:</label>
               <input pInputText class="col-md-9" id="area" [(ngModel)]="prestador.cpfCnpj" />
           </div>
-          <div class="col-md-4 mt-3">
+          <div class="col-md-2 mt-3">
               <label htmlFor="nome" class="col-md-3">Nome:</label>
               <input pInputText class="col-md-9" id="nome" [(ngModel)]="prestador.nome" />
-          </div>
-
-          <div class="col-md-4 mt-3">
-              <label htmlFor="email" class="col-md-3">Email:</label>
-              <input pInputText class="col-md-9" id="email" [(ngModel)]="prestador.contato.email" />
           </div>
       </div>
   </div>

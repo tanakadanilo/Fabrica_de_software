@@ -2,22 +2,18 @@
 
   <div class="informacoes-pessoais">
     <div class="box-img">
-      <img src="../../../assets/images/images.jpeg" alt="Imagem de Perfil" />
       <h1 class="h-text">Informações Pessoais</h1>
+      <img src="{{ contratante.foto }}" alt="Imagem de Perfil" style="display: block;"/>
+      <input type="file" name="foto" (change)="onFileSelected($event)" accept="image/*">
     </div>
     <div class="row">
       <div class="col-md-4 mt-3">
         <label htmlFor="area" class="col-md-4">CPF:</label>
-        <input pInputText class="col-md-8" id="area" [(ngModel)]="contratante.cpfCnpj" />
+        <input pInputText class="col-md-8" id="area" [(ngModel)]="contratante.cpfCnpj" [textMask]="{mask: cpfMask}" (blur)="validarECorrigirCPF()" />
       </div>
       <div class="col-md-4 mt-3">
         <label htmlFor="nome" class="col-md-4">Nome:</label>
         <input pInputText class="col-md-8" id="nome" [(ngModel)]="contratante.nome" />
-      </div>
-
-      <div class="col-md-4 mt-3">
-        <label htmlFor="email" class="col-md-4">Email:</label>
-        <input pInputText class="col-md-8" id="email" [(ngModel)]="contratante.contato.email" />
       </div>
     </div>
   </div>

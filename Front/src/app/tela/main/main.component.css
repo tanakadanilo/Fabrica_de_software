@@ -18,7 +18,7 @@
   }
 
   .card {
-    width: calc(25% - 20px);
+    width: 10rem;
     margin: 2.5rem;
     display: inline-block;
     margin-left: 4.3rem;

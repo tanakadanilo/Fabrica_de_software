@@ -34,6 +34,8 @@ import { FinalizarContratacaoComponent } from './tela/finalizar-contratacao/fina
 import { RecuperarSenhaComponent } from './tela/recuperar-senha/recuperar-senha.component';
 import { TelaBaseComponent } from './exports/tela/tela-base/tela-base.component';
 import { ContratoComponent } from './tela/contrato/contrato.component';
+import { TextMaskModule } from 'angular2-text-mask';
+
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import { ContratoComponent } from './tela/contrato/contrato.component';
     PaginatorModule,
     DialogModule,
     CardModule,
-    CalendarModule
+    CalendarModule,
+    TextMaskModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
