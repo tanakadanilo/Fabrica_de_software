@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { BaseService } from './base.service';
 import { HttpClient } from '@angular/common/http';
-import { Prestador } from '../model/prestador';
-import { MessageService } from 'primeng/api';
+import { Injectable } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Page } from '../model/page';
+import { Prestador } from '../model/prestador';
 import { Response } from '../model/response';
 import { ServicoPrestadoDto } from '../model/servico-prestado-dto';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +13,8 @@ import { ServicoPrestadoDto } from '../model/servico-prestado-dto';
 export class PrestadorService extends BaseService {
   public URL_PRESTADOR: string = this.URL_BACK + '/prestador';
 
-  constructor(override http: HttpClient, messageService: MessageService) {
-    super(http, messageService);
+  constructor(override http: HttpClient, alertController: AlertController) {
+    super(http, alertController);
   }
 
   getPrestador(id: number): Promise<Response<Prestador>> {

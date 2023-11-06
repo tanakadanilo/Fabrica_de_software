@@ -1,5 +1,6 @@
 package com.devnari.contrataai.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.devnari.contrataai.model.Prestador;
 import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.model.dto.ServicoPrestadoDto;
 import com.devnari.contrataai.persistencia.PrestadorDao;
@@ -37,18 +39,23 @@ public class ServicoPrestadoService {
 	}
 
 	public List<ServicoPrestadoDto> buscarDtosPorIdPrestador(Long id) throws Exception {
-		List<ServicoPrestadoDto> servicoPrestado = persistencia.findDtoByIdPrestador(id);
-		if (servicoPrestado == null) {
-			throw new Exception("Serviço Prestado Não Encontrado!");
+		Prestador prestador = prestadorDao.findByIdEager(id);
+		if (prestador == null) {
+			throw new Exception("Prestador não encontrado!");
 		}
+		List<ServicoPrestadoDto> servicoPrestado = new ArrayList<>();
+		prestador.getServicosPrestados().forEach((a) -> {
+			ServicoPrestadoDto dto = new ServicoPrestadoDto(a);
+			dto.adicionarDadosPrestador(prestador);
+			servicoPrestado.add(dto);
+		});
 
 		return servicoPrestado;
 	}
 
 	public ServicoPrestadoDto buscarDtoPorId(Long id) throws Exception {
 		try {
-			ServicoPrestadoDto servicoPrestadoDto = new ServicoPrestadoDto(persistencia.findById(id).orElse(null),
-					null);
+			ServicoPrestadoDto servicoPrestadoDto = persistencia.findDtoById(id);
 
 			servicoPrestadoDto
 					.adicionarDadosPrestador(prestadorDao.findPrestadorByServicoPrestado(servicoPrestadoDto.getId()));

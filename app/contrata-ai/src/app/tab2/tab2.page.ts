@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { ModalCadastroComponent } from './modal-cadastro/modal-cadastro.component';
+import { AlertController, ModalController } from '@ionic/angular';
 import { UsuarioService } from '../services/usuario.service';
-import { MessageService } from 'primeng/api';
+import { ModalCadastroComponent } from './modal-cadastro/modal-cadastro.component';
 
 @Component({
   selector: 'app-tab2',
@@ -10,7 +9,7 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page implements OnInit {
-  messageService: MessageService;
+  alertController: AlertController;
 
   usuario: string = '';
   senha: string = '';
@@ -19,10 +18,10 @@ export class Tab2Page implements OnInit {
     private service: UsuarioService,
     private modalController: ModalController
   ) {
-    this.messageService = service.messageService;
+    this.alertController = service.alertController;
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
   login() {
     const login = new Map([
       ['username', this.usuario ? this.usuario : ''],

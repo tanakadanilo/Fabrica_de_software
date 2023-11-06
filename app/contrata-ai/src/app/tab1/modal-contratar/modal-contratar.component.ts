@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { MessageService } from 'primeng/api';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Prestador } from 'src/app/model/prestador';
-import { Response } from 'src/app/model/response';
 import { ServicoPrestadoDto } from 'src/app/model/servico-prestado-dto';
-import { PrestadorService } from 'src/app/services/prestador.service';
+import { ServicoService } from 'src/app/services/servico.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -14,27 +12,32 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ModalContratarComponent implements OnInit {
   @Input() servico!: ServicoPrestadoDto;
+  @Input() modal!: ModalController;
 
   prestador!: Prestador;
-  messageService: MessageService;
+  alertController: AlertController;
   constructor(
     private modalController: ModalController,
-    private prestadorService: PrestadorService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private servicoService: ServicoService
   ) {
-    this.messageService = this.usuarioService.messageService;
+    this.alertController = this.servicoService.alertController;
   }
 
   async ngOnInit() {
-    this.usuarioService.findByToken().then((resp: any) => {
-      console.log(resp);
-    });
-    console.log(this.usuarioService.token);
+    if (this.usuarioService.token) {
+      this.usuarioService.findByToken().then((resp: any) => {
+        console.log(resp);
+      });
+      console.log(this.usuarioService.token);
+    }
   }
 
-  contratar() {
-    alert('contratação ainda não implementada!');
-    return;
+  async contratar() {
+    this.servicoService.adicionarAoCarrinho(this.servico)
+    await this.modal.dismiss();
+    await this.modalController.dismiss();
+    this.servicoService.toastSucess("adicionado ao carrinho!")
   }
   cancelar() {
     this.modalController.dismiss();

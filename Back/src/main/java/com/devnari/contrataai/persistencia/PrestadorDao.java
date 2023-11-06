@@ -27,4 +27,7 @@ public interface PrestadorDao extends JpaRepository<Prestador, Long> {
 
 	@Query("select prestador from Prestador prestador left join prestador.servicosPrestados.servico servico where servico.area = :area or  :area = ''")
 	Page<Prestador> findPrestadorByCategoriaDoServicoPrestado(@Param("area") String area, Pageable pageable);
+	
+	@Query("select prestador from Prestador prestador join fetch prestador.servicosPrestados where prestador.id = :id")
+	Prestador findByIdEager(@Param("id") Long id);
 }

@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { BaseService } from './base.service';
 import { HttpClient } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
+import { Injectable } from '@angular/core';
 import { Response } from '../model/response';
+import { BaseService } from './base.service';
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +12,8 @@ export class UsuarioService extends BaseService {
 
   token?: string;
   usuario: any;
-  constructor(override http: HttpClient, messageService: MessageService) {
-    super(http, messageService);
+  constructor(override http: HttpClient, alertController: AlertController) {
+    super(http, alertController);
   }
 
   getUsuarios(): Promise<Response<any>> {

@@ -18,7 +18,7 @@ export class Tab1Page {
   constructor(
     private servicoService: PrestadorService,
     private modalController: ModalController
-  ) {}
+  ) { }
 
   async ngOnInit() {
     await Promise.all([this.carregarPrestadores(), this.carregarCategorias()]);
@@ -47,12 +47,12 @@ export class Tab1Page {
     };
   }
 
-  async abrirModal(prestador:Prestador) {
+  async abrirModal(prestador: Prestador) {
     const modal = await this.modalController.create({
       component: ModalPrestadorComponent,
       componentProps: { prestador: prestador } // Passando os dados como parâmetro
     });
-
     return await modal.present();
+
   }
 }

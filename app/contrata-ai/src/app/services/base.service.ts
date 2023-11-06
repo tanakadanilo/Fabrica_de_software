@@ -1,19 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
-import { Response } from '../model/response';
+import { AlertController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 import { Page } from '../model/page';
-import { MessageService } from 'primeng/api';
+import { Response } from '../model/response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BaseService {
   public URL_BACK: string = 'http://localhost:8080';
-  messageService: MessageService;
+  public alertController: AlertController;
 
-  constructor(protected http: HttpClient, messageService: MessageService) {
-    this.messageService = messageService;
+  constructor(protected http: HttpClient, alertController: AlertController) {
+    this.alertController = alertController;
   }
 
   adicionarParametrosRequisicao(
@@ -41,7 +41,7 @@ export class BaseService {
           if (reject) {
             reject(error);
           } else {
-            
+
             this.toastError(error);
           }
         }
@@ -70,16 +70,24 @@ export class BaseService {
       );
     });
   }
-
-  toastError(messages: string[]) {
+  async toast(message: string, header?: string) {
+    const alert = await this.alertController.create({
+      header: header ? header : 'Sucesso',
+      message: message,
+      buttons: ['OK']
+    });
+    return await alert.present();
+  }
+  async toastError(messages: string[]) {
     console.log(messages);
     messages.forEach((message) => {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: message,
-      });
+      this.toast(message, 'error');
     });
+  }
+  async toastSucess(message: string) {
+    console.log(message);
+    await this.toast(message, 'sucess');
+
   }
 
   get<T>(url: string, params?: Map<string, any>): Promise<Response<T>> {

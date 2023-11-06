@@ -21,7 +21,7 @@ export class ModalPrestadorComponent implements OnInit {
   constructor(
     private modalController: ModalController,
     private prestadorService: PrestadorService
-  ) {}
+  ) { }
 
   cancel() {
     return this.modalController.dismiss(null, 'cancel');
@@ -57,7 +57,7 @@ export class ModalPrestadorComponent implements OnInit {
   async contratar(servico: ServicoPrestadoDto) {
     const modal = await this.modalController.create({
       component: ModalContratarComponent,
-      componentProps: { servico: servico }, // Passando os dados como parâmetro
+      componentProps: { servico: servico, modal: this.modalController }, // Passando os dados como parâmetro
     });
 
     return await modal.present();
