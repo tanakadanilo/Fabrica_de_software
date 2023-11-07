@@ -10,7 +10,7 @@ import { BaseService } from './base.service';
 })
 export class ServicoService extends BaseService {
   public URL_SERVICOS: string = this.URL_BACK + '/servico';
-
+  iconeCarrinho: string = 'cart-outline';
   public servicosNoCarrinho: Servico[] = [];
 
   constructor(override http: HttpClient, alertController: AlertController) {
@@ -36,10 +36,15 @@ export class ServicoService extends BaseService {
 
   adicionarAoCarrinho(servico: Servico) {
     this.servicosNoCarrinho.push(servico);
+    this.iconeCarrinho = 'cart'
   }
 
-  retirarDoCarrinho(servico: Servico): Servico[] {
-    return this.servicosNoCarrinho.filter((servicoNaLista) => { servicoNaLista != servico });
+  async retirarDoCarrinho(servico: Servico) {
+    this.servicosNoCarrinho = this.servicosNoCarrinho.filter((servicoNaLista) => { servicoNaLista.id == servico.id });
+    if (this.servicosNoCarrinho.length == 0) {
+      this.iconeCarrinho = 'cart-outline'
+    }
+    return this.servicosNoCarrinho;
   }
 
 }

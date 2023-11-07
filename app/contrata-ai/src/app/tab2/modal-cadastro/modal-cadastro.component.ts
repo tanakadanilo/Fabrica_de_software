@@ -1,3 +1,4 @@
+import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -33,14 +34,14 @@ export class ModalCadastroComponent implements OnInit {
   ufs: any;
   UrlImagem = '';
 
-  constructor(private service: UsuarioService) {}
+  constructor(private service: UsuarioService, private modalController: ModalController) { }
 
   ngOnInit() {
-    this.service.getUsuarios().then((usuarios: any)=>{
-      console.log(usuarios);      
+    this.service.getUsuarios().then((usuarios: any) => {
+      console.log(usuarios);
     })
   }
 
-  cancelar() {}
-  cadastrar() {}
+  cancelar() { this.modalController.dismiss() }
+  cadastrar() { }
 }

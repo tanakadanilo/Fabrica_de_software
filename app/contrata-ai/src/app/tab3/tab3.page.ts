@@ -21,8 +21,10 @@ export class Tab3Page implements OnInit {
     this.servicosNoCarrinho = this.servicoService.servicosNoCarrinho;
   }
 
-  removerDoCarrinho(servico: Servico) {
-    this.servicosNoCarrinho = this.servicoService.retirarDoCarrinho(servico);
+  async removerDoCarrinho(servico: Servico) {
+    this.servicosNoCarrinho = await this.servicoService.retirarDoCarrinho(servico);
+    this.servicoService.toastSucess("removido do carrinho!")
+  
   }
 
   async mostrarConfirmacao(servico: Servico) {
@@ -47,4 +49,6 @@ export class Tab3Page implements OnInit {
 
     await alert.present();
   }
+
+  contratar() { }
 }
