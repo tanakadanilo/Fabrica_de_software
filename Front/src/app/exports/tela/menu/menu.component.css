@@ -5,7 +5,10 @@
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 0px;
+  padding: 0px; 
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 .item-menu {
   display: flex;

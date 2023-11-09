@@ -16,3 +16,12 @@ display: flex;
 .p-float-label {
     margin-bottom: 20px;
 }
+
+.botao {
+    width: 8rem;
+}
+
+.botaoGrande {
+    width: 8rem;
+    margin-right: -1rem !important;
+}

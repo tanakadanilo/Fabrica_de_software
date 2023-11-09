@@ -8,6 +8,7 @@ import { BaseServiceService } from 'src/app/exports/service/base-service.service
 import { ContratanteService } from 'src/app/exports/service/contratante.service';
 import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.component';
 import { createNumberMask } from 'text-mask-addons';
+import { TabViewModule } from 'primeng/tabview';
 
 @Component({
   selector: 'app-cadastro',

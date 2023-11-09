@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { BaseServiceService } from '../../service/base-service.service';
 
 @Component({
@@ -38,5 +38,20 @@ export class MenuComponent {
 
   mostrarLogin() {
     this.service.navigate('/login');
+  }
+  isMenuFixed = false;
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(event: Event): void {
+    const scrollOffset = window.pageYOffset;
+    const menuElement = document.querySelector('.menu') as HTMLElement; // Adicione o tipo de cast para HTMLElement
+
+    if (menuElement) {
+      if (scrollOffset > menuElement.offsetTop) {
+        this.isMenuFixed = true;
+      } else {
+        this.isMenuFixed = false;
+      }
+    }
   }
 }

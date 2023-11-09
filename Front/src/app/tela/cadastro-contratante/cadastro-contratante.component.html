@@ -9,7 +9,7 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="cpfCnpj">CPF:</label>
-          <input pInputText id="cpfCnpj" [(ngModel)]="contratante.cpfCnpj" [textMask]="{mask: cpfMask}" (blur)="validarECorrigirCPF()" />
+          <input pInputText id="cpfCnpj" [(ngModel)]="contratante.cpfCnpj" (blur)="validarECorrigirCPF()" maxlength="11" />
         </div>
       </div>
       <div class="col-md-3">
@@ -35,10 +35,6 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="form-group">
-          <label for="contato">Contato:</label>
-          <input pInputText id="contato" [(ngModel)]="contratante.contato.contato" />
-        </div>
       </div>
     </div>
     <div class="endereco mt-4">
