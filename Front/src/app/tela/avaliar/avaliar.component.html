@@ -1,5 +1,6 @@
 <button (click)="openPopup()">Abrir Popup</button>
 
+<div class="dialogBox">
 <p-dialog header="Avalie este item" [(visible)]="visible" [modal]="true" [closable]="false" [baseZIndex]="10000">
   <div class="stars">
     <span class="star" (click)="rate(1)" [class.active]="stars! >= 1">★</span>
@@ -11,3 +12,4 @@
   <p>{{ stars }} estrelas</p>
   <p-button (click)="closePopup()">Avaliar</p-button>
 </p-dialog>
+</div>

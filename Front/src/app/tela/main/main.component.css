@@ -1,12 +1,11 @@
 .titulo {
   padding-left: 4.2rem;
+  margin-bottom: 2rem;
 }
 
-.cardsCarrosel {
-    transition: transform 0.3s ease;
-}
-.cardsCarrosel:hover {
+.card:hover {
     transform: scale(1.05);
+    border-color: rgb(123, 121, 219);
   }
 
   .cards-container {
@@ -22,6 +21,7 @@
     margin: 2.5rem;
     display: inline-block;
     margin-left: 4.3rem;
+    transition: transform 0.2s ease;
   }
 
   .scroll-container {

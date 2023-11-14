@@ -5,7 +5,8 @@
       <img src="{{ contratante.foto }}" alt="Imagem de Perfil" style="display: block;" />
       <input type="file" name="foto" (change)="onFileSelected($event)" accept="image/*" />
     </div>
-    <div class="row mt-5">
+    <div class="row mt-5 destacado">
+      <h5>Dados pessoais:</h5>
       <div class="col-md-3">
         <div class="form-group">
           <label for="cpfCnpj">CPF:</label>
@@ -21,7 +22,8 @@
     </div>
   </div>
   <div class="contato">
-    <div class="row">
+    <div class="row destacado">
+      <h5>Contato:</h5>
       <div class="col-md-3">
         <div class="form-group">
           <label for="telefone">Telefone:</label>
@@ -37,8 +39,9 @@
       <div class="col-md-3">
       </div>
     </div>
-    <div class="endereco mt-4">
+    <div class="endereco mt-4 destacado">
       <div class="row">
+        <h5>Endereço:</h5>
         <div class="col-md-3">
           <div class="form-group">
             <label for="uf">Estado:</label>
