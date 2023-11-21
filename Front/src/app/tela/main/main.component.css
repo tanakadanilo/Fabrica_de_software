@@ -17,10 +17,11 @@
   }
 
   .card {
-    width: 14rem;
+    width: 18rem;
     margin: 2.5rem;
     display: inline-block;
     margin-left: 4.3rem;
+    margin-right: 4rem;
     transition: transform 0.2s ease;
   }
 

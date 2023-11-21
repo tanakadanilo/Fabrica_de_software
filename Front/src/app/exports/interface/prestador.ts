@@ -1,5 +1,6 @@
 import { Contato } from "./contato";
 import { Endereco } from "./endereco";
+import { Servico } from "./servico";
 
 export interface Prestador {
 
@@ -9,7 +10,7 @@ export interface Prestador {
     cpfCnpj: string;
     endereco: Endereco;
     foto: string;
-    servicosPrestados: string;
+    servicosPrestados: any[];
     historicoServicosPrestados: string;
     portfolio: string;
     disponibilidades: string;

@@ -2,7 +2,7 @@
   <p-carousel [value]="categorias" [circular]="true" [numVisible]="4">
     <ng-template let-categoria pTemplate="item">
       <div class="servicos">
-        <div class="card mt-5 col-md-4 p-button" style="display: block;">
+        <div (click)="filtrarPorCategoria(categoria)" class="card mt-5 col-md-4 p-button" style="display: block;">
           <p>{{categoria}}</p>
         </div>
       </div>
@@ -10,16 +10,18 @@
   </p-carousel>
   <h3 class="titulo">Prestadores mais bem avaliados:</h3>
   <div class="scroll-container" id="cards-container">
-    <div *ngFor="let usuario of usuarios" class="card">
-      <p-card>
+    <div *ngFor="let pres of prestador" class="card">
+      <p-card (click)="entrarPerfil(pres.id)">
         <ng-template pTemplate="title">
-          Título do Card
+          {{ pres.nome }}
         </ng-template>
-        <ng-template pTemplate="content">
-          {{ usuario.nome }}
+        <ng-template style="font-weight: lighter " pTemplate="content">
+          {{ pres.endereco.cidade }}
+          <br><br>
+          <p style="font-weight: 500">Áreas de atuação:</p>
+          <div *ngFor="let servico of pres.servicosPrestados">
+          - {{ servico.servico.area }}
+          </div>
         </ng-template>
       </p-card>
     </div>
-  </div>
-  <button (click)="getCategorias()">Teste</button>
-</div>

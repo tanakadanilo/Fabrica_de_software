@@ -47,6 +47,26 @@ export class BaseServiceService {
     });
   }
 
+  toPromisseList(observable: Observable<Response<any[]>>): Promise<Response<any[]>> {
+    return new Promise<Response<any[]>>((resolve, reject?) => {
+      observable.subscribe(
+        (data) => {
+          if (data.erros.length > 0) {
+            this.toastError(data.erros);
+          }
+          resolve(data);
+        },
+        (error) => {
+          if (reject) {
+            reject(error);
+          } else {
+            this.toastError(error);
+          }
+        }
+      );
+    });
+  }
+
   toPromissePaginavel(
     observable: Observable<Response<Paginavel<any>>>
   ): Promise<Response<any>> {

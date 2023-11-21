@@ -9,12 +9,15 @@ import { Contato } from '../interface/contato';
 import { Response } from '../interface/response';
 import { Observable } from 'rxjs';
 import { Paginavel } from '../interface/paginavel';
+import { ResponsePaginada } from '../interface/response-paginada';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PrestadorService extends BaseServiceService {
+
   readonly URL_PRESTADOR = this.URL_BACK + '/prestador';
+
   constructor(
     protected override http: HttpClient,
     messageService: MessageService,
@@ -22,6 +25,7 @@ export class PrestadorService extends BaseServiceService {
   ) {
     super(http, messageService, router);
   }
+
   override toPromissePaginavel(
     observable: Observable<Response<Paginavel<Prestador>>>
   ): Promise<Response<any>> {
@@ -34,11 +38,30 @@ export class PrestadorService extends BaseServiceService {
     return super.toPromisse(observable);
   }
 
+  override toPromisseList(
+    observable: Observable<Response<Prestador[]>>
+  ): Promise<Response<Prestador[]>> {
+    return super.toPromisse(observable);
+  }
+
   getPrestador(id: number): Promise<Response<Prestador>> {
     return this.toPromisse(
       this.http.get<Response<Prestador>>(this.URL_PRESTADOR + '/' + id)
     );
   }
+
+  getAllPrestador(): Promise<Response<Paginavel<Prestador>>> {
+    return this.toPromissePaginavel(
+      this.http.get<Response<Paginavel<Prestador>>>(this.URL_PRESTADOR)
+    );
+  }
+
+  getPrestadorCategoria(categoria: string): Promise<Response<Paginavel<Prestador>>> {
+    return this.toPromissePaginavel(
+      this.http.get<Response<Paginavel<Prestador>>>(this.URL_PRESTADOR + "?categoria=" + categoria)
+    );
+  }
+
   getPrestadorVazio(): Prestador {
     let endereco: Endereco = this.getEnderecoVazio();
     let contato: Contato = this.getContatoVazio();
@@ -49,7 +72,7 @@ export class PrestadorService extends BaseServiceService {
       cpfCnpj: '',
       endereco: endereco,
       foto: '',
-      servicosPrestados: '',
+      servicosPrestados: [],
       historicoServicosPrestados: '',
       portfolio: '',
       disponibilidades: '',

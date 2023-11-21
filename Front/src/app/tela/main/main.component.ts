@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Prestador } from 'src/app/exports/interface/prestador';
 import { Servico } from 'src/app/exports/interface/servico';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
+import { PrestadorService } from 'src/app/exports/service/prestador.service';
 import { ServicosService } from 'src/app/exports/service/servicos.service';
 import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.component';
 
@@ -12,144 +14,36 @@ import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.comp
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent extends TelaBaseComponent {
-  usuarios: any = [
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-    {
-      nome: 'aaaaaaaaaaaaa',
-    },
-  ];
+  prestador!: Prestador[];
 
   categorias!: string[];
 
   constructor(
     override service: ServicosService,
-    protected override route: ActivatedRoute
+    protected override route: ActivatedRoute,
+    private prestadorService: PrestadorService,
+    private navigate: Router
   ) {
     super(service, route);
     this.getCategorias();
   }
 
-  // private dividirServicos(servicos: Servico[]) {
-  //   let colunas = 5;
-  //   let totalLinhas = Math.ceil(servicos.length / colunas);
+  entrarPerfil(id: number){
+    this.navigate.navigate(["/perfil/" + id]);
+  }
 
-  //   for (let i = 0; i < totalLinhas; i++) {
-  //     this.servicosDivididos[i] = servicos.slice(
-  //       i * colunas,
-  //       i * colunas + colunas
-  //     );
-  //   }
-  // }
+  filtrarPorCategoria(categoria: string){
+    this.prestadorService.getPrestadorCategoria(categoria).then((prestadoresFiltrados)=> {
+      this.prestador = prestadoresFiltrados.data.content;
+    });
+  }
+
+  override ngOnInit(): void {
+    this.prestadorService.getAllPrestador().then((prestadores) => {
+      this.prestador = prestadores.data.content;
+    })
+  }
+
   public getCategorias(): void {
     this.service.getCategorias().then((data) => {
       this.categorias = data.data.content;
