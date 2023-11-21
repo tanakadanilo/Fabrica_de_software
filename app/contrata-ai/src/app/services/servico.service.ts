@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { Response } from '../model/response';
 import { Servico } from '../model/servico';
 import { BaseService } from './base.service';
+import { ServicoPrestadoDto } from '../model/servico-prestado-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { BaseService } from './base.service';
 export class ServicoService extends BaseService {
   public URL_SERVICOS: string = this.URL_BACK + '/servico';
   iconeCarrinho: string = 'cart-outline';
-  public servicosNoCarrinho: Servico[] = [];
+  public servicosNoCarrinho: ServicoPrestadoDto[] = [];
 
   constructor(override http: HttpClient, alertController: AlertController) {
     super(http, alertController);
@@ -34,7 +35,7 @@ export class ServicoService extends BaseService {
     return this.post(this.URL_SERVICOS, servico);
   }
 
-  adicionarAoCarrinho(servico: Servico) {
+  adicionarAoCarrinho(servico: ServicoPrestadoDto) {
     this.servicosNoCarrinho.push(servico);
     this.iconeCarrinho = 'cart'
   }
