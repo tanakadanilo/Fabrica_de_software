@@ -1,4 +1,4 @@
-<div class="container" *ngIf="servicoPrestado">
+<div class="container">
     <!-- Dados do Prestador -->
     <div class="row">
         <div class="col-md-4">
@@ -11,19 +11,19 @@
                 <h1>Informações do Prestador</h1>
                 <div class="col-md-6">
                     <label>Nome:</label>
-                    <span> {{ servicoPrestado.nomePrestador }}</span>
+                    <span> {{ servicos[0].prestador.nome }}</span>
                 </div>
                 <div class="col-md-6">
                     <label>Telefone:</label>
-                    <span> {{ servicoPrestado.contatoPrestador.telefone}}</span>
+                    <span> {{ servicos[0].prestador.contato.telefone}}</span>
                 </div>
                 <div class="col-md-6">
                     <label>Cidade:</label>
-                    <span> {{ servicoPrestado.enderecoPrestador.cidade }}</span>
+                    <span> {{ servicos[0].prestador.endereco.cidade }}</span>
                 </div>
                 <div class="col-md-6">
                     <label>Email:</label>
-                    <span> {{ servicoPrestado.contatoPrestador.email }}</span>
+                    <span> {{ servicos[0].prestador.contato.email }}</span>
                 </div>
             </div>
         </div>
@@ -32,9 +32,9 @@
         <div class="col-md-4">
             <div class="destacado">
                 <h4>Serviço(s) Escolhido(s):</h4>
-                <!-- <li *ngFor="let servico of servicos">
-                    - {{ servico.nome }}
-                </li> -->
+                <li *ngFor="let servico of servicos">
+                    - {{ servico.servicoPrestado.servico.nome }}
+                </li>
             </div>
         </div>
         <div class="col-md-4">

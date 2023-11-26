@@ -34,7 +34,7 @@
     <div class="col-md-6">
       <!-- Áreas de Atuação -->
       <div class="areas-de-atuacao destacado">
-        <h2>Áreas de Atuação</h2>
+        <h2>Áreas de Atuação:</h2>
         <!-- Coloque aqui o código para exibir as áreas de atuação do prestador -->
       </div>
     </div>
@@ -42,9 +42,12 @@
       <!-- Serviços Prestados -->
       <div class="servicos-prestados destacado">
         <h2>Serviços Prestados</h2>
-        <!-- Coloque aqui o código para exibir os serviços prestados pelo prestador -->
+        <div>
+          <p-multiSelect [options]="prestador.servicosPrestados" [(ngModel)]="servicoSelecionado" optionLabel="servico.nome"></p-multiSelect>
+
+        </div>
       </div>
     </div>
   </div>
-  <p-button label="Contratar Serviços" (click)="null"></p-button>
+  <p-button label="Contratar Serviços" (click)="enviarServicosSelecionados()"></p-button>
 </div>

@@ -7,6 +7,7 @@ import { Uf } from '../enum/uf';
 import { Response } from '../interface/response';
 import { Observable } from 'rxjs';
 import { Paginavel } from '../interface/paginavel';
+import { PropostaContratacao } from '../interface/contratacaoServico';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,8 @@ export class BaseServiceService {
   user: any = '';
 
   messageService: MessageService;
+
+  servicosListados!: any[];
 
   constructor(
     protected http: HttpClient,

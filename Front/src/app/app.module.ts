@@ -35,13 +35,16 @@ import { RecuperarSenhaComponent } from './tela/recuperar-senha/recuperar-senha.
 import { TelaBaseComponent } from './exports/tela/tela-base/tela-base.component';
 import { ContratoComponent } from './tela/contrato/contrato.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { MultiSelectModule } from 'primeng/multiselect';
+
 import { FooterComponent } from './exports/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,FooterComponent,
-        MenuComponent,
+    MainComponent,
+    FooterComponent,
+    MenuComponent,
     PerfilPrestadorComponent,
     LoginComponent,
     CadastroComponent,
@@ -75,6 +78,7 @@ import { FooterComponent } from './exports/footer/footer.component';
     DialogModule,
     CardModule,
     CalendarModule
+    MultiSelectModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

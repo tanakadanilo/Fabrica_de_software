@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PropostaContratacao } from 'src/app/exports/interface/contratacaoServico';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
 import { ServicosService } from 'src/app/exports/service/servicos.service';
 
@@ -9,22 +10,21 @@ import { ServicosService } from 'src/app/exports/service/servicos.service';
   styleUrls: ['./contratar.component.css'],
 })
 export class ContratarComponent implements OnInit {
+  servicosLista!: any[];
   constructor(
     private service: ServicosService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private serviceService: BaseServiceService
   ) {}
-  servicoPrestado: any;
-
+  servicos!: PropostaContratacao[];
   date: Date = new Date();
 
   ngOnInit(): void {
-    let id = this.route.snapshot.data['id'];
-    this.service.getServicoPrestado(id).then((data) => {
-      this.servicoPrestado = data.data;
-    });
-  }
+       this.servicos = this.service.servicosListados;
+       console.log(this.servicos);
+}
 
   abrirPerfilPrestador() {
-    this.service.navigate('/perfil/' + this.servicoPrestado.idPrestador);
+    this.service.navigate('/perfil/' + this.servicos[0].prestador.id);
   }
 }
