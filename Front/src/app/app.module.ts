@@ -35,13 +35,13 @@ import { RecuperarSenhaComponent } from './tela/recuperar-senha/recuperar-senha.
 import { TelaBaseComponent } from './exports/tela/tela-base/tela-base.component';
 import { ContratoComponent } from './tela/contrato/contrato.component';
 import { TextMaskModule } from 'angular2-text-mask';
-
+import { FooterComponent } from './exports/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
-    MenuComponent,
+    MainComponent,FooterComponent,
+        MenuComponent,
     PerfilPrestadorComponent,
     LoginComponent,
     CadastroComponent,
@@ -74,8 +74,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     PaginatorModule,
     DialogModule,
     CardModule,
-    CalendarModule,
-    TextMaskModule,
+    CalendarModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
