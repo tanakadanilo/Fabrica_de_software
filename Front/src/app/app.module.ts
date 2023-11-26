@@ -37,12 +37,13 @@ import { ContratoComponent } from './tela/contrato/contrato.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { MultiSelectModule } from 'primeng/multiselect';
 
-
+import { FooterComponent } from './exports/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
+    FooterComponent,
     MenuComponent,
     PerfilPrestadorComponent,
     LoginComponent,
@@ -76,8 +77,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     PaginatorModule,
     DialogModule,
     CardModule,
-    CalendarModule,
-    TextMaskModule,
+    CalendarModule
     MultiSelectModule,
   ],
   providers: [MessageService],
