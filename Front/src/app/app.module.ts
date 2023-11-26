@@ -35,6 +35,8 @@ import { RecuperarSenhaComponent } from './tela/recuperar-senha/recuperar-senha.
 import { TelaBaseComponent } from './exports/tela/tela-base/tela-base.component';
 import { ContratoComponent } from './tela/contrato/contrato.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { MultiSelectModule } from 'primeng/multiselect';
+
 
 
 @NgModule({
@@ -76,6 +78,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     CardModule,
     CalendarModule,
     TextMaskModule,
+    MultiSelectModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

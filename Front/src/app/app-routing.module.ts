@@ -33,12 +33,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'cadastrar', component: CadastroComponent, pathMatch: 'full' },
   {
-    path: 'contratar/:id',
+    path: 'contratar',
     component: ContratarComponent,
     pathMatch: 'full',
-    resolve: {
-      id: BaseResolver,
-    },
   },
   {
     path: 'avaliar/:id',

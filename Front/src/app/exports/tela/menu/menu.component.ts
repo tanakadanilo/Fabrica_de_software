@@ -54,4 +54,8 @@ export class MenuComponent {
       }
     }
   }
+
+  recarregarServicos() {
+    location.reload();
+  }
 }
