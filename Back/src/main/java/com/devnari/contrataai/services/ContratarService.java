@@ -1,10 +1,12 @@
 package com.devnari.contrataai.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.devnari.contrataai.model.PropostaContratacao;
 import com.devnari.contrataai.util.StringUtil;
 
+@Service
 public class ContratarService {
 	static String contrato = "<br><p><strong>Entre:</strong></p><p><strong>Contratante:</strong>"
 			+ ":[nomeContratante]<br><strong>Endereço:</strong>"
