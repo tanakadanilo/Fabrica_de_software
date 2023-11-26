@@ -168,4 +168,23 @@ export class BaseServiceService {
       },
     });
   }
+
+
+  selectedImage: File | null = null;
+  base64String: string | null = null;
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.selectedImage = file;
+
+      // Convertendo a imagem para base64
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        this.base64String = reader.result as string;        
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 }

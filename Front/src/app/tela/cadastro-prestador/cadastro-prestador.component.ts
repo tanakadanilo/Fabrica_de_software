@@ -28,4 +28,16 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
     this.prestador = this.service.getPrestadorVazio();
     this.service.getPrestadorVazio();
   }
+
+  cadastrar(){
+    if(!this.service.base64String){
+      this.service.toastError(["Informe a imagem de perfil!"]);
+      return;
+    }
+    
+    this.prestador.foto = this.service.base64String;
+    this.service.cadastrarPrestador(this.prestador).then(x=>{
+      console.log(x);
+    })
+  }
 }

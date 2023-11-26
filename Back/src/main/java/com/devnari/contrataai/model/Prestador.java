@@ -44,7 +44,8 @@ public class Prestador extends Pessoa{
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 
-// link da foto
+// Base64 da foto
+	@Column(length = 500000)
 	private String foto;
 
 	@OneToMany(cascade = CascadeType.PERSIST)

@@ -51,7 +51,11 @@ public enum UF {
 				return uf;
 			}
 		}
-
+		for (final UF uf : UF.values()) {
+			if (uf.sigla.equalsIgnoreCase(nomeUf)) {
+				return uf;
+			}
+		}
 		throw new IllegalArgumentException(nomeUf);
 	}
 

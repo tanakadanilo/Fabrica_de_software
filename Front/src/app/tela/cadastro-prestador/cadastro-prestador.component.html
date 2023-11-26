@@ -2,7 +2,14 @@
 
   <div class="informacoes-pessoais">
       <h1>Informações Pessoais</h1>
-      <img src="{{ prestador.foto }}" alt="Imagem de Perfil" />
+      <div>
+        <input type="file" (change)="service.onFileSelected($event)" />
+      </div>
+      
+      <div *ngIf="service.selectedImage">
+        <h3>Imagem Selecionada:</h3>
+        <img [src]="service.base64String" alt="Imagem Selecionada" style="max-width: 100%;" />
+      </div>
       <div class="row">
           <div class="col-md-3 mt-3">
               <label htmlFor="area" class="col-md-3">CPF:</label>
@@ -68,7 +75,37 @@
           </div>
       </div>
       <div class="d-flex justify-content-center mt-5">
-          <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-success"></button>
+          <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-success" (click)="cadastrar()"></button>
       </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
   </div>
 </div>

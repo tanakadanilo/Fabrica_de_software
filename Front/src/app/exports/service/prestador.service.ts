@@ -80,4 +80,8 @@ export class PrestadorService extends BaseServiceService {
       especializacao: '',
     };
   }
+
+  cadastrarPrestador(prestador:Prestador){
+    return this.toPromisse(this.http.post<Response<Prestador>>(this.URL_PRESTADOR, prestador))
+  }
 }
