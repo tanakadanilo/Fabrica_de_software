@@ -28,4 +28,6 @@ public class ServicoPrestado {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Experiencia experiencia;
 
+	private Double valor;
+
 }

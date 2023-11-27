@@ -59,7 +59,7 @@ public class PreencheBanco {
 
 	@Autowired
 	ServicoPrestadoService servicoPrestadoService;
-	
+
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
@@ -115,6 +115,7 @@ public class PreencheBanco {
 				ServicoPrestado sp = new ServicoPrestado();
 				sp.setExperiencia(ex);
 				sp.setServico(s);
+				sp.setValor(System.currentTimeMillis() % 1000000 / 10.0);
 				sp = servicoPrestadoService.salvar(sp);
 
 				Usuario usuario = new Usuario();
@@ -122,7 +123,7 @@ public class PreencheBanco {
 				usuario.setPassword(passwordEncoder.encode("senha" + i));
 				usuario.setUsername("username" + i);
 				usuario.setPrestador(true);
-				
+
 				Prestador p = new Prestador();
 				p.setUsuario(usuario);
 				p.setContato(c);
@@ -144,7 +145,7 @@ public class PreencheBanco {
 				usuario2.setPassword("senha" + i);
 				usuario2.setUsername("username" + i);
 				usuario2.setPrestador(false);
-				
+
 				Contratante contratante = new Contratante();
 				contratante.setContato(c);
 				contratante.setCpf("" + contratante.hashCode());

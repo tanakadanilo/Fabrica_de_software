@@ -20,7 +20,7 @@ public class Contratacao {
 	private ContratarService service;
 
 	@PostMapping(value = "")
-	public ResponseEntity<Response<String>> adicionarServicoPrestado(
+	public ResponseEntity<Response<String>> contratar(
 			@RequestBody PropostaContratacao propostaContratacao) {
 		Response<String> response = new Response<>();
 		try {

@@ -5,6 +5,8 @@ import { Response } from '../model/response';
 import { Servico } from '../model/servico';
 import { BaseService } from './base.service';
 import { ServicoPrestadoDto } from '../model/servico-prestado-dto';
+import { ServicoPrestado } from '../model/servico-prestado';
+import { PropostaContratacao } from '../model/proposta-contratacao';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +28,20 @@ export class ServicoService extends BaseService {
       )
     );
   }
+  getServico(id: number): Promise<Response<ServicoPrestado>> {
+    return this.toPromisse(
+      this.http.get<Response<ServicoPrestadoDto>>(
+        this.URL_SERVICOS + 'prestado/' + id
+      )
+    );
+  }
+  getServicoDto(id: number): Promise<Response<ServicoPrestadoDto>> {
+    return this.toPromisse(
+      this.http.get<Response<ServicoPrestadoDto>>(
+        this.URL_SERVICOS + '/detail/' + id
+      )
+    );
+  }
 
   editarServico(servico: any) {
     return this.put(this.URL_SERVICOS, servico);
@@ -37,15 +53,27 @@ export class ServicoService extends BaseService {
 
   adicionarAoCarrinho(servico: ServicoPrestadoDto) {
     this.servicosNoCarrinho.push(servico);
-    this.iconeCarrinho = 'cart'
+    this.iconeCarrinho = 'cart';
   }
 
-  async retirarDoCarrinho(servico: Servico) {
-    this.servicosNoCarrinho = this.servicosNoCarrinho.filter((servicoNaLista) => { servicoNaLista.id == servico.id });
+  async retirarDoCarrinho(servico: ServicoPrestadoDto) {
+    this.servicosNoCarrinho = this.servicosNoCarrinho.filter(
+      (servicoNaLista) => {
+        servicoNaLista.id == servico.id;
+      }
+    );
     if (this.servicosNoCarrinho.length == 0) {
-      this.iconeCarrinho = 'cart-outline'
+      this.iconeCarrinho = 'cart-outline';
     }
     return this.servicosNoCarrinho;
   }
 
+  contratarServico(propostaContratacao: PropostaContratacao) {
+    return this.toPromisse(
+      this.http.post<Response<PropostaContratacao>>(
+        this.URL_BACK + '/contratar',
+        propostaContratacao
+      )
+    );
+  }
 }
