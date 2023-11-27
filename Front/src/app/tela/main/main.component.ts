@@ -15,7 +15,7 @@ import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.comp
 })
 export class MainComponent extends TelaBaseComponent {
   prestador!: Prestador[];
-
+  
   categorias!: string[];
 
   constructor(

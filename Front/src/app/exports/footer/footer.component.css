@@ -1,15 +1,13 @@
 .footer {
   background-color: blue;
-  position: fixed;
-  bottom: 0;
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 0;
-  height: 5.1em;
-  margin: 0;
+  padding: 20px;
+  height: 5.5em; /* Ajuste conforme necessário */
+  justify-content: space-between;
+  color: white;
 }
-
 
 body {
   margin: 0;
@@ -17,21 +15,14 @@ body {
   box-sizing: border-box;
 }
 
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: blue;
-  color: white;
-  padding: 20px;
+.categorias{
+  text-align: left;
+  padding-right: 5rem;
 }
 
-.footer .categorias,
-.footer .institucional,
-.footer .redes-sociais {
-  flex: 1;
+.redes-sociais {
   text-align: left;
-  padding-right: 20px;
+  padding-right: 5rem;
 }
 
 .footer ul {
@@ -52,7 +43,49 @@ body {
   font-size: smaller;
 }
 .footer img {
-  max-width: 1rem; /* Ajuste conforme necessário */
+  max-width: 2rem;
+  padding: 0 0 2px 6px;
 }
 
-/* Adicione mais estilos conforme necessário */
+.institucional {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-right: 5rem;
+}
+
+.institucional header {
+  margin-bottom: 10px !important;
+}
+
+.institucional ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+}
+
+.institucional li {
+  margin-right: 10px !important;
+}
+
+.institucional a {
+  color: white !important;
+  text-decoration: none !important; 
+}
+
+.institucional a:hover {
+  text-decoration: underline !important;
+}
+
+.playstore {
+  display: flex;
+}
+
+.pi {
+  padding-right: 5px;
+}
+
+.pi-facebook {
+  margin-left: calc(10px - 18px);
+}

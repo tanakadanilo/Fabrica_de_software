@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { BaseServiceService } from '../../service/base-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +8,9 @@ import { BaseServiceService } from '../../service/base-service.service';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent {
-  constructor(private service: BaseServiceService) {}
+  constructor(private service: BaseServiceService,
+              private navigate: Router,
+    ) {}
 
   items = [
     {
@@ -56,6 +59,8 @@ export class MenuComponent {
   }
 
   recarregarServicos() {
-    location.reload();
+    if(this.navigate.url == "/"){
+      location.reload();
+    } else this.navigate.navigate(["/"])    
   }
 }
