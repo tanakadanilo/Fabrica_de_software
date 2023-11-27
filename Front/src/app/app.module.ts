@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { CarouselModule } from 'primeng/carousel';
@@ -36,7 +36,7 @@ import { TelaBaseComponent } from './exports/tela/tela-base/tela-base.component'
 import { ContratoComponent } from './tela/contrato/contrato.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { MultiSelectModule } from 'primeng/multiselect';
-
+import { AuthInterceptorService } from './exports/service/auth-interceptor.service';
 import { FooterComponent } from './exports/footer/footer.component';
 
 @NgModule({
@@ -77,10 +77,17 @@ import { FooterComponent } from './exports/footer/footer.component';
     PaginatorModule,
     DialogModule,
     CardModule,
-    CalendarModule
+    CalendarModule,
     MultiSelectModule,
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
