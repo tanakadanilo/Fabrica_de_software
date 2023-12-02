@@ -5,9 +5,9 @@ import { ServicoPrestado } from "./servico-prestado";
 
 export interface  PropostaContratacao {
 	
-    id: number;
+    id?: number;
 	
-	servicoPrestado: ServicoPrestado;
+	servicoPrestado: ServicoPrestado[];
 	prestador: Prestador;
 	contratante: Contratante;
 	dataContratacao: Date;
