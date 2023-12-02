@@ -20,7 +20,7 @@ export enum Uf {
   CE = 'CE',
   PE = 'PE',
   SC = 'SC',
-  PARAIBA = 'Paraíba',
+  PB = 'PB',
   RN = 'RN',
   ES = 'ES',
   RJ = 'RJ',
