@@ -5,7 +5,7 @@
       <div>
         <input type="file" (change)="service.onFileSelected($event)" />
       </div>
-      
+
       <div *ngIf="service.selectedImage">
         <h3>Imagem Selecionada:</h3>
         <img [src]="service.base64String" alt="Imagem Selecionada" style="max-width: 100%;" />
@@ -47,7 +47,7 @@
                   <label htmlFor="cep" class="col-md-3">CEP:</label>
                   <input pInputText class="col-md-9" id="cep" [(ngModel)]="prestador.endereco.cep" />
               </div>
-              
+
           </div>
           <div class="row">
               <div class="col-md-4 mt-3">
@@ -58,10 +58,10 @@
                   <label htmlFor="cidade" class="col-md-3">Cidade:</label>
                   <input pInputText class="col-md-9" id="cidade" [(ngModel)]="prestador.endereco.cidade" />
               </div>
-              
+
           </div>
           <div class="row">
-              
+
 
               <div class="col-md-4 mt-3">
                   <label htmlFor="bairro" class="col-md-3">Bairro:</label>
