@@ -35,19 +35,27 @@
       <!-- Áreas de Atuação -->
       <div class="areas-de-atuacao destacado">
         <h2>Áreas de Atuação:</h2>
-        <!-- Coloque aqui o código para exibir as áreas de atuação do prestador -->
+        <p>{{ prestador.especializacao }}</p>
       </div>
     </div>
     <div class="col-md-6">
-      <!-- Serviços Prestados -->
       <div class="servicos-prestados destacado">
         <h2>Serviços Prestados</h2>
+        <!-- <p-multiSelect [style]="{'width' : '73%'}" [options]="prestador.servicosPrestados" [group]="true" [(ngModel)]="servicoSelecionado" placeholder="Select Cities" scrollHeight="250px" display="chip">
+          <ng-template let-group pTemplate="group">
+              <div class="flex align-items-center">
+                  <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + group.value" style="width: 20px" />
+                  <span>{{ group.label }}</span>
+              </div>
+          </ng-template>
+      </p-multiSelect> -->
         <div>
-          <p-multiSelect [options]="prestador.servicosPrestados" [(ngModel)]="servicoSelecionado" optionLabel="servico.nome"></p-multiSelect>
-
+          <p-multiSelect [style]="{'width' : '73%'}" [options]="prestador.servicosPrestados" [(ngModel)]="servicoSelecionado" optionLabel="servico.nome"></p-multiSelect>
         </div>
       </div>
     </div>
   </div>
+  <div class="botaoContratar">
   <p-button label="Contratar Serviços" (click)="enviarServicosSelecionados()"></p-button>
+</div>
 </div>

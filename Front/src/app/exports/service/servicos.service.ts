@@ -7,6 +7,7 @@ import { Response } from '../interface/response';
 import { Servico } from '../interface/servico';
 import { Observable } from 'rxjs';
 import { Paginavel } from '../interface/paginavel';
+import { ServicoPrestadoDto } from '../interface/servico-prestado-DTO';
 
 @Injectable({
   providedIn: 'root',
@@ -29,9 +30,9 @@ export class ServicosService extends BaseServiceService {
     return super.toPromissePaginavel(observable);
   }
 
-  override toPromisse(
-    observable: Observable<Response<Servico>>
-  ): Promise<Response<Servico>> {
+  override toPromisse<T>(
+    observable: Observable<Response<T>>
+  ): Promise<Response<T>> {
     return super.toPromisse(observable);
   }
 
@@ -46,9 +47,9 @@ export class ServicosService extends BaseServiceService {
       this.http.get<Response<Servico>>(this.URL_SERVICOS + '/' + id)
     );
   }
-  getServicoDetail(id: number): Promise<Response<Servico>> {
-    return this.toPromisse(
-      this.http.get<Response<Servico>>(
+  getServicoDetail(id: number): Promise<Response<ServicoPrestadoDto>> {
+    return this.toPromisse<ServicoPrestadoDto>(
+      this.http.get<Response<ServicoPrestadoDto>>(
         this.URL_SERVICOS_PRESTADOS + '/detail/' + id
       )
     );

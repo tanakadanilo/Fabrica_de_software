@@ -6,24 +6,23 @@
             <img src="assets\images\images.jpeg" alt="Imagem de Perfil" class="img-fluid" />
         </div>
         <div class="col-md-8">
-            <!-- Informações do Prestador -->
             <div class="informacoes-pessoais">
                 <h1>Informações do Prestador</h1>
                 <div class="col-md-6">
                     <label>Nome:</label>
-                    <span> {{ servicos[0].prestador.nome }}</span>
+                    <span> {{ prestador.nome }}</span>
                 </div>
                 <div class="col-md-6">
                     <label>Telefone:</label>
-                    <span> {{ servicos[0].prestador.contato.telefone}}</span>
+                    <span> {{ prestador.contato.telefone}}</span>
                 </div>
                 <div class="col-md-6">
                     <label>Cidade:</label>
-                    <span> {{ servicos[0].prestador.endereco.cidade }}</span>
+                    <span> {{ prestador.endereco.cidade }}</span>
                 </div>
                 <div class="col-md-6">
                     <label>Email:</label>
-                    <span> {{ servicos[0].prestador.contato.email }}</span>
+                    <span> {{ prestador.contato.email }}</span>
                 </div>
             </div>
         </div>
@@ -33,20 +32,20 @@
             <div class="destacado">
                 <h4>Serviço(s) Escolhido(s):</h4>
                 <li *ngFor="let servico of servicos">
-                    - {{ servico.servicoPrestado.servico.nome }}
+                    {{ servico.servico.nome }}
                 </li>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="destacado">
+            <div class="destacado" *ngFor="let servico of servicos">
                 <h5>Valor do Serviço(s):</h5>
-                <!-- <ul>
-                     <li *ngFor="let servico of servicos">
-                        R${{ servico.valor }}
+                <ul>
+                     <li>
+                        R${{ servico.valor}}
                     </li>
                 </ul>
                 <hr>
-                <p>Valor Total: R${{ servico.valorTotal  }}</p> -->
+                <p>Valor Total: R${{ valorTotal  }}</p>
             </div>
         </div>
         <div class="col-md-4">
@@ -59,7 +58,7 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <button pButton class="butao" type="button" label="Contratar"></button>
+            <button pButton (click)="verContrato()" class="butao" type="button" label="Contratar"></button>
         </div>
     </div>
 </div>

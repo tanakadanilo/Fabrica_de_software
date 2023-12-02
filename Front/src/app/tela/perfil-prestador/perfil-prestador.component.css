@@ -63,4 +63,9 @@
   border: 2px solid #dddddd; /* Borda ao redor do quadrado */
   border-radius: 5px; /* Borda arredondada */
   margin-bottom: 3rem;
+  min-height: 15rem;
+}
+
+.botaoContratar {
+  margin-bottom: 5rem !important;
 }

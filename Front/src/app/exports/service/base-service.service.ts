@@ -21,7 +21,7 @@ export class BaseServiceService {
   messageService: MessageService;
 
   servicosListados!: any[];
-
+  date!: Date;
   constructor(
     protected http: HttpClient,
     messageService: MessageService,
@@ -190,4 +190,9 @@ export class BaseServiceService {
       reader.readAsDataURL(file);
     }
   }
+
+  findByToken(token: string) {
+    return this.http.get(this.URL_BACK + '/login/findbytoken?token=' + token)
+  }
+
 }
