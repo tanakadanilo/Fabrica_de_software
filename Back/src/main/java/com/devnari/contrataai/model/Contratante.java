@@ -26,14 +26,14 @@ public class Contratante extends Pessoa{
 	private Long id;
 	private String nome;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
 
 	@Column(unique = true)
 	protected String cpf;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 

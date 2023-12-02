@@ -33,14 +33,14 @@ public class Prestador extends Pessoa{
 
 	private String nome;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
 
 	@Column(unique = true)
 	private String cpf;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 
@@ -48,13 +48,13 @@ public class Prestador extends Pessoa{
 	@Column(length = 500000)
 	private String foto;
 
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "prestador_id")
 	private List<ServicoPrestado> servicosPrestados = new ArrayList<>();
 
 // link do portfólio
 	private String portfolio;
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "disponibilidade_id")
 	@JsonIgnore
 	private List<Disponibilidade> disponibilidades;

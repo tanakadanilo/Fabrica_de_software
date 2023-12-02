@@ -17,7 +17,7 @@ import { TabViewModule } from 'primeng/tabview';
 })
 export class CadastroComponent extends TelaBaseComponent {
   contratante!: Contratante;
-  ufs: Uf[];
+  ufs: any[];
   ufSelecionada: Uf = Uf.AC;
   constructor(
     override service: ContratanteService,

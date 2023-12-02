@@ -21,11 +21,11 @@ public class ServicoPrestado {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "servico_id")
 	private Servico servico;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Experiencia experiencia;
 
 	private Double valor;

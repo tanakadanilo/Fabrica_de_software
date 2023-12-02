@@ -13,7 +13,7 @@ import { PrestadorService } from 'src/app/exports/service/prestador.service';
 })
 export class CadastroPrestadorComponent extends TelaBaseComponent {
   prestador!: Prestador;
-  ufs!: Uf[];
+  ufs!: any[];
   ufSelecionada: Uf = Uf.AM;
   cities: any;
   constructor(
@@ -34,7 +34,6 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
       this.service.toastError(["Informe a imagem de perfil!"]);
       return;
     }
-    this.prestador.endereco.uf = Uf[this.prestador.endereco.uf];
     this.prestador.foto = this.service.base64String;
     this.service.cadastrarPrestador(this.prestador).then(x=>{
       console.log(x);
