@@ -15,7 +15,7 @@ public class ContratarService {
 	@Autowired
 	private PropostaContratacaoDao propostaContratacaoDao;
 
-	static String contrato = "Termos de Acordo.\n\n\n\n"
+	static String contrato = "Termos de serviço\n\n\n\n"
 			+ "Entre:\n" + "Contratante:nomeContratante\n" + "Endereço:enderecoContratante\n"
 			+ "Cidade/Estado:cidade - :estado\n" + "\n" + "E:\n" + "Prestador de Serviços:nomePrestador\n"
 			+ "Endereço:enderecoPrestador\n" + "Cidade/Estado:cidade - :estado\n" + "\n"
@@ -23,7 +23,7 @@ public class ContratarService {
 			+ "O Contratante concorda em contratar o Prestador de Serviços para realizar o seguinte serviço:\n"
 			+ ":descricaoServico.\n" + "\n" + "2. Valor e Pagamento:\n"
 			+ "O Contratante concorda em pagar ao Prestador de Serviços a quantia de "
-			+ ":valorContrato pelos serviços prestados. O pagamento será efetuado ao final do serviço, da forma decidida entre as partes.\n"
+			+ ":valorContrato pelos serviços prestados. O pagamento será efetuado ao final do serviço, a forma de pagamento deverá ser acordada entre as partes.\n"
 			+ "3. Prazo:\n" + "O serviço será realizado no período compreendido entre " + ":dataServico e "
 			+ ":dataServico. Cabendo ao prestador realizar todos os esforços razoáveis para cumprir esse prazo.\n"
 			+ "\n" + "5. Rescisão:\n"
