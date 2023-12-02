@@ -34,7 +34,7 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
       this.service.toastError(["Informe a imagem de perfil!"]);
       return;
     }
-    
+    this.prestador.endereco.uf = Uf[this.prestador.endereco.uf];
     this.prestador.foto = this.service.base64String;
     this.service.cadastrarPrestador(this.prestador).then(x=>{
       console.log(x);
