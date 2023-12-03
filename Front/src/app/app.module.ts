@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { DialogModule } from 'primeng/dialog';
 import { CalendarModule } from 'primeng/calendar';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './tela/main/main.component';
@@ -79,6 +80,7 @@ import { FooterComponent } from './exports/footer/footer.component';
     CardModule,
     CalendarModule,
     MultiSelectModule,
+    ReactiveFormsModule,
   ],
   providers: [
     MessageService,

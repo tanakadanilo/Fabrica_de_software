@@ -8,6 +8,7 @@ import { Response } from '../interface/response';
 import { Observable } from 'rxjs';
 import { Paginavel } from '../interface/paginavel';
 import { PropostaContratacao } from '../interface/contratacaoServico';
+import { Contratante } from '../interface/contratante';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +17,8 @@ export class BaseServiceService {
   readonly URL_BACK = 'http://localhost:8080';
   readonly URL_ENVIAR_EMAIL = this.URL_BACK + '/email/enviar';
 
-  user: any = '';
-
+  contratante!: Contratante;
+  valorTotal!: number;
   messageService: MessageService;
 
   servicosListados!: any[];
@@ -93,11 +94,30 @@ export class BaseServiceService {
   }
 
   toastError(messages: string[]) {
-    console.log(messages);
     messages.forEach((message) => {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
+        detail: message,
+      });
+    });
+  }
+
+  toastSuccess(messages: string[]) {
+    messages.forEach((message) => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Successo',
+        detail: message,
+      });
+    });
+  }
+
+  toastWarn(messages: string[]) {
+    messages.forEach((message) => {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Aviso',
         detail: message,
       });
     });
@@ -133,7 +153,7 @@ export class BaseServiceService {
   }
 
   setUser(user: any) {
-    this.user = user;
+    this.contratante = user;
     console.log('loggou coroi');
   }
 
@@ -160,7 +180,7 @@ export class BaseServiceService {
         } else {
           console.log(a.data);
           this.messageService.add({
-            severity: 'Success',
+            severity: 'success',
             summary: 'Email Enviado!',
             detail: '' + a.data,
           });

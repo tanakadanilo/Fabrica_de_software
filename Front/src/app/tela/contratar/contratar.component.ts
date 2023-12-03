@@ -21,18 +21,18 @@ export class ContratarComponent implements OnInit {
   constructor(
     private service: ServicosService,
     private prestadorService : PrestadorService,
-    private navigate : Router
+    private navigate : Router,
+    private baseService : BaseServiceService,
   ) {}
   servicos!: ServicoPrestado[];
   date: Date = new Date();
 
   ngOnInit(): void {
         this.servicos = this.service.servicosListados;
-        console.log(this.servicos);
         this.servicos.forEach( servico => {
         this.valorTotal += servico.valor;
-
       })
+      this.baseService.valorTotal = this.valorTotal;
       this.service.getServicoDetail(this.servicos[0].id).then( variavel => {
         this.prestadorService.getPrestador(variavel.data.idPrestador).then( variavel2 => {
           this.prestador = variavel2.data;

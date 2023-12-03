@@ -1,5 +1,6 @@
+import { Token } from '@angular/compiler';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
 import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.component';
 
@@ -14,7 +15,8 @@ export class LoginComponent extends TelaBaseComponent {
 
   constructor(
     override service: BaseServiceService,
-    protected override route: ActivatedRoute
+    protected override route: ActivatedRoute,
+    private navigate : Router,
   ) {
     super(service, route);
   }
@@ -37,18 +39,18 @@ export class LoginComponent extends TelaBaseComponent {
           if (a.erros?.length > 0) {
             this.toastError(a.erros);
           } else {
-            console.log(a.data);
             localStorage.setItem('token', a.data);
             this.service.setUser(a.data);
-            this.service.findByToken(a.data).subscribe( variavel => {
-              console.log(variavel);
+            this.service.findByToken(a.data).subscribe( (variavel : any) => {
+              this.service.contratante = variavel.data.pessoa;
             });;
+            this.navigate.navigate(['']);
           }
         },
         error: (err) => {
           this.toastError(err);
-          console.log(err);
         },
       });
+
   }
 }
