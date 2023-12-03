@@ -1,7 +1,7 @@
 package com.devnari.contrataai.persistencia;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,23 +11,23 @@ import com.devnari.contrataai.model.Prestador;
 public interface PrestadorDao extends JpaRepository<Prestador, Long> {
 
 	@Query("select prestador from Prestador prestador")
-	Page<Prestador> findAll(Pageable pageable);
+	List<Prestador> findAll();
 
 	@Query("select prestador from Prestador prestador where prestador.nome like %:nome%")
-	Page<Prestador> findByNome(@Param("nome") String nome, Pageable pageable);
+	List<Prestador> findByNome(@Param("nome") String nome);
 
 	@Query("select prestador from Prestador prestador where prestador.usuario.username = :username")
 	Prestador findByUsername(@Param("username") String username);
 
 	@Query("select prestador from Prestador prestador where prestador.cpf like %:cpf%")
-	Page<Prestador> findByCpf(@Param("cpf") String cpf, Pageable pageable);
+	List<Prestador> findByCpf(@Param("cpf") String cpf);
 
 	@Query("select prestador from Prestador prestador left join prestador.servicosPrestados servico where servico.id = :id")
 	Prestador findPrestadorByServicoPrestado(@Param("id") Long id);
 
-	@Query("select prestador from Prestador prestador left join prestador.servicosPrestados.servico servico where servico.area = :area or  :area = ''")
-	Page<Prestador> findPrestadorByCategoriaDoServicoPrestado(@Param("area") String area, Pageable pageable);
-	
+	@Query("select prestador from Prestador prestador left join prestador.servicosPrestados.servico servico where servico.area = :area or  :area = '' ")
+	List<Prestador> findPrestadorByCategoriaDoServicoPrestado(@Param("area") String area);
+
 	@Query("select prestador from Prestador prestador join fetch prestador.servicosPrestados where prestador.id = :id")
 	Prestador findByIdEager(@Param("id") Long id);
 }

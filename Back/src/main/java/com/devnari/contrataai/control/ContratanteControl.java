@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.base.Response;
 import com.devnari.contrataai.model.Contratante;
-import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.services.ContratanteService;
 import com.devnari.contrataai.services.ServicoPrestadoService;
 import com.devnari.contrataai.util.StringUtil;
@@ -84,23 +83,6 @@ public class ContratanteControl {
 			response.getErros().add(e.getMessage());
 		}
 		System.out.println(contratante);
-		return ResponseEntity.ok(response);
-
-	}
-
-	// * receber na URL o id do serviço a ser contratado
-	@PostMapping(value = "/contratar/{id}")
-	public ResponseEntity<Response<Boolean>> contratarServico(@PathVariable Long id,
-			@RequestBody Contratante contratante) {
-		Response<Boolean> response = new Response<>();
-		try {
-			ServicoPrestado servicoPrestado = servicoPrestadoService.buscarPorId(id);
-			service.contratarServico(contratante, servicoPrestado);
-			response.setData(true);// * só retornar q deu certo
-		} catch (Exception e) {
-			e.printStackTrace();
-			response.getErros().add(e.getMessage());
-		}
 		return ResponseEntity.ok(response);
 
 	}

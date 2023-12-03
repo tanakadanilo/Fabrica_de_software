@@ -83,19 +83,5 @@ public class ContratanteService {
 		return persistencia.save(contratante);
 	}
 
-	public void contratarServico(Contratante contratante, ServicoPrestado servico) throws Exception {
-		try {
-			Prestador prestador = prestadorService.buscarPrestadorPorServicoPrestado(servico.getId());
-			HistoricoServico historico = new HistoricoServico();
-			historico.setContratante(contratante);
-			historico.setDataContratacao(new Date());
-			historico.setPrestador(prestador);
-			historico.setServico(servico);
-			historicoServicoDao.save(historico);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		}
-	}
-
+	
 }

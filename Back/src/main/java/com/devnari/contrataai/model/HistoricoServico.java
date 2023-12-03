@@ -9,10 +9,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class HistoricoServico {
 
 	@Id
@@ -35,4 +38,17 @@ public class HistoricoServico {
 	private Date dataExecucaoServico;
 
 	private Double avaliacao;
+
+	public HistoricoServico(Prestador prestador, Contratante contratante, ServicoPrestado servico, Date dataContratacao,
+			Date dataExecucaoServico, Double avaliacao) {
+		super();
+		this.prestador = prestador;
+		this.contratante = contratante;
+		this.servico = servico;
+		this.dataContratacao = dataContratacao;
+		this.dataExecucaoServico = dataExecucaoServico;
+		this.avaliacao = avaliacao;
+	}
+	
+	
 }

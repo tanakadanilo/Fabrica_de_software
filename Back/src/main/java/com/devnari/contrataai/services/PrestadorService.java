@@ -1,7 +1,11 @@
 package com.devnari.contrataai.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,14 +29,29 @@ public class PrestadorService {
 	ServicoPrestadoService servicoPrestadoService;
 	@Autowired
 	ExperienciaService experienciaService;
+
+	@Autowired
+	HistoricoService historicoService;
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private UserDao userDao;
 
+	public Page<Prestador> converterParaPage(List<Prestador> prestadores, int page, int size) {
+		prestadores = prestadores.stream().sorted((a, b) -> {
+			return (int) (this.historicoService.calcularMediaNotas(b) - (this.historicoService.calcularMediaNotas(a)));
+		}).collect(Collectors.toList());
+		int start = Math.min(page * size, prestadores.size());
+		int end = Math.min((page + 1) * size, prestadores.size());
+		return new PageImpl<>(prestadores.subList(start, end), PageRequest.of(page, size), prestadores.size());
+
+	}
+
 	public Page<Prestador> buscarPorCategoria(String categoria, int page, int size) {
-		return persistencia.findPrestadorByCategoriaDoServicoPrestado(categoria, PageRequest.of(page, size));
+		return this.converterParaPage(this.persistencia.findPrestadorByCategoriaDoServicoPrestado(categoria), page,
+				size);
 	}
 
 	public Prestador buscarPorId(Long id) throws Exception {
@@ -46,13 +65,13 @@ public class PrestadorService {
 
 	public Page<Prestador> buscarPorCpf(String cpf, int page, int size) {
 		cpf = StringUtil.tratarStringNullEUndefinned(cpf);
-		Page<Prestador> prestadores = persistencia.findByCpf(cpf, PageRequest.of(page, size));
+		Page<Prestador> prestadores = this.converterParaPage(persistencia.findByCpf(cpf), page, size);
 		return prestadores;
 	}
 
 	public Page<Prestador> buscarPorNome(String nome, int page, int size) {
 		nome = StringUtil.tratarStringNullEUndefinned(nome);
-		Page<Prestador> prestadores = persistencia.findByNome(nome, PageRequest.of(page, size));
+		Page<Prestador> prestadores = this.converterParaPage(persistencia.findByNome(nome), page, size);
 		return prestadores;
 	}
 
@@ -71,8 +90,8 @@ public class PrestadorService {
 		if (prestador == null) {
 			throw new Exception("Prestador Não Informado!");
 		}
-//		prestador.getUsuario().setPassword(passwordEncoder.encode(prestador.getUsuario().getPassword()));
-//		userDao.save(prestador.getUsuario());
+		prestador.getUsuario().setPassword(passwordEncoder.encode(prestador.getUsuario().getPassword()));
+		userDao.save(prestador.getUsuario());
 		return persistencia.save(prestador);
 	}
 
