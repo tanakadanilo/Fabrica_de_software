@@ -17,7 +17,6 @@ export class BaseServiceService {
   readonly URL_BACK = 'http://localhost:8080';
   readonly URL_ENVIAR_EMAIL = this.URL_BACK + '/email/enviar';
 
-  contratante!: Contratante;
   valorTotal!: number;
   messageService: MessageService;
 
@@ -150,11 +149,6 @@ export class BaseServiceService {
       quadra: '',
       uf: Uf.AC,
     };
-  }
-
-  setUser(user: any) {
-    this.contratante = user;
-    console.log('loggou coroi');
   }
 
   navigate(url: string) {

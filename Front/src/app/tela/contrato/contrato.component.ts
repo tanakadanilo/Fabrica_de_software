@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Toast } from 'primeng/toast';
 import { PropostaContratacao } from 'src/app/exports/interface/contratacaoServico';
+import { Contratante } from 'src/app/exports/interface/contratante';
 import { Prestador } from 'src/app/exports/interface/prestador';
 import { ServicoPrestado } from 'src/app/exports/interface/servico-prestado';
+import { AuthenticationServiceService } from 'src/app/exports/service/authentication-service.service';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
 import { PrestadorService } from 'src/app/exports/service/prestador.service';
 import { ServicosService } from 'src/app/exports/service/servicos.service';
@@ -21,6 +23,7 @@ export class ContratoComponent implements OnInit{
     private prestadorService : PrestadorService,
     private baseService : BaseServiceService,
     private navigate : Router,
+    private authenticationService:AuthenticationServiceService
   ){}
 
   servicos!: ServicoPrestado[];
@@ -33,11 +36,11 @@ export class ContratoComponent implements OnInit{
       this.service.getServicoDetail(this.service.servicosListados[0].id).then( variavel => {
         this.prestadorService.getPrestador(variavel.data.idPrestador).then( (variavel2: { data: Prestador; }) => {
           this.propostaContrato = { prestador : variavel2.data, 
-                                    contratante : this.baseService.contratante,
+                                    contratante : this.authenticationService.getPessoa() as Contratante,
                                     servicoPrestado : this.service.servicosListados,
                                     dataContratacao : this.date
                                   };
-                                console.log(this.propostaContrato.dataContratacao);
+          console.log(this.propostaContrato.dataContratacao);
         });
       })
       
