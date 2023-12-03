@@ -37,7 +37,7 @@ public class UsuarioLoggadoService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<Usuario> user = userDao.findByUsername(username);
 		if (user.isEmpty()) {
-			throw new UsernameNotFoundException("usuário não encontrado");
+			throw new UsernameNotFoundException("Usuário ou senha inválidos!");
 		}
 		return getUsuarioLoggadoPorUsuario(user.get());
 	}

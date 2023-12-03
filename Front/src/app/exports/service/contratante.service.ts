@@ -1,13 +1,15 @@
+import { Contratante } from 'src/app/exports/interface/contratante';
 import { Injectable } from '@angular/core';
 import { BaseServiceService } from './base-service.service';
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
-import { Contratante } from '../interface/contratante';
+
 import { Response } from '../interface/response';
 import { Endereco } from '../interface/endereco';
 import { Contato } from '../interface/contato';
 import { Observable } from 'rxjs';
+import { Prestador } from '../interface/prestador';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +30,7 @@ export class ContratanteService extends BaseServiceService {
   ): Promise<Response<Contratante>> {
     return super.toPromisse(observable);
   }
-  
+
   getContratante(id: number): Promise<Response<Contratante>> {
     return this.toPromisse(
       this.http.get<Response<Contratante>>(this.URL_CONTRATANTE + '/' + id)
@@ -44,6 +46,12 @@ export class ContratanteService extends BaseServiceService {
       cpfCnpj: '',
       endereco: endereco,
       foto: '',
+      usuario: { login: '', password: '', username: '', prestador: true },
     };
+  }
+  cadastrarContratante(Contratante: Contratante) {
+    return this.toPromisse(
+      this.http.post<Response<Prestador>>(this.URL_CONTRATANTE, Contratante)
+    );
   }
 }

@@ -1,81 +1,113 @@
 <div class="body container">
-
   <div class="informacoes-pessoais">
-      <h1>Informações Pessoais</h1>
+    <div class="box-img">
+      <h1 class="h-text">Informações Pessoais</h1>
       <div>
+        <h6>Selecione sua imagem de perfil!</h6>
         <input type="file" (change)="service.onFileSelected($event)" />
       </div>
-      
-      <div *ngIf="service.selectedImage">
-        <h3>Imagem Selecionada:</h3>
-        <img [src]="service.base64String" alt="Imagem Selecionada" style="max-width: 100%;" />
+
+      <div *ngIf="service.selectedImage" class="img-container">
+        <h6>Imagem Selecionada:</h6>
+        <img [src]="service.base64String" alt="Imagem Selecionada" class="rounded-image" />
       </div>
-      <div class="row">
-          <div class="col-md-3 mt-3">
-              <label htmlFor="area" class="col-md-3">CPF:</label>
-              <input pInputText class="col-md-9" id="area" [(ngModel)]="prestador.cpfCnpj" />
-          </div>
-          <div class="col-md-2 mt-3">
-              <label htmlFor="nome" class="col-md-3">Nome:</label>
-              <input pInputText class="col-md-9" id="nome" [(ngModel)]="prestador.nome" />
-          </div>
+    </div>
+
+    <div class="row mt-5 destacado">
+      <h5>Dados pessoais:</h5>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="cpfCnpj">CPF:</label>
+          <input pInputText id="cpfCnpj" [(ngModel)]="prestador.cpfCnpj"  maxlength="11" />
+        </div>
       </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="nome">Nome:</label>
+          <input pInputText id="nome" [(ngModel)]="prestador.nome" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row destacado">
+    <h5>Contato:</h5>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input pInputText id="telefone" [(ngModel)]="prestador.contato.telefone" />
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+    </div>
   </div>
   <div class="contato">
-      <div class="row">
-          <div class="col-md-4 mt-3">
-              <label htmlFor="telefone" class="col-md-3">Telefone:</label>
-              <input pInputText class="col-md-9" id="telefone" [(ngModel)]="prestador.contato.telefone" />
-          </div>
-          <div class="col-md-4 mt-3">
-              <label htmlFor="email" class="col-md-3">Email:</label>
-              <input pInputText class="col-md-9" id="email" [(ngModel)]="prestador.contato.email" />
-          </div>
-          <div class="col-md-4 mt-3">
-              <label htmlFor="contato" class="col-md-3">Contato:</label>
-              <input pInputText class="col-md-9" id="contato" [(ngModel)]="prestador.contato.contato" />
-          </div>
-      </div>
-      <div class="endereco mt-5">
-          <div class="row">
-              <div class="col-md-4 mt-3">
-                  <label htmlFor="uf" class="col-md-3">Estado:</label>
-                  <p-dropdown [options]="ufs" [(ngModel)]="prestador.endereco.uf" optionLabel="" id="uf"
-                      [style]="{'width':'75%'}"></p-dropdown>
-              </div>
-              <div class="col-md-4 mt-3">
-                  <label htmlFor="cep" class="col-md-3">CEP:</label>
-                  <input pInputText class="col-md-9" id="cep" [(ngModel)]="prestador.endereco.cep" />
-              </div>
-              
-          </div>
-          <div class="row">
-              <div class="col-md-4 mt-3">
-                  <label htmlFor="numero" class="col-md-3">Número:</label>
-                  <input pInputText class="col-md-9" id="numero" [(ngModel)]="prestador.endereco.numero" />
-              </div>
-              <div class="col-md-4 mt-3">
-                  <label htmlFor="cidade" class="col-md-3">Cidade:</label>
-                  <input pInputText class="col-md-9" id="cidade" [(ngModel)]="prestador.endereco.cidade" />
-              </div>
-              
-          </div>
-          <div class="row">
-              
 
-              <div class="col-md-4 mt-3">
-                  <label htmlFor="bairro" class="col-md-3">Bairro:</label>
-                  <input pInputText class="col-md-9" id="bairro" [(ngModel)]="prestador.endereco.bairro" />
-              </div>
-              <div class="col-md-4 mt-3">
-                  <label htmlFor="complemento" class="col-md-3">Complemento:</label>
-                  <input pInputText class="col-md-9" id="complemento"
-                      [(ngModel)]="prestador.endereco.complemento" />
-              </div>
+
+    <div class="endereco destacado">
+      <div class="row" style="margin-left: 3em;">
+        <h5>Endereço:</h5>
+        <div class="col-md-3" >
+          <div class="form-group">
+            <label for="uf">Estado:</label>
+            <p-dropdown [options]="ufs" [(ngModel)]="prestador.endereco.uf" optionLabel="" id="uf" [style]="{'width':'66.666%'}"></p-dropdown>
           </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="cep">CEP:</label>
+            <input pInputText id="cep" [(ngModel)]="prestador.endereco.cep" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="numero">Número:</label>
+            <input pInputText id="numero" [(ngModel)]="prestador.endereco.numero" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="cidade">Cidade:</label>
+            <input pInputText id="cidade" [(ngModel)]="prestador.endereco.cidade" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="bairro">Setor:</label>
+            <input pInputText id="bairro" [(ngModel)]="prestador.endereco.bairro" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="complemento">Complemento:</label>
+            <input pInputText id="complemento" [(ngModel)]="prestador.endereco.complemento" />
+          </div>
+        </div>
       </div>
-      <div class="d-flex justify-content-center mt-5">
-          <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-success" (click)="cadastrar()"></button>
+    </div>
+
+
+
+    <div class="row mt-5 destacado">
+      <h5>Dados de acesso</h5>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="cpfCnpj">Email</label>
+          <input pInputText id="email"[(ngModel)]="prestador.contato.email"   />
+        </div>
       </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="nome">Senha</label>
+          <input pInputText id="senha" [(ngModel)]="prestador.senha" />
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-success" (click)="cadastrar()"></button>
+    </div>
   </div>
 </div>

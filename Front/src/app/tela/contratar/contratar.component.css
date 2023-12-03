@@ -4,13 +4,9 @@
     border: 2px solid #dddddd; /* Borda ao redor do quadrado */
     border-radius: 5px; /* Borda arredondada */
     margin: 3rem 0 3rem 0;
-    min-height: 9rem;
+    min-height: 11rem;
   }
 
 .boxes {
   width: auto !important;
-}
-
-.butao {
-  margin-bottom: 2rem;
 }

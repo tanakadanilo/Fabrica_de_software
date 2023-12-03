@@ -20,4 +20,28 @@
   border-radius: 5px; /* Borda arredondada */
   margin: 3rem 0 3rem 0;
   min-height: 9rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+
 }
+.destacado h5,
+.destacado h6 {
+  text-align: center;
+}
+.img-container {
+  max-width: 100%;
+}
+
+.rounded-image {
+  width: 150px; /* Ajuste a largura conforme necessário */
+  height: 150px; /* Ajuste a altura conforme necessário */
+  object-fit: cover;
+
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+
