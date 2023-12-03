@@ -3,8 +3,7 @@
     <div class="box-img">
       <h1 class="h-text">Informações Pessoais</h1>
       <div>
-      <h6>Selecione sua imagem de perfil!</h6>
-
+        <h6>Selecione sua imagem de perfil!</h6>
         <input type="file" (change)="service.onFileSelected($event)" />
       </div>
 
@@ -19,7 +18,7 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="cpfCnpj">CPF:</label>
-          <input pInputText id="cpfCnpj" [(ngModel)]="contratante.cpfCnpj" (change)="validarECorrigirCPF()" maxlength="11" />
+          <input pInputText id="cpfCnpj" [(ngModel)]="contratante.cpfCnpj"  maxlength="11" />
         </div>
       </div>
       <div class="col-md-3">
@@ -31,30 +30,26 @@
     </div>
   </div>
 
-  <div class="contato">
-    <div class="row destacado">
-      <h5>Contato:</h5>
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="telefone">Telefone:</label>
-          <input pInputText id="telefone" [(ngModel)]="contratante.contato.telefone" />
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input pInputText id="email" [(ngModel)]="contratante.contato.email" />
-        </div>
-      </div>
-      <div class="col-md-3">
-        <!-- Se necessário adicionar campos de contato adicionais -->
+  <div class="row destacado">
+    <h5>Contato:</h5>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input pInputText id="telefone" [(ngModel)]="contratante.contato.telefone" />
       </div>
     </div>
 
-    <div class="endereco mt-4 destacado">
-      <div class="row">
+    <div class="col-md-3">
+
+    </div>
+  </div>
+  <div class="contato">
+
+
+    <div class="endereco destacado">
+      <div class="row" style="margin-left: 3em;">
         <h5>Endereço:</h5>
-        <div class="col-md-3">
+        <div class="col-md-3" >
           <div class="form-group">
             <label for="uf">Estado:</label>
             <p-dropdown [options]="ufs" [(ngModel)]="contratante.endereco.uf" optionLabel="" id="uf" [style]="{'width':'66.666%'}"></p-dropdown>
@@ -72,8 +67,6 @@
             <input pInputText id="numero" [(ngModel)]="contratante.endereco.numero" />
           </div>
         </div>
-      </div>
-      <div class="row">
         <div class="col-md-3">
           <div class="form-group">
             <label for="cidade">Cidade:</label>
@@ -95,8 +88,26 @@
       </div>
     </div>
 
+
+
+    <div class="row mt-5 destacado">
+      <h5>Dados de acesso</h5>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="cpfCnpj">Email</label>
+          <input pInputText id="email"[(ngModel)]="contratante.contato.email"   />
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="nome">Senha</label>
+          <input pInputText id="senha" [(ngModel)]="contratante.senha" />
+        </div>
+      </div>
+    </div>
+
     <div class="d-flex justify-content-center mt-5">
-      <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-success"></button>
+      <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-success" ></button>
     </div>
   </div>
 </div>

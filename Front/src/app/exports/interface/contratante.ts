@@ -9,5 +9,6 @@ export interface Contratante {
     cpfCnpj: string;
     endereco: Endereco;
     foto: string;
+    senha: string;
 
 }

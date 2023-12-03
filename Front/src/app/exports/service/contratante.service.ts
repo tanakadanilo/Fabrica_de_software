@@ -28,7 +28,7 @@ export class ContratanteService extends BaseServiceService {
   ): Promise<Response<Contratante>> {
     return super.toPromisse(observable);
   }
-  
+
   getContratante(id: number): Promise<Response<Contratante>> {
     return this.toPromisse(
       this.http.get<Response<Contratante>>(this.URL_CONTRATANTE + '/' + id)
@@ -44,6 +44,7 @@ export class ContratanteService extends BaseServiceService {
       cpfCnpj: '',
       endereco: endereco,
       foto: '',
+      senha:'',
     };
   }
 }
