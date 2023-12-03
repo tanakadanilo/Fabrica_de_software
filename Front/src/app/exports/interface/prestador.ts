@@ -1,3 +1,4 @@
+import { Usuario } from './usuario';
 import { Contato } from "./contato";
 import { Endereco } from "./endereco";
 import { Servico } from "./servico";
@@ -18,6 +19,7 @@ export interface Prestador {
     disponibilidades: string;
     descricaoAdicional: string;
     especializacao: string;
+    usuario:Usuario;
 }
 
 

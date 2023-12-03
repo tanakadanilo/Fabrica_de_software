@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Uf } from 'src/app/exports/enum/uf';
 import { Contratante } from 'src/app/exports/interface/contratante';
 import { Paginavel } from 'src/app/exports/interface/paginavel';
@@ -19,7 +19,9 @@ export class CadastroComponent extends TelaBaseComponent {
   contratante!: Contratante;
   ufs: any[];
   ufSelecionada: Uf = Uf.AC;
+
   constructor(
+   private rota:Router,
     override service: ContratanteService,
     protected override route: ActivatedRoute
   ) {
@@ -34,7 +36,7 @@ export class CadastroComponent extends TelaBaseComponent {
 }
 
 validarCPF(cpf : string) {
-  cpf = cpf.replace(/[^\d]/g, ''); // Remove caracteres não numéricos
+  cpf = cpf.replace(/[^\d]/g, '');
   if (cpf.length !== 11) return false;
 
   let soma = 0;
@@ -86,14 +88,15 @@ cpfMask = createNumberMask({
 });
 cadastrar(){
   if(!this.service.base64String){
-    this.service.toastError(["Informe a imagem de perfil!"]);
+    this.service.toastError(["Insira a imagem de perfil!"]);
     return;
   }
-  this.contratante.usuario.prestador = false;
+  this.contratante.usuario.prestador = true;
   this.contratante.usuario.username = this.contratante.contato.email;
   this.contratante.foto = this.service.base64String;
   this.service.cadastrarContratante(this.contratante).then(x=>{
-    console.log(x);
+    this.service.toastSuccess(["Usuário Cadastrado!"]);
+    this.rota.navigate([""])
   })
 }
 }

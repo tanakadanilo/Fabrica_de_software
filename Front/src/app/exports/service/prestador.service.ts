@@ -79,6 +79,7 @@ export class PrestadorService extends BaseServiceService {
       disponibilidades: '',
       descricaoAdicional: '',
       especializacao: '',
+      usuario: { login: '', password: '', username: '', prestador: true }
     };
   }
 

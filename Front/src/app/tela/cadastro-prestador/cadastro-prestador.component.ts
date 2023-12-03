@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
 import { Uf } from 'src/app/exports/enum/uf';
 import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PrestadorService } from 'src/app/exports/service/prestador.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
   ufSelecionada: Uf = Uf.AM;
   cities: any;
   constructor(
+    private rota:Router,
     override service: PrestadorService,
     protected override route: ActivatedRoute
   ) {
@@ -36,7 +37,7 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
     }
     this.prestador.foto = this.service.base64String;
     this.service.cadastrarPrestador(this.prestador).then(x=>{
-      console.log(x);
-    })
-  }
+      this.service.toastSuccess(["Usuário Cadastrado!"]);
+      this.rota.navigate([""])
+    })}
 }
