@@ -9,6 +9,7 @@ import { ServicosService } from 'src/app/exports/service/servicos.service';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectItemGroup } from 'primeng/api';
 import { ServicoPrestado } from 'src/app/exports/interface/servico-prestado';
+import { AuthenticationServiceService } from 'src/app/exports/service/authentication-service.service';
 
 interface PageEvent {
   first: number;
@@ -23,17 +24,17 @@ interface PageEvent {
   styleUrls: ['./perfil-prestador.component.css'],
 })
 export class PerfilPrestadorComponent extends TelaBaseComponent {
-
   servicos!: Servico[];
   servicosPagina: any;
   mostrarDialog: boolean = false;
   prestador!: Prestador;
-  
+  isEditable: boolean = false;
   constructor(
     override service: PrestadorService,
     route: ActivatedRoute,
     private servicoService: ServicosService,
-    private navigate: Router
+    private navigate: Router,
+    private authenticationService: AuthenticationServiceService
   ) {
     super(service, route);
   }
@@ -47,7 +48,6 @@ export class PerfilPrestadorComponent extends TelaBaseComponent {
       // Acessa as áreas de atuação
       //const areasDeAtuacao: string = this.prestador.especializacao;
       // const servicosPrestados: string[] = this.prestador.servicosPrestados;
-      
       // Faça o que precisar com as áreas de atuação e serviços prestados
       //console.log('Áreas de Atuação:', areasDeAtuacao);
       //console.log('Serviços Prestados:', this.servicosPrestados);
@@ -58,6 +58,13 @@ export class PerfilPrestadorComponent extends TelaBaseComponent {
   carregarPrestador(id: number) {
     this.service.getPrestador(id).then((data) => {
       this.prestador = data.data;
+      if (
+        this.authenticationService.getPessoa() &&
+        this.authenticationService.getPessoa()?.id
+      ) {
+        this.isEditable =
+          this.authenticationService.getPessoa()?.id == this.prestador.id; //  * é o mesmo prestador
+      }
       console.log(this.prestador);
     });
   }
@@ -91,8 +98,7 @@ export class PerfilPrestadorComponent extends TelaBaseComponent {
     this.servicoSelecionado = [];
   }
 
-  areaSelecionada: string = "coisa 1";
+  areaSelecionada: string = 'coisa 1';
 
   //servicosTeste: SelectItemGroup[] = this.prestador.servicosPrestados;
-
 }

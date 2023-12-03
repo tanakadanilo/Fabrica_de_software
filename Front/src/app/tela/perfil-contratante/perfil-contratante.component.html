@@ -1,11 +1,11 @@
 <div class="body" *ngIf="contratante">
 
-    <img src="{{ contratante.foto }}" alt="Imagem de Perfil"/>
+  <img src="{{ contratante.foto }}" alt="Imagem de Perfil" />
 
-    <div class="container">
-      <div class="informacoes-pessoais">
-        <h1>Informações Pessoais</h1>
-        <div class="row">
+  <div class="container">
+    <div class="informacoes-pessoais">
+      <h1>Informações Pessoais</h1>
+      <div class="row">
         <div class=" col-md-4 mt-3">
           <label htmlFor="cpf" class="col-md-3">CPF:</label>
           <input pInputText class="col-md-9" id="area" [(ngModel)]="contratante.cpfCnpj" />
@@ -61,7 +61,10 @@
           <input pInputText class="col-md-9" id="lote" [(ngModel)]="contratante.endereco.lote" />
         </div>
       </div>
+      <div class="pessoal" *ngIf="isEditable">
+        <!-- coloque aqui o que for para bloquear se não for a pessoa autorizada a mecher <3 -->
 
+      </div>
     </div>
   </div>
 

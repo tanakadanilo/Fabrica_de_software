@@ -56,6 +56,6 @@
     </div>
   </div>
   <div class="botaoContratar">
-  <p-button label="Contratar Serviços" (click)="enviarServicosSelecionados()"></p-button>
+  <p-button label="Contratar Serviços" (click)="enviarServicosSelecionados()" *ngIf="isEditable"></p-button>
 </div>
 </div>
