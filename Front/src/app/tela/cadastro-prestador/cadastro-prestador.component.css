@@ -29,7 +29,7 @@
   width: 150px; /* Ajuste a largura conforme necessário */
   height: 150px; /* Ajuste a altura conforme necessário */
   object-fit: cover;
-  border-radius: 50%;
+ ;
   overflow: hidden;
   margin-top: 10px;
 }
