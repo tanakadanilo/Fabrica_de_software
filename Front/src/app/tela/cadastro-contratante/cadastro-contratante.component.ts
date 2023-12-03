@@ -84,4 +84,16 @@ cpfMask = createNumberMask({
   allowDecimal: false,
   requireDecimal: false,
 });
+cadastrar(){
+  if(!this.service.base64String){
+    this.service.toastError(["Informe a imagem de perfil!"]);
+    return;
+  }
+  this.contratante.usuario.prestador = false;
+  this.contratante.usuario.username = this.contratante.contato.email;
+  this.contratante.foto = this.service.base64String;
+  this.service.cadastrarContratante(this.contratante).then(x=>{
+    console.log(x);
+  })
+}
 }

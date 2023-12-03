@@ -1,5 +1,6 @@
 import { Contato } from "./contato";
 import { Endereco } from "./endereco";
+import { Usuario } from "./usuario";
 
 export interface Contratante {
 
@@ -9,6 +10,6 @@ export interface Contratante {
     cpfCnpj: string;
     endereco: Endereco;
     foto: string;
-    senha: string;
+    usuario:Usuario;
 
 }
