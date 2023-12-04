@@ -37,8 +37,9 @@ public class ContratarService {
 	public void enviarProposta(PropostaContratacao propostaContratacao) throws Exception {
 		this.enviadorEmail.sendEmail(propostaContratacao.getPrestador().getContato().getEmail(),
 				"Proposta de Contratacao", this.preencherDados(propostaContratacao));
+		this.enviadorEmail.sendEmail(propostaContratacao.getContratante().getContato().getEmail(),
+				"Proposta de Contratacao", this.preencherDados(propostaContratacao));
 		this.propostaContratacaoDao.save(propostaContratacao);
-//		System.out.println(this.preencherDados(propostaContratacao));
 	}
 
 	private String preencherDados(PropostaContratacao propostaContratacao) throws Exception {
