@@ -31,8 +31,8 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
   };
 
   constructor(
-   private viaCepService: ViaCepService,
-    private rota:Router,
+    private viaCepService: ViaCepService,
+    private rota: Router,
     override service: PrestadorService,
     protected override route: ActivatedRoute
   ) {
@@ -45,35 +45,36 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
     this.service.getPrestadorVazio();
   }
 
-  cadastrar(){
-    if(!this.service.base64String){
-      this.service.toastError(["Informe a imagem de perfil!"]);
+  cadastrar() {
+    if (!this.service.base64String) {
+      this.service.toastError(['Informe a imagem de perfil!']);
       return;
     }
-    this.prestador.usuario.username = this.prestador.contato.email;
+    this.prestador.usuario.prestador = true;
     this.prestador.foto = this.service.base64String;
-    this.service.cadastrarPrestador(this.prestador).then(x=>{
-      this.service.toastSuccess(["Usuário Cadastrado!"]);
-      this.rota.navigate([""])
-    })}
-    onCepChange() {
-console.log("to aqui mano")
-const cepSemMascara = this.prestador.endereco.cep.replace(/\D/g, '');
+    this.service.cadastrarPrestador(this.prestador).then((x) => {
+      this.service.toastSuccess(['Usuário Cadastrado!']);
+      this.rota.navigate(['']);
+    });
+  }
+  onCepChange() {
+    const cepSemMascara = this.prestador.endereco.cep.replace(/\D/g, '');
 
-
-      if (cepSemMascara.length === 8) {
-        this.viaCepService.getAddressByCep(cepSemMascara).subscribe(
-          (data) => {
-            this.prestador.endereco.uf = data.uf;
-            this.prestador.endereco.cidade = data.localidade;
-            this.prestador.endereco.bairro = data.bairro;
-            this.prestador.endereco.complemento = data.complemento;
-          },
-          (error) => {
-            this.service.toastError(["Cep Inválido"])
+    if (cepSemMascara.length === 8) {
+      this.viaCepService.getAddressByCep(cepSemMascara).subscribe(
+        (data) => {
+          if (data.erro) {
+            this.service.toastError(['Cep Inválido']);
+            return
           }
-        );
-      }
 
-}
+          this.prestador.endereco.uf = data.uf;
+          this.prestador.endereco.cidade = data.localidade;
+          this.prestador.endereco.bairro = data.bairro;
+          this.prestador.endereco.complemento = data.complemento;
+        },
+        (error) => {}
+      );
+    }
+  }
 }

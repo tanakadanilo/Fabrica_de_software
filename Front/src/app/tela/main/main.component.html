@@ -8,8 +8,8 @@
       </div>
     </ng-template>
   </p-carousel>
-  <h3 class="titulo">Conheça nossos prestadores!</h3>
-  <div class="scroll-container" id="cards-container">
+  <h3 class="titulo" style="text-align: center;">Conheça nossos prestadores!</h3>
+  <div class="scroll-container" id="cards-container" style="margin-left: 3em;" >
     <div *ngFor="let pres of prestador" class="card">
       <p-card (click)="entrarPerfil(pres.id)">
         <ng-template pTemplate="title">

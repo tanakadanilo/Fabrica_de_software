@@ -15,7 +15,6 @@ import { ResponsePaginada } from '../interface/response-paginada';
   providedIn: 'root',
 })
 export class PrestadorService extends BaseServiceService {
-
   readonly URL_PRESTADOR = this.URL_BACK + '/prestador';
 
   constructor(
@@ -56,9 +55,13 @@ export class PrestadorService extends BaseServiceService {
     );
   }
 
-  getPrestadorCategoria(categoria: string): Promise<Response<Paginavel<Prestador>>> {
+  getPrestadorCategoria(
+    categoria: string
+  ): Promise<Response<Paginavel<Prestador>>> {
     return this.toPromissePaginavel(
-      this.http.get<Response<Paginavel<Prestador>>>(this.URL_PRESTADOR + "?categoria=" + categoria)
+      this.http.get<Response<Paginavel<Prestador>>>(
+        this.URL_PRESTADOR + '?categoria=' + categoria
+      )
     );
   }
 
@@ -78,11 +81,13 @@ export class PrestadorService extends BaseServiceService {
       disponibilidades: '',
       descricaoAdicional: '',
       especializacao: '',
-      usuario: { login: '', password: '', username: '', prestador: true }
+      usuario: { login: '', password: '', username: '', prestador: true },
     };
   }
 
-  cadastrarPrestador(prestador:Prestador){
-    return this.toPromisse(this.http.post<Response<Prestador>>(this.URL_PRESTADOR, prestador))
+  cadastrarPrestador(prestador: Prestador) {
+    return this.toPromisse(
+      this.http.post<Response<Prestador>>(this.URL_PRESTADOR, prestador)
+    );
   }
 }

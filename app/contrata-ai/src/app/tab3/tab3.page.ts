@@ -118,6 +118,6 @@ export class Tab3Page implements OnInit {
           });
       });
     });
-    this.servicoService.toastSucess('contratado');
+    this.servicoService.toastSucess('Serviço(s) contratados com sucesso, as partes receberão um e-mail informativo em breve!');
   }
 }

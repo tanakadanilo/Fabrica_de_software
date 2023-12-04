@@ -9,7 +9,11 @@
 
       <div *ngIf="service.selectedImage" class="img-container">
         <h6>Imagem Selecionada:</h6>
-        <img [src]="service.base64String" alt="Imagem Selecionada" class="rounded-image" />
+        <img
+          [src]="service.base64String"
+          alt="Imagem Selecionada"
+          class="rounded-image"
+        />
       </div>
     </div>
 
@@ -18,12 +22,16 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="cpfCnpj">CPF:</label>
-          <input pInputText id="cpfCnpj" [(ngModel)]="contratante.cpfCnpj"  maxlength="11" />
+          <p-inputMask
+            mask="999.999.999-99"
+            id="cpfCnpj"
+            [(ngModel)]="contratante.cpfCnpj"
+          />
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label for="nome">Nome:</label>
+          <label for="nome">Nome completo</label>
           <input pInputText id="nome" [(ngModel)]="contratante.nome" />
         </div>
       </div>
@@ -34,80 +42,118 @@
     <h5>Contato:</h5>
     <div class="col-md-3">
       <div class="form-group">
-        <label for="telefone">Telefone:</label>
-        <input pInputText id="telefone" [(ngModel)]="contratante.contato.telefone" />
+        <label for="telefone">Celular:</label>
+        <p-inputMask
+          mask="(99)9 9999-9999"
+          id="telefone"
+          [(ngModel)]="contratante.contato.telefone"
+        />
       </div>
     </div>
 
-    <div class="col-md-3">
-
-    </div>
+    <div class="col-md-3"></div>
   </div>
   <div class="contato">
-
-
     <div class="endereco destacado">
-      <div class="row" style="margin-left: 3em;">
+      <div class="row" style="margin-left: 3em">
         <h5>Endereço:</h5>
         <div class="col-md-3" >
           <div class="form-group">
-            <label for="uf">Estado:</label>
-            <p-dropdown [options]="ufs" [(ngModel)]="contratante.endereco.uf" optionLabel="" id="uf" [style]="{'width':'66.666%'}"></p-dropdown>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
             <label for="cep">CEP:</label>
-            <input pInputText id="cep" [(ngModel)]="contratante.endereco.cep" />
+            <p-inputMask
+              mask="99.999-999"
+              id="cep"
+              [(ngModel)]="contratante.endereco.cep"
+              (ngModelChange)="onCepChange()"
+            />
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" >
           <div class="form-group">
-            <label for="numero">Número:</label>
-            <input pInputText id="numero" [(ngModel)]="contratante.endereco.numero" />
+            <label for="uf">Estado:</label>
+            <p-dropdown
+              [options]="ufs"
+              [(ngModel)]="contratante.endereco.uf"
+              optionLabel=""
+              id="uf"
+              [style]="{ width: '66.666%' }"
+            ></p-dropdown>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" >
           <div class="form-group">
             <label for="cidade">Cidade:</label>
-            <input pInputText id="cidade" [(ngModel)]="contratante.endereco.cidade" />
+            <input
+              pInputText
+              id="cidade"
+              [(ngModel)]="contratante.endereco.cidade"
+              [disabled]="true"
+            />
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3"  >
           <div class="form-group">
             <label for="bairro">Setor:</label>
-            <input pInputText id="bairro" [(ngModel)]="contratante.endereco.bairro" />
+            <input
+              pInputText
+              id="bairro"
+              [(ngModel)]="contratante.endereco.bairro"
+              [disabled]="contratante.endereco.cep.length !== 8"
+            />
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3"  >
+          <div class="form-group">
+            <label for="numero">Número:</label>
+            <input
+              pInputText
+              id="numero"
+              [(ngModel)]="contratante.endereco.numero"
+              [disabled]="contratante.endereco.cep.length !== 10"
+            />
+          </div>
+        </div>
+        <div class="col-md-3"  >
           <div class="form-group">
             <label for="complemento">Complemento:</label>
-            <input pInputText id="complemento" [(ngModel)]="contratante.endereco.complemento" />
+            <input
+              pInputText
+              id="complemento"
+              [(ngModel)]="contratante.endereco.complemento"
+              [disabled]="contratante.endereco.cep.length !== 10"
+            />
           </div>
         </div>
       </div>
     </div>
-
-
-
     <div class="row mt-5 destacado">
       <h5>Dados de acesso</h5>
       <div class="col-md-3">
         <div class="form-group">
-          <label for="cpfCnpj">Email</label>
-          <input pInputText id="email"[(ngModel)]="contratante.contato.email"   />
+          <label for="cpfCnpj">Email de acesso</label>
+          <input pInputText id="email" [(ngModel)]="contratante.contato.email" />
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
           <label for="nome">Senha</label>
-          <input pInputText id="senha" [(ngModel)]="contratante.usuario.password" />
+          <p-password
+            [toggleMask]="true"
+            id="senha"
+            [(ngModel)]="contratante.usuario.password"
+          />
         </div>
       </div>
     </div>
-
     <div class="d-flex justify-content-center mt-5">
-      <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-success" (click)="cadastrar()" ></button>
+      <button
+        pButton
+        pRipple
+        label="Salvar"
+        icon="pi pi-check"
+        class="p-button-success"
+        (click)="cadastrar()"
+      ></button>
     </div>
   </div>
 </div>

@@ -11,10 +11,12 @@
   .cards-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     margin-top: 20px;
+    margin:0auto;
     height: 3rem;
+
   }
 
   .card {
