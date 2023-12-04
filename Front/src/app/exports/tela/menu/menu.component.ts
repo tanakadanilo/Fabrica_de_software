@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { BaseServiceService } from '../../service/base-service.service';
 import { Router } from '@angular/router';
+import { AuthenticationServiceService } from '../../service/authentication-service.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,9 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent {
-  constructor(private service: BaseServiceService,
-              private navigate: Router,
-    ) {}
+  constructor(
+    private service: AuthenticationServiceService,
+    private navigate: Router
+  ) {}
 
   items = [
     {
@@ -30,17 +32,24 @@ export class MenuComponent {
   ];
 
   mostrarPerfil() {
-    this.service.navigate('/perfil/2');
+    let pessoa = this.service.getPessoa();
+    if (pessoa) {
+      this.navigate.navigate(['/perfil/' + pessoa.id]);
+    } else {
+      this.navigate.navigate(['/perfil/2']);
+    }
   }
 
-  desconectar() {}
+  desconectar() {
+    this.service.deslogar();
+  }
 
   mostrarServicos() {
-    this.service.navigate('/');
+    this.navigate.navigate(['/']);
   }
 
   mostrarLogin() {
-    this.service.navigate('/login');
+    this.navigate.navigate(['/login']);
   }
   isMenuFixed = false;
 
@@ -59,8 +68,8 @@ export class MenuComponent {
   }
 
   recarregarServicos() {
-    if(this.navigate.url == "/"){
+    if (this.navigate.url == '/') {
       location.reload();
-    } else this.navigate.navigate(["/"])    
+    } else this.navigate.navigate(['/']);
   }
 }

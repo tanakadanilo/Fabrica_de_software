@@ -28,6 +28,12 @@ export class AuthenticationServiceService {
     };
   }
 
+  deslogar(){
+    this.pessoa = undefined;
+    this.usuario = undefined;
+    this.token = undefined;
+  }
+
   getToken(): string | null {
     return this.token ? this.token : localStorage.getItem('token');
   }
