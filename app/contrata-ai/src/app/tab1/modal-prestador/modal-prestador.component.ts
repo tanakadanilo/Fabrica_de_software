@@ -27,9 +27,6 @@ export class ModalPrestadorComponent implements OnInit {
     return this.modalController.dismiss(null, 'cancel');
   }
 
-  confirm() {
-    return this.modalController.dismiss('confirm');
-  }
 
   carregarCategorias() {
     const set = new Set<string>();
