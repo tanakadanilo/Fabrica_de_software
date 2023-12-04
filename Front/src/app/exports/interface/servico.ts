@@ -1,6 +1,6 @@
 export interface Servico {
 
-    id:number;
+    id?:number;
     area:string;
     nome:string
     descricao:string;

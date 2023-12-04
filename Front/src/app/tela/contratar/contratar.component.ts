@@ -33,7 +33,7 @@ export class ContratarComponent implements OnInit {
         this.valorTotal += servico.valor;
       })
       this.baseService.valorTotal = this.valorTotal;
-      this.service.getServicoDetail(this.servicos[0].id).then( variavel => {
+      this.service.getServicoDetail(this.servicos[0].id!).then( variavel => {
         this.prestadorService.getPrestador(variavel.data.idPrestador).then( variavel2 => {
           this.prestador = variavel2.data;
         });

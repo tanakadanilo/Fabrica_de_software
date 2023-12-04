@@ -8,6 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PrestadorService } from 'src/app/exports/service/prestador.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ServicosService } from 'src/app/exports/service/servicos.service';
+import { ServicoPrestado } from 'src/app/exports/interface/servico-prestado';
 
 @Component({
   selector: 'app-cadastro-prestador',
@@ -16,6 +18,9 @@ import { Observable } from 'rxjs';
 })
 export class CadastroPrestadorComponent extends TelaBaseComponent {
   prestador!: Prestador;
+  categorias!: string[];
+  novoServico: ServicoPrestado = { valor: 0.0, servico: { area: "", descricao: "", nome: "" } };
+
   ufs!: any[];
   ufSelecionada: Uf = Uf.AM;
   cities: any;
@@ -34,7 +39,8 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
     private viaCepService: ViaCepService,
     private rota: Router,
     override service: PrestadorService,
-    protected override route: ActivatedRoute
+    protected override route: ActivatedRoute,
+    private servicoService: ServicosService
   ) {
     super(service, route);
   }
@@ -43,6 +49,9 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
     this.ufs = Object.values(Uf);
     this.prestador = this.service.getPrestadorVazio();
     this.service.getPrestadorVazio();
+    this.servicoService.getCategorias().then(categorias => {
+      this.categorias = categorias.data.content
+    })
   }
 
   cadastrar() {
@@ -73,8 +82,17 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
           this.prestador.endereco.bairro = data.bairro;
           this.prestador.endereco.complemento = data.complemento;
         },
-        (error) => {}
+        (error) => { }
       );
     }
+  }
+  visible: boolean = false;
+
+  showDialog() {
+    this.visible = true;
+  }
+
+  adicionarServico(){
+    this.prestador.servicosPrestados.push(this.novoServico)
   }
 }
