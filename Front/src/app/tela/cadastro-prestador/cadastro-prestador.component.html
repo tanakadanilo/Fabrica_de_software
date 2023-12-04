@@ -18,12 +18,12 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="cpfCnpj">CPF:</label>
-          <input pInputText id="cpfCnpj" [(ngModel)]="prestador.cpfCnpj"  maxlength="11" />
+          <p-inputMask mask="999.999.999-99"  id="cpfCnpj" [(ngModel)]="prestador.cpfCnpj"   />
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label for="nome">Nome:</label>
+          <label for="nome">Nome completo</label>
           <input pInputText id="nome" [(ngModel)]="prestador.nome" />
         </div>
       </div>
@@ -34,8 +34,8 @@
     <h5>Contato:</h5>
     <div class="col-md-3">
       <div class="form-group">
-        <label for="telefone">Telefone:</label>
-        <input pInputText id="telefone" [(ngModel)]="prestador.contato.telefone" />
+        <label for="telefone">Celular:</label>
+        <p-inputMask  mask="(99)9 9999-9999" id="telefone" [(ngModel)]="prestador.contato.telefone" />
       </div>
     </div>
 
@@ -44,11 +44,15 @@
     </div>
   </div>
   <div class="contato">
-
-
     <div class="endereco destacado">
       <div class="row" style="margin-left: 3em;">
         <h5>Endereço:</h5>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="cep">CEP:</label>
+            <p-inputMask mask="99.999-999" id="cep" [(ngModel)]="prestador.endereco.cep" (ngModelChange)="onCepChange()" />
+          </div>
+        </div>
         <div class="col-md-3" >
           <div class="form-group">
             <label for="uf">Estado:</label>
@@ -57,55 +61,45 @@
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <label for="cep">CEP:</label>
-            <input pInputText id="cep" [(ngModel)]="prestador.endereco.cep" />
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="numero">Número:</label>
-            <input pInputText id="numero" [(ngModel)]="prestador.endereco.numero" />
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
             <label for="cidade">Cidade:</label>
-            <input pInputText id="cidade" [(ngModel)]="prestador.endereco.cidade" />
+            <input pInputText id="cidade" [(ngModel)]="prestador.endereco.cidade" [disabled]="true"/>
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
             <label for="bairro">Setor:</label>
-            <input pInputText id="bairro" [(ngModel)]="prestador.endereco.bairro" />
+            <input pInputText id="bairro" [(ngModel)]="prestador.endereco.bairro"[disabled]="prestador.endereco.cep.length !== 8" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="numero">Número:</label>
+            <input pInputText id="numero" [(ngModel)]="prestador.endereco.numero" [disabled]="prestador.endereco.cep.length !== 8" />
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
             <label for="complemento">Complemento:</label>
-            <input pInputText id="complemento" [(ngModel)]="prestador.endereco.complemento" />
+            <input pInputText id="complemento" [(ngModel)]="prestador.endereco.complemento"[disabled]="prestador.endereco.cep.length !== 8" />
           </div>
         </div>
       </div>
     </div>
-
-
-
     <div class="row mt-5 destacado">
       <h5>Dados de acesso</h5>
       <div class="col-md-3">
         <div class="form-group">
-          <label for="cpfCnpj">Email</label>
+          <label for="cpfCnpj">Email de acesso</label>
           <input pInputText id="email"[(ngModel)]="prestador.contato.email"   />
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
           <label for="nome">Senha</label>
-          <input pInputText id="senha" [(ngModel)]="prestador.senha" />
+          <p-password  [toggleMask]="true" id="senha" [(ngModel)]="prestador.senha" />
         </div>
       </div>
     </div>
-
     <div class="d-flex justify-content-center mt-5">
       <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-success" (click)="cadastrar()"></button>
     </div>

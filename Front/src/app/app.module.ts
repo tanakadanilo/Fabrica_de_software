@@ -17,7 +17,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { DialogModule } from 'primeng/dialog';
 import { CalendarModule } from 'primeng/calendar';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { InputMaskModule } from 'primeng/inputmask';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './tela/main/main.component';
 import { MenuComponent } from './exports/tela/menu/menu.component';
@@ -69,6 +69,7 @@ import { FooterComponent } from './exports/footer/footer.component';
     MenuModule,
     InputTextModule,
     FormsModule,
+    InputMaskModule,
     DividerModule,
     InputTextModule,
     InputTextareaModule,

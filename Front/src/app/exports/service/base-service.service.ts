@@ -199,7 +199,7 @@ export class BaseServiceService {
       // Convertendo a imagem para base64
       const reader = new FileReader();
       reader.onloadend = () => {
-        this.base64String = reader.result as string;        
+        this.base64String = reader.result as string;
       };
       reader.readAsDataURL(file);
     }
