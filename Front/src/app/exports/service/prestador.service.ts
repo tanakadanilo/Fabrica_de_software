@@ -71,7 +71,6 @@ export class PrestadorService extends BaseServiceService {
       contato: contato,
       cpfCnpj: '',
       endereco: endereco,
-      senha:'',
       foto: '',
       servicosPrestados: [],
       historicoServicosPrestados: '',

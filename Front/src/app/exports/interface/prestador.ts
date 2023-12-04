@@ -11,7 +11,6 @@ export interface Prestador {
     contato: Contato;
     cpfCnpj: string;
     endereco: Endereco;
-    senha: string;
     foto: string;
     servicosPrestados: ServicoPrestado[];
     historicoServicosPrestados: string;

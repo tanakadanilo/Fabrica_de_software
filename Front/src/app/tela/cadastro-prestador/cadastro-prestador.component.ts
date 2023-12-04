@@ -50,6 +50,7 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
       this.service.toastError(["Informe a imagem de perfil!"]);
       return;
     }
+    this.prestador.usuario.username = this.prestador.contato.email;
     this.prestador.foto = this.service.base64String;
     this.service.cadastrarPrestador(this.prestador).then(x=>{
       this.service.toastSuccess(["Usuário Cadastrado!"]);
