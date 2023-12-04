@@ -9,6 +9,7 @@ import { ContratanteService } from 'src/app/exports/service/contratante.service'
 import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.component';
 import { createNumberMask } from 'text-mask-addons';
 import { TabViewModule } from 'primeng/tabview';
+import { ViaCepService } from 'src/app/exports/interface/viacep-service';
 
 @Component({
   selector: 'app-cadastro',
@@ -21,6 +22,7 @@ export class CadastroComponent extends TelaBaseComponent {
   ufSelecionada: Uf = Uf.AC;
 
   constructor(
+    private viaCepService: ViaCepService,
    private rota:Router,
     override service: ContratanteService,
     protected override route: ActivatedRoute
@@ -91,7 +93,7 @@ cadastrar(){
     this.service.toastError(["Insira a imagem de perfil!"]);
     return;
   }
-  this.contratante.usuario.prestador = true;
+  this.contratante.usuario.prestador = false;
   this.contratante.usuario.username = this.contratante.contato.email;
   this.contratante.foto = this.service.base64String;
   this.service.cadastrarContratante(this.contratante).then(x=>{
@@ -99,4 +101,24 @@ cadastrar(){
     this.rota.navigate([""])
   })
 }
+onCepChange() {
+  console.log("to aqui mano")
+  const cepSemMascara = this.contratante.endereco.cep.replace(/\D/g, '');
+
+
+        if (cepSemMascara.length === 8) {
+          this.viaCepService.getAddressByCep(cepSemMascara).subscribe(
+            (data) => {
+              this.contratante.endereco.uf = data.uf;
+              this.contratante.endereco.cidade = data.localidade;
+              this.contratante.endereco.bairro = data.bairro;
+              this.contratante.endereco.complemento = data.complemento;
+            },
+            (error) => {
+              this.service.toastError(["Cep Inválido"])
+            }
+          );
+        }
+
+  }
 }
