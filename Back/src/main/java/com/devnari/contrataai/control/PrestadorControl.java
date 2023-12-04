@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devnari.contrataai.base.Response;
 import com.devnari.contrataai.model.Prestador;
 import com.devnari.contrataai.model.ServicoPrestado;
+import com.devnari.contrataai.services.HistoricoService;
 import com.devnari.contrataai.services.PrestadorService;
 import com.devnari.contrataai.services.ServicoPrestadoService;
 import com.devnari.contrataai.util.StringUtil;
@@ -28,6 +29,10 @@ public class PrestadorControl {
 
 	@Autowired
 	PrestadorService service;
+	
+	@Autowired
+	HistoricoService historicoService;
+	
 	@Autowired
 	ServicoPrestadoService servicoPrestadoService;
 
@@ -52,6 +57,20 @@ public class PrestadorControl {
 			Long idLong = StringUtil.converterStringParaLong(id);
 			Prestador prestador = service.buscarPorId(idLong);
 			response.setData(prestador);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
+	}
+	@GetMapping(value = "/nota/{id}")
+	public ResponseEntity<Response<Double>> findNotaById(@PathVariable("id") String id) {
+		Response<Double> response = new Response<>();
+		try {
+			Long idLong = StringUtil.converterStringParaLong(id);
+			Prestador prestador = service.buscarPorId(idLong);
+			Double notaMedia = this.historicoService.calcularMediaNotas(prestador);
+			response.setData(notaMedia);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getErros().add(e.getMessage());

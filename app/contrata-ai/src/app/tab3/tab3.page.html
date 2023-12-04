@@ -31,9 +31,13 @@
           <ion-card-content>
             {{ card.descricao }}
           </ion-card-content>
+          <ion-card-content>
+            {{ card.valor }}
+          </ion-card-content>
         </ion-card>
-
       </ion-item>
+      <ion-label>Valor Total: R$ {{valorTotal}}</ion-label>
+      <br>
       <ion-button color="dark" (click)="contratar()">
         <ion-icon name="logo-usd"></ion-icon>
       </ion-button>

@@ -33,6 +33,7 @@ public class ServicoPrestadoDto {
 	private List<Disponibilidade> disponibilidades;
 	private String especializacao;
 	private String descricaoAdcionalPrestador;
+	private Double valor;
 
 	public ServicoPrestadoDto() {
 	}
@@ -60,6 +61,7 @@ public class ServicoPrestadoDto {
 		this.tempoExperiencia = servicoPrestado.getExperiencia().getTempoExperiencia();
 		this.certificado = servicoPrestado.getExperiencia().getCertificado();
 		this.descricaoAdcional = servicoPrestado.getServico().getDescricao();
+		this.valor = servicoPrestado.getValor();
 	}
 
 }

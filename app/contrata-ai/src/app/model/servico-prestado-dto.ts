@@ -22,4 +22,5 @@ export interface ServicoPrestadoDto {
   disponibilidades: Disponibilidade[];
   especializacao: string;
   descricaoAdcionalPrestador: string;
+  valor:number;
 }

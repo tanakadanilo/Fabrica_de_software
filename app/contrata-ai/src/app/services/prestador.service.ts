@@ -35,4 +35,9 @@ export class PrestadorService extends BaseService {
       this.URL_BACK + '/servicoprestado/prestador/' + id
     );
   }
+
+  getNotaMedia(id: number): Promise<Response<number>> {
+    return this.get<number>(this.URL_PRESTADOR + '/nota/' + id);
+  }
+
 }

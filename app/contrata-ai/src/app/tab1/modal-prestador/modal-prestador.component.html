@@ -12,17 +12,20 @@
 <ion-content class="ion-padding">
   <ion-list>
     <p-dropdown (click)="carregarServicosPrestados()" [options]="categorias" [(ngModel)]="categoria"
-    placeholder="Selecione a Categoria" [showClear]="true"></p-dropdown>
-      <ion-item *ngFor="let servicoPrestado of servicosPrestados">
+      placeholder="Selecione a Categoria" [showClear]="true"></p-dropdown>
+    <ion-item *ngFor="let servicoPrestado of servicosPrestados">
       <ion-card class="ion-cartao" (click)="contratar(servicoPrestado)">
         <ion-card-header>
-          {{ servicoPrestado.area }}
+          Categoria: {{ servicoPrestado.area }}
         </ion-card-header>
         <ion-card-content>
-          {{ servicoPrestado.nome }}
+          Serviço: {{ servicoPrestado.nome }}
         </ion-card-content>
         <ion-card-content>
-          {{ servicoPrestado.descricao }}
+          Descrição: {{ servicoPrestado.descricao }}
+        </ion-card-content>
+        <ion-card-content>
+          R$ {{ servicoPrestado.valor }}
         </ion-card-content>
       </ion-card>
 

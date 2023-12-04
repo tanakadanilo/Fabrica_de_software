@@ -24,7 +24,7 @@ export class UsuarioService extends BaseService {
     return this.get<any>(this.URL_USUARIO + '/findbytoken?token=' + this.token);
   }
 
-  async login(login: Map<string, any>): Promise<void> {
+  async login(login: Map<string, any>, handler: any): Promise<any> {
     let url = this.adicionarParametrosRequisicao(
       this.URL_USUARIO + '/login',
       login
@@ -32,8 +32,20 @@ export class UsuarioService extends BaseService {
     await this.get<any>(url).then((response: Response<any>) => {
       this.get<any>(
         this.URL_USUARIO + '/findbytoken?token=' + response.data
-      ).then((response: Response<any>) => {
+      ).then(async (response: Response<any>) => {
         this.usuario = response.data.pessoa;
+        const alert = await this.alertController.create({
+          header: 'Sucesso',
+          message: 'Login bem sucedido',
+          buttons: [
+            {
+              text: 'Ok',
+              role: 'cancel',
+              handler: handler,
+            },
+          ],
+        });
+        await alert.present();
       });
     });
   }

@@ -16,27 +16,30 @@ export class Tab1Page {
   prestadores!: Prestador[];
   card: any;
   constructor(
-    private servicoService: PrestadorService,
+    private service: PrestadorService,
     private modalController: ModalController
-  ) { }
+  ) {}
 
   async ngOnInit() {
     await Promise.all([this.carregarPrestadores(), this.carregarCategorias()]);
   }
 
   async carregarCategorias() {
-    this.servicoService
+    this.service
       .get('http://localhost:8080/servico/categorias')
       .then((categorias: any) => {
         this.categorias = categorias.data.content;
       });
   }
   async carregarPrestadores() {
-    this.servicoService
-      .getPrestadores(this.selectedCity)
-      .then((servicos: any) => {
-        this.prestadores = servicos.data.content;
+    this.service.getPrestadores(this.selectedCity).then((servicos: any) => {
+      this.prestadores = servicos.data.content;
+      this.prestadores.forEach((prestador) => {
+        this.service.getNotaMedia(prestador.id).then((nota) => {
+          prestador.nota = nota.data;
+        });
       });
+    });
   }
 
   novoServico() {
@@ -50,9 +53,8 @@ export class Tab1Page {
   async abrirModal(prestador: Prestador) {
     const modal = await this.modalController.create({
       component: ModalPrestadorComponent,
-      componentProps: { prestador: prestador } // Passando os dados como parâmetro
+      componentProps: { prestador: prestador }, // Passando os dados como parâmetro
     });
     return await modal.present();
-
   }
 }

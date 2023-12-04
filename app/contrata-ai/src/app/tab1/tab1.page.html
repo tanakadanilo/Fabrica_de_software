@@ -20,20 +20,25 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-
     <p-dropdown (click)="carregarPrestadores()" [options]="categorias" [(ngModel)]="selectedCity"
       placeholder="Selecione a Categoria" [showClear]="true"></p-dropdown>
     <ion-list>
       <ion-item *ngFor="let prestador of prestadores">
-        <ion-card  (click)="abrirModal(prestador)">
-          <ion-card-header>
-            {{ prestador.especializacao }}
-          </ion-card-header>
-          <ion-card-content>
-            {{ prestador.nome }}
+        <ion-card (click)="abrirModal(prestador)">
+          <ion-card-content style="display: flex; align-items: center;">
+            <img src="{{prestador.foto}}" height="200vh" style="margin: 0 auto;">
           </ion-card-content>
           <ion-card-content>
-            {{ prestador.portfolio }}
+            especialização: {{ prestador.especializacao }}
+          </ion-card-content>
+          <ion-card-content>
+            nome: {{ prestador.nome }}
+          </ion-card-content>
+          <ion-card-content>
+            portfolio: {{ prestador.portfolio }}
+          </ion-card-content>
+          <ion-card-content>
+            Nota: {{ prestador.nota }}
           </ion-card-content>
         </ion-card>
       </ion-item>

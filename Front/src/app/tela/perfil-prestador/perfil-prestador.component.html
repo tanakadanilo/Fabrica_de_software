@@ -1,8 +1,9 @@
 <div class="container" *ngIf="prestador">
   <div class=" row">
     <div class="col-md-4">
+
       <!-- Foto do Prestador -->
-      <img src="{{ prestador.foto }}" alt="Imagem de Perfil" class="img-fluid" />
+      <img [src]="prestador.foto" alt="Imagem de Perfil" class="img-fluid" />
     </div>
     <div class="col-md-8">
       <!-- Informações do Prestador -->
