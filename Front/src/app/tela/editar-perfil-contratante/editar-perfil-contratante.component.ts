@@ -10,11 +10,11 @@ import { NgModel } from '@angular/forms';
 import { ViaCepService } from 'src/app/exports/interface/viacep-service';
 
 @Component({
-  selector: 'app-cadastro',
-  templateUrl: './cadastro-contratante.component.html',
-  styleUrls: ['./cadastro-contratante.component.css'],
+  selector: 'app-editar-perfil-contratante',
+  templateUrl: './editar-perfil-contratante.component.html',
+  styleUrls: ['./editar-perfil-contratante.component.css']
 })
-export class CadastroComponent extends TelaBaseComponent {
+export class EditarPerfilContratanteComponent  extends TelaBaseComponent {
   contratante!: Contratante;
   ufs: any[];
   ufSelecionada: Uf = Uf.AC;
@@ -92,16 +92,13 @@ export class CadastroComponent extends TelaBaseComponent {
       if (cepSemMascara.length === 8) {
         this.viaCepService.getAddressByCep(cepSemMascara).subscribe(
           (data) => {
-            if (data.erro) {
-              this.service.toastError(['Cep Inválido']);
-              return
-            }
             this.contratante.endereco.uf = data.uf;
             this.contratante.endereco.cidade = data.localidade;
             this.contratante.endereco.bairro = data.bairro;
             this.contratante.endereco.complemento = data.complemento;
           },
           (error) => {
+            this.service.toastError(["Cep Inválido"])
           }
         );
       }

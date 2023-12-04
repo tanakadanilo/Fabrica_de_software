@@ -6,20 +6,15 @@ import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.comp
 import { ActivatedRoute, Router } from '@angular/router';
 import { PrestadorService } from 'src/app/exports/service/prestador.service';
 import { ValidacoesService } from 'src/app/exports/service/validacoes.service';
-import { ServicosService } from 'src/app/exports/service/servicos.service';
-import { ServicoPrestado } from 'src/app/exports/interface/servico-prestado';
 
 @Component({
-  selector: 'app-cadastro-prestador',
-  templateUrl: './cadastro-prestador.component.html',
-  styleUrls: ['./cadastro-prestador.component.css'],
+  selector: 'app-editar-perfil-prestador',
+  templateUrl: './editar-perfil-prestador.component.html',
+  styleUrls: ['./editar-perfil-prestador.component.css']
 })
-export class CadastroPrestadorComponent extends TelaBaseComponent {
+export class EditarPerfilPrestadorComponent extends TelaBaseComponent{
 
   prestador!: Prestador;
-  categorias!: string[];
-  novoServico: ServicoPrestado = { valor: 0.0, servico: { area: "", descricao: "", nome: "" } };
-
   ufs!: any[];
   ufSelecionada: Uf = Uf.AM;
   cities: any;
@@ -33,15 +28,13 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
       complemento: '',
     },
   };
-  visible: boolean= false;
 
   constructor(
     private viaCepService: ViaCepService,
-    private rota: Router,
+    private rota:Router,
     override service: PrestadorService,
     protected override route: ActivatedRoute,
     private valida : ValidacoesService,
-    private servicoService: ServicosService
   ) {
     super(service, route);
   }
@@ -50,9 +43,6 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
     this.ufs = Object.values(Uf);
     this.prestador = this.service.getPrestadorVazio();
     this.service.getPrestadorVazio();
-    this.servicoService.getCategorias().then(categorias => {
-      this.categorias = categorias.data.content
-    })
   }
 
   cadastrar(){
@@ -60,7 +50,7 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
       this.service.toastError(["Insira a imagem de perfil!"]);
       return;
     }
-    if (!this.valida.validarCPF(this.prestador.cpfCnpj)) {
+    if (!this.validarCPF(this.prestador.cpfCnpj)) {
       this.service.toastError(["CPF inválido!"]);
       return;
     }
@@ -93,34 +83,23 @@ export class CadastroPrestadorComponent extends TelaBaseComponent {
     );
   }
 
-  onCepChange() {
+    onCepChange() {
     const cepSemMascara = this.prestador.endereco.cep.replace(/\D/g, '');
 
       if (cepSemMascara.length === 8) {
         this.viaCepService.getAddressByCep(cepSemMascara).subscribe(
           (data) => {
-            if (data.erro) {
-              this.service.toastError(['Cep Inválido']);
-              return
-            }
             this.prestador.endereco.uf = data.uf;
             this.prestador.endereco.cidade = data.localidade;
             this.prestador.endereco.bairro = data.bairro;
             this.prestador.endereco.complemento = data.complemento;
           },
           (error) => {
+            this.service.toastError(["Cep Inválido"])
           }
         );
       }
 
-}
-  
-showDialog() {
-  this.visible = true;
-}
-
-adicionarServico(){
-  this.prestador.servicosPrestados.push(this.novoServico)
 }
 
     validarCPF(cpf: string) {

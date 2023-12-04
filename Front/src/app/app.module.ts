@@ -39,6 +39,8 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { AuthInterceptorService } from './exports/service/auth-interceptor.service';
 import { FooterComponent } from './exports/footer/footer.component';
+import { EditarPerfilContratanteComponent } from './tela/editar-perfil-contratante/editar-perfil-contratante.component';
+import { EditarPerfilPrestadorComponent } from './tela/editar-perfil-prestador/editar-perfil-prestador.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { FooterComponent } from './exports/footer/footer.component';
     RecuperarSenhaComponent,
     TelaBaseComponent,
     ContratoComponent,
+    EditarPerfilContratanteComponent,
+    EditarPerfilPrestadorComponent,
   ],
   imports: [
     BrowserModule,

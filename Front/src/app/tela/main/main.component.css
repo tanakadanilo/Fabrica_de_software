@@ -2,7 +2,10 @@
   padding-left: 4.2rem;
   margin-bottom: 2rem;
 }
-
+.foto {
+  max-width: 1rem;
+  max-height: 2rem;
+}
 .card:hover {
     transform: scale(1.05);
     border-color: rgb(123, 121, 219);

@@ -4,7 +4,7 @@ import { Servico } from 'src/app/exports/interface/servico';
 import { BaseServiceService } from 'src/app/exports/service/base-service.service';
 import { TelaBaseComponent } from 'src/app/exports/tela/tela-base/tela-base.component';
 import { Response } from 'src/app/exports/interface/response';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContratanteService } from 'src/app/exports/service/contratante.service';
 import { AuthenticationServiceService } from 'src/app/exports/service/authentication-service.service';
 
@@ -23,7 +23,8 @@ export class PerfilContratanteComponent extends TelaBaseComponent {
   constructor(
     protected override service: ContratanteService,
     protected override route: ActivatedRoute,
-    private authenticationService: AuthenticationServiceService
+    private authenticationService: AuthenticationServiceService,
+    private navigate : Router,
   ) {
     super(service, route);
   }
@@ -40,5 +41,9 @@ export class PerfilContratanteComponent extends TelaBaseComponent {
           this.authenticationService.getPessoa()?.id == this.contratante.id; //  * é o mesmo prestador
       }
     });
+  }
+
+  editar(){
+    this.navigate.navigate(['editarc/' + this.contratante.id]);
   }
 }

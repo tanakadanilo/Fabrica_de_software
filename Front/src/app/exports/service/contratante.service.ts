@@ -46,7 +46,7 @@ export class ContratanteService extends BaseServiceService {
       cpfCnpj: '',
       endereco: endereco,
       foto: '',
-      usuario: { login: '', password: '', username: '', prestador: true },
+      usuario: { login: '', password: null, username: '', prestador: true },
     };
   }
   cadastrarContratante(Contratante: Contratante) {

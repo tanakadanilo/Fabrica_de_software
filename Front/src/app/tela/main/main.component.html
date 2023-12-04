@@ -13,9 +13,11 @@
     <div *ngFor="let pres of prestador" class="card">
       <p-card (click)="entrarPerfil(pres.id)">
         <ng-template pTemplate="title">
-          {{ pres.nome }}
+          <img style="max-width: 15rem;" src="{{pres.foto}}">
         </ng-template>
         <ng-template style="font-weight: lighter " pTemplate="content">
+          {{ pres.nome }}
+          <br>
           {{ pres.endereco.cidade }}
           <br><br>
           <p style="font-weight: 500">Áreas de atuação:</p>

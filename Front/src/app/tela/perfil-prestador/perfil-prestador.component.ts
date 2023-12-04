@@ -93,12 +93,7 @@ export class PerfilPrestadorComponent extends TelaBaseComponent {
     this.navigate.navigate(['contratar']);
   }
 
-  selecionarEspecializacao(area: string) {
-    this.areaSelecionada = area;
-    this.servicoSelecionado = [];
+  editar(){
+    this.navigate.navigate(['editarp/' + this.prestador.id]);
   }
-
-  areaSelecionada: string = 'coisa 1';
-
-  //servicosTeste: SelectItemGroup[] = this.prestador.servicosPrestados;
 }

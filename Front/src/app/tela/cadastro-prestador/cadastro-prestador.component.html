@@ -18,32 +18,32 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="cpfCnpj">CPF:</label>
-          <p-inputMask mask="999.999.999-99" id="cpfCnpj" [(ngModel)]="prestador.cpfCnpj" />
-        </div>
+          <p-inputMask mask="999.999.999-99"  type="text" id="cpfCnpj" [(ngModel)]="prestador.cpfCnpj" [required]="true"/>
+          <div *ngIf="prestador.cpfCnpj != '' && !validarCPF(prestador.cpfCnpj)" class="campo-invalido">
+            Por favor, insira um CPF válido.
+          </div>
+      </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label for="nome">Nome completo</label>
-          <input pInputText id="nome" [(ngModel)]="prestador.nome" />
+          <label for="nome">Nome:</label>
+          <input pInputText id="nome" [(ngModel)]="prestador.nome" [required]="true"/>
         </div>
       </div>
     </div>
-  </div>
 
   <div class="row destacado">
     <h5>Contato:</h5>
     <div class="col-md-3">
       <div class="form-group">
-        <label for="telefone">Celular:</label>
-        <p-inputMask mask="(99)9 9999-9999" id="telefone" [(ngModel)]="prestador.contato.telefone" />
+        <label for="telefone">Telefone:</label>
+        <input pInputText mask="(99)9 9999-9999" id="telefone" [(ngModel)]="prestador.contato.telefone" maxlength="11" [required]="true"/>
       </div>
     </div>
-
-    <div class="col-md-3"></div>
   </div>
   <div class="contato">
     <div class="endereco destacado">
-      <div class="row" style="margin-left: 3em">
+      <div class="row">
         <h5>Endereço:</h5>
         <div class="col-md-3">
           <div class="form-group">
@@ -55,35 +55,32 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="uf">Estado:</label>
-            <p-dropdown [options]="ufs" [(ngModel)]="prestador.endereco.uf" optionLabel="" id="uf"
-              [style]="{ width: '66.666%' }"></p-dropdown>
+            <p-dropdown [options]="ufs" [(ngModel)]="prestador.endereco.uf" optionLabel="" id="uf" [style]="{'width':'66.666%'}" [required]="true" [disabled]="true"></p-dropdown>
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
             <label for="cidade">Cidade:</label>
             <input pInputText id="cidade" [(ngModel)]="prestador.endereco.cidade" [disabled]="true" />
+            <input pInputText id="cidade" [(ngModel)]="prestador.endereco.cidade" [required]="true" [disabled]="true"/>
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
             <label for="bairro">Setor:</label>
-            <input pInputText id="bairro" [(ngModel)]="prestador.endereco.bairro"
-              [disabled]="prestador.endereco.cep.length !== 10" />
+            <input pInputText id="bairro" [(ngModel)]="prestador.endereco.bairro" [required]="true"/>
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
             <label for="numero">Número:</label>
-            <input pInputText id="numero" [(ngModel)]="prestador.endereco.numero"
-              [disabled]="prestador.endereco.cep.length !== 10" />
+            <input pInputText id="numero" [(ngModel)]="prestador.endereco.numero" [required]="true"/>
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
             <label for="complemento">Complemento:</label>
-            <input pInputText id="complemento" [(ngModel)]="prestador.endereco.complemento"
-              [disabled]="prestador.endereco.cep.length !== 10" />
+            <input pInputText id="complemento" [(ngModel)]="prestador.endereco.complemento" [required]="true"/>
           </div>
         </div>
       </div>
@@ -118,20 +115,24 @@
         </div>
       </div>
     </div>
-
-
     <div class="row mt-5 destacado">
       <h5>Dados de acesso</h5>
       <div class="col-md-3">
         <div class="form-group">
-          <label for="cpfCnpj">Email de acesso</label>
-          <input pInputText id="email" [(ngModel)]="prestador.contato.email" />
+          <label for="cpfCnpj">Email de acesso:</label>
+          <input pInputText id="email"[(ngModel)]="prestador.usuario.username" [required]="true"/>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label for="nome">Senha</label>
-          <p-password [toggleMask]="true" id="senha" [(ngModel)]="prestador.usuario.password" />
+          <label for="nome">Senha:</label>
+          <p-password id="senha" [(ngModel)]="prestador.usuario.password" minlength="4" maxlength="20" [required]="true" [toggleMask]="true"/>
+          <div *ngIf="prestador.usuario.password != null && prestador.usuario.password.length < 1" class="campo-invalido">
+            O campo Senha não pode estar vazio.
+         </div>
+         <div *ngIf="prestador.usuario.password != null && prestador.usuario.password.length < 4 && prestador.usuario.password.length > 0" class="campo-invalido">
+            A senha precisa ter no mínimo 4 caracteres.
+       </div>
         </div>
       </div>
     </div>

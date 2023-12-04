@@ -13,6 +13,12 @@
   display: block;
 }
 
+.campo-invalido {
+  color: red; /* Cor do texto */
+  font-size: 13px; /* Tamanho da fonte */
+  /* Outros estilos desejados */
+}
+
 .destacado {
   background-color: #f2f2f2; /* Cor de fundo destacada */
   padding: 20px; /* Espaçamento interno para criar o efeito do quadrado */
@@ -23,7 +29,6 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
 }
 
 .destacado h5,

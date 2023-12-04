@@ -13,6 +13,9 @@ import { HistoricoComponent } from './tela/historico/historico.component';
 import { FinalizarContratacaoComponent } from './tela/finalizar-contratacao/finalizar-contratacao.component';
 import { RecuperarSenhaComponent } from './tela/recuperar-senha/recuperar-senha.component';
 import { ContratoComponent } from './tela/contrato/contrato.component';
+import { EditarPerfilContratanteComponent } from './tela/editar-perfil-contratante/editar-perfil-contratante.component';
+import { EditarPerfilPrestadorComponent } from './tela/editar-perfil-prestador/editar-perfil-prestador.component';
+
 
 const routes: Routes = [
   {
@@ -74,6 +77,16 @@ const routes: Routes = [
   {
     path: 'contrato',
     component: ContratoComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'editarc/:id',
+    component: EditarPerfilContratanteComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'editarp/:id',
+    component: EditarPerfilPrestadorComponent,
     pathMatch: 'full',
   },
 ];
