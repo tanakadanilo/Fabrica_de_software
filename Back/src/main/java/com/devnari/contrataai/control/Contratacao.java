@@ -55,7 +55,7 @@ public class Contratacao {
 	}
 	@GetMapping()
 	public ResponseEntity<Response<List<HistoricoServico>>> 
-	listarHistoricos(@RequestParam("idContratante") Integer idContratante) {
+	listarHistoricos(@RequestParam("idContratante") Long idContratante) {
 		Response<List<HistoricoServico>> response = new Response<>();
 		try {
 			response.setData(historicoService.listarHistoricos(idContratante));

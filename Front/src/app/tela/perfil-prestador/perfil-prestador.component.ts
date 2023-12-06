@@ -96,4 +96,9 @@ export class PerfilPrestadorComponent extends TelaBaseComponent {
   editar(){
     this.navigate.navigate(['editarp/' + this.prestador.id]);
   }
+
+  verHistorico(){
+    this.navigate.navigate(['historico']);
+  }
+  
 }

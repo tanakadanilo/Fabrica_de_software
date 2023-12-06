@@ -62,7 +62,6 @@
           <div class="form-group">
             <label for="cidade">Cidade:</label>
             <input pInputText id="cidade" [(ngModel)]="prestador.endereco.cidade" [disabled]="true" />
-            <input pInputText id="cidade" [(ngModel)]="prestador.endereco.cidade" [required]="true" [disabled]="true"/>
           </div>
         </div>
         <div class="col-md-3">
@@ -120,7 +119,7 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="cpfCnpj">Email de acesso:</label>
-          <input pInputText id="email"[(ngModel)]="prestador.usuario.username" [required]="true"/>
+          <input pInputText id="email" [(ngModel)]="prestador.usuario.username" [(ngModel)]="prestador.contato.email" [required]="true"/>
         </div>
       </div>
       <div class="col-md-3">

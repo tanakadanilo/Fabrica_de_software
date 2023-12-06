@@ -38,7 +38,7 @@ export class PerfilContratanteComponent extends TelaBaseComponent {
         this.authenticationService.getPessoa()?.id
       ) {
         this.isEditable =
-          this.authenticationService.getPessoa()?.id == this.contratante.id; //  * é o mesmo prestador
+          this.authenticationService.getPessoa()?.id == this.contratante.id;
       }
     });
   }
@@ -46,4 +46,9 @@ export class PerfilContratanteComponent extends TelaBaseComponent {
   editar(){
     this.navigate.navigate(['editarc/' + this.contratante.id]);
   }
+
+  verHistorico(){
+    this.navigate.navigate(['historico']);
+  }
+
 }

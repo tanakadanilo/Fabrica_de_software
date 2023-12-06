@@ -96,7 +96,7 @@ export class BaseServiceService {
     messages.forEach((message) => {
       this.messageService.add({
         severity: 'error',
-        summary: 'Error',
+        summary: 'Erro',
         detail: message,
       });
     });

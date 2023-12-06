@@ -3,12 +3,12 @@
   <div class="box-login">
     <h2 style="text-align: center; margin-bottom: 1em;">Entrar</h2>
     <span class="p-float-label user ">
-      <input pInputText id="username" class=" col-md-12" [(ngModel)]="username" />
+      <input pInputText id="username" class=" col-md-12" [(ngModel)]="username" (keyup.enter)="entrar()"/>
       <label htmlFor="username">Usuário</label>
     </span>
 
     <span class="p-float-label label senha" >
-      <input [(ngModel)]="password" type="password" [style]="{'width':' 100%'}" pInputText />
+      <input [(ngModel)]="password" type="password" [style]="{'width':' 100%'}" (keyup.enter)="entrar()" pInputText />
       <label htmlFor="password">Senha</label>
     </span>
     <div class="d-flex justify-content-between">
