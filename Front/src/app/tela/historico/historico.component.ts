@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ContratanteService } from 'src/app/exports/service/contratante.service';
 
 interface serv{
   nome:any;
@@ -23,65 +24,19 @@ enum Status{
   styleUrls: ['./historico.component.css']
 })
 
-export class HistoricoComponent {
+export class HistoricoComponent implements OnInit{
   Status = Status;
+  list!: []
 
-  list : serv[] = [
-    {
-  nome: 'Erick',
-  cidade: 'Goiânia',
-  area: 'Medicina',
-  servico: 'Consertar dedo quebrado',
-  valor: '100,00',
-  data: '12/12/2023',
-  status: Status.EM_ANALISE,
-  },
-  {
-    nome: 'Erick',
-    cidade: 'Goiânia',
-    area: 'Medicina',
-    servico: 'Consertar dedo quebrado',
-    valor: '100,00',
-    data: '12/12/2023',
-    status: Status.EM_ANALISE,
-    },
-    {
-      nome: 'Erick',
-      cidade: 'Goiânia',
-      area: 'Medicina',
-      servico: 'Consertar dedo quebrado',
-      valor: '100,00',
-      data: '12/12/2023',
-      status: Status.EM_ANALISE,
-      },
-      {
-        nome: 'Erick',
-        cidade: 'Goiânia',
-        area: 'Medicina',
-        servico: 'Consertar dedo quebrado',
-        valor: '100,00',
-        data: '12/12/2023',
-        status: Status.EM_ANALISE,
-        },
-        {
-          nome: 'Erick',
-          cidade: 'Goiânia',
-          area: 'Medicina',
-          servico: 'Consertar dedo quebrado',
-          valor: '100,00',
-          data: '12/12/2023',
-          status: Status.EM_ANALISE,
-          },
-          {
-            nome: 'Erick',
-            cidade: 'Goiânia',
-            area: 'Medicina',
-            servico: 'Consertar dedo quebrado',
-            valor: '100,00',
-            data: '12/12/2023',
-            status: Status.EM_ANALISE,
-            },
-  ]
+  constructor(
+    private contratanteService : ContratanteService,
+  ){}
+
+  ngOnInit(): void {
+    
+  }
+
+
 
   getStatusDescricao(status: Status): string {
     switch (status) {
