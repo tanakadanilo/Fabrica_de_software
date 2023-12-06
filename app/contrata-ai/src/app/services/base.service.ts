@@ -95,8 +95,8 @@ export class BaseService {
     return this.toPromisse<T>(this.http.get<Response<T>>(url));
   }
 
-  post(url: string, obj: any) {
-    return this.http.post(url, obj);
+  post<T>(url: string, obj: any):Observable<T> {
+    return this.http.post<T>(url, obj);
   }
 
   put(url: string, obj: any) {

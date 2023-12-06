@@ -15,7 +15,7 @@ public interface HistoricoServicoDao extends JpaRepository<HistoricoServico, Int
 	Double calcularMediaNotasServico(@Param("servico")ServicoPrestado servicoPrestado);
 	
 	@Query("select h from HistoricoServico h where h.contratante.id = :id")
-	List<HistoricoServico> listarPorContratante(@Param("id") Integer id);
+	List<HistoricoServico> listarPorContratante(@Param("id") Long id);
 	
 
 	@Query("select h from HistoricoServico h where h.prestador.id = :id")

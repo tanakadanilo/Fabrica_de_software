@@ -31,7 +31,7 @@ public class HistoricoService {
 		historicoServicoDao.save(historicoServico);
 	}
 
-	public List<HistoricoServico> listarHistoricos(Integer idContratante) {
+	public List<HistoricoServico> listarHistoricos(Long idContratante) {
 		return (historicoServicoDao.listarPorContratante(idContratante));
 	}
 

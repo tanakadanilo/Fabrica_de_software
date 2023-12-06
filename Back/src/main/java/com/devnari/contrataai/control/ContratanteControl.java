@@ -1,5 +1,7 @@
 package com.devnari.contrataai.control;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.base.Response;
 import com.devnari.contrataai.model.Contratante;
+import com.devnari.contrataai.model.HistoricoServico;
 import com.devnari.contrataai.services.ContratanteService;
+import com.devnari.contrataai.services.HistoricoService;
 import com.devnari.contrataai.services.ServicoPrestadoService;
 import com.devnari.contrataai.util.StringUtil;
 
@@ -25,10 +30,12 @@ import jakarta.websocket.server.PathParam;
 public class ContratanteControl {
 
 	@Autowired
-	ContratanteService service;
+	private ContratanteService service;
+	@Autowired
+	private HistoricoService historicoService;
 
 	@Autowired
-	ServicoPrestadoService servicoPrestadoService;
+	private ServicoPrestadoService servicoPrestadoService;
 
 	@GetMapping(value = "")
 	public ResponseEntity<Response<Page<Contratante>>> buscarTodos(@RequestParam(defaultValue = "0") int page,
@@ -100,18 +107,33 @@ public class ContratanteControl {
 		}
 		return ResponseEntity.ok(response);
 	}
-//	@PutMapping(value = "")
-//	public ResponseEntity<Response<Contratante>> atualizarContratante(@RequestBody Contratante contratante) {
-//
-//		Response<Contratante> response = new Response<>();
-//		try {
-//			contratante = service.update(contratante);
-//			response.setData(contratante);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			response.getErros().add(e.getMessage());
-//		}
-//		return ResponseEntity.ok(response);
-//	}
+
+	@PutMapping(value = "")
+	public ResponseEntity<Response<Contratante>> atualizarContratante(@RequestBody Contratante contratante) {
+
+		Response<Contratante> response = new Response<>();
+		try {
+			contratante = service.atualizar(contratante);
+			response.setData(contratante);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping(value = "historico/{id}")
+	public ResponseEntity<Response<List<HistoricoServico>>> buscarHistoricosPorId(@PathVariable("id") String id) {
+		Response<List<HistoricoServico>> response = new Response<>();
+		try {
+			Long idLong = StringUtil.converterStringParaLong(id);
+			List<HistoricoServico> historicos = historicoService.listarHistoricos(idLong);
+			response.setData(historicos);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
+	}
 
 }

@@ -1,5 +1,6 @@
 import { Contato } from './contato';
 import { Endereco } from './endereco';
+import { Usuario } from './usuario';
 
 export interface Contratante {
   id?: number;
@@ -7,5 +8,5 @@ export interface Contratante {
   contato: Contato;
   cpf: string;
   endereco: Endereco;
-  usuario: any;
+  usuario?: Usuario;
 }

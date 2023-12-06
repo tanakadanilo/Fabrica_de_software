@@ -6,23 +6,230 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-content [fullscreen]="true">
-    <ion-item>
-      <ion-card class="ion-cartao">
-        <ion-card-content>
-          <ion-item>
-            <ion-input label="usuário" labelPlacement="floating" placeholder="usuário"
-              [(ngModel)]="usuario"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input type="password" label="Senha" labelPlacement="floating" placeholder="senha"
-              [(ngModel)]="senha"></ion-input>
-          </ion-item>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-    <ion-button (click)="login()">Login</ion-button>
+<ion-content [fullscreen]="true" *ngIf="!isLoggado">
+  <ion-item>
+    <ion-card class="ion-cartao">
+      <ion-card-content>
+        <ion-item>
+          <ion-input label="usuário" labelPlacement="floating" placeholder="usuário" [(ngModel)]="usuario"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" label="Senha" labelPlacement="floating" placeholder="senha"
+            [(ngModel)]="senha"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+  <ion-button (click)="login()">Login</ion-button>
 
-  </ion-content>
+</ion-content>
+
+
+<ion-content [fullscreen]="true" *ngIf="isLoggado">
+  <ion-item>
+    <ion-card class="ion-cartao">
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-input label="CPF:" id="CPF:" [(ngModel)]="contratante!.cpf" />
+          </ion-item>
+          <ion-item>
+            <ion-input label="Nome:" id="Nome:" [(ngModel)]="contratante!.nome" />
+          </ion-item>
+          <ion-item>
+            <ion-input label="Email:" id="email" [(ngModel)]="contratante!.contato.email" />
+          </ion-item>
+          <ion-item>
+            <ion-input label="Telefone:" id="telefone" [(ngModel)]="contratante!.contato.telefone" />
+          </ion-item>
+          <ion-item>
+            <ion-input label="Contato:" id="contato" [(ngModel)]="contratante!.contato.contato" />
+          </ion-item>
+          <ion-item>
+            <ion-input label="CEP:" id="cep" [(ngModel)]="contratante!.endereco.cep" />
+          </ion-item>
+          <ion-item>
+            <ion-input label="Logradouro:" id="logradouro" [(ngModel)]="contratante!.endereco.logradouro" />
+          </ion-item>
+          <ion-item>
+            <ion-input label="Número:" id="numero" [(ngModel)]="contratante!.endereco.numero" />
+          </ion-item>
+          <ion-item>
+            <ion-input label="Cidade:" id="cidade" [(ngModel)]="contratante!.endereco.cidade" />
+          </ion-item>
+          <ion-item>
+            <ion-input label="Quadra:" id="quadra" [(ngModel)]="contratante!.endereco.quadra" />
+          </ion-item>
+          <ion-item>
+            <ion-input label="Lote:" id="lote" [(ngModel)]="contratante!.endereco.lote" />
+          </ion-item>
+          <ion-item>
+            <ion-input label="Bairro:" id="bairro" [(ngModel)]="contratante!.endereco.bairro" />
+          </ion-item>
+          <ion-item>
+            <ion-input label="Complemento:" id="complemento" [(ngModel)]="contratante!.endereco.complemento" />
+          </ion-item>
+          <ion-button class="p-button-success" id="open-modal-dados-acesso" expand="block">Alterar dados de
+            acesso
+          </ion-button>
+          <ion-button class="p-button-success" id="open-modal-historico" expand="block">Histórico de
+            serviços
+          </ion-button>
+        </ion-list>
+        <ion-button class="p-button-success" (click)="editar()">Salvar</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+
+  <ion-modal trigger="open-modal-dados-acesso">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancelarMudancaDadosAcesso()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirmarMudancaDadosAcesso()" [strong]="true">Confirm</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input label="Usuario" labelPlacement="stacked" type="text" placeholder="usuario@email.com"
+            [(ngModel)]="usuario"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Senha" labelPlacement="stacked" type="text" placeholder="********"
+            [(ngModel)]="senha"></ion-input>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <ion-modal trigger="open-modal-historico">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Histórico</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="fecharModal()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-list *ngFor="let historico of historicos">
+          <ion-card>
+            <ion-item>
+              <ion-input label="nome do serviço" labelPlacement="stacked" type="text"
+                [(ngModel)]="historico.servico.servico.nome">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Valor do Serviço" labelPlacement="stacked" type="text"
+                [(ngModel)]="historico.servico.valor">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Prestador do serviço" labelPlacement="stacked" type="text"
+                [(ngModel)]="historico.prestador.nome">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Nota" labelPlacement="stacked" type="text" [(ngModel)]="historico.avaliacao">
+              </ion-input>
+            </ion-item>
+            <ion-button (click)="abrirModalDetalhesHistorico(historico)">Ver mais
+              detalhes
+            </ion-button>
+          </ion-card>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [isOpen]="isVisualizarDetalhesHistorico">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Detalhes do serviço</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="fecharModalDetalhes()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Dados do Serviço</ion-card-title>
+          </ion-card-header>
+          <ion-item>
+            <ion-input label="Nome" labelPlacement="stacked" type="text"
+              [(ngModel)]="historicoSelecionado.servico.servico.nome" [disabled]="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Área" labelPlacement="stacked" type="text"
+              [(ngModel)]="historicoSelecionado.servico.servico.area" [disabled]="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Descrição" labelPlacement="stacked" type="text"
+              [(ngModel)]="historicoSelecionado.servico.servico.descricao" [disabled]="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Valor" labelPlacement="stacked" type="text"
+              [(ngModel)]="historicoSelecionado.servico.valor" [disabled]="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Data de execução" labelPlacement="stacked" type="text"
+              [(ngModel)]="historicoSelecionado.dataExecucaoServico" [disabled]="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Local de execução" labelPlacement="stacked" type="text"
+              [(ngModel)]="historicoSelecionado.contratante.endereco.cidade" [disabled]="true">
+            </ion-input>
+          </ion-item>
+        </ion-card>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Dados do Prestador</ion-card-title>
+          </ion-card-header>
+          <ion-item>
+            <ion-input label="Nome" labelPlacement="stacked" type="text"
+              [(ngModel)]="historicoSelecionado.prestador.nome" [disabled]="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="CPF" labelPlacement="stacked" type="text" [(ngModel)]="historicoSelecionado.prestador.cpf"
+              [disabled]="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Nota média" labelPlacement="stacked" type="text"
+              [(ngModel)]="historicoSelecionado.prestador.nota" [disabled]="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Contato" labelPlacement="stacked" type="text"
+              [(ngModel)]="historicoSelecionado.prestador.contato.contato" [disabled]="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Email" labelPlacement="stacked" type="text"
+              [(ngModel)]="historicoSelecionado.prestador.contato.email" [disabled]="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Telefone" labelPlacement="stacked" type="text"
+              [(ngModel)]="historicoSelecionado.prestador.contato.telefone" [disabled]="true">
+            </ion-input>
+          </ion-item>
+          <ion-button (click)="avaliarServico()">Avaliar Serviço
+          </ion-button>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

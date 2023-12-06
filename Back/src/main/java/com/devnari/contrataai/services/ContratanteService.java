@@ -80,8 +80,8 @@ public class ContratanteService {
 		if (contratante.getId() == null) {
 			throw new Exception("Contratante Não Encontrado!");
 		}
+		contratante.setUsuario(persistencia.findById(contratante.getId()).get().getUsuario());
 		return persistencia.save(contratante);
 	}
 
-	
 }
