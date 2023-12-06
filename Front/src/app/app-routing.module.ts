@@ -49,7 +49,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'historico/:id',
+    path: 'historico',
     component: HistoricoComponent,
     pathMatch: 'full',
     resolve: {

@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./historico.component.css']
 })
 export class HistoricoComponent {
-
+  nome = 'roberto';
+  cidade = 'Alagoinha';
+  area = 'Serviços sexuais';
+  servico = 'Rapidinha';
+  valor = '30';
+  data = 'Sempre que você quiser bb';
 }
