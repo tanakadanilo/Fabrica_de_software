@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.base.Response;
+import com.devnari.contrataai.enumerations.StatusServico;
 import com.devnari.contrataai.model.HistoricoServico;
 import com.devnari.contrataai.model.PropostaContratacao;
 import com.devnari.contrataai.services.ContratarService;
@@ -53,12 +54,26 @@ public class Contratacao {
 		}
 		return ResponseEntity.ok(response);
 	}
+
 	@GetMapping()
-	public ResponseEntity<Response<List<HistoricoServico>>> 
-	listarHistoricos(@RequestParam("idContratante") Integer idContratante) {
+	public ResponseEntity<Response<List<HistoricoServico>>> listarHistoricos(
+			@RequestParam("idContratante") Long idContratante) {
 		Response<List<HistoricoServico>> response = new Response<>();
 		try {
 			response.setData(historicoService.listarHistoricos(idContratante));
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getErros().add(e.getMessage());
+		}
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/alterarstatus")
+	public ResponseEntity<Response<HistoricoServico>> alterarStatus(@RequestParam("id") Long idHistorico,
+			@RequestParam("status") StatusServico status) {
+		Response<HistoricoServico> response = new Response<>();
+		try {
+			response.setData(historicoService.alterarStatusServico(idHistorico, status));
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.getErros().add(e.getMessage());
