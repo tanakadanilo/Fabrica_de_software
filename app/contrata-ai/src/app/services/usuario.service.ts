@@ -60,13 +60,11 @@ export class UsuarioService extends BaseService {
   }
 
   criarLogin(username: string, password: string, isPrestador: boolean) {
-    return this.toPromisse<Response<Usuario>>(
-      this.post<Response<Usuario>>(this.URL_USUARIO, {
-        username: username,
-        password: password,
-        prestador: isPrestador,
-      })
-    );
+    return this.post<Response<Usuario>>(this.URL_USUARIO, {
+      username: username,
+      password: password,
+      prestador: isPrestador,
+    });
   }
 
   alterarLogin(
@@ -75,13 +73,11 @@ export class UsuarioService extends BaseService {
     password: string,
     isPrestador: boolean
   ) {
-    return this.toPromisse<Response<Usuario>>(
-      this.post<Response<Usuario>>(this.URL_USUARIO, {
-        id: id,
-        username: username,
-        password: password,
-        prestador: isPrestador,
-      })
-    );
+    return this.post<Response<Usuario>>(this.URL_USUARIO, {
+      id: id,
+      username: username,
+      password: password,
+      prestador: isPrestador,
+    });
   }
 }

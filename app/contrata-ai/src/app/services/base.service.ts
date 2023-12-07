@@ -41,7 +41,6 @@ export class BaseService {
           if (reject) {
             reject(error);
           } else {
-
             this.toastError(error);
           }
         }
@@ -74,7 +73,7 @@ export class BaseService {
     const alert = await this.alertController.create({
       header: header ? header : 'Sucesso',
       message: message,
-      buttons: ['OK']
+      buttons: ['OK'],
     });
     return await alert.present();
   }
@@ -87,7 +86,6 @@ export class BaseService {
   async toastSucess(message: string) {
     console.log(message);
     await this.toast(message, 'sucess');
-
   }
 
   get<T>(url: string, params?: Map<string, any>): Promise<Response<T>> {
@@ -95,16 +93,16 @@ export class BaseService {
     return this.toPromisse<T>(this.http.get<Response<T>>(url));
   }
 
-  post<T>(url: string, obj: any):Observable<T> {
-    return this.http.post<T>(url, obj);
+  post<T>(url: string, obj: any): Promise<Response<T>> {
+    return this.toPromisse<T>(this.http.post<Response<T>>(url, obj));
   }
 
-  put(url: string, obj: any) {
-    return this.http.put(url, obj);
+  put<T>(url: string, obj: any): Promise<Response<T>> {
+    return this.toPromisse<T>(this.http.put<Response<T>>(url, obj));
   }
 
-  delete(url: string, obj: any) {
-    return this.http.delete(url, obj);
+  delete<T>(url: string, obj: any) {
+    return this.http.delete<Response<T>>(url, obj);
   }
 
   private mapToQueryString(paramsMap: Map<string, string | number>): string {

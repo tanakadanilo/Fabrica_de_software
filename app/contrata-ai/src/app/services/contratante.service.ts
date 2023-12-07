@@ -32,4 +32,8 @@ export class ContratanteService extends BaseService {
       this.URL_HISTORICO + '/' + contratante.id
     );
   }
+
+  criar(contratante: Contratante): Promise<Response<Contratante>> {
+    return this.post<Contratante>(this.URL_CONTRATANTE, contratante);
+  }
 }
