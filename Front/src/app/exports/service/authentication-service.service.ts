@@ -9,7 +9,7 @@ import { Contratante } from '../interface/contratante';
 export class AuthenticationServiceService {
   private token?: string;
   private usuario?: Usuario;
-  private pessoa?: Prestador | Contratante;
+ pessoa?: Prestador | Contratante;
 
   loggar(
     token: string,

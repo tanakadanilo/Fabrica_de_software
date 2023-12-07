@@ -8,6 +8,7 @@ import { createNumberMask } from 'text-mask-addons';
 import { ValidacoesService } from 'src/app/exports/service/validacoes.service';
 import { NgModel } from '@angular/forms';
 import { ViaCepService } from 'src/app/exports/interface/viacep-service';
+import { AuthenticationServiceService } from 'src/app/exports/service/authentication-service.service';
 
 @Component({
   selector: 'app-editar-perfil-contratante',
@@ -25,10 +26,11 @@ export class EditarPerfilContratanteComponent  extends TelaBaseComponent {
     protected override route: ActivatedRoute,
     private valida : ValidacoesService,
     private viaCepService: ViaCepService,
+    private authService : AuthenticationServiceService,
   ) {
     super(service, route);
     this.ufs = Object.values(Uf);
-    this.contratante = service.getContratanteVazio();
+    this.contratante = this.authService.getPessoa()! as Contratante;
   }
 
   onFileSelected(event: any) {
@@ -59,12 +61,13 @@ export class EditarPerfilContratanteComponent  extends TelaBaseComponent {
           this.contratante.usuario.prestador = true;
           this.contratante.usuario.username = this.contratante.contato.email;
           this.contratante.foto = this.service.base64String;
-          this.service.cadastrarContratante(this.contratante).then(x=>{
-            this.service.toastSuccess(["Usuário Cadastrado!"]);
+          this.service.alterarContratante(this.contratante).then(x=>{
+            this.service.toastSuccess(["Usuário Atualizado!"]);
+            this.authService.pessoa = x.data;
             this.rota.navigate([""])
           })
     } else {
-      this.toastError(['Por favor, preencha todos os campos corretamente antes de cadastrar.']);
+      this.toastError(['Por favor, preencha todos os campos corretamente antes de atualizar.']);
     }
   }
 

@@ -43,16 +43,6 @@ export class PerfilPrestadorComponent extends TelaBaseComponent {
     let id: number = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.carregarPrestador(id);
     this.carregarServicos();
-    // Aqui você pode acessar e manipular os dados da lista de áreas de atuação e serviços prestados
-    if (this.prestador) {
-      // Acessa as áreas de atuação
-      //const areasDeAtuacao: string = this.prestador.especializacao;
-      // const servicosPrestados: string[] = this.prestador.servicosPrestados;
-      // Faça o que precisar com as áreas de atuação e serviços prestados
-      //console.log('Áreas de Atuação:', areasDeAtuacao);
-      //console.log('Serviços Prestados:', this.servicosPrestados);
-    }
-    console.log(this.prestador);
   }
 
   carregarPrestador(id: number) {
@@ -63,9 +53,8 @@ export class PerfilPrestadorComponent extends TelaBaseComponent {
         this.authenticationService.getPessoa()?.id
       ) {
         this.isEditable =
-          this.authenticationService.getPessoa()?.id == this.prestador.id; //  * é o mesmo prestador
+          this.authenticationService.getPessoa()?.id == this.prestador.id;
       }
-      console.log(this.prestador);
     });
   }
 
@@ -89,6 +78,10 @@ export class PerfilPrestadorComponent extends TelaBaseComponent {
   servicoSelecionado!: ServicoPrestado[];
 
   enviarServicosSelecionados(): void {
+    if(!this.servicoSelecionado || this.servicoSelecionado.length === 0){ 
+      this.servicoService.toastError(["Nenhum serviço selecionado!"]);
+      return;
+    }
     this.servicoService.servicosListados = this.servicoSelecionado;
     this.navigate.navigate(['contratar']);
   }

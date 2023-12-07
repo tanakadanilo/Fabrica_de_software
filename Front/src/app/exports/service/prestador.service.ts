@@ -90,4 +90,11 @@ export class PrestadorService extends BaseServiceService {
       this.http.post<Response<Prestador>>(this.URL_PRESTADOR, prestador)
     );
   }
+
+  alterarPrestador(prestador: Prestador) : Promise<Response<Prestador>>{
+    return this.toPromisse(
+      this.http.put<Response<Prestador>>(this.URL_PRESTADOR, prestador)
+    );
+  }
+
 }

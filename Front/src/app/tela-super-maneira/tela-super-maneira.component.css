@@ -1,0 +1,24 @@
+body {
+    margin-left: 18%;
+    padding: 0;
+    background: url('../../assets/images/10542612.jpg') center/cover no-repeat;
+    height: 25rem;
+    width: 50rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container {
+    text-align: center;
+    color: white;
+  }
+  
+  h1 {
+    font-size: 40px;
+    margin-bottom: 6rem;
+    color: #ffffff;
+    -webkit-text-stroke: 1px #000000;
+
+
+  }

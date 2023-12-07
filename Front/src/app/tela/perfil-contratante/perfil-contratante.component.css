@@ -1,4 +1,32 @@
-.servicos {
-  background-color: lightblue;
-  padding: 2em;
+.img-fluid {
+  width: 25rem;
+  height: 20rem;
+  border-radius: 8px;
+}
+
+.informacoes-pessoais h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.informacoes-pessoais label {
+  font-weight: bold;
+}
+
+.informacoes-pessoais span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.informacoes-pessoais .col-md-6 {
+  width: 50%;
+  float: left;
+  box-sizing: border-box;
+  padding-right: 15px;
+}
+
+.informacoes-pessoais::after {
+  content: "";
+  display: table;
+  clear: both;
 }
