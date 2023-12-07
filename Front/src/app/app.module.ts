@@ -41,6 +41,7 @@ import { AuthInterceptorService } from './exports/service/auth-interceptor.servi
 import { FooterComponent } from './exports/footer/footer.component';
 import { EditarPerfilContratanteComponent } from './tela/editar-perfil-contratante/editar-perfil-contratante.component';
 import { EditarPerfilPrestadorComponent } from './tela/editar-perfil-prestador/editar-perfil-prestador.component';
+import { TelaSuperManeiraComponent } from './tela-super-maneira/tela-super-maneira.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { EditarPerfilPrestadorComponent } from './tela/editar-perfil-prestador/e
     ContratoComponent,
     EditarPerfilContratanteComponent,
     EditarPerfilPrestadorComponent,
+    TelaSuperManeiraComponent,
   ],
   imports: [
     BrowserModule,

@@ -79,4 +79,10 @@ export class ContratanteService extends BaseServiceService {
       )
     );
   }
+
+  alterarContratante(contratante: Contratante) : Promise<Response<Contratante>>{
+    return this.toPromisse(
+      this.http.put<Response<Contratante>>(this.URL_CONTRATANTE, contratante)
+    );
+  }
 }

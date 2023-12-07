@@ -1,112 +1,153 @@
 <div class="body container">
-    <div class="informacoes-pessoais">
-      <div class="box-img">
-        <h1 class="h-text">Informações Pessoais</h1>
-        <div>
-          <h6>Selecione sua imagem de perfil!</h6>
-          <input type="file" (change)="service.onFileSelected($event)" />
-        </div>
-  
-        <div *ngIf="service.selectedImage" class="img-container">
-          <h6>Imagem Selecionada:</h6>
-          <img [src]="service.base64String" alt="Imagem Selecionada" class="rounded-image" />
-        </div>
+  <div class="informacoes-pessoais">
+    <div class="box-img">
+      <h1 class="h-text">Informações Pessoais</h1>
+      <div>
+        <h6>Selecione sua imagem de perfil!</h6>
+        <input type="file" (change)="service.onFileSelected($event)" />
       </div>
-  
-      <div class="row mt-5 destacado">
-        <h5>Dados pessoais:</h5>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="cpfCnpj">CPF:</label>
-            <p-inputMask mask="999.999.999-99"  type="text" id="cpfCnpj" [(ngModel)]="prestador.cpfCnpj" [required]="true"/>
-            <div *ngIf="prestador.cpfCnpj != '' && !validarCPF(prestador.cpfCnpj)" class="campo-invalido">
-              Por favor, insira um CPF válido.
-            </div>
-        </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input pInputText id="nome" [(ngModel)]="prestador.nome" [required]="true"/>
-          </div>
-        </div>
+
+      <div *ngIf="service.selectedImage" class="img-container">
+        <h6>Imagem Selecionada:</h6>
+        <img [src]="service.base64String" alt="Imagem Selecionada" class="rounded-image" />
       </div>
-  
-    <div class="row destacado">
-      <h5>Contato:</h5>
+    </div>
+
+    <div class="row mt-5 destacado">
+      <h5>Dados pessoais:</h5>
       <div class="col-md-3">
         <div class="form-group">
-          <label for="telefone">Telefone:</label>
-          <input pInputText mask="(99)9 9999-9999" id="telefone" [(ngModel)]="prestador.contato.telefone" maxlength="11" [required]="true"/>
+          <label for="cpfCnpj">CPF:</label>
+          <p-inputMask mask="999.999.999-99"  type="text" id="cpfCnpj" [(ngModel)]="prestador.cpfCnpj" [required]="true"/>
+          <div *ngIf="prestador.cpfCnpj != '' && !validarCPF(prestador.cpfCnpj)" class="campo-invalido">
+            Por favor, insira um CPF válido.
+          </div>
+      </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="nome">Nome:</label>
+          <input pInputText id="nome" [(ngModel)]="prestador.nome" [required]="true"/>
         </div>
       </div>
     </div>
-    <div class="contato">
-      <div class="endereco destacado">
-        <div class="row">
-          <h5>Endereço:</h5>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="cep">CEP:</label>
-              <p-inputMask mask="99.999-999" id="cep" [(ngModel)]="prestador.endereco.cep" (ngModelChange)="onCepChange()" />
-            </div>
-          </div>
-          <div class="col-md-3" >
-            <div class="form-group">
-              <label for="uf">Estado:</label>
-              <p-dropdown [options]="ufs" [(ngModel)]="prestador.endereco.uf" optionLabel="" id="uf" [style]="{'width':'66.666%'}" [required]="true" [disabled]="true"></p-dropdown>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="cidade">Cidade:</label>
-              <input pInputText id="cidade" [(ngModel)]="prestador.endereco.cidade" [required]="true" [disabled]="true"/>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="bairro">Setor:</label>
-              <input pInputText id="bairro" [(ngModel)]="prestador.endereco.bairro" [required]="true"/>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="numero">Número:</label>
-              <input pInputText id="numero" [(ngModel)]="prestador.endereco.numero" [required]="true"/>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="complemento">Complemento:</label>
-              <input pInputText id="complemento" [(ngModel)]="prestador.endereco.complemento" [required]="true"/>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-5 destacado">
-        <h5>Dados de acesso</h5>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="cpfCnpj">Email de acesso:</label>
-            <input pInputText id="email"[(ngModel)]="prestador.usuario.username" [required]="true"/>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="nome">Senha:</label>
-            <p-password id="senha" [(ngModel)]="prestador.usuario.password" minlength="4" maxlength="20" [required]="true" [toggleMask]="true"/>
-            <div *ngIf="prestador.usuario.password != null && prestador.usuario.password.length < 1" class="campo-invalido">
-              O campo Senha não pode estar vazio.
-           </div>
-           <div *ngIf="prestador.usuario.password != null && prestador.usuario.password.length < 4 && prestador.usuario.password.length > 0" class="campo-invalido">
-              A senha precisa ter no mínimo 4 caracteres.
-         </div>
-          </div>
-        </div>
-      </div>
-      <div class="d-flex justify-content-center mt-5">
-        <button pButton pRipple label="Editar" icon="pi pi-check" class="p-button-success" (click)="cadastrar()"></button>
+
+  <div class="row destacado">
+    <h5>Contato:</h5>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input pInputText type="number" [(ngModel)]="prestador.contato.telefone" maxlength="11" [required]="true"/>
       </div>
     </div>
   </div>
-  
+  <div class="contato">
+    <div class="endereco destacado">
+      <div class="row">
+        <h5>Endereço:</h5>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="cep">CEP:</label>
+            <p-inputMask mask="99.999-999" id="cep" [(ngModel)]="prestador.endereco.cep"
+              (ngModelChange)="onCepChange()" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="uf">Estado:</label>
+            <p-dropdown [options]="ufs" [(ngModel)]="prestador.endereco.uf" optionLabel="" id="uf" [style]="{'width':'66.666%'}" [required]="true" [disabled]="true"></p-dropdown>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="cidade">Cidade:</label>
+            <input pInputText id="cidade" [(ngModel)]="prestador.endereco.cidade" [disabled]="true" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="bairro">Setor:</label>
+            <input pInputText id="bairro" [(ngModel)]="prestador.endereco.bairro" [required]="true"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="numero">Número:</label>
+            <input pInputText id="numero" [(ngModel)]="prestador.endereco.numero" [required]="true"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="complemento">Complemento:</label>
+            <input pInputText id="complemento" [(ngModel)]="prestador.endereco.complemento" [required]="true"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-12 destacado">
+      <h5>Cadastrar Servicos</h5><p-button (click)="showDialog()" icon="pi pi-external-link" label="+"></p-button><br>
+      <div class="row" *ngFor="let servico of prestador.servicosPrestados">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Área do serviço</label>
+            <input pInputText id="email" [(ngModel)]="servico.servico.area" [disabled]="true" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Nome do serviço</label>
+            <input pInputText id="email" [(ngModel)]="servico.servico.descricao" [disabled]="true" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="descricaoServico">Descrição do Serviço</label>
+            <input pInputText id="descricaoServico" [(ngModel)]="servico.servico.descricao" [disabled]="true" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="valorServico">Valor do Serviço</label>
+            <input pInputText id="valorServico" [(ngModel)]="servico.servico.descricao" [disabled]="true" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5 destacado">
+      <h5>Dados de acesso</h5>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="cpfCnpj">Email de acesso:</label>
+          <input pInputText id="email" [(ngModel)]="prestador.usuario.username" [(ngModel)]="prestador.contato.email" [required]="true"/>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="nome">Senha:</label>
+          <p-password id="senha" [(ngModel)]="prestador.usuario.password" minlength="4" maxlength="20" [required]="true" [toggleMask]="true"/>
+          <div *ngIf="prestador.usuario.password != null && prestador.usuario.password.length < 1" class="campo-invalido">
+            O campo Senha não pode estar vazio.
+         </div>
+         <div *ngIf="prestador.usuario.password != null && prestador.usuario.password.length < 4 && prestador.usuario.password.length > 0" class="campo-invalido">
+            A senha precisa ter no mínimo 4 caracteres.
+       </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mt-5">
+      <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-success" (click)="cadastrar()"></button>
+    </div>
+  </div>
+
+  <p-dialog header="Adicionar Serviço" [(visible)]="visible">
+    <p-dropdown [options]="categorias" [(ngModel)]="novoServico.servico.area"></p-dropdown>
+    <label>Nome:</label>
+    <input pInputText id="nomeServico" [(ngModel)]="novoServico.servico.nome" />
+    <label>Descrição:</label>
+    <input pInputText id="nomeServico" [(ngModel)]="novoServico.servico.descricao" />
+    <label>Valor: R$ </label>
+    <p-inputNumber inputId="value" mode="decimal" [(ngModel)]="novoServico.valor"> </p-inputNumber>
+    <p-button label="Adicionar" (click)="adicionarServico()"></p-button>
+  </p-dialog>
+</div>

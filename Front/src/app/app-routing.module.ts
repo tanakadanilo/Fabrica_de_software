@@ -15,6 +15,7 @@ import { RecuperarSenhaComponent } from './tela/recuperar-senha/recuperar-senha.
 import { ContratoComponent } from './tela/contrato/contrato.component';
 import { EditarPerfilContratanteComponent } from './tela/editar-perfil-contratante/editar-perfil-contratante.component';
 import { EditarPerfilPrestadorComponent } from './tela/editar-perfil-prestador/editar-perfil-prestador.component';
+import { TelaSuperManeiraComponent } from './tela-super-maneira/tela-super-maneira.component';
 
 
 const routes: Routes = [
@@ -87,6 +88,11 @@ const routes: Routes = [
   {
     path: 'editarp/:id',
     component: EditarPerfilPrestadorComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'telamaneira',
+    component: TelaSuperManeiraComponent,
     pathMatch: 'full',
   },
 ];

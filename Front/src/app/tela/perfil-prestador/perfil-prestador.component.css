@@ -1,49 +1,24 @@
-.titulo-prestador{
-  text-align: center;
-}
-
-.container {
-  margin-top: 3em;
-}
-
-.servicos {
-  background-color: lightblue;
-  padding: 2em;
-}
-
-.btn-edit {
-  margin-top: 2em;
-}
-
-.servico {
-  margin-top: 3em;
-}
-
-/* Estilize a foto do prestador */
 .img-fluid {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px; /* Adicione bordas arredondadas à imagem */
+  width: 25rem;
+  height: 20rem;
+  border-radius: 8px;
 }
 
-/* Estilize o título "Informações Pessoais" */
+
 .informacoes-pessoais h1 {
   font-size: 24px;
   margin-bottom: 20px;
 }
 
-/* Estilize as labels das informações */
 .informacoes-pessoais label {
   font-weight: bold;
 }
 
-/* Estilize as spans com os dados do prestador */
 .informacoes-pessoais span {
   display: block;
   margin-bottom: 10px;
 }
 
-/* Estilize as colunas das informações */
 .informacoes-pessoais .col-md-6 {
   width: 50%;
   float: left;
@@ -51,7 +26,6 @@
   padding-right: 15px;
 }
 
-/* Limpe o float após as colunas das informações */
 .informacoes-pessoais::after {
   content: "";
   display: table;
