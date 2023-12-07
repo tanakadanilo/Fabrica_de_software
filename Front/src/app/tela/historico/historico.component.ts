@@ -16,7 +16,9 @@ enum Status{
   AGENDADA,
   INICIADA,
   FINALIZADA,
-  CANCELADA
+  CANCELADA,
+  RECUSADA,
+  EXPIRADA,
 }
 @Component({
   selector: 'app-historico',
@@ -26,22 +28,34 @@ enum Status{
 
 export class HistoricoComponent implements OnInit{
   Status = Status;
-  list!: []
-
+  
   constructor(
     private contratanteService : ContratanteService,
   ){}
-
+  
   ngOnInit(): void {
     
   }
 
 
+  list : serv[] = [
+    {
+  nome: 'erick',
+  cidade: 'Goiânia',
+  area: 'Medicina',
+  servico: 'Consertar dedo quebrado',
+  valor: '100,00',
+  data: '12/12/2023',
+  status: Status.EM_ANALISE,
+  },
+  ]
 
   getStatusDescricao(status: Status): string {
     switch (status) {
       case Status.EM_ANALISE:
         return 'Em Análise';
+      case Status.RECUSADA:
+        return 'Recusada';
       case Status.AGENDADA:
         return 'Agendada';
       case Status.INICIADA:
@@ -50,25 +64,39 @@ export class HistoricoComponent implements OnInit{
         return 'Finalizada';
       case Status.CANCELADA:
         return 'Cancelada';
-      default:
-        return '';
+      case Status.EXPIRADA:
+        return 'Expirada';
     }
   }
 
   getStatusBackgroundColor(status: Status): string {
     switch (status) {
       case Status.EM_ANALISE:
-        return 'lightyellow';
+        return '#fdfd96';
       case Status.AGENDADA:
-        return 'lightgreen';
+        return '#acdeaa';
       case Status.INICIADA:
-        return 'lightblue';
+        return '#b3e5fc';
       case Status.FINALIZADA:
-        return 'lightgray';
+        return 'hsla(300, 46%, 41%, 0.562)';
       case Status.CANCELADA:
-        return 'lightred';
-      default:
-        return '';
+        return '#e95e6c';
+      case Status.RECUSADA:
+        return '#e95e6c';
+      case Status.EXPIRADA:
+        return '#e95e6c';
     }
+  }
+  aceitar() {
+    this.list[0].status = this.Status.AGENDADA;
+  }
+  recusar() {
+    this.list[0].status = this.Status.RECUSADA;
+  }
+  cancelar() {
+    this.list[0].status = this.Status.CANCELADA;
+  }
+  finalizar() {
+    this.list[0].status = this.Status.FINALIZADA;
   }
 }
