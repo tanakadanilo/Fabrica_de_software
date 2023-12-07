@@ -34,7 +34,11 @@ export class MenuComponent {
   mostrarPerfil() {
     let pessoa = this.service.getPessoa();
     if (pessoa) {
-      this.navigate.navigate(['/perfil/' + pessoa.id]);
+      if (pessoa.usuario.prestador) {
+        this.navigate.navigate(['/perfil/' + pessoa.id]);
+      } else {
+        this.navigate.navigate(['/perfilu/' + pessoa.id]);
+      }
     } else {
       this.navigate.navigate(['/perfil/2']);
     }
