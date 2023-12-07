@@ -1,74 +1,74 @@
 import { Component, OnInit } from '@angular/core';
+import { StatusServico } from 'src/app/exports/enum/status-servico';
+import { Contratante } from 'src/app/exports/interface/contratante';
+import { HistoricoServico } from 'src/app/exports/interface/historico-servico';
+import { AuthenticationServiceService } from 'src/app/exports/service/authentication-service.service';
 import { ContratanteService } from 'src/app/exports/service/contratante.service';
 
-interface serv{
-  nome:any;
-  cidade:any;
-  area:any;
-  servico:any;
-  valor:any;
-  data:any;
-  status: Status; 
-}
-
-enum Status{
-  EM_ANALISE,
-  AGENDADA,
-  INICIADA,
-  FINALIZADA,
-  CANCELADA
-}
 @Component({
   selector: 'app-historico',
   templateUrl: './historico.component.html',
-  styleUrls: ['./historico.component.css']
+  styleUrls: ['./historico.component.css'],
 })
-
-export class HistoricoComponent implements OnInit{
-  Status = Status;
-  list!: []
+export class HistoricoComponent implements OnInit {
+  historicos!: HistoricoServico[];
+  contratante!: Contratante;
 
   constructor(
-    private contratanteService : ContratanteService,
-  ){}
+    private contratanteService: ContratanteService,
+    private usuarioService: AuthenticationServiceService
+  ) {}
 
   ngOnInit(): void {
-    
+    this.contratante = this.usuarioService.getPessoa()!;
+    this.contratanteService
+      .getHistoricoContratante(this.contratante.id)
+      .then((historicos) => {
+        this.historicos = historicos.data;
+        console.log(this.historicos);
+      });
   }
 
-
-
-  getStatusDescricao(status: Status): string {
+  getStatusDescricao(status: StatusServico): string {
     switch (status) {
-      case Status.EM_ANALISE:
+      case StatusServico.EM_ANALISE:
         return 'Em Análise';
-      case Status.AGENDADA:
+      case StatusServico.AGENDADA:
         return 'Agendada';
-      case Status.INICIADA:
+      case StatusServico.INICIADA:
         return 'Iniciada';
-      case Status.FINALIZADA:
+      case StatusServico.FINALIZADA:
         return 'Finalizada';
-      case Status.CANCELADA:
+      case StatusServico.CANCELADA:
         return 'Cancelada';
       default:
         return '';
     }
   }
 
-  getStatusBackgroundColor(status: Status): string {
+  getStatusBackgroundColor(status: StatusServico): string {
     switch (status) {
-      case Status.EM_ANALISE:
+      case StatusServico.EM_ANALISE:
         return 'lightyellow';
-      case Status.AGENDADA:
+      case StatusServico.AGENDADA:
         return 'lightgreen';
-      case Status.INICIADA:
+      case StatusServico.INICIADA:
         return 'lightblue';
-      case Status.FINALIZADA:
+      case StatusServico.FINALIZADA:
         return 'lightgray';
-      case Status.CANCELADA:
+      case StatusServico.CANCELADA:
         return 'lightred';
       default:
         return '';
     }
+  }
+
+  mudarStatusServico(historicoServico: HistoricoServico, statusNovo: string) {
+    this.contratanteService
+      .mudarStatusHistoricoServico(historicoServico.id!, statusNovo)
+      .then((historico) => {
+        console.log(historico);
+        historicoServico.status = historico.data.status;
+      });
   }
 }

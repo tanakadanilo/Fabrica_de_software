@@ -10,6 +10,8 @@ import { Endereco } from '../interface/endereco';
 import { Contato } from '../interface/contato';
 import { Observable } from 'rxjs';
 import { Prestador } from '../interface/prestador';
+import { HistoricoServico } from '../interface/historico-servico';
+import { StatusServico } from '../enum/status-servico';
 
 @Injectable({
   providedIn: 'root',
@@ -25,9 +27,9 @@ export class ContratanteService extends BaseServiceService {
     super(http, messageService, router);
   }
 
-  override toPromisse(
+  override toPromisse<T>(
     observable: Observable<Response<any>>
-  ): Promise<Response<Contratante>> {
+  ): Promise<Response<T>> {
     return super.toPromisse(observable);
   }
 
@@ -52,6 +54,29 @@ export class ContratanteService extends BaseServiceService {
   cadastrarContratante(Contratante: Contratante) {
     return this.toPromisse(
       this.http.post<Response<Prestador>>(this.URL_CONTRATANTE, Contratante)
+    );
+  }
+
+  getHistoricoContratante(id: number): Promise<Response<HistoricoServico[]>> {
+    return this.toPromisse<HistoricoServico[]>(
+      this.http.get<Response<HistoricoServico[]>>(
+        this.URL_CONTRATANTE + '/historico/' + id
+      )
+    );
+  }
+
+  mudarStatusHistoricoServico(
+    id: number,
+    statusServico: string,
+  ): Promise<Response<HistoricoServico>> {
+    return this.toPromisse<HistoricoServico>(
+      this.http.get<Response<HistoricoServico>>(
+        this.URL_BACK +
+          '/contratar/alterarstatus?id=' +
+          id +
+          '&status=' +
+          statusServico
+      )
     );
   }
 }

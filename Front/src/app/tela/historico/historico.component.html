@@ -1,25 +1,26 @@
 <h4 class="titulo">Propostas recebidas:</h4>
-<div class="row mt-12 destacado" *ngFor="let item of list">
+<div class="row mt-12 destacado" *ngFor="let item of historicos">
     <div class="d-flex justify-content-between align-items-center">
         <h5 class="meio">#1</h5>
         <div class="status" [style.background-color]="getStatusBackgroundColor(item.status)">
-          <label>{{ getStatusDescricao(item.status) }}</label>
+            <label>{{ getStatusDescricao(item.status) }}</label>
         </div>
-      </div>
-      
-      
+    </div>
+
+
     <div class="row">
         <div class="col-md-7">
             <div>
                 <label class="d-block">Contratante:</label>
-                <input [style]="{ width: '60%'}" class="campoBonito" [(ngModel)]="item.nome" [disabled]="true" />
+                <input [style]="{ width: '60%'}" class="campoBonito" [(ngModel)]="item.contratante.nome"
+                    [disabled]="true" />
             </div>
         </div>
-        
+
         <div class="col-md-3">
             <div>
                 <label class="d-block">Local do serviço:</label>
-                <input class="campoBonito" [(ngModel)]="item.cidade" [disabled]="true"/>
+                <input class="campoBonito" [(ngModel)]="item.contratante.endereco.cidade" [disabled]="true" />
             </div>
         </div>
     </div>
@@ -27,7 +28,7 @@
         <div class="col-md-3">
             <div>
                 <label class="d-block">Área do serviço escolhido:</label>
-                <input class="campoBonito" [(ngModel)]="item.area" [disabled]="true" />
+                <input class="campoBonito" [(ngModel)]="item.servico.servico.area" [disabled]="true" />
             </div>
         </div>
     </div>
@@ -35,26 +36,35 @@
         <div class="col-md-3">
             <div>
                 <label class="d-block">Serviço:</label>
-                <input [style]="{ width: '100%'}" class="campoBonito" [(ngModel)]="item.servico" [disabled]="true" />
+                <input [style]="{ width: '100%'}" class="campoBonito" [(ngModel)]="item.servico.servico.nome"
+                    [disabled]="true" />
             </div>
         </div>
         <div class="col-md-2">
             <div>
                 <label class="d-block">Valor do serviço:</label>
-                <input class="campoBonito" [(ngModel)]="item.valor" [disabled]="true" />
+                <label class="campoBonito">{{item.servico.valor| currency:'BRL':'symbol':'1.2-2'}}</label>
             </div>
         </div>
         <div class="col-md-2">
             <div>
                 <label class="d-block">Data do serviço:</label>
-                <input class="campoBonito" [(ngModel)]="item.data" [disabled]="true" />
+                <label class="campoBonito">{{item.dataExecucaoServico|date:'dd/MM/yyyy'}}</label>
             </div>
         </div>
         <div class="col-md-5 mt-4">
-            <p-button [style]="{ width: '45%', 'margin-right': '30px', color: 'green'}" label="Aceitar proposta" *ngIf="item.status === Status.EM_ANALISE"></p-button>
-            <p-button [style]="{ width: '45%', background: 'lightred', 'border-color': 'lightred'}" label="Recusar proposta" *ngIf="item.status === Status.EM_ANALISE"></p-button>
-            <p-button [style]="{ width: '45%', 'margin-right': '30px', background: 'light-green', 'border-color': 'light-green'}" label="Finalizar serviço" *ngIf="item.status === Status.INICIADA"></p-button>
-            <p-button [style]="{ width: '45%', background: 'light-red', 'border-color': 'light-red'}" label="Cancelar serviço" *ngIf="item.status === Status.INICIADA"></p-button>
+            <p-button [style]="{ width: '45%', 'margin-right': '30px', color: 'green'}" label="Aceitar proposta"
+                *ngIf="item.status == 'EM_ANALISE'" (click)="mudarStatusServico(item, 'AGENDADA')"></p-button>
+            <p-button [style]="{ width: '45%', background: 'lightred', 'border-color': 'lightred'}"
+                label="Recusar proposta" *ngIf="item.status == 'EM_ANALISE'"
+                (click)="mudarStatusServico(item, 'REPROVADA')"></p-button>
+            <p-button
+                [style]="{ width: '45%', 'margin-right': '30px', background: 'light-green', 'border-color': 'light-green'}"
+                label="Finalizar serviço" *ngIf="item.status == 'INICIADA'"
+                (click)="mudarStatusServico(item, 'FINALIZADA')"></p-button>
+            <p-button [style]="{ width: '45%', background: 'light-red', 'border-color': 'light-red'}"
+                label="Cancelar serviço" *ngIf="item.status == 'INICIADA'"
+                (click)="mudarStatusServico(item, 'CANCELADA')"></p-button>
         </div>
     </div>
 </div>

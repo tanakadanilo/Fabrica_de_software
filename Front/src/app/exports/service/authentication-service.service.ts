@@ -26,6 +26,8 @@ export class AuthenticationServiceService {
       login: username,
       prestador: isPrestador,
     };
+    console.log(this.pessoa);
+    
   }
 
   deslogar(){

@@ -100,5 +100,4 @@ export class PerfilPrestadorComponent extends TelaBaseComponent {
   verHistorico(){
     this.navigate.navigate(['historico']);
   }
-  
 }
