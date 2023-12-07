@@ -1,5 +1,6 @@
 package com.devnari.contrataai.control;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devnari.contrataai.base.Response;
+import com.devnari.contrataai.model.HistoricoServico;
 import com.devnari.contrataai.model.Prestador;
 import com.devnari.contrataai.model.ServicoPrestado;
 import com.devnari.contrataai.services.HistoricoService;
@@ -147,4 +149,17 @@ public class PrestadorControl {
 		}
 		return ResponseEntity.ok(response);
 	}
+	
+	@GetMapping("/historico")
+    public ResponseEntity<Response<List<HistoricoServico>>> 
+    listarHistoricosPorPrestador(@RequestParam("idPrestador") Integer idPrestador) {
+        Response<List<HistoricoServico>> response = new Response<>();
+        try {
+            response.setData(historicoService.listarHistoricosPrestador(idPrestador));
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getErros().add(e.getMessage());
+        }
+        return ResponseEntity.ok(response);
+    }
 }

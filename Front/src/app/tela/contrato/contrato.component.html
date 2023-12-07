@@ -4,27 +4,27 @@
     <p><strong>Entre:</strong></p>
     
     <div class="teste">
-        <p><strong>Contratante:</strong> {{ propostaContrato.contratante.nome }}<br>
-        <strong>Endereço:</strong> {{ propostaContrato.contratante.endereco.logradouro + ", Qd." + propostaContrato.contratante.endereco.quadra + ", Lt." + propostaContrato.contratante.endereco.lote + " - " + propostaContrato.contratante.endereco.bairro }} <br>
-        <strong>Cidade/Estado:</strong> {{ propostaContrato.contratante.endereco.cidade + " - " + propostaContrato.contratante.endereco.uf + ", CEP: " + propostaContrato.contratante.endereco.cep }}</p>
+        <p><strong>Contratante:</strong> {{ propostaContrato[0].contratante.nome }}<br>
+        <strong>Endereço:</strong> {{ propostaContrato[0].contratante.endereco.logradouro + ", Qd." + propostaContrato[0].contratante.endereco.quadra + ", Lt." + propostaContrato[0].contratante.endereco.lote + " - " + propostaContrato[0].contratante.endereco.bairro }} <br>
+        <strong>Cidade/Estado:</strong> {{ propostaContrato[0].contratante.endereco.cidade + " - " + propostaContrato[0].contratante.endereco.uf + ", CEP: " + propostaContrato[0].contratante.endereco.cep }}</p>
         
         <p><strong>E:</strong></p>
 
-        <p><strong>Prestador de Serviços:</strong> {{ propostaContrato.prestador.nome }}<br>
-        <strong>Endereço:</strong> {{ propostaContrato.prestador.endereco.logradouro + ", Qd." + propostaContrato.prestador.endereco.quadra + ", Lt." + propostaContrato.prestador.endereco.lote + " - " + propostaContrato.prestador.endereco.bairro }}<br>
-        <strong>Cidade/Estado:</strong> {{ propostaContrato.prestador.endereco.cidade + " - " + propostaContrato.prestador.endereco.uf + ", CEP: " + propostaContrato.prestador.endereco.cep }}</p>
+        <p><strong>Prestador de Serviços:</strong> {{ propostaContrato[0].prestador.nome }}<br>
+        <strong>Endereço:</strong> {{ propostaContrato[0].prestador.endereco.logradouro + ", Qd." + propostaContrato[0].prestador.endereco.quadra + ", Lt." + propostaContrato[0].prestador.endereco.lote + " - " + propostaContrato[0].prestador.endereco.bairro }}<br>
+        <strong>Cidade/Estado:</strong> {{ propostaContrato[0].prestador.endereco.cidade + " - " + propostaContrato[0].prestador.endereco.uf + ", CEP: " + propostaContrato[0].prestador.endereco.cep }}</p>
     </div>
-    <p><strong>Data do Serviço:</strong> {{ propostaContrato.dataContratacao | date:'dd/MM/yyyy' }}</p>
+    <p><strong>Data do Serviço:</strong> {{ propostaContrato[0].dataContratacao | date:'dd/MM/yyyy' }}</p>
     
     <p><strong>1. Descrição dos Serviços:</strong><br>
     O Contratante concorda em contratar o Prestador de Serviços para realizar o seguinte serviço:<br>
-    {{ propostaContrato.servicoPrestado[0].servico.nome + ": " + propostaContrato.servicoPrestado[0].servico.descricao + "." }}</p>
+    {{ propostaContrato[0].servicoPrestado.servico.nome + ": " + propostaContrato[0].servicoPrestado.servico.descricao + "." }}</p>
     
     <p><strong>2. Valor e Pagamento:</strong><br>
     O Contratante concorda em pagar ao Prestador de Serviços a quantia de {{ valorTotal | currency:'BRL':'symbol':'1.2-2' }} pelos serviços prestados. O pagamento será efetuado ao final do serviço, da forma decidida entre as partes.</p>
     
     <p><strong>3. Prazo:</strong><br>
-    O serviço será realizado no período compreendido entre {{ propostaContrato.dataContratacao | date:'dd/MM/yyyy' }} e DATA A DEFINIR. Cabendo ao prestador realizar todos os esforços razoáveis para cumprir esse prazo.</p>
+    O serviço será realizado no período compreendido entre {{ propostaContrato[0].dataContratacao | date:'dd/MM/yyyy' }} e DATA A DEFINIR. Cabendo ao prestador realizar todos os esforços razoáveis para cumprir esse prazo.</p>
     
     <p><strong>4. Direitos de Propriedade:</strong><br>
     Qualquer produto resultante dos serviços, incluindo, mas não se limitando a, documentos, relatórios ou outros materiais, será de propriedade exclusiva do Contratante após o pagamento integral.</p>

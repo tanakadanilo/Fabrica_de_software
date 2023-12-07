@@ -140,7 +140,7 @@
     </div>
   </div>
 
-  <p-dialog header="Adicionar Serviço" [(visible)]="visible">
+  <p-dialog [style]="{height: '20rem;'}" header="Adicionar Serviço" [(visible)]="visible">
     <p-dropdown [options]="categorias" [(ngModel)]="novoServico.servico.area"></p-dropdown>
     <label>Nome:</label>
     <input pInputText id="nomeServico" [(ngModel)]="novoServico.servico.nome" />

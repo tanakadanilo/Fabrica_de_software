@@ -10,6 +10,7 @@ import { Response } from '../interface/response';
 import { Observable } from 'rxjs';
 import { Paginavel } from '../interface/paginavel';
 import { ResponsePaginada } from '../interface/response-paginada';
+import { HistoricoServico } from '../interface/historico-servico';
 
 @Injectable({
   providedIn: 'root',
@@ -31,9 +32,9 @@ export class PrestadorService extends BaseServiceService {
     return super.toPromissePaginavel(observable);
   }
 
-  override toPromisse(
-    observable: Observable<Response<Prestador>>
-  ): Promise<Response<Prestador>> {
+  override toPromisse<T>(
+    observable: Observable<Response<T>>
+  ): Promise<Response<T>> {
     return super.toPromisse(observable);
   }
 
@@ -97,4 +98,11 @@ export class PrestadorService extends BaseServiceService {
     );
   }
 
+  getHistoricoPrestador(idPrestador : number): Promise<Response<HistoricoServico[]>> {
+    return this.toPromisse<HistoricoServico[]>(
+      this.http.get<Response<HistoricoServico[]>>(
+        this.URL_PRESTADOR + '/historico?idPrestador=' + idPrestador
+      )
+    );
+  }
 }

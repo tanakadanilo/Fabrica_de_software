@@ -8,6 +8,8 @@ import { Servico } from '../interface/servico';
 import { Observable } from 'rxjs';
 import { Paginavel } from '../interface/paginavel';
 import { ServicoPrestadoDto } from '../interface/servico-prestado-DTO';
+import { PropostaContratacao } from '../interface/contratacaoServico';
+import { HistoricoServico } from '../interface/historico-servico';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +17,7 @@ import { ServicoPrestadoDto } from '../interface/servico-prestado-DTO';
 export class ServicosService extends BaseServiceService {
   readonly URL_SERVICOS = this.URL_BACK + '/servico';
   readonly URL_SERVICOS_PRESTADOS = this.URL_SERVICOS + 'prestado';
-
+  
   constructor(
     protected override http: HttpClient,
     messageService: MessageService,
@@ -81,5 +83,10 @@ export class ServicosService extends BaseServiceService {
           }
         );
     });
+  }
+  adicionarNoHistorico(propostaContratacao : PropostaContratacao) {
+    return this.toPromisse(
+      this.http.post<Response<HistoricoServico>>(this.URL_BACK + "/contratar", propostaContratacao)
+    );
   }
 }

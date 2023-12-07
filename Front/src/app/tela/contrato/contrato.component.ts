@@ -16,7 +16,7 @@ import { ServicosService } from 'src/app/exports/service/servicos.service';
   styleUrls: ['./contrato.component.css']
 })
 export class ContratoComponent implements OnInit{
-  propostaContrato! : PropostaContratacao;
+  propostaContrato : PropostaContratacao[] = [];
 
   constructor(
     private service : ServicosService,
@@ -35,24 +35,31 @@ export class ContratoComponent implements OnInit{
     console.log(this.valorTotal);
       this.service.getServicoDetail(this.service.servicosListados[0].id).then( variavel => {
         this.prestadorService.getPrestador(variavel.data.idPrestador).then( (variavel2: { data: Prestador; }) => {
-          this.propostaContrato = { prestador : variavel2.data, 
+          this.service.servicosListados.forEach(variavel3 => {
+          if(this.propostaContrato){
+            this.propostaContrato.push({ prestador : variavel2.data, 
                                     contratante : this.authenticationService.getPessoa() as Contratante,
-                                    servicoPrestado : this.service.servicosListados,
+                                    servicoPrestado : variavel3,
                                     dataContratacao : this.date
-                                  };
-          console.log(this.propostaContrato.dataContratacao);
+                                  });
+                                }
         });
       })
-      
+    })
   }
 
   contratar() {
+    this.propostaContrato.forEach(variavel => {
+      this.service.adicionarNoHistorico(variavel).then(variavel => {
+        console.log(variavel);
+      });
+    });
+
+
     this.baseService.toastSuccess([
       "A proposta foi enviada com sucesso",
       "Um email será enviado para o prestador e ele entrará em contato para definir os pontos faltantes caso aceite."
-]);    
-
-    this.baseService.enviarEmail(this.propostaContrato.prestador.contato.email, "Proposta de contratação", "");
+]);
 
     this.navigate.navigate(['']);
 

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { StatusServico } from 'src/app/exports/enum/status-servico';
 import { Contratante } from 'src/app/exports/interface/contratante';
 import { HistoricoServico } from 'src/app/exports/interface/historico-servico';
+import { Prestador } from 'src/app/exports/interface/prestador';
 import { AuthenticationServiceService } from 'src/app/exports/service/authentication-service.service';
 import { ContratanteService } from 'src/app/exports/service/contratante.service';
+import { PrestadorService } from 'src/app/exports/service/prestador.service';
 
 @Component({
   selector: 'app-historico',
@@ -12,21 +14,31 @@ import { ContratanteService } from 'src/app/exports/service/contratante.service'
 })
 export class HistoricoComponent implements OnInit {
   historicos!: HistoricoServico[];
-  contratante!: Contratante;
+  pessoa!: Contratante | Prestador;
 
   constructor(
     private contratanteService: ContratanteService,
-    private usuarioService: AuthenticationServiceService
+    private usuarioService: AuthenticationServiceService,
+    private prestadorService : PrestadorService,
   ) {}
 
   ngOnInit(): void {
-    this.contratante = this.usuarioService.getPessoa()!;
+    this.pessoa = this.usuarioService.getPessoa()!;
+    if(this.usuarioService.getUsuario()?.prestador){
+      this.prestadorService
+    .getHistoricoPrestador(this.pessoa.id)
+    .then((historicos) => {
+      this.historicos = historicos.data;
+      console.log(this.historicos);
+    });
+    } else {
     this.contratanteService
-      .getHistoricoContratante(this.contratante.id)
-      .then((historicos) => {
-        this.historicos = historicos.data;
-        console.log(this.historicos);
-      });
+    .getHistoricoContratante(this.pessoa.id)
+    .then((historicos) => {
+      this.historicos = historicos.data;
+      console.log(this.historicos);
+    });
+  }
   }
 
   getStatusDescricao(status: StatusServico): string {

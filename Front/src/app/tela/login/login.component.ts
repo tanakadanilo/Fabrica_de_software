@@ -43,7 +43,7 @@ export class LoginComponent extends TelaBaseComponent {
           } else {
             localStorage.setItem('token', a.data);
             this.service.findByToken(a.data).subscribe( (variavel : any) => {
-              this.authenticationService.loggar(a.data, this.username, this.password, variavel.data.pessoa, false);
+              this.authenticationService.loggar(a.data, this.username, this.password, variavel.data.pessoa, variavel.data.usuario.prestador);
             });;
             this.navigate.navigate(['']);
           }

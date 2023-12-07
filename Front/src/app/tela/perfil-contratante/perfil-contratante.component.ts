@@ -47,8 +47,14 @@ export class PerfilContratanteComponent extends TelaBaseComponent {
     this.navigate.navigate(['editarc/' + this.contratante.id]);
   }
 
-  verHistorico(){
-    this.navigate.navigate(['historico']);
+  verHistorico() {
+    this.service.getHistoricoContratante(this.contratante.id).then((variavel) => {
+      if (variavel.data.length == 0) {
+        this.service.toastError(['Nenhuma proposta!']);
+        return;
+      } else this.navigate.navigate(['historico']);
+    });
   }
+  
 
 }

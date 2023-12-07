@@ -13,6 +13,11 @@
                 <input [style]="{ width: '60%'}" class="campoBonito" [(ngModel)]="item.contratante.nome"
                     [disabled]="true" />
             </div>
+            <div>
+                <label class="d-block">Prestador:</label>
+                <input [style]="{ width: '60%'}" class="campoBonito" [(ngModel)]="item.prestador.nome"
+                    [disabled]="true" />
+            </div>
         </div>
 
         <div class="col-md-3">
@@ -60,10 +65,15 @@
                 (click)="mudarStatusServico(item, 'RECUSADA')"></p-button>
             <p-button
                 [style]="{ width: '45%', 'margin-right': '30px', background: '#78dd75', 'border-color': '#78dd75'}"
+                label="Iniciar serviço" *ngIf="item.status === 'AGENDADA'"
+                (click)="mudarStatusServico(item, 'INICIADA')"></p-button>
+            <p-button
+                [style]="{ width: '45%', 'margin-right': '30px', background: '#78dd75', 'border-color': '#78dd75'}"
                 label="Finalizar serviço" *ngIf="item.status === 'INICIADA'"
                 (click)="mudarStatusServico(item, 'FINALIZADA')"></p-button>
             <p-button [style]="{ width: '45%',background: '#e95e6c', 'border-color': '#e95e6c'}"
-                label="Cancelar serviço" *ngIf="item.status === 'INICIADA'"
+                label="Cancelar serviço"
+                *ngIf="item.status !== 'CANCELADA' && item.status !== 'FINALIZADA' && item.status !== 'RECUSADA'  && item.status !== 'EM_ANALISE'"
                 (click)="mudarStatusServico(item, 'CANCELADA')"></p-button>
         </div>
     </div>

@@ -78,19 +78,24 @@ export class PerfilPrestadorComponent extends TelaBaseComponent {
   servicoSelecionado!: ServicoPrestado[];
 
   enviarServicosSelecionados(): void {
-    if(!this.servicoSelecionado || this.servicoSelecionado.length === 0){ 
-      this.servicoService.toastError(["Nenhum serviço selecionado!"]);
+    if (!this.servicoSelecionado || this.servicoSelecionado.length === 0) {
+      this.servicoService.toastError(['Nenhum serviço selecionado!']);
       return;
     }
     this.servicoService.servicosListados = this.servicoSelecionado;
     this.navigate.navigate(['contratar']);
   }
 
-  editar(){
+  editar() {
     this.navigate.navigate(['editarp/' + this.prestador.id]);
   }
 
-  verHistorico(){
-    this.navigate.navigate(['historico']);
+  verHistorico() {
+    this.service.getHistoricoPrestador(this.prestador.id).then((variavel) => {
+      if (variavel.data.length == 0) {
+        this.service.toastError(['Nenhuma proposta!']);
+        return;
+      } else this.navigate.navigate(['historico']);
+    });
   }
 }

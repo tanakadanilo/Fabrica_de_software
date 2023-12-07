@@ -7,7 +7,7 @@ export interface  PropostaContratacao {
 	
     id?: number;
 	
-	servicoPrestado: ServicoPrestado[];
+	servicoPrestado: ServicoPrestado;
 	prestador: Prestador;
 	contratante: Contratante;
 	dataContratacao: Date;

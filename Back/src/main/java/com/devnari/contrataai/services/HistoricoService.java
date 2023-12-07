@@ -59,4 +59,8 @@ public class HistoricoService {
 		return historicoServicoDao.save(historicoServico);
 
 	}
+	
+	public List<HistoricoServico> listarHistoricosPrestador(Integer idPrestador) {
+        return (historicoServicoDao.listarPorPrestador(idPrestador));
+    }
 }
