@@ -33,6 +33,8 @@ export class HistoricoComponent implements OnInit {
     switch (status) {
       case StatusServico.EM_ANALISE:
         return 'Em Análise';
+      case StatusServico.RECUSADA:
+        return 'Recusada';
       case StatusServico.AGENDADA:
         return 'Agendada';
       case StatusServico.INICIADA:
@@ -41,25 +43,27 @@ export class HistoricoComponent implements OnInit {
         return 'Finalizada';
       case StatusServico.CANCELADA:
         return 'Cancelada';
-      default:
-        return '';
+      case StatusServico.EXPIRADA:
+        return 'Expirada';
     }
   }
 
   getStatusBackgroundColor(status: StatusServico): string {
     switch (status) {
       case StatusServico.EM_ANALISE:
-        return 'lightyellow';
+        return '#fdfd96';
       case StatusServico.AGENDADA:
-        return 'lightgreen';
+        return '#acdeaa';
       case StatusServico.INICIADA:
-        return 'lightblue';
+        return '#b3e5fc';
       case StatusServico.FINALIZADA:
-        return 'lightgray';
+        return 'hsla(300, 46%, 41%, 0.562)';
       case StatusServico.CANCELADA:
-        return 'lightred';
-      default:
-        return '';
+        return '#e95e6c';
+      case StatusServico.RECUSADA:
+        return '#e95e6c';
+      case StatusServico.EXPIRADA:
+        return '#e95e6c';
     }
   }
 

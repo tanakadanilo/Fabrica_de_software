@@ -1,13 +1,11 @@
 <h4 class="titulo">Propostas recebidas:</h4>
-<div class="row mt-12 destacado" *ngFor="let item of historicos">
+<div class="row mt-12 destacado" *ngFor="let item of historicos; let i =index">
     <div class="d-flex justify-content-between align-items-center">
-        <h5 class="meio">#1</h5>
+        <h5 class="meio">#{{ 1 + i }}</h5>
         <div class="status" [style.background-color]="getStatusBackgroundColor(item.status)">
             <label>{{ getStatusDescricao(item.status) }}</label>
         </div>
     </div>
-
-
     <div class="row">
         <div class="col-md-7">
             <div>
@@ -53,17 +51,19 @@
             </div>
         </div>
         <div class="col-md-5 mt-4">
-            <p-button [style]="{ width: '45%', 'margin-right': '30px', color: 'green'}" label="Aceitar proposta"
-                *ngIf="item.status == 'EM_ANALISE'" (click)="mudarStatusServico(item, 'AGENDADA')"></p-button>
-            <p-button [style]="{ width: '45%', background: 'lightred', 'border-color': 'lightred'}"
-                label="Recusar proposta" *ngIf="item.status == 'EM_ANALISE'"
-                (click)="mudarStatusServico(item, 'REPROVADA')"></p-button>
             <p-button
-                [style]="{ width: '45%', 'margin-right': '30px', background: 'light-green', 'border-color': 'light-green'}"
-                label="Finalizar serviço" *ngIf="item.status == 'INICIADA'"
+                [style]="{ width: '45%', 'margin-right': '30px', background: '#78dd75', 'border-color': '#78dd75'}"
+                label="Aceitar proposta" *ngIf="item.status === 'EM_ANALISE'"
+                (click)="mudarStatusServico(item, 'AGENDADA')"></p-button>
+            <p-button [style]="{ width: '45%', background: '#e95e6c', 'border-color': '#e95e6c'}"
+                label="Recusar proposta" *ngIf="item.status === 'EM_ANALISE'"
+                (click)="mudarStatusServico(item, 'RECUSADA')"></p-button>
+            <p-button
+                [style]="{ width: '45%', 'margin-right': '30px', background: '#78dd75', 'border-color': '#78dd75'}"
+                label="Finalizar serviço" *ngIf="item.status === 'INICIADA'"
                 (click)="mudarStatusServico(item, 'FINALIZADA')"></p-button>
-            <p-button [style]="{ width: '45%', background: 'light-red', 'border-color': 'light-red'}"
-                label="Cancelar serviço" *ngIf="item.status == 'INICIADA'"
+            <p-button [style]="{ width: '45%',background: '#e95e6c', 'border-color': '#e95e6c'}"
+                label="Cancelar serviço" *ngIf="item.status === 'INICIADA'"
                 (click)="mudarStatusServico(item, 'CANCELADA')"></p-button>
         </div>
     </div>
